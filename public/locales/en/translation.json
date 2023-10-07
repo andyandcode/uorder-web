@@ -1,0 +1,23 @@
+{
+    "app": {
+        "layout": {
+            "menu": {
+                "home": "Home",
+                "manage": {
+                    "manage": "Manage",
+                    "dish": "Dish",
+                    "menu": "Menu",
+                    "table": "Table"
+                },
+                "sale": { "sale": "Sale", "booking": "Booking", "order": "Order" },
+                "account": "Account",
+                "setting": {
+                    "setting": "Settings",
+                    "system": "System settings",
+                    "account": "Account settings"
+                }
+            },
+            "nav": { "text": "Account", "account": "Account infomation", "logout": "Log out" }
+        }
+    }
+}

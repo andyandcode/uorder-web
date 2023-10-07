@@ -1,0 +1,23 @@
+{
+    "app": {
+        "layout": {
+            "menu": {
+                "home": "Trang chủ",
+                "manage": {
+                    "manage": "Quản lý",
+                    "dish": "Món ăn",
+                    "menu": "Mục lục",
+                    "table": "Bafn"
+                },
+                "sale": { "sale": "Kinh doanh", "booking": "Đặt bàn", "order": "Đơn hàng" },
+                "account": "Tài khoản",
+                "setting": {
+                    "setting": "Cài đặt",
+                    "system": "Hệ thống",
+                    "account": "Tài khoản"
+                }
+            },
+            "nav": { "text": "Tài khoản", "account": "Thông tin tài khoản", "logout": "Đăng xuất" }
+        }
+    }
+}
