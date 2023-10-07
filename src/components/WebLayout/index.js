@@ -5,48 +5,47 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { rootKeys } from '../../configuration/routesConfig';
 import { MenuList } from './MenuList';
+
 const { confirm } = Modal;
 const { Header, Content, Footer, Sider } = Layout;
+
 const rootSubmenuKeys = [
     rootKeys.home.path,
     rootKeys.manage.path,
     rootKeys.sale.path,
     rootKeys.setting.path,
 ];
+
 const locales = [
     { label: 'Tiếng việt', value: 'vi' },
     { label: 'English', value: 'en' },
 ];
-const showDeleteConfirm = () => {
-    confirm({
-        title: 'Bạn chắc chắn muốn đăng xuất phiên hiện tại?',
-        icon: <ExclamationCircleFilled />,
-        content:
-            'Hành động này sẽ xóa thông tin đăng nhập phiên hiện tại trên thiết bị. Bạn vẫn có thể đăng nhập lại vào lần sau.',
-        okText: 'Đăng xuất',
-        okType: 'danger',
-        cancelText: 'Hủy',
-        onOk() {
-            console.log('OK');
-        },
-        onCancel() {
-            console.log('Cancel');
-        },
-    });
-};
 
 export default function WebLayout(props) {
     const { t, i18n } = useTranslation();
 
+    const showDeleteConfirm = () => {
+        confirm({
+            title: t('app.notification.accountQuickAccess.title'),
+            icon: <ExclamationCircleFilled />,
+            content: t('app.notification.accountQuickAccess.message'),
+            okType: 'danger',
+            okText: t('app.notification.accountQuickAccess.acceptButton'),
+            cancelText: t('app.notification.accountQuickAccess.cancelButton'),
+            onOk() {},
+            onCancel() {},
+        });
+    };
+
     const items = [
         {
-            label: <Link to='/manage'>{t('app.layout.nav.account')}</Link>,
+            label: <Link to='/manage'>{t('app.feature.accountQuickAccess.infomation')}</Link>,
             key: '1',
         },
         {
             label: (
                 <Button onClick={showDeleteConfirm} type='link' danger>
-                    {t('app.layout.nav.logout')}
+                    {t('app.feature.accountQuickAccess.logoutButton')}
                 </Button>
             ),
             key: '2',
@@ -141,7 +140,7 @@ export default function WebLayout(props) {
                     >
                         <Space>
                             <Button type='link' icon={<UserOutlined />}>
-                                {t('app.layout.nav.text')}
+                                {t('app.feature.accountQuickAccess.label')}
                             </Button>
                         </Space>
                     </Dropdown>

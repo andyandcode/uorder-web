@@ -1,23 +1,41 @@
 {
     "app": {
-        "layout": {
-            "menu": {
-                "home": "Home",
-                "manage": {
-                    "manage": "Manage",
-                    "dish": "Dish",
-                    "menu": "Menu",
-                    "table": "Table"
-                },
-                "sale": { "sale": "Sale", "booking": "Booking", "order": "Order" },
-                "account": "Account",
-                "setting": {
-                    "setting": "Settings",
-                    "system": "System settings",
-                    "account": "Account settings"
-                }
+        "feature": {
+            "home": {
+                "label": "Home"
             },
-            "nav": { "text": "Account", "account": "Account infomation", "logout": "Log out" }
+            "manage": {
+                "label": "Manage",
+                "dish": { "label": "Dish management" },
+                "menu": { "label": "Menu management" },
+                "table": { "label": "Table management" }
+            },
+            "sale": {
+                "label": "Sales",
+                "booking": { "label": "Booking management" },
+                "order": { "label": "Order management" }
+            },
+            "account": {
+                "label": "Account management"
+            },
+            "setting": {
+                "label": "Settings",
+                "system": { "label": "System settings" },
+                "account": { "label": "Account settings" }
+            },
+            "accountQuickAccess": {
+                "label": "Account",
+                "infomation": "Account infomations",
+                "logoutButton": "Log out"
+            }
+        },
+        "notification": {
+            "accountQuickAccess": {
+                "title": "Do you wish to end the current session?",
+                "message": "The current login details on this device will be deleted after this operation. The next time, you may still log in.",
+                "cancelButton": "Cancel",
+                "acceptButton": "Log out"
+            }
         }
     }
 }

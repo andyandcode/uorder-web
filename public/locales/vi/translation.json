@@ -1,23 +1,41 @@
 {
     "app": {
-        "layout": {
-            "menu": {
-                "home": "Trang chủ",
-                "manage": {
-                    "manage": "Quản lý",
-                    "dish": "Món ăn",
-                    "menu": "Mục lục",
-                    "table": "Bafn"
-                },
-                "sale": { "sale": "Kinh doanh", "booking": "Đặt bàn", "order": "Đơn hàng" },
-                "account": "Tài khoản",
-                "setting": {
-                    "setting": "Cài đặt",
-                    "system": "Hệ thống",
-                    "account": "Tài khoản"
-                }
+        "feature": {
+            "home": {
+                "label": "Trang chủ"
             },
-            "nav": { "text": "Tài khoản", "account": "Thông tin tài khoản", "logout": "Đăng xuất" }
+            "manage": {
+                "label": "Quản lý",
+                "dish": { "label": "Quản lý món ăn" },
+                "menu": { "label": "Quản lý thực đơn" },
+                "table": { "label": "Quản lý bàn" }
+            },
+            "sale": {
+                "label": "Kinh doanh",
+                "booking": { "label": "Quản lý đặt món" },
+                "order": { "label": "Quản lý đơn hàng" }
+            },
+            "account": {
+                "label": "Quản lý tài khoản"
+            },
+            "setting": {
+                "label": "Cài đặt",
+                "system": { "label": "Cài đặt hệ thống" },
+                "account": { "label": "Cài đặt tài khoản" }
+            },
+            "accountQuickAccess": {
+                "label": "Tài khoản",
+                "infomation": { "label": "Thông tin tài khoản" },
+                "logoutButton": { "label": "Đăng xuất" }
+            }
+        },
+        "notification": {
+            "accountQuickAccess": {
+                "title": "Bạn chắc chắn muốn đăng xuất phiên làm việc hiện tại?",
+                "message": "Hành động này sẽ xóa thông tin đăng nhập hiện tại trên thiết bị này. Bạn vẫn có thể đăng nhập lại vào lần sau.",
+                "cancelButton": "Hủy",
+                "acceptButton": "Đăng xuất"
+            }
         }
     }
 }
