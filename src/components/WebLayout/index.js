@@ -1,5 +1,5 @@
 import { ExclamationCircleFilled, UserOutlined } from '@ant-design/icons';
-import { Button, Dropdown, Layout, Menu, Modal, Select, Space, theme } from 'antd';
+import { Button, Dropdown, Layout, Menu, Modal, Select, Space, Typography, theme } from 'antd';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { MenuList } from './MenuList';
 
 const { confirm } = Modal;
 const { Header, Content, Footer, Sider } = Layout;
+const { Title } = Typography;
 
 const rootSubmenuKeys = [
     rootKeys.homeUrl,
@@ -17,7 +18,7 @@ const rootSubmenuKeys = [
 ];
 
 const locales = [
-    { label: 'Tiếng việt', value: 'vi' },
+    { label: 'Tiếng Việt', value: 'vi' },
     { label: 'English', value: 'en' },
 ];
 
@@ -60,7 +61,7 @@ export default function WebLayout(props) {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
-    const [openKeys, setOpenKeys] = useState([rootKeys.home]);
+    const [openKeys, setOpenKeys] = useState([rootKeys.homeUrl]);
     const onOpenChange = (keys) => {
         const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
         if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
@@ -104,6 +105,13 @@ export default function WebLayout(props) {
                 collapsed={collapsed}
                 onCollapse={(value) => setCollapsed(value)}
                 width={250}
+                style={{
+                    overflow: 'auto',
+                    height: '100vh',
+                    position: 'sticky',
+                    top: 0,
+                    left: 0,
+                }}
             >
                 <div className='demo-logo-vertical' />
                 <Menu
@@ -117,7 +125,11 @@ export default function WebLayout(props) {
                     onClick={handleMenuClick}
                 />
             </Sider>
-            <Layout>
+            <Layout
+                style={{
+                    background: colorBgContainer,
+                }}
+            >
                 <Header
                     style={{
                         paddingRight: 16,
@@ -125,6 +137,13 @@ export default function WebLayout(props) {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'flex-end',
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        zIndex: 1,
+                        width: '50%',
+                        marginLeft: 'auto',
+                        marginRight: 0,
                     }}
                 >
                     <Space>
@@ -136,39 +155,34 @@ export default function WebLayout(props) {
                                 width: 120,
                             }}
                         />
+                        <Dropdown
+                            menu={{
+                                items,
+                            }}
+                        >
+                            <Space>
+                                <Button type='link' icon={<UserOutlined />}>
+                                    {t('app.feature.accountQuickAccess.label')}
+                                </Button>
+                            </Space>
+                        </Dropdown>
                     </Space>
-                    <Dropdown
-                        menu={{
-                            items,
-                        }}
-                    >
-                        <Space>
-                            <Button type='link' icon={<UserOutlined />}>
-                                {t('app.feature.accountQuickAccess.label')}
-                            </Button>
-                        </Space>
-                    </Dropdown>
                 </Header>
                 <Content
                     style={{
                         margin: '0 16px',
+                        padding: 12,
+                        minHeight: 360,
+                        background: colorBgContainer,
+                        borderRadius: 4,
                     }}
                 >
-                    <div
-                        style={{
-                            padding: 24,
-                            minHeight: 360,
-                            background: colorBgContainer,
-                            marginTop: 24,
-                            borderRadius: 16,
-                        }}
-                    >
-                        {children}
-                    </div>
+                    {children}
                 </Content>
                 <Footer
                     style={{
                         textAlign: 'center',
+                        background: colorBgContainer,
                     }}
                 >
                     {t('app.common.footer.line1')}
