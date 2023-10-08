@@ -10,7 +10,7 @@
                 "menu": { "label": "Quản lý thực đơn" },
                 "table": { "label": "Quản lý bàn" }
             },
-            "sale": {
+            "sales": {
                 "label": "Kinh doanh",
                 "booking": { "label": "Quản lý đặt món" },
                 "order": { "label": "Quản lý đơn hàng" }
@@ -18,15 +18,15 @@
             "account": {
                 "label": "Quản lý tài khoản"
             },
-            "setting": {
+            "settings": {
                 "label": "Cài đặt",
                 "system": { "label": "Cài đặt hệ thống" },
                 "account": { "label": "Cài đặt tài khoản" }
             },
             "accountQuickAccess": {
                 "label": "Tài khoản",
-                "infomation": { "label": "Thông tin tài khoản" },
-                "logoutButton": { "label": "Đăng xuất" }
+                "infomation": "Cài đặt tài khoản",
+                "logoutButton": "Đăng xuất"
             }
         },
         "notification": {

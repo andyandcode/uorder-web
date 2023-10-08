@@ -10,10 +10,10 @@ const { confirm } = Modal;
 const { Header, Content, Footer, Sider } = Layout;
 
 const rootSubmenuKeys = [
-    rootKeys.home.path,
-    rootKeys.manage.path,
-    rootKeys.sale.path,
-    rootKeys.setting.path,
+    rootKeys.homeUrl,
+    rootKeys.manageUrl,
+    rootKeys.salesUrl,
+    rootKeys.settingUrl,
 ];
 
 const locales = [
@@ -39,7 +39,11 @@ export default function WebLayout(props) {
 
     const items = [
         {
-            label: <Link to='/manage'>{t('app.feature.accountQuickAccess.infomation')}</Link>,
+            label: (
+                <Link to='/settings/account-settings'>
+                    {t('app.feature.accountQuickAccess.infomation')}
+                </Link>
+            ),
             key: '1',
         },
         {
@@ -60,9 +64,9 @@ export default function WebLayout(props) {
     const onOpenChange = (keys) => {
         const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
         if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-            setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
-        } else {
             setOpenKeys(keys);
+        } else {
+            setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
         }
     };
     const navigate = useNavigate();

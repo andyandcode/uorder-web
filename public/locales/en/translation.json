@@ -10,7 +10,7 @@
                 "menu": { "label": "Menu management" },
                 "table": { "label": "Table management" }
             },
-            "sale": {
+            "sales": {
                 "label": "Sales",
                 "booking": { "label": "Booking management" },
                 "order": { "label": "Order management" }
@@ -18,14 +18,14 @@
             "account": {
                 "label": "Account management"
             },
-            "setting": {
+            "settings": {
                 "label": "Settings",
                 "system": { "label": "System settings" },
                 "account": { "label": "Account settings" }
             },
             "accountQuickAccess": {
                 "label": "Account",
-                "infomation": "Account infomations",
+                "infomation": "Account settings",
                 "logoutButton": "Log out"
             }
         },
