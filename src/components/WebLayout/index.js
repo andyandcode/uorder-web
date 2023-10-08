@@ -171,7 +171,7 @@ export default function WebLayout(props) {
                         textAlign: 'center',
                     }}
                 >
-                    Ant Design ©2023 Created by Ant UED
+                    {t('app.common.footer.line1')}
                 </Footer>
             </Layout>
         </Layout>

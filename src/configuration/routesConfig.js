@@ -3,6 +3,7 @@ import Home from '../pages/Home';
 import DishManagement from '../pages/Manage/DishManagement';
 import MenuManagement from '../pages/Manage/MenuManagement';
 import TableManagement from '../pages/Manage/TableManagement';
+import Analytics from '../pages/Sales/Analytics';
 import BookingManagement from '../pages/Sales/BookingManagement';
 import OrderManagement from '../pages/Sales/OrderManagement';
 import AccountSettings from '../pages/Settings/AccountSettings';
@@ -16,6 +17,7 @@ const tableManagementUrl = `${manageUrl}/table-management`;
 const salesUrl = '/sales';
 const bookingManagementUrl = `${salesUrl}/booking-management`;
 const orderManagementUrl = `${salesUrl}/order-management`;
+const analyticsUrl = `${salesUrl}/analytics`;
 const accountManagementUrl = '/account-management';
 const settingUrl = '/settings';
 const accountSettingUrl = `${settingUrl}/account-settings`;
@@ -28,6 +30,7 @@ export const routeList = [
     { path: tableManagementUrl, name: tableManagementUrl, component: TableManagement },
     { path: bookingManagementUrl, name: bookingManagementUrl, component: BookingManagement },
     { path: orderManagementUrl, name: orderManagementUrl, component: OrderManagement },
+    { path: analyticsUrl, name: analyticsUrl, component: Analytics },
     { path: accountManagementUrl, name: accountManagementUrl, component: AccountManagement },
     { path: accountSettingUrl, name: accountSettingUrl, component: AccountSettings },
     { path: systemSettingUrl, name: systemSettingUrl, component: SystemSettings },
@@ -42,6 +45,7 @@ export const rootKeys = {
     salesUrl,
     bookingManagementUrl,
     orderManagementUrl,
+    analyticsUrl,
     accountManagementUrl,
     settingUrl,
     accountSettingUrl,

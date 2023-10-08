@@ -13,7 +13,8 @@
             "sales": {
                 "label": "Sales",
                 "booking": { "label": "Booking management" },
-                "order": { "label": "Order management" }
+                "order": { "label": "Order management" },
+                "analytics": { "label": "Analytics" }
             },
             "account": {
                 "label": "Account management"
@@ -36,6 +37,7 @@
                 "cancelButton": "Cancel",
                 "acceptButton": "Log out"
             }
-        }
+        },
+        "common": { "footer": { "line1": "UOrder- Scan and make a reservation" } }
     }
 }

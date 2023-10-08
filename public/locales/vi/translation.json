@@ -13,7 +13,8 @@
             "sales": {
                 "label": "Kinh doanh",
                 "booking": { "label": "Quản lý đặt món" },
-                "order": { "label": "Quản lý đơn hàng" }
+                "order": { "label": "Quản lý đơn hàng" },
+                "analytics": { "label": "Phân tích thống kê" }
             },
             "account": {
                 "label": "Quản lý tài khoản"
@@ -36,6 +37,7 @@
                 "cancelButton": "Hủy",
                 "acceptButton": "Đăng xuất"
             }
-        }
+        },
+        "common": { "footer": { "line1": "UOrder- Quét mã và đặt bàn" } }
     }
 }

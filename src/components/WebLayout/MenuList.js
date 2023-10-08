@@ -45,6 +45,11 @@ export const MenuList = () => {
             icon: <ShoppingCartOutlined />,
             children: [
                 {
+                    label: `${t('app.feature.sales.analytics.label')}`,
+                    key: rootKeys.analyticsUrl,
+                    path: rootKeys.analyticsUrl,
+                },
+                {
                     label: `${t('app.feature.sales.booking.label')}`,
                     key: rootKeys.bookingManagementUrl,
                     path: rootKeys.bookingManagementUrl,
