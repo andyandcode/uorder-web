@@ -8,7 +8,32 @@
                 "label": "Manage",
                 "dish": {
                     "label": "Dish management",
-                    "button": { "add": "Add new", "activeLog": "View active log" }
+                    "button": { "add": "Add new", "activeLog": "View active log" },
+                    "createForm": {
+                        "name": "Name",
+                        "nameTooltip": "Name of the dish.",
+                        "nameIsRequired": "Please input the name!",
+                        "desc": "Description",
+                        "descTooltip": "Short description of the dish.",
+                        "descIsRequired": "Please input the description!",
+                        "price": "Price",
+                        "priceTooltip": "Price of the dish.",
+                        "priceIsRequired": "Please input the price!",
+                        "completionTime": "Completion time (minutes)",
+                        "completionTimeTooltip": "Estimated dish completion time is calculated in minutes.",
+                        "completionTimeIsRequired": "Please input the completion time!",
+                        "isActive": "Active",
+                        "isActiveTooltip": "Operational status of the dish. When disabled, dishes will not be displayed on the menu.",
+                        "qtyPerDate": "Quantity per date",
+                        "qtyPerDateTooltip": "Estimated number of dishes produced per day.",
+                        "qtyPerDateIsRequired": "Please input the quantity per date!",
+                        "type": "Type",
+                        "typeTooltip": "Type is food or drink.",
+                        "cancelButton": "Cancel",
+                        "createButton": "Create",
+                        "title": "Create new a dish",
+                        "resetButton": "Reset"
+                    }
                 },
                 "menu": { "label": "Menu management" },
                 "table": { "label": "Table management" }

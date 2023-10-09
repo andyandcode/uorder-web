@@ -9,6 +9,8 @@ function Conainer(props) {
     const columns = DishColumns(props);
     const data = DishData;
 
+    const [openModel, setOpenModel] = useState(false);
+
     const [loadings, setLoadings] = useState([]);
     const enterLoading = (index) => {
         setLoadings((prevLoadings) => {
@@ -20,9 +22,19 @@ function Conainer(props) {
             setLoadings((prevLoadings) => {
                 const newLoadings = [...prevLoadings];
                 newLoadings[index] = false;
+                setOpenModel(true);
                 return newLoadings;
             });
         }, 1000);
+    };
+
+    const handleCancelClick = () => {
+        setOpenModel(false);
+    };
+
+    const handleSubmitClick = (values) => {
+        console.log('Received values of form: ', values);
+        setOpenModel(false);
     };
 
     useEffect(() => {
@@ -36,7 +48,10 @@ function Conainer(props) {
         columns,
         data,
         loadings,
+        openModel,
         enterLoading,
+        handleCancelClick,
+        handleSubmitClick,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

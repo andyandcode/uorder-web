@@ -10,6 +10,9 @@ export default function propsProvider(props) {
         loadings,
         handleEditClick,
         dataToEdit,
+        openModel,
+        handleCancelClick,
+        handleSubmitClick,
     } = props;
     return {
         history,
@@ -22,5 +25,8 @@ export default function propsProvider(props) {
         loadings,
         handleEditClick,
         dataToEdit,
+        openModel,
+        handleCancelClick,
+        handleSubmitClick,
     };
 }

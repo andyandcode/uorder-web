@@ -8,7 +8,32 @@
                 "label": "Quản lý",
                 "dish": {
                     "label": "Quản lý món ăn",
-                    "button": { "add": "Thêm mới", "activeLog": "Lịch sử" }
+                    "button": { "add": "Thêm mới", "activeLog": "Lịch sử" },
+                    "createForm": {
+                        "name": "Tên",
+                        "nameTooltip": "Tên món ăn.",
+                        "nameIsRequired": "Vui lòng nhập tên món ăn!",
+                        "desc": "Mô tả",
+                        "descTooltip": "Đoạn mô tả ngắn về món ăn.",
+                        "descIsRequired": "Vui lòng nhập mô tả món ăn!",
+                        "price": "Giá",
+                        "priceTooltip": "Giá bán của món ăn.",
+                        "priceIsRequired": "Vui lòng nhập giá bán!",
+                        "completionTime": "Thời gian hoàn thành (phút)",
+                        "completionTimeTooltip": "Thời gian hoàn thành món ăn dự kiến.",
+                        "completionTimeIsRequired": "Vui lòng nhập thời gian hoàn thành!",
+                        "isActive": "Hoạt động",
+                        "isActiveTooltip": "Tình trạng hoạt động của món ăn. Khi tắt, món ăn sẽ không hiển thị trên thực đơn.",
+                        "qtyPerDate": "Số lượng mỗi ngày",
+                        "qtyPerDateTooltip": "Số lượng món ăn làm ra mỗi ngày.",
+                        "qtyPerDateIsRequired": "Vui lòng nhập số lượng!",
+                        "type": "Loại",
+                        "typeTooltip": "Loại là thức ăn hoặc thức uống.",
+                        "cancelButton": "Hủy",
+                        "createButton": "Thêm",
+                        "title": "Thêm mới món ăn",
+                        "resetButton": "Đặt lại"
+                    }
                 },
                 "menu": { "label": "Quản lý thực đơn" },
                 "table": { "label": "Quản lý bàn" }
