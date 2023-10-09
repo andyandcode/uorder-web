@@ -68,6 +68,7 @@ export default function MainView(props) {
                     title={t('app.feature.manage.dish.createForm.title')}
                     okText={t('app.feature.manage.dish.createForm.create')}
                     cancelText={t('app.feature.manage.dish.createForm.cancel')}
+                    onCancel={() => handleCancelClick()}
                     maskClosable={false}
                     footer={[]}
                 >
@@ -89,7 +90,11 @@ export default function MainView(props) {
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input
+                                style={{
+                                    width: 395,
+                                }}
+                            />
                         </Form.Item>
                         <Form.Item
                             name='desc'

@@ -8,7 +8,7 @@
                 "label": "Manage",
                 "dish": {
                     "label": "Dish management",
-                    "button": { "add": "Add new", "activeLog": "View active log" },
+                    "button": { "add": "Create new", "activeLog": "Active log" },
                     "createForm": {
                         "name": "Name",
                         "nameTooltip": "Name of the dish.",
