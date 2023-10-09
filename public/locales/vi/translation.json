@@ -6,7 +6,10 @@
             },
             "manage": {
                 "label": "Quản lý",
-                "dish": { "label": "Quản lý món ăn" },
+                "dish": {
+                    "label": "Quản lý món ăn",
+                    "button": { "add": "Thêm mới", "activeLog": "Lịch sử" }
+                },
                 "menu": { "label": "Quản lý thực đơn" },
                 "table": { "label": "Quản lý bàn" }
             },
@@ -28,6 +31,36 @@
                 "label": "Tài khoản",
                 "infomation": "Cài đặt tài khoản",
                 "logoutButton": "Đăng xuất"
+            },
+            "table": {
+                "emptyData": "Không có dữ liệu",
+                "triggerDesc": "Nhấn để sắp xếp giảm dần",
+                "triggerAsc": "Nhấn để sắp xếp tăng dần",
+                "cancelSort": "Nhấn để hủy sắp xếp",
+                "searchKeyword": "Tìm kiếm",
+                "searchButton": "Tìm kiếm",
+                "searchReset": "Đặt lại",
+                "searchClose": "Thoát",
+                "dishManagement": {
+                    "name": "Tên",
+                    "price": "Giá",
+                    "completionTime": "Thời gian hoàn thành (phút)",
+                    "qtyPerDate": "Số lượng/ngày",
+                    "isActive": {
+                        "label": "Hoạt động",
+                        "active": "Hoạt động",
+                        "off": "Tắt"
+                    },
+                    "typeName": {
+                        "label": "Loại",
+                        "food": "Thức ăn",
+                        "drink": "Nước uống"
+                    },
+                    "action": "Hành động",
+                    "button": {
+                        "edit": "Chỉnh sửa"
+                    }
+                }
             }
         },
         "notification": {

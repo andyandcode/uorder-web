@@ -6,7 +6,10 @@
             },
             "manage": {
                 "label": "Manage",
-                "dish": { "label": "Dish management" },
+                "dish": {
+                    "label": "Dish management",
+                    "button": { "add": "Add new", "activeLog": "View active log" }
+                },
                 "menu": { "label": "Menu management" },
                 "table": { "label": "Table management" }
             },
@@ -28,6 +31,36 @@
                 "label": "Account",
                 "infomation": "Account settings",
                 "logoutButton": "Log out"
+            },
+            "table": {
+                "emptyData": "No Data",
+                "triggerDesc": "Click to sort descending",
+                "triggerAsc": "Click to sort ascending",
+                "cancelSort": "Click to cancel sort",
+                "searchKeyword": "Search",
+                "searchButton": "Search",
+                "searchReset": "Reset",
+                "searchClose": "Close",
+                "dishManagement": {
+                    "name": "Name",
+                    "price": "Price",
+                    "completionTime": "Completion time (minutes)",
+                    "qtyPerDate": "Quantity/date",
+                    "isActive": {
+                        "label": "Is active",
+                        "active": "Active",
+                        "off": "Off"
+                    },
+                    "typeName": {
+                        "label": "Type",
+                        "food": "Food",
+                        "drink": "Drink"
+                    },
+                    "action": "Action",
+                    "button": {
+                        "edit": "Edit"
+                    }
+                }
             }
         },
         "notification": {
