@@ -1,9 +1,8 @@
-import { Button, Space, Table } from 'antd';
+import { Button, Table } from 'antd';
 const { Column } = Table;
 
 export default function MainView(props) {
     const { t, columns, dataSource, onClick } = props;
-    console.log(props);
     return (
         <>
             <Table
@@ -31,12 +30,10 @@ export default function MainView(props) {
                     title={t('app.feature.table.actionColumn')}
                     key='action'
                     align='center'
-                    render={(_, record) => (
-                        <Space size='middle'>
-                            <Button type='text' onClick={() => onClick(record)}>
-                                {t('app.feature.table.buttonColumn.edit')}
-                            </Button>
-                        </Space>
+                    render={(record) => (
+                        <Button type='text' onClick={() => onClick(record)}>
+                            {t('app.feature.table.buttonColumn.edit')}
+                        </Button>
                     )}
                 />
             </Table>

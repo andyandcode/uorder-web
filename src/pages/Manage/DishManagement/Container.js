@@ -1,17 +1,67 @@
-import { useState } from 'react';
+import { Form, message } from 'antd';
+import React, { useState } from 'react';
 import { DishColumns } from '../../../components/CustomTable/columnConfigs';
 import DishData from '../../../database/dish.json';
 import propsProvider from './PropsProvider';
 import MainView from './template/MainView';
 
+const getBase64 = (file) =>
+    new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+    });
+
 function Conainer(props) {
-    const { history, t, dataToEdit } = props;
+    const { history, t } = props;
     const columns = DishColumns(props);
     const data = DishData;
-
-    const [openModel, setOpenModel] = useState(false);
-
+    const [createForm] = Form.useForm();
+    const [editForm] = Form.useForm();
+    const [openCreateModel, setOpenCreateModel] = useState(false);
+    const [openEditModel, setOpenEditModel] = useState(false);
     const [loadings, setLoadings] = useState([]);
+    const [messageApi, messageContextHolder] = message.useMessage();
+
+    const [previewOpen, setPreviewOpen] = useState(false);
+    const [previewImage, setPreviewImage] = useState('');
+    const [previewTitle, setPreviewTitle] = useState('');
+    const [fileList, setFileList] = useState([]);
+
+    const handlePreview = async (file) => {
+        if (!file.url && !file.preview) {
+            file.preview = await getBase64(file.originFileObj);
+        }
+        setPreviewImage(file.url || file.preview);
+        setPreviewOpen(true);
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+    };
+    const handleCancelPreview = () => setPreviewOpen(false);
+    const handleUploadChange = ({ fileList: newFileList }) => setFileList(newFileList);
+
+    const draggerFileProps = {
+        name: 'file',
+        multiple: true,
+        maxCount: 8,
+        accept: 'image/png, image/jpeg',
+        action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
+        onChange(info) {
+            const { status } = info.file;
+            if (status !== 'uploading') {
+                console.log(info.file, info.fileList);
+            }
+            if (status === 'done') {
+                message.success(`${info.file.name} file uploaded successfully.`);
+            } else if (status === 'error') {
+                message.error(`${info.file.name} file upload failed.`);
+            }
+        },
+        onDrop(e) {
+            console.log('Dropped files', e.dataTransfer.files);
+        },
+    };
+
     const enterLoading = (index) => {
         setLoadings((prevLoadings) => {
             const newLoadings = [...prevLoadings];
@@ -22,23 +72,68 @@ function Conainer(props) {
             setLoadings((prevLoadings) => {
                 const newLoadings = [...prevLoadings];
                 newLoadings[index] = false;
-                setOpenModel(true);
+
+                setOpenCreateModel(true);
                 return newLoadings;
             });
         }, 1000);
     };
 
-    const handleCancelClick = () => {
-        setOpenModel(false);
+    const handleEditCancelClick = () => {
+        setOpenEditModel(false);
     };
 
-    const handleSubmitClick = (values) => {
-        console.log('Received values of form: ', values);
-        setOpenModel(false);
+    const handleCreateCancelClick = () => {
+        setOpenCreateModel(false);
     };
 
     const handleEditClick = (data) => {
-        console.log(data);
+        editForm.setFieldsValue({ ...data });
+        setOpenEditModel(true);
+    };
+
+    const handleCreateSubmitClick = (values) => {
+        createForm
+            .validateFields()
+            .then(() => {
+                console.log('Created: ', values);
+                messageApi
+                    .open({
+                        type: 'loading',
+                        content: t('app.notification.form.actionInProgress'),
+                        duration: 2.5,
+                    })
+                    .then(() => {
+                        message.success(t('app.notification.form.createFinish'), 2);
+                        setOpenCreateModel(false);
+                    })
+                    .then(() => createForm.resetFields());
+            })
+            .catch(() => {
+                message.error(t('app.notification.form.createFinishFail'), 2);
+            });
+    };
+
+    const handleEditSubmitClick = (values) => {
+        editForm
+            .validateFields()
+            .then(() => {
+                console.log('Edited: ', values);
+                messageApi
+                    .open({
+                        type: 'loading',
+                        content: t('app.notification.form.actionInProgress'),
+                        duration: 2.5,
+                    })
+                    .then(() => {
+                        message.success(t('app.notification.form.editFinish'), 2);
+                        setOpenEditModel(false);
+                    })
+                    .then(() => editForm.resetFields());
+            })
+            .catch(() => {
+                message.error(t('app.notification.form.editFinishFail'), 2);
+            });
     };
 
     const containerProps = {
@@ -48,11 +143,25 @@ function Conainer(props) {
         columns,
         data,
         loadings,
-        openModel,
+        openCreateModel,
+        openEditModel,
+        createForm,
+        editForm,
+        messageContextHolder,
         enterLoading,
-        handleCancelClick,
-        handleSubmitClick,
         handleEditClick,
+        handleCreateSubmitClick,
+        handleEditSubmitClick,
+        handleEditCancelClick,
+        handleCreateCancelClick,
+        previewOpen,
+        previewImage,
+        previewTitle,
+        fileList,
+        handlePreview,
+        handleUploadChange,
+        handleCancelPreview,
+        draggerFileProps,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

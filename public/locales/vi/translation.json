@@ -17,6 +17,37 @@
                         "descTooltip": "Đoạn mô tả ngắn về món ăn.",
                         "descIsRequired": "Vui lòng nhập mô tả món ăn!",
                         "price": "Giá",
+                        "priceTooltip": "Giá bán của món ăn. Mức giá phải trong khoảng 1,000 - 1,000,000,000.",
+                        "priceIsRequired": "Vui lòng nhập giá bán!",
+                        "completionTime": "Thời gian hoàn thành (phút)",
+                        "completionTimeTooltip": "Thời gian hoàn thành món ăn dự kiến. Thời gian phải trong khoảng 1 - 1,000.",
+                        "completionTimeIsRequired": "Vui lòng nhập thời gian hoàn thành!",
+                        "isActive": "Hoạt động",
+                        "isActiveTooltip": "Tình trạng hoạt động của món ăn. Khi tắt, món ăn sẽ không hiển thị trên thực đơn.",
+                        "qtyPerDate": "Số lượng mỗi ngày",
+                        "qtyPerDateTooltip": "Số lượng món ăn làm ra mỗi ngày dự kiến. Số lượng phải trong khoảng 1,000 - 1,000,000,000.",
+                        "qtyPerDateIsRequired": "Vui lòng nhập số lượng!",
+                        "type": "Loại",
+                        "typeTooltip": "Loại là thức ăn hoặc thức uống.",
+                        "cancelButton": "Hủy",
+                        "createButton": "Thêm",
+                        "title": "Thêm mới món ăn",
+                        "resetButton": "Đặt lại",
+                        "upload": "Ảnh món ăn",
+                        "uploadIsRequired": "Vui lòng tải lên ít nhất 1 hình ảnh!"
+                    },
+                    "editForm": {
+                        "id": "Mã định danh",
+                        "idTooltip": ".Mã định danh của món ăn",
+                        "createdAt": "Thời gian tạo mới",
+                        "createdAtTooltip": ".Thời gian món ăn được tạo mới",
+                        "name": "Tên",
+                        "nameTooltip": "Tên món ăn.",
+                        "nameIsRequired": "Vui lòng nhập tên món ăn!",
+                        "desc": "Mô tả",
+                        "descTooltip": "Đoạn mô tả ngắn về món ăn.",
+                        "descIsRequired": "Vui lòng nhập mô tả món ăn!",
+                        "price": "Giá",
                         "priceTooltip": "Giá bán của món ăn.",
                         "priceIsRequired": "Vui lòng nhập giá bán!",
                         "completionTime": "Thời gian hoàn thành (phút)",
@@ -30,8 +61,8 @@
                         "type": "Loại",
                         "typeTooltip": "Loại là thức ăn hoặc thức uống.",
                         "cancelButton": "Hủy",
-                        "createButton": "Thêm",
-                        "title": "Thêm mới món ăn",
+                        "createButton": "Cập nhật",
+                        "title": "Chỉnh sửa món ăn",
                         "resetButton": "Đặt lại"
                     }
                 },
@@ -95,8 +126,21 @@
                 "message": "Hành động này sẽ xóa thông tin đăng nhập hiện tại trên thiết bị này. Bạn vẫn có thể đăng nhập lại vào lần sau.",
                 "cancelButton": "Hủy",
                 "acceptButton": "Đăng xuất"
+            },
+            "form": {
+                "createFinish": "Thêm mới thành công!",
+                "createFinishFail": "Thêm mới thất bại!",
+                "editFinish": "Cập nhật thành công!",
+                "editFinishFail": "Cập nhật thất bại!",
+                "actionInProgress": "Đang xử lý..."
             }
         },
-        "common": { "footer": { "line1": "UOrder- Quét mã và đặt bàn" } }
+        "common": { "footer": { "line1": "UOrder- Quét mã và đặt bàn" } },
+        "utilities": {
+            "upload": {
+                "text": "Nhấp hoặc kéo tệp vào khu vực này để tải lên",
+                "hint": "Hỗ trợ tải lên một lần hoặc hàng loạt. Nghiêm cấm tải lên dữ liệu bị cấm khác. (Tối đa: 8)"
+            }
+        }
     }
 }

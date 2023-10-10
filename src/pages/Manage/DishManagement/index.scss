@@ -1,0 +1,6 @@
+.custom_input {
+    > :first-child {
+        flex-direction: column;
+        align-items: start;
+    }
+}

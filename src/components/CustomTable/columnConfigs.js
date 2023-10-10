@@ -58,7 +58,7 @@ export const DishColumns = (props) => {
                 multiple: 3,
             },
             render: (data) => {
-                let status = data === true ? 'processing' : 'default';
+                let status = data === true ? 'success' : 'default';
                 let typeName =
                     data === true
                         ? t('app.feature.table.dishManagement.isActive.active')
