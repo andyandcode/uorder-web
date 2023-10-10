@@ -1,4 +1,4 @@
-import { Badge, Button, Space, Tag } from 'antd';
+import { Badge, Tag } from 'antd';
 import { NumericFormat } from 'react-number-format';
 import TableFilter from '../TableFilter';
 
@@ -101,17 +101,17 @@ export const DishColumns = (props) => {
                 );
             },
         },
-        {
-            title: t('app.feature.table.dishManagement.action'),
-            key: 'action',
-            align: 'center',
-            render: (_, record) => (
-                <Space size='middle'>
-                    <Button type='text' onClick={() => handleEditClick(record)}>
-                        {t('app.feature.table.dishManagement.button.edit')}
-                    </Button>
-                </Space>
-            ),
-        },
+        // {
+        //     title: t('app.feature.table.dishManagement.action'),
+        //     key: 'action',
+        //     align: 'center',
+        //     render: (_, record) => (
+        //         <Space size='middle'>
+        //             <Button type='text' onClick={() => handleEditClick(record)}>
+        //                 {t('app.feature.table.dishManagement.button.edit')}
+        //             </Button>
+        //         </Space>
+        //     ),
+        // },
     ];
 };

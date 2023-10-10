@@ -66,6 +66,11 @@
                 "searchButton": "Search",
                 "searchReset": "Reset",
                 "searchClose": "Close",
+                "noColumn": "No",
+                "actionColumn": "Action",
+                "buttonColumn": {
+                    "edit": "Edit"
+                },
                 "dishManagement": {
                     "name": "Name",
                     "price": "Price",
@@ -80,10 +85,6 @@
                         "label": "Type",
                         "food": "Food",
                         "drink": "Drink"
-                    },
-                    "action": "Action",
-                    "button": {
-                        "edit": "Edit"
                     }
                 }
             }

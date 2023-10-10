@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DishColumns } from '../../../components/CustomTable/columnConfigs';
 import DishData from '../../../database/dish.json';
 import propsProvider from './PropsProvider';
@@ -37,9 +37,9 @@ function Conainer(props) {
         setOpenModel(false);
     };
 
-    useEffect(() => {
-        console.log(dataToEdit);
-    }, [dataToEdit]);
+    const handleEditClick = (data) => {
+        console.log(data);
+    };
 
     const containerProps = {
         ...props,
@@ -52,6 +52,7 @@ function Conainer(props) {
         enterLoading,
         handleCancelClick,
         handleSubmitClick,
+        handleEditClick,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

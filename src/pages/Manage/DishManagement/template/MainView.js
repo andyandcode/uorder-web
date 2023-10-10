@@ -31,6 +31,7 @@ export default function MainView(props) {
         openModel,
         handleCancelClick,
         handleSubmitClick,
+        handleEditClick,
     } = props;
     const [form] = Form.useForm();
 
@@ -62,7 +63,11 @@ export default function MainView(props) {
                         {t('app.feature.manage.dish.button.activeLog')}
                     </Button>
                 </Space>
-                <CustomTable columns={columns} dataSource={data} />
+                <CustomTable
+                    columns={columns}
+                    dataSource={data}
+                    onClick={(data) => handleEditClick(data)}
+                />
                 <Modal
                     open={openModel}
                     title={t('app.feature.manage.dish.createForm.title')}

@@ -66,6 +66,11 @@
                 "searchButton": "Tìm kiếm",
                 "searchReset": "Đặt lại",
                 "searchClose": "Thoát",
+                "noColumn": "STT",
+                "actionColumn": "Hành động",
+                "buttonColumn": {
+                    "edit": "Chỉnh sửa"
+                },
                 "dishManagement": {
                     "name": "Tên",
                     "price": "Giá",
@@ -80,10 +85,6 @@
                         "label": "Loại",
                         "food": "Thức ăn",
                         "drink": "Nước uống"
-                    },
-                    "action": "Hành động",
-                    "button": {
-                        "edit": "Chỉnh sửa"
                     }
                 }
             }
