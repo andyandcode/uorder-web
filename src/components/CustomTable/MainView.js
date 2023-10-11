@@ -1,4 +1,4 @@
-import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, Space, Table } from 'antd';
 
 const { Column } = Table;
@@ -14,53 +14,40 @@ export default function MainView(props) {
         handleActionButtonTurnOnClick,
     } = props;
 
-    const menuSelection = (record, selection) => {
+    const menuSelection = (record) => {
         const process = () => {
+            let menuArr = [
+                {
+                    label: t('app.feature.table.buttonColumn.delete'),
+                    key: '1',
+                    icon: <DeleteOutlined />,
+                    danger: true,
+                    onClick: () => handleActionButtonDeleteClick(record),
+                },
+            ];
             if (record.hasOwnProperty('isActive')) {
-                switch (selection) {
-                    case 'dish':
-                        if (record.isActive) {
-                            return (
-                                <>
-                                    <Menu.Item
-                                        icon={<EyeOutlined />}
-                                        onClick={() => handleActionButtonTurnOffClick(record)}
-                                    >
-                                        {t('app.feature.table.buttonColumn.turnOff')}
-                                    </Menu.Item>
-                                </>
-                            );
-                        } else {
-                            return (
-                                <>
-                                    <Menu.Item
-                                        icon={<EyeOutlined />}
-                                        onClick={() => handleActionButtonTurnOnClick(record)}
-                                    >
-                                        {t('app.feature.table.buttonColumn.turnOn')}
-                                    </Menu.Item>
-                                </>
-                            );
-                        }
-                    default:
-                        break;
+                if (record.isActive) {
+                    menuArr.push({
+                        label: t('app.feature.table.buttonColumn.turnOff'),
+                        key: '2',
+                        icon: <EyeInvisibleOutlined />,
+                        onClick: () => handleActionButtonTurnOffClick(record),
+                    });
+                } else {
+                    menuArr.push({
+                        label: t('app.feature.table.buttonColumn.turnOn'),
+                        key: '2',
+                        icon: <EyeOutlined />,
+                        onClick: () => handleActionButtonTurnOnClick(record),
+                    });
                 }
-                return <></>;
             }
+            return menuArr;
         };
 
         return (
             <>
-                <Menu>
-                    <Menu.Item
-                        icon={<DeleteOutlined />}
-                        danger
-                        onClick={() => handleActionButtonDeleteClick(record)}
-                    >
-                        {t('app.feature.table.buttonColumn.delete')}
-                    </Menu.Item>
-                    {process()}
-                </Menu>
+                <Menu items={process()} />
             </>
         );
     };
@@ -95,7 +82,7 @@ export default function MainView(props) {
                     render={(record) => (
                         <Space>
                             <Dropdown.Button
-                                overlay={menuSelection(record, 'dish')}
+                                dropdownRender={() => menuSelection(record)}
                                 trigger={['click']}
                                 onClick={() => handleActionButtonEditClick(record)}
                             >
