@@ -15,25 +15,10 @@ export default function MainView(props) {
         data,
         enterLoading,
         loadings,
-        openCreateModel,
-        openEditModel,
-        handleCreateSubmitClick,
-        handleEditSubmitClick,
-        handleEditClick,
-        createForm,
-        editForm,
-        initialValuesInEditForm,
-        handleCreateCancelClick,
-        handleEditCancelClick,
-        messageContextHolder,
-        previewOpen,
-        previewImage,
-        previewTitle,
-        fileList,
-        handlePreview,
-        handleUploadChange,
-        handleCancelPreview,
-        draggerFileProps,
+        handleActionButtonEditClick,
+        handleActionButtonDeleteClick,
+        handleActionButtonTurnOffClick,
+        handleActionButtonTurnOnClick,
     } = props;
 
     return (
@@ -67,41 +52,13 @@ export default function MainView(props) {
                 <CustomTable
                     columns={columns}
                     dataSource={data}
-                    onClick={(data) => handleEditClick(data)}
+                    handleActionButtonEditClick={(data) => handleActionButtonEditClick(data)}
+                    handleActionButtonDeleteClick={(data) => handleActionButtonDeleteClick(data)}
+                    handleActionButtonTurnOffClick={(data) => handleActionButtonTurnOffClick(data)}
+                    handleActionButtonTurnOnClick={(data) => handleActionButtonTurnOnClick(data)}
                 />
-                <CreateModel
-                    t={t}
-                    openCreateModel={openCreateModel}
-                    handleCreateCancelClick={handleCreateCancelClick}
-                    handleCreateSubmitClick={handleCreateSubmitClick}
-                    createForm={createForm}
-                    messageContextHolder={messageContextHolder}
-                    previewOpen={previewOpen}
-                    previewImage={previewImage}
-                    previewTitle={previewTitle}
-                    fileList={fileList}
-                    handlePreview={handlePreview}
-                    handleUploadChange={handleUploadChange}
-                    handleCancelPreview={handleCancelPreview}
-                    draggerFileProps={draggerFileProps}
-                ></CreateModel>
-                <EditModel
-                    t={t}
-                    openEditModel={openEditModel}
-                    handleEditCancelClick={handleEditCancelClick}
-                    handleEditSubmitClick={handleEditSubmitClick}
-                    editForm={editForm}
-                    initialValuesInEditForm={initialValuesInEditForm}
-                    messageContextHolder={messageContextHolder}
-                    previewOpen={previewOpen}
-                    previewImage={previewImage}
-                    previewTitle={previewTitle}
-                    fileList={fileList}
-                    handlePreview={handlePreview}
-                    handleUploadChange={handleUploadChange}
-                    handleCancelPreview={handleCancelPreview}
-                    draggerFileProps={draggerFileProps}
-                ></EditModel>
+                <CreateModel {...props}></CreateModel>
+                <EditModel {...props}></EditModel>
             </Content>
         </>
     );

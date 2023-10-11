@@ -100,7 +100,10 @@
                 "noColumn": "STT",
                 "actionColumn": "Hành động",
                 "buttonColumn": {
-                    "edit": "Chỉnh sửa"
+                    "edit": "Chỉnh sửa",
+                    "delete": "Xóa",
+                    "turnOff": "Tắt hoạt động",
+                    "turnOn": "Bật hoạt động"
                 },
                 "dishManagement": {
                     "name": "Tên",

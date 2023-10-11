@@ -5,14 +5,6 @@ import DishData from '../../../database/dish.json';
 import propsProvider from './PropsProvider';
 import MainView from './template/MainView';
 
-const getBase64 = (file) =>
-    new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = (error) => reject(error);
-    });
-
 function Conainer(props) {
     const { history, t } = props;
     const columns = DishColumns(props);
@@ -23,22 +15,6 @@ function Conainer(props) {
     const [openEditModel, setOpenEditModel] = useState(false);
     const [loadings, setLoadings] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
-
-    const [previewOpen, setPreviewOpen] = useState(false);
-    const [previewImage, setPreviewImage] = useState('');
-    const [previewTitle, setPreviewTitle] = useState('');
-    const [fileList, setFileList] = useState([]);
-
-    const handlePreview = async (file) => {
-        if (!file.url && !file.preview) {
-            file.preview = await getBase64(file.originFileObj);
-        }
-        setPreviewImage(file.url || file.preview);
-        setPreviewOpen(true);
-        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
-    };
-    const handleCancelPreview = () => setPreviewOpen(false);
-    const handleUploadChange = ({ fileList: newFileList }) => setFileList(newFileList);
 
     const draggerFileProps = {
         name: 'file',
@@ -87,7 +63,22 @@ function Conainer(props) {
         setOpenCreateModel(false);
     };
 
-    const handleEditClick = (data) => {
+    const handleActionButtonEditClick = (data) => {
+        editForm.setFieldsValue({ ...data });
+        setOpenEditModel(true);
+    };
+
+    const handleActionButtonDeleteClick = (data) => {
+        editForm.setFieldsValue({ ...data });
+        setOpenEditModel(true);
+    };
+
+    const handleActionButtonTurnOffClick = (data) => {
+        editForm.setFieldsValue({ ...data });
+        setOpenEditModel(true);
+    };
+
+    const handleActionButtonTurnOnClick = (data) => {
         editForm.setFieldsValue({ ...data });
         setOpenEditModel(true);
     };
@@ -148,20 +139,16 @@ function Conainer(props) {
         createForm,
         editForm,
         messageContextHolder,
+        draggerFileProps,
         enterLoading,
-        handleEditClick,
+        handleActionButtonEditClick,
+        handleActionButtonDeleteClick,
+        handleActionButtonTurnOffClick,
+        handleActionButtonTurnOnClick,
         handleCreateSubmitClick,
         handleEditSubmitClick,
         handleEditCancelClick,
         handleCreateCancelClick,
-        previewOpen,
-        previewImage,
-        previewTitle,
-        fileList,
-        handlePreview,
-        handleUploadChange,
-        handleCancelPreview,
-        draggerFileProps,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

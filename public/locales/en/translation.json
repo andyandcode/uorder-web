@@ -100,7 +100,10 @@
                 "noColumn": "No",
                 "actionColumn": "Action",
                 "buttonColumn": {
-                    "edit": "Edit"
+                    "edit": "Edit",
+                    "delete": "Delete",
+                    "turnOff": "Turn off",
+                    "turnOn": "Turn on"
                 },
                 "dishManagement": {
                     "name": "Name",

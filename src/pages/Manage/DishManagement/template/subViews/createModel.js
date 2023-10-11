@@ -27,13 +27,6 @@ export default function CreateModel(props) {
         handleCreateCancelClick,
         handleCreateSubmitClick,
         messageContextHolder,
-        previewOpen,
-        previewImage,
-        previewTitle,
-        fileList,
-        handlePreview,
-        handleUploadChange,
-        handleCancelPreview,
         draggerFileProps,
     } = props;
 

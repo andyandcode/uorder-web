@@ -1,8 +1,70 @@
-import { Button, Table } from 'antd';
+import { DeleteOutlined, EyeOutlined } from '@ant-design/icons';
+import { Dropdown, Menu, Space, Table } from 'antd';
+
 const { Column } = Table;
 
 export default function MainView(props) {
-    const { t, columns, dataSource, onClick } = props;
+    const {
+        t,
+        columns,
+        dataSource,
+        handleActionButtonEditClick,
+        handleActionButtonDeleteClick,
+        handleActionButtonTurnOffClick,
+        handleActionButtonTurnOnClick,
+    } = props;
+
+    const menuSelection = (record, selection) => {
+        const process = () => {
+            if (record.hasOwnProperty('isActive')) {
+                switch (selection) {
+                    case 'dish':
+                        if (record.isActive) {
+                            return (
+                                <>
+                                    <Menu.Item
+                                        icon={<EyeOutlined />}
+                                        onClick={() => handleActionButtonTurnOffClick(record)}
+                                    >
+                                        {t('app.feature.table.buttonColumn.turnOff')}
+                                    </Menu.Item>
+                                </>
+                            );
+                        } else {
+                            return (
+                                <>
+                                    <Menu.Item
+                                        icon={<EyeOutlined />}
+                                        onClick={() => handleActionButtonTurnOnClick(record)}
+                                    >
+                                        {t('app.feature.table.buttonColumn.turnOn')}
+                                    </Menu.Item>
+                                </>
+                            );
+                        }
+                    default:
+                        break;
+                }
+                return <></>;
+            }
+        };
+
+        return (
+            <>
+                <Menu>
+                    <Menu.Item
+                        icon={<DeleteOutlined />}
+                        danger
+                        onClick={() => handleActionButtonDeleteClick(record)}
+                    >
+                        {t('app.feature.table.buttonColumn.delete')}
+                    </Menu.Item>
+                    {process()}
+                </Menu>
+            </>
+        );
+    };
+
     return (
         <>
             <Table
@@ -31,9 +93,15 @@ export default function MainView(props) {
                     key='action'
                     align='center'
                     render={(record) => (
-                        <Button type='text' onClick={() => onClick(record)}>
-                            {t('app.feature.table.buttonColumn.edit')}
-                        </Button>
+                        <Space>
+                            <Dropdown.Button
+                                overlay={menuSelection(record, 'dish')}
+                                trigger={['click']}
+                                onClick={() => handleActionButtonEditClick(record)}
+                            >
+                                {t('app.feature.table.buttonColumn.edit')}
+                            </Dropdown.Button>
+                        </Space>
                     )}
                 />
             </Table>
