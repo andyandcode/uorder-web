@@ -1,4 +1,4 @@
-import { Form, message } from 'antd';
+import { Form, message, Modal } from 'antd';
 import React, { useState } from 'react';
 import { DishColumns } from '../../../components/CustomTable/columnConfigs';
 import DishData from '../../../database/dish.json';
@@ -69,18 +69,44 @@ function Conainer(props) {
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        editForm.setFieldsValue({ ...data });
-        setOpenEditModel(true);
+        Modal.confirm({
+            title: t('app.notification.table.deleteAction.title'),
+            content: t('app.notification.table.deleteAction.content', {
+                target: t('app.common.systemKey.dish'),
+            }),
+            okText: t('app.notification.table.deleteAction.acceptButton'),
+            cancelText: t('app.notification.table.cancelButton'),
+            okType: 'danger',
+            onOk() {},
+            onCancel() {},
+        });
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        editForm.setFieldsValue({ ...data });
-        setOpenEditModel(true);
+        Modal.confirm({
+            title: t('app.notification.table.turnOffActiveAction.title'),
+            content: t('app.notification.table.turnOffActiveAction.content', {
+                target: t('app.common.systemKey.dish'),
+            }),
+            okText: t('app.notification.table.turnOffActiveAction.acceptButton'),
+            cancelText: t('app.notification.table.cancelButton'),
+            okType: 'danger',
+            onOk() {},
+            onCancel() {},
+        });
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        editForm.setFieldsValue({ ...data });
-        setOpenEditModel(true);
+        Modal.confirm({
+            title: t('app.notification.table.turnOnActiveAction.title'),
+            content: t('app.notification.table.turnOnActiveAction.content', {
+                target: t('app.common.systemKey.dish'),
+            }),
+            okText: t('app.notification.table.turnOnActiveAction.acceptButton'),
+            cancelText: t('app.notification.table.cancelButton'),
+            onOk() {},
+            onCancel() {},
+        });
     };
 
     const handleCreateSubmitClick = (values) => {

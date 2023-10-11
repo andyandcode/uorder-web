@@ -136,9 +136,30 @@
                 "editFinish": "Cập nhật thành công!",
                 "editFinishFail": "Cập nhật thất bại!",
                 "actionInProgress": "Đang xử lý..."
+            },
+            "table": {
+                "deleteAction": {
+                    "title": "Bạn chắc chứ?",
+                    "content": "Hành động này sẽ xóa tất của thông tin của {{target}} này. \n Bạn sẽ không thể hoàn tác hành động này.",
+                    "acceptButton": "Xóa"
+                },
+                "turnOffActiveAction": {
+                    "title": "Đổi trạng thái thành tắt?",
+                    "content": "Trạng thái hoạt động của {{target}} này sẽ đổi thành tắt. Bạn vẫn có thể đổi trạng thái hoạt động của {{target}} này vào lần sau.",
+                    "acceptButton": "Tắt hoạt động"
+                },
+                "turnOnActiveAction": {
+                    "title": "Đổi trạng thái thành hoạt động?",
+                    "content": "Trạng thái hoạt động của {{target}} này sẽ đổi thành hoạt động. Bạn vẫn có thể đổi trạng thái hoạt động của {{target}} này vào lần sau.",
+                    "acceptButton": "Hoạt động"
+                },
+                "cancelButton": "Hủy"
             }
         },
-        "common": { "footer": { "line1": "UOrder- Quét mã và đặt bàn" } },
+        "common": {
+            "footer": { "line1": "UOrder- Quét mã và đặt bàn" },
+            "systemKey": { "dish": "món ăn" }
+        },
         "utilities": {
             "upload": {
                 "text": "Nhấp hoặc kéo tệp vào khu vực này để tải lên",

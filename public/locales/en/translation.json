@@ -136,9 +136,30 @@
                 "editFinish": "Update success!",
                 "editFinishFail": "Update failed!",
                 "actionInProgress": "Action in progress..."
+            },
+            "table": {
+                "deleteAction": {
+                    "title": "Are you sure?",
+                    "content": "This action will delete all infomation of this {{target}}. \n You will not be able to revert this.",
+                    "acceptButton": "Delete"
+                },
+                "turnOffActiveAction": {
+                    "title": "Change active status to off?",
+                    "content": "The activity status of this {{target}} will change to off. You will still be able to change the activity status of this {{target}} next time.",
+                    "acceptButton": "Change to off"
+                },
+                "turnOnActiveAction": {
+                    "title": "Change active status to active?",
+                    "content": "The activity status of this {{target}} will change to active. You will still be able to change the activity status of this {{target}} next time.",
+                    "acceptButton": "Change to active"
+                },
+                "cancelButton": "Cancel"
             }
         },
-        "common": { "footer": { "line1": "UOrder- Scan and make a reservation" } },
+        "common": {
+            "footer": { "line1": "UOrder- Scan and make a reservation" },
+            "systemKey": { "dish": "dish" }
+        },
         "utilities": {
             "upload": {
                 "text": "Click or drag file to this area to upload",
