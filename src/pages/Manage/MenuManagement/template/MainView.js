@@ -46,10 +46,10 @@ export default function MainView(props) {
                         loading={loadings[0]}
                         onClick={() => enterLoading(0)}
                     >
-                        {t('app.feature.manage.dish.button.add')}
+                        {t('app.feature.manage.menu.button.add')}
                     </Button>
                     <Button icon={<HourglassOutlined />} block>
-                        {t('app.feature.manage.dish.button.activeLog')}
+                        {t('app.feature.manage.menu.button.activeLog')}
                     </Button>
                 </Space>
                 <CustomTable

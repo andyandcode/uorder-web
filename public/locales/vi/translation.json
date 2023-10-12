@@ -66,7 +66,46 @@
                         "resetButton": "Đặt lại"
                     }
                 },
-                "menu": { "label": "Quản lý thực đơn" },
+                "menu": {
+                    "label": "Quản lý thực đơn",
+                    "button": { "add": "Thêm mới", "activeLog": "Lịch sử" },
+                    "createForm": {
+                        "name": "Tên",
+                        "nameTooltip": "Tên của thực đơn.",
+                        "nameIsRequired": "Vui lòng nhập tên của thực đơn!",
+                        "desc": "Mô tả",
+                        "descTooltip": "Đoạn mô tả ngắn về thực đơn.",
+                        "descIsRequired": "Vui lòng nhập mô tả của thực đơn!",
+                        "isActive": "Hoạt động",
+                        "isActiveTooltip": "Tình trạng hoạt động của thực đơn. Khi tắt, thực đơn sẽ không được hiển thị trên nhà hàng.",
+                        "dishes": "Món ăn",
+                        "dishesTooltip": "Chọn các món ăn cho thực đơn",
+                        "cancelButton": "Hủy",
+                        "createButton": "Thêm",
+                        "title": "Thêm mới thực đơn",
+                        "resetButton": "Đặt lại"
+                    },
+                    "editForm": {
+                        "id": "Mã định danh",
+                        "idTooltip": ".Mã định danh của thực đơn",
+                        "createdAt": "Thời gian tạo mới",
+                        "createdAtTooltip": ".Thời gian thực đơn được tạo mới",
+                        "name": "Tên",
+                        "nameTooltip": "Tên của thực đơn.",
+                        "nameIsRequired": "Vui lòng nhập tên của thực đơn!",
+                        "desc": "Mô tả",
+                        "descTooltip": "Đoạn mô tả ngắn về thực đơn.",
+                        "descIsRequired": "Vui lòng nhập mô tả của thực đơn!",
+                        "isActive": "Hoạt động",
+                        "isActiveTooltip": "Tình trạng hoạt động của thực đơn. Khi tắt, thực đơn sẽ không được hiển thị trên nhà hàng.",
+                        "dishes": "Món ăn",
+                        "dishesTooltip": "Chọn các món ăn cho thực đơn",
+                        "cancelButton": "Hủy",
+                        "createButton": "Cập nhật",
+                        "title": "Chỉnh sửa thực đơn",
+                        "resetButton": "Đặt lại"
+                    }
+                },
                 "table": { "label": "Quản lý bàn" }
             },
             "sales": {
@@ -170,7 +209,7 @@
         },
         "common": {
             "footer": { "line1": "UOrder- Quét mã và đặt bàn" },
-            "systemKey": { "dish": "món ăn" }
+            "systemKey": { "dish": "món ăn", "menu": "thực đơn" }
         },
         "utilities": {
             "upload": {

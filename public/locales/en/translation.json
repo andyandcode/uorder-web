@@ -66,7 +66,46 @@
                         "resetButton": "Reset"
                     }
                 },
-                "menu": { "label": "Menu management" },
+                "menu": {
+                    "label": "Menu management",
+                    "button": { "add": "Create new", "activeLog": "Active log" },
+                    "createForm": {
+                        "name": "Name",
+                        "nameTooltip": "Name of the menu.",
+                        "nameIsRequired": "Please input the name!",
+                        "desc": "Description",
+                        "descTooltip": "Short description of the menu.",
+                        "descIsRequired": "Please input the description!",
+                        "isActive": "Active",
+                        "isActiveTooltip": "Operational status of the menu. When disabled, menus will not be displayed on the restaurant.",
+                        "dishes": "Dishes",
+                        "dishesTooltip": "Choose dishes for this menu",
+                        "cancelButton": "Cancel",
+                        "createButton": "Create",
+                        "title": "Create new a menu",
+                        "resetButton": "Reset"
+                    },
+                    "editForm": {
+                        "id": "Id",
+                        "idTooltip": ".Identifier for the menu",
+                        "createdAt": "Created at",
+                        "createdAtTooltip": ".The time the new menu is created",
+                        "name": "Name",
+                        "nameTooltip": "Name of the menu.",
+                        "nameIsRequired": "Please input the name!",
+                        "desc": "Description",
+                        "descTooltip": "Short description of the menu.",
+                        "descIsRequired": "Please input the description!",
+                        "isActive": "Active",
+                        "isActiveTooltip": "Operational status of the menu. When disabled, menus will not be displayed on the restaurant.",
+                        "dishes": "Dishes",
+                        "dishesTooltip": "Choose dishes for this menu",
+                        "cancelButton": "Cancel",
+                        "createButton": "Update",
+                        "title": "Edit dish",
+                        "resetButton": "Reset"
+                    }
+                },
                 "table": { "label": "Table management" }
             },
             "sales": {
@@ -120,6 +159,14 @@
                         "food": "Food",
                         "drink": "Drink"
                     }
+                },
+                "menuManagement": {
+                    "name": "Name",
+                    "isActive": {
+                        "label": "Is active",
+                        "active": "Active",
+                        "off": "Off"
+                    }
                 }
             }
         },
@@ -170,7 +217,7 @@
         },
         "common": {
             "footer": { "line1": "UOrder- Scan and make a reservation" },
-            "systemKey": { "dish": "dish" }
+            "systemKey": { "dish": "dish", "menu": "menu" }
         },
         "utilities": {
             "upload": {

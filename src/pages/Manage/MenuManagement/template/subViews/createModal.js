@@ -1,4 +1,4 @@
-import { CheckOutlined, CloseOutlined, InboxOutlined } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import {
     Button,
     Col,
@@ -10,10 +10,10 @@ import {
     Select,
     Space,
     Switch,
+    Tag,
     Upload,
 } from 'antd';
 import React from 'react';
-import { NumericFormat } from 'react-number-format';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -27,21 +27,21 @@ export default function CreateModal(props) {
         handleCreateCancelClick,
         handleCreateSubmitClick,
         messageContextHolder,
-        draggerFileProps,
+        dishData,
     } = props;
 
     return (
         <>
             <Modal
                 open={openCreateModel}
-                title={t('app.feature.manage.dish.createForm.title')}
-                okText={t('app.feature.manage.dish.createForm.create')}
-                cancelText={t('app.feature.manage.dish.createForm.cancel')}
+                title={t('app.feature.manage.menu.createForm.title')}
+                okText={t('app.feature.manage.menu.createForm.create')}
+                cancelText={t('app.feature.manage.menu.createForm.cancel')}
                 onCancel={handleCreateCancelClick}
                 maskClosable={false}
                 footer={[]}
                 centered
-                width='auto'
+                width='60%'
             >
                 {messageContextHolder}
                 <Form
@@ -55,13 +55,13 @@ export default function CreateModal(props) {
                         <Col span={12}>
                             <Form.Item
                                 name='name'
-                                label={t('app.feature.manage.dish.createForm.name')}
-                                tooltip={t('app.feature.manage.dish.createForm.nameTooltip')}
+                                label={t('app.feature.manage.menu.createForm.name')}
+                                tooltip={t('app.feature.manage.menu.createForm.nameTooltip')}
                                 rules={[
                                     {
                                         required: true,
                                         message: t(
-                                            'app.feature.manage.dish.createForm.nameIsRequired',
+                                            'app.feature.manage.menu.createForm.nameIsRequired',
                                         ),
                                     },
                                 ]}
@@ -70,13 +70,13 @@ export default function CreateModal(props) {
                             </Form.Item>
                             <Form.Item
                                 name='desc'
-                                label={t('app.feature.manage.dish.createForm.desc')}
-                                tooltip={t('app.feature.manage.dish.createForm.descTooltip')}
+                                label={t('app.feature.manage.menu.createForm.desc')}
+                                tooltip={t('app.feature.manage.menu.createForm.descTooltip')}
                                 rules={[
                                     {
                                         required: true,
                                         message: t(
-                                            'app.feature.manage.dish.createForm.descIsRequired',
+                                            'app.feature.manage.menu.createForm.descIsRequired',
                                         ),
                                     },
                                 ]}
@@ -84,122 +84,9 @@ export default function CreateModal(props) {
                                 <TextArea allowClear rows={4} />
                             </Form.Item>
                             <Form.Item
-                                name='price'
-                                label={t('app.feature.manage.dish.createForm.price')}
-                                tooltip={t('app.feature.manage.dish.createForm.priceTooltip')}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: t(
-                                            'app.feature.manage.dish.createForm.priceIsRequired',
-                                        ),
-                                    },
-                                ]}
-                            >
-                                <NumericFormat
-                                    allowClear
-                                    suffix=' VND'
-                                    thousandSeparator=','
-                                    customInput={Input}
-                                    allowLeadingZeros={false}
-                                    isAllowed={(values) => {
-                                        const { formattedValue, floatValue } = values;
-                                        return (
-                                            formattedValue === '' ||
-                                            (floatValue <= 1000000000 && floatValue >= 1)
-                                        );
-                                    }}
-                                    style={{
-                                        width: 250,
-                                    }}
-                                />
-                            </Form.Item>
-                            <Form.Item
-                                name='completionTime'
-                                label={t('app.feature.manage.dish.createForm.completionTime')}
-                                tooltip={t(
-                                    'app.feature.manage.dish.createForm.completionTimeTooltip',
-                                )}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: t(
-                                            'app.feature.manage.dish.createForm.completionTimeIsRequired',
-                                        ),
-                                    },
-                                ]}
-                            >
-                                <NumericFormat
-                                    allowClear
-                                    thousandSeparator=','
-                                    customInput={Input}
-                                    allowLeadingZeros={false}
-                                    isAllowed={(values) => {
-                                        const { formattedValue, floatValue } = values;
-                                        return (
-                                            formattedValue === '' ||
-                                            (floatValue <= 1000 && floatValue >= 1)
-                                        );
-                                    }}
-                                    style={{
-                                        width: 250,
-                                    }}
-                                />
-                            </Form.Item>
-                            <Form.Item
-                                name='qtyPerDate'
-                                label={t('app.feature.manage.dish.createForm.qtyPerDate')}
-                                tooltip={t('app.feature.manage.dish.createForm.qtyPerDateTooltip')}
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: t(
-                                            'app.feature.manage.dish.createForm.qtyPerDateIsRequired',
-                                        ),
-                                    },
-                                ]}
-                            >
-                                <NumericFormat
-                                    min={1000}
-                                    allowClear
-                                    thousandSeparator=','
-                                    customInput={Input}
-                                    allowLeadingZeros={false}
-                                    isAllowed={(values) => {
-                                        const { formattedValue, floatValue } = values;
-                                        return (
-                                            formattedValue === '' ||
-                                            (floatValue <= 1000000000 && floatValue >= 1)
-                                        );
-                                    }}
-                                    style={{
-                                        width: 250,
-                                    }}
-                                />
-                            </Form.Item>
-                            <Form.Item
-                                name='type'
-                                label={t('app.feature.manage.dish.createForm.type')}
-                                tooltip={t('app.feature.manage.dish.createForm.typeTooltip')}
-                            >
-                                <Select
-                                    bordered={false}
-                                    style={{
-                                        width: 120,
-                                    }}
-                                >
-                                    <Option value={0}>
-                                        {t('app.feature.table.dishManagement.typeName.food')}
-                                    </Option>
-                                    <Option value={1}>
-                                        {t('app.feature.table.dishManagement.typeName.drink')}
-                                    </Option>
-                                </Select>
-                            </Form.Item>
-                            <Form.Item
                                 name='isActive'
-                                label={t('app.feature.manage.dish.createForm.isActive')}
-                                tooltip={t('app.feature.manage.dish.createForm.isActiveTooltip')}
+                                label={t('app.feature.manage.menu.createForm.isActive')}
+                                tooltip={t('app.feature.manage.menu.createForm.isActiveTooltip')}
                                 valuePropName='checked'
                             >
                                 <Switch
@@ -212,32 +99,43 @@ export default function CreateModal(props) {
                         <Col span={12}>
                             <ConfigProvider direction='ltr'>
                                 <Form.Item
-                                    name='files'
-                                    label={t('app.feature.manage.dish.createForm.upload')}
-                                    valuePropName='fileList'
-                                    className={'custom_input'}
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: t(
-                                                'app.feature.manage.dish.createForm.uploadIsRequired',
-                                            ),
-                                        },
-                                    ]}
+                                    name='dishes'
+                                    label={t('app.feature.manage.menu.createForm.dishes')}
+                                    tooltip={t('app.feature.manage.menu.createForm.dishesTooltip')}
+                                    className={'custom_select_in_menu'}
                                 >
-                                    <Space>
-                                        <Dragger {...draggerFileProps}>
-                                            <p className='ant-upload-drag-icon'>
-                                                <InboxOutlined />
-                                            </p>
-                                            <p className='ant-upload-text'>
-                                                {t('app.utilities.upload.text')}
-                                            </p>
-                                            <p className='ant-upload-hint'>
-                                                {t('app.utilities.upload.hint')}
-                                            </p>
-                                        </Dragger>
-                                    </Space>
+                                    <Select
+                                        mode='multiple'
+                                        style={{
+                                            width: '100%',
+                                        }}
+                                        onChange={() => {}}
+                                        optionLabelProp='label'
+                                    >
+                                        {dishData.map((item) => {
+                                            let color = item.type === 0 ? 'green' : 'geekblue';
+                                            let typeName =
+                                                item.type === 0
+                                                    ? t(
+                                                          'app.feature.table.dishManagement.typeName.food',
+                                                      )
+                                                    : t(
+                                                          'app.feature.table.dishManagement.typeName.drink',
+                                                      );
+                                            return (
+                                                <Option
+                                                    value={item.id}
+                                                    label={item.name}
+                                                    key={item.key}
+                                                >
+                                                    <Space>
+                                                        <Tag color={color}>{typeName}</Tag>
+                                                        {item.name}
+                                                    </Space>
+                                                </Option>
+                                            );
+                                        })}
+                                    </Select>
                                 </Form.Item>
                             </ConfigProvider>
                         </Col>
@@ -245,17 +143,17 @@ export default function CreateModal(props) {
 
                     <Space>
                         <Button type='text' htmlType='reset'>
-                            {t('app.feature.manage.dish.createForm.resetButton')}
+                            {t('app.feature.manage.menu.createForm.resetButton')}
                         </Button>
                         <Button danger onClick={handleCreateCancelClick}>
-                            {t('app.feature.manage.dish.createForm.cancelButton')}
+                            {t('app.feature.manage.menu.createForm.cancelButton')}
                         </Button>
                         <Button
                             onClick={() => handleCreateSubmitClick(createForm.getFieldsValue())}
                             form={createForm}
                             type='primary'
                         >
-                            {t('app.feature.manage.dish.createForm.createButton')}
+                            {t('app.feature.manage.menu.createForm.createButton')}
                         </Button>
                     </Space>
                 </Form>

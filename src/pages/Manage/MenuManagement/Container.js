@@ -1,6 +1,7 @@
 import { Form, message, Modal } from 'antd';
 import React, { useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
+import DishData from '../../../database/dish.json';
 import MenuData from '../../../database/menu.json';
 import propsProvider from './PropsProvider';
 import MainView from './template/MainView';
@@ -9,7 +10,7 @@ function Conainer(props) {
     const { history, t } = props;
     const columns = TableColumns.MenuColumns(t);
     const data = MenuData;
-    const dishData = data.dishes;
+    const dishData = DishData;
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
@@ -51,7 +52,7 @@ function Conainer(props) {
         Modal.confirm({
             title: t('app.notification.table.deleteAction.title'),
             content: t('app.notification.table.deleteAction.content', {
-                target: t('app.common.systemKey.dish'),
+                target: t('app.common.systemKey.menu'),
             }),
             okText: t('app.notification.table.deleteAction.acceptButton'),
             cancelText: t('app.notification.table.cancelButton'),
@@ -65,7 +66,7 @@ function Conainer(props) {
         Modal.confirm({
             title: t('app.notification.table.turnOffActiveAction.title'),
             content: t('app.notification.table.turnOffActiveAction.content', {
-                target: t('app.common.systemKey.dish'),
+                target: t('app.common.systemKey.menu'),
             }),
             okText: t('app.notification.table.turnOffActiveAction.acceptButton'),
             cancelText: t('app.notification.table.cancelButton'),
@@ -79,7 +80,7 @@ function Conainer(props) {
         Modal.confirm({
             title: t('app.notification.table.turnOnActiveAction.title'),
             content: t('app.notification.table.turnOnActiveAction.content', {
-                target: t('app.common.systemKey.dish'),
+                target: t('app.common.systemKey.menu'),
             }),
             okText: t('app.notification.table.turnOnActiveAction.acceptButton'),
             cancelText: t('app.notification.table.cancelButton'),
