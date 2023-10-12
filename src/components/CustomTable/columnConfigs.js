@@ -1,9 +1,9 @@
-import { Badge, Tag } from 'antd';
+import { Badge, Tag, Tooltip } from 'antd';
 import { NumericFormat } from 'react-number-format';
 import TableFilter from '../TableFilter';
 
 export const DishColumns = (props) => {
-    const { t, handleEditClick } = props;
+    const { t } = props;
 
     return [
         {
@@ -15,7 +15,14 @@ export const DishColumns = (props) => {
                 multiple: 6,
             },
             ...TableFilter('name', t('app.feature.table.dishManagement.name')),
-            render: (data) => data,
+            ellipsis: {
+                showTitle: false,
+            },
+            render: (data) => (
+                <Tooltip placement='topLeft' title={data}>
+                    {data}
+                </Tooltip>
+            ),
         },
         {
             key: 'price',
@@ -101,17 +108,5 @@ export const DishColumns = (props) => {
                 );
             },
         },
-        // {
-        //     title: t('app.feature.table.dishManagement.action'),
-        //     key: 'action',
-        //     align: 'center',
-        //     render: (_, record) => (
-        //         <Space size='middle'>
-        //             <Button type='text' onClick={() => handleEditClick(record)}>
-        //                 {t('app.feature.table.dishManagement.button.edit')}
-        //             </Button>
-        //         </Space>
-        //     ),
-        // },
     ];
 };

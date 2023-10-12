@@ -62,16 +62,12 @@ export default function MainView(props) {
                     triggerAsc: t('app.feature.table.triggerAsc'),
                     cancelSort: t('app.feature.table.cancelSort'),
                 }}
+                loading={false}
+                expandable={{
+                    expandedRowRender: (record) => record.desc,
+                    rowExpandable: (record) => record.desc.length > 1,
+                }}
             >
-                <Column
-                    title={t('app.feature.table.noColumn')}
-                    key='no'
-                    align='center'
-                    render={(id, record, index) => {
-                        ++index;
-                        return index;
-                    }}
-                />
                 {columns.map((props) => {
                     return <Column {...props} />;
                 })}
