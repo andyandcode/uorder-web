@@ -11,13 +11,11 @@ import {
     Space,
     Switch,
     Tag,
-    Upload,
 } from 'antd';
 import React from 'react';
 
 const { TextArea } = Input;
 const { Option } = Select;
-const { Dragger } = Upload;
 
 export default function CreateModal(props) {
     const {
@@ -122,6 +120,7 @@ export default function CreateModal(props) {
                                                     : t(
                                                           'app.feature.table.dishManagement.typeName.drink',
                                                       );
+                                            color = item.isActive === true ? color : '';
                                             return (
                                                 <Option
                                                     value={item.id}
