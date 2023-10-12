@@ -1,10 +1,14 @@
 import { Badge, Tag, Tooltip } from 'antd';
 import { NumericFormat } from 'react-number-format';
+import NestedTable from '../NestedTable';
 import TableFilter from '../TableFilter';
 
-export const DishColumns = (props) => {
-    const { t } = props;
+const DishTable = 'DishTable';
+const MenuTable = 'MenuTable';
 
+const TableSwitch = { DishTable, MenuTable };
+
+const DishColumns = (t) => {
     return [
         {
             key: 'name',
@@ -110,3 +114,124 @@ export const DishColumns = (props) => {
         },
     ];
 };
+
+const MenuColumns = (t) => {
+    return [
+        {
+            key: 'name',
+            dataIndex: 'name',
+            title: t('app.feature.table.dishManagement.name'),
+            sorter: {
+                compare: (a, b) => a.name.localeCompare(b.name),
+                multiple: 6,
+            },
+            ...TableFilter('name', t('app.feature.table.dishManagement.name')),
+            ellipsis: {
+                showTitle: false,
+            },
+            render: (data) => (
+                <Tooltip placement='topLeft' title={data}>
+                    {data}
+                </Tooltip>
+            ),
+        },
+        {
+            key: 'isActive',
+            dataIndex: 'isActive',
+            title: t('app.feature.table.dishManagement.isActive.label'),
+            align: 'center',
+            sorter: {
+                compare: (a, b) => a.isActive - b.isActive,
+                multiple: 3,
+            },
+            render: (data) => {
+                let status = data === true ? 'success' : 'default';
+                let typeName =
+                    data === true
+                        ? t('app.feature.table.dishManagement.isActive.active')
+                        : t('app.feature.table.dishManagement.isActive.off');
+                return <Badge status={status} text={typeName} />;
+            },
+        },
+    ];
+};
+
+const expandedRowRenderSelection = (t, record, props) => {
+    const plug = record.dishes ? true : false;
+    switch (plug) {
+        case true:
+            const menuColumns = [
+                {
+                    key: 'name',
+                    dataIndex: 'name',
+                    title: t('app.feature.table.dishManagement.name'),
+                    sorter: {
+                        compare: (a, b) => a.name.localeCompare(b.name),
+                        multiple: 6,
+                    },
+                },
+                {
+                    key: 'price',
+                    dataIndex: 'price',
+                    title: t('app.feature.table.dishManagement.price'),
+                    align: 'right',
+                    sorter: {
+                        compare: (a, b) => a.price - b.price,
+                        multiple: 5,
+                    },
+                    render: (data) => {
+                        return (
+                            <NumericFormat
+                                value={data}
+                                suffix={' VND'}
+                                thousandSeparator=','
+                                displayType='text'
+                            />
+                        );
+                    },
+                },
+                {
+                    key: 'isActive',
+                    dataIndex: 'isActive',
+                    title: t('app.feature.table.dishManagement.isActive.label'),
+                    align: 'center',
+                    sorter: {
+                        compare: (a, b) => a.isActive - b.isActive,
+                        multiple: 3,
+                    },
+                    render: (data) => {
+                        let status = data === true ? 'success' : 'default';
+                        let typeName =
+                            data === true
+                                ? t('app.feature.table.dishManagement.isActive.active')
+                                : t('app.feature.table.dishManagement.isActive.off');
+                        return <Badge status={status} text={typeName} />;
+                    },
+                },
+            ];
+            return (
+                <NestedTable
+                    {...props}
+                    columns={menuColumns}
+                    dataSource={record.dishes}
+                    pagination={false}
+                    locale={{
+                        emptyText: t('app.feature.table.emptyData'),
+                        triggerDesc: t('app.feature.table.triggerDesc'),
+                        triggerAsc: t('app.feature.table.triggerAsc'),
+                        cancelSort: t('app.feature.table.cancelSort'),
+                    }}
+                    size='small'
+                />
+            );
+        default:
+            return (
+                <>
+                    <p>{record.desc}</p>
+                </>
+            );
+    }
+};
+
+const TableColumns = { TableSwitch, DishColumns, MenuColumns, expandedRowRenderSelection };
+export default TableColumns;

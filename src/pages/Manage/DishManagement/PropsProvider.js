@@ -25,6 +25,7 @@ export default function propsProvider(props) {
         handleCreateCancelClick,
         messageContextHolder,
         draggerFileProps,
+        expandedRowRenderSelection,
     } = props;
     return {
         history,
@@ -52,5 +53,6 @@ export default function propsProvider(props) {
         handleCreateCancelClick,
         messageContextHolder,
         draggerFileProps,
+        expandedRowRenderSelection,
     };
 }

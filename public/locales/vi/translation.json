@@ -153,7 +153,19 @@
                     "content": "Trạng thái hoạt động của {{target}} này sẽ đổi thành hoạt động. Bạn vẫn có thể đổi trạng thái hoạt động của {{target}} này vào lần sau.",
                     "acceptButton": "Hoạt động"
                 },
-                "cancelButton": "Hủy"
+                "cancelButton": "Hủy",
+                "popConfirm": {
+                    "quickTurnOff": {
+                        "title": "Chuyển thành tắt",
+                        "content": "Bạn có chắc muốn tắt trạng thái hoạt động của {{target}} này?",
+                        "acceptButton": "Tắt hoạt động"
+                    },
+                    "quickDelete": {
+                        "title": "Xóa {{target}} này",
+                        "content": "Bạn có chắc muôn xóa {{target}} này?",
+                        "acceptButton": "Xóa"
+                    }
+                }
             }
         },
         "common": {

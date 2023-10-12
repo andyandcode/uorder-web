@@ -153,7 +153,19 @@
                     "content": "The activity status of this {{target}} will change to active. You will still be able to change the activity status of this {{target}} next time.",
                     "acceptButton": "Change to active"
                 },
-                "cancelButton": "Cancel"
+                "cancelButton": "Cancel",
+                "popConfirm": {
+                    "quickTurnOff": {
+                        "title": "Change to off",
+                        "content": "Are you sure to turn off active status of this {{target}}?",
+                        "acceptButton": "Turn off"
+                    },
+                    "quickDelete": {
+                        "title": "Delete this {{target}}",
+                        "content": "Are you sure to delete this {{target}}?",
+                        "acceptButton": "Delete"
+                    }
+                }
             }
         },
         "common": {

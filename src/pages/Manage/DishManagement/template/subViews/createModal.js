@@ -19,7 +19,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 const { Dragger } = Upload;
 
-export default function CreateModel(props) {
+export default function CreateModal(props) {
     const {
         t,
         createForm,

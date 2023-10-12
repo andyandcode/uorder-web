@@ -7,7 +7,7 @@ import { NumericFormat } from 'react-number-format';
 const { TextArea } = Input;
 const { Option } = Select;
 
-export default function EditModel(props) {
+export default function EditModal(props) {
     const {
         t,
         editForm,

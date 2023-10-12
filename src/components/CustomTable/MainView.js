@@ -1,5 +1,7 @@
 import { DeleteOutlined, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, Space, Table } from 'antd';
+import NestedExpendedConfig from '../NestedTable/config';
+import TableColumns from './columnConfigs';
 
 const { Column } = Table;
 
@@ -64,8 +66,9 @@ export default function MainView(props) {
                 }}
                 loading={false}
                 expandable={{
-                    expandedRowRender: (record) => record.desc,
-                    rowExpandable: (record) => record.desc.length > 1,
+                    expandedRowRender: (record) =>
+                        TableColumns.expandedRowRenderSelection(t, record, props),
+                    rowExpandable: (record) => NestedExpendedConfig(record),
                 }}
             >
                 {columns.map((props) => {
@@ -78,6 +81,7 @@ export default function MainView(props) {
                     render={(record) => (
                         <Space>
                             <Dropdown.Button
+                                type='text'
                                 dropdownRender={() => menuSelection(record)}
                                 trigger={['click']}
                                 onClick={() => handleActionButtonEditClick(record)}

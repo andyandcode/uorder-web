@@ -1,13 +1,14 @@
 import { Form, message, Modal } from 'antd';
 import React, { useState } from 'react';
-import { DishColumns } from '../../../components/CustomTable/columnConfigs';
+import TableColumns from '../../../components/CustomTable/columnConfigs';
 import DishData from '../../../database/dish.json';
 import propsProvider from './PropsProvider';
 import MainView from './template/MainView';
 
 function Conainer(props) {
     const { history, t } = props;
-    const columns = DishColumns(props);
+    const columns = TableColumns.DishColumns(t);
+    const expandedRowRenderSelection = TableColumns.expandedRowRenderSelection;
     const data = DishData;
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
@@ -175,6 +176,7 @@ function Conainer(props) {
         handleEditSubmitClick,
         handleEditCancelClick,
         handleCreateCancelClick,
+        expandedRowRenderSelection,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

@@ -2,8 +2,9 @@ import { HourglassOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, Layout, Space, Typography } from 'antd';
 import React from 'react';
 import CustomTable from '../../../../components/CustomTable';
-import CreateModel from './subViews/createModel';
-import EditModel from './subViews/editModel';
+import TableColumns from '../../../../components/CustomTable/columnConfigs';
+import CreateModal from './subViews/createModal';
+import EditModal from './subViews/editModal';
 
 const { Content } = Layout;
 const { Title } = Typography;
@@ -19,6 +20,7 @@ export default function MainView(props) {
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
         handleActionButtonTurnOnClick,
+        expandedRowRenderSelection,
     } = props;
 
     return (
@@ -56,9 +58,12 @@ export default function MainView(props) {
                     handleActionButtonDeleteClick={(data) => handleActionButtonDeleteClick(data)}
                     handleActionButtonTurnOffClick={(data) => handleActionButtonTurnOffClick(data)}
                     handleActionButtonTurnOnClick={(data) => handleActionButtonTurnOnClick(data)}
+                    expandedRowRenderSelection={() =>
+                        expandedRowRenderSelection(t, data, TableColumns.TableSwitch.DishTable)
+                    }
                 />
-                <CreateModel {...props}></CreateModel>
-                <EditModel {...props}></EditModel>
+                <CreateModal {...props}></CreateModal>
+                <EditModal {...props}></EditModal>
             </Content>
         </>
     );
