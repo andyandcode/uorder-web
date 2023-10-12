@@ -30,6 +30,9 @@ export default function propsProvider(props) {
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
+        loadingTable,
+        handleRefreshDataClick,
+        loadingsRefreshButton,
     } = props;
     return {
         history,
@@ -62,5 +65,8 @@ export default function propsProvider(props) {
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
+        loadingTable,
+        handleRefreshDataClick,
+        loadingsRefreshButton,
     };
 }

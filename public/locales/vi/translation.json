@@ -8,7 +8,7 @@
                 "label": "Quản lý",
                 "dish": {
                     "label": "Quản lý món ăn",
-                    "button": { "add": "Thêm mới", "activeLog": "Lịch sử" },
+                    "button": { "add": "Thêm mới", "activeLog": "Lịch sử", "refresh": "Làm mới" },
                     "createForm": {
                         "name": "Tên",
                         "nameTooltip": "Tên món ăn.",
@@ -68,7 +68,7 @@
                 },
                 "menu": {
                     "label": "Quản lý thực đơn",
-                    "button": { "add": "Thêm mới", "activeLog": "Lịch sử" },
+                    "button": { "add": "Thêm mới", "activeLog": "Lịch sử", "refresh": "Làm mới" },
                     "createForm": {
                         "name": "Tên",
                         "nameTooltip": "Tên của thực đơn.",

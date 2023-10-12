@@ -1,4 +1,4 @@
-import { HourglassOutlined, PlusOutlined } from '@ant-design/icons';
+import { CloudDownloadOutlined, HourglassOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, Layout, Space, Typography } from 'antd';
 import React from 'react';
 import CustomTable from '../../../../components/CustomTable';
@@ -22,6 +22,9 @@ export default function MainView(props) {
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
+        loadingTable,
+        handleRefreshDataClick,
+        loadingsRefreshButton,
     } = props;
 
     return (
@@ -48,11 +51,19 @@ export default function MainView(props) {
                     >
                         {t('app.feature.manage.menu.button.add')}
                     </Button>
+                    <Button
+                        icon={<CloudDownloadOutlined />}
+                        loading={loadingsRefreshButton[1]}
+                        onClick={() => handleRefreshDataClick(1)}
+                    >
+                        {t('app.feature.manage.dish.button.refresh')}
+                    </Button>
                     <Button icon={<HourglassOutlined />} block>
                         {t('app.feature.manage.menu.button.activeLog')}
                     </Button>
                 </Space>
                 <CustomTable
+                    loadingTable={loadingTable}
                     columns={columns}
                     dataSource={data}
                     handleActionButtonEditClick={(data) => handleActionButtonEditClick(data)}

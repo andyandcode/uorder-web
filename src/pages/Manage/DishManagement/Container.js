@@ -15,8 +15,9 @@ function Conainer(props) {
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
     const [loadings, setLoadings] = useState([]);
+    const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
-
+    const [loadingTable, setLoadingTable] = useState(false);
     const draggerFileProps = {
         name: 'file',
         multiple: true,
@@ -154,6 +155,24 @@ function Conainer(props) {
             });
     };
 
+    const handleRefreshDataClick = (index) => {
+        console.log('click');
+        setLoadingsRefreshButton((prevLoadings) => {
+            const newLoadings = [...prevLoadings];
+            newLoadings[index] = true;
+            setLoadingTable(true);
+            return newLoadings;
+        });
+        setTimeout(() => {
+            setLoadingsRefreshButton((prevLoadings) => {
+                const newLoadings = [...prevLoadings];
+                newLoadings[index] = false;
+                setLoadingTable(false);
+                return newLoadings;
+            });
+        }, 1000);
+    };
+
     const containerProps = {
         ...props,
         history,
@@ -177,6 +196,9 @@ function Conainer(props) {
         handleEditCancelClick,
         handleCreateCancelClick,
         expandedRowRenderSelection,
+        loadingTable,
+        handleRefreshDataClick,
+        loadingsRefreshButton,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

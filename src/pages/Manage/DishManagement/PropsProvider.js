@@ -26,6 +26,9 @@ export default function propsProvider(props) {
         messageContextHolder,
         draggerFileProps,
         expandedRowRenderSelection,
+        loadingTable,
+        handleRefreshDataClick,
+        loadingsRefreshButton,
     } = props;
     return {
         history,
@@ -54,5 +57,8 @@ export default function propsProvider(props) {
         messageContextHolder,
         draggerFileProps,
         expandedRowRenderSelection,
+        loadingTable,
+        handleRefreshDataClick,
+        loadingsRefreshButton,
     };
 }

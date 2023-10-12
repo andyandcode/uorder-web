@@ -14,6 +14,7 @@ export default function MainView(props) {
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
         handleActionButtonTurnOnClick,
+        loadingTable,
     } = props;
 
     const menuSelection = (record) => {
@@ -53,7 +54,7 @@ export default function MainView(props) {
             </>
         );
     };
-
+    console.log(loadingTable);
     return (
         <>
             <Table
@@ -64,7 +65,7 @@ export default function MainView(props) {
                     triggerAsc: t('app.feature.table.triggerAsc'),
                     cancelSort: t('app.feature.table.cancelSort'),
                 }}
-                loading={false}
+                loading={loadingTable}
                 expandable={{
                     expandedRowRender: (record) =>
                         TableColumns.expandedRowRenderSelection(t, record, props),

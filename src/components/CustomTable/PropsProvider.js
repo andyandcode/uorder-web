@@ -12,6 +12,7 @@ export default function propsProvider(props) {
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
+        loadingTable,
     } = props;
     return {
         t,
@@ -26,5 +27,6 @@ export default function propsProvider(props) {
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
+        loadingTable,
     };
 }

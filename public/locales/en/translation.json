@@ -8,7 +8,11 @@
                 "label": "Manage",
                 "dish": {
                     "label": "Dish management",
-                    "button": { "add": "Create new", "activeLog": "Active log" },
+                    "button": {
+                        "add": "Create new",
+                        "activeLog": "Active log",
+                        "refresh": "Refresh"
+                    },
                     "createForm": {
                         "name": "Name",
                         "nameTooltip": "Name of the dish.",
@@ -68,7 +72,11 @@
                 },
                 "menu": {
                     "label": "Menu management",
-                    "button": { "add": "Create new", "activeLog": "Active log" },
+                    "button": {
+                        "add": "Create new",
+                        "activeLog": "Active log",
+                        "refresh": "Refresh"
+                    },
                     "createForm": {
                         "name": "Name",
                         "nameTooltip": "Name of the menu.",

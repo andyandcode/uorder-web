@@ -17,6 +17,8 @@ function Conainer(props) {
     const [openEditModel, setOpenEditModel] = useState(false);
     const [loadings, setLoadings] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
+    const [loadingTable, setLoadingTable] = useState(false);
+    const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
 
     const enterLoading = (index) => {
         setLoadings((prevLoadings) => {
@@ -139,6 +141,24 @@ function Conainer(props) {
             });
     };
 
+    const handleRefreshDataClick = (index) => {
+        console.log('click');
+        setLoadingsRefreshButton((prevLoadings) => {
+            const newLoadings = [...prevLoadings];
+            newLoadings[index] = true;
+            setLoadingTable(true);
+            return newLoadings;
+        });
+        setTimeout(() => {
+            setLoadingsRefreshButton((prevLoadings) => {
+                const newLoadings = [...prevLoadings];
+                newLoadings[index] = false;
+                setLoadingTable(false);
+                return newLoadings;
+            });
+        }, 1000);
+    };
+
     const containerProps = {
         ...props,
         history,
@@ -164,6 +184,9 @@ function Conainer(props) {
         handleQuickTurnOffConfirm,
         handleQuickDeleteConfirm,
         handleQuickActionButtonTurnOnClick,
+        handleRefreshDataClick,
+        loadingTable,
+        loadingsRefreshButton,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }
