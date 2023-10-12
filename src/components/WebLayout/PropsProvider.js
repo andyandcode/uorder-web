@@ -15,6 +15,7 @@ export default function propsProvider(props) {
         items,
         notificationCount,
         MenuList,
+        dispatch,
     } = props;
     return {
         t,
@@ -32,5 +33,6 @@ export default function propsProvider(props) {
         items,
         notificationCount,
         MenuList,
+        dispatch,
     };
 }

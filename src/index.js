@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import store from './app/store';
+import Loading from './components/FullPageLoading';
 import WebLayout from './components/WebLayout/index';
 import './configuration/i18n';
 import { routeList } from './configuration/routesConfig';
@@ -12,6 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
         <BrowserRouter>
+            <Loading />
             <Routes>
                 {routeList.map((route) => (
                     <Route

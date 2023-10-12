@@ -17,7 +17,7 @@ const rootSubmenuKeys = [
 ];
 
 export default function Conainer(props) {
-    const { t, i18n } = props;
+    const { t, i18n, dispatch } = props;
     const navigate = useNavigate();
     const [notificationCount, setNotificationCount] = useState(5);
     const [collapsed, setCollapsed] = useState(false);
@@ -83,6 +83,10 @@ export default function Conainer(props) {
         if (location) {
             if (current !== location.pathname) {
                 setCurrent(location.pathname);
+                // dispatch(showLoading());
+                // setTimeout(() => {
+                //     dispatch(hideLoading());
+                // }, 2500);
             }
         }
     }, [location, current]);
