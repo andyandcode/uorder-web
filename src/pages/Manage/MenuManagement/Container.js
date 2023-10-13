@@ -142,7 +142,6 @@ function Conainer(props) {
     };
 
     const handleRefreshDataClick = (index) => {
-        console.log('click');
         setLoadingsRefreshButton((prevLoadings) => {
             const newLoadings = [...prevLoadings];
             newLoadings[index] = true;

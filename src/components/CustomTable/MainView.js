@@ -54,7 +54,7 @@ export default function MainView(props) {
             </>
         );
     };
-    console.log(loadingTable);
+
     return (
         <>
             <Table
