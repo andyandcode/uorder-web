@@ -1,0 +1,237 @@
+{
+    "app": {
+        "feature": {
+            "home": {
+                "label": "Home"
+            },
+            "manage": {
+                "label": "Manage",
+                "dish": {
+                    "label": "Dish management",
+                    "button": {
+                        "add": "Create new",
+                        "activeLog": "Active log",
+                        "refresh": "Refresh"
+                    },
+                    "createForm": {
+                        "name": "Name",
+                        "nameTooltip": "Name of the dish.",
+                        "nameIsRequired": "Please input the name!",
+                        "desc": "Description",
+                        "descTooltip": "Short description of the dish.",
+                        "descIsRequired": "Please input the description!",
+                        "price": "Price",
+                        "priceTooltip": "Price of the dish. The price must be between 1,000 - 1,000,000,000.",
+                        "priceIsRequired": "Please input the price!",
+                        "completionTime": "Completion time (minutes)",
+                        "completionTimeTooltip": "Estimated dish completion time is calculated in minutes. The time must be between 1 - 1,000.",
+                        "completionTimeIsRequired": "Please input the completion time!",
+                        "isActive": "Active",
+                        "isActiveTooltip": "Operational status of the dish. When disabled, dishes will not be displayed on the menu.",
+                        "qtyPerDate": "Quantity per date",
+                        "qtyPerDateTooltip": "Estimated number of dishes produced per day. Quantity must be between 1,000 - 1,000,000,000.",
+                        "qtyPerDateIsRequired": "Please input the quantity per date!",
+                        "type": "Type",
+                        "typeTooltip": "Type is food or drink.",
+                        "cancelButton": "Cancel",
+                        "createButton": "Create",
+                        "title": "Create new a dish",
+                        "resetButton": "Reset",
+                        "upload": "Image of the dish",
+                        "uploadIsRequired": "Please upload at least 1 image!"
+                    },
+                    "editForm": {
+                        "id": "Id",
+                        "idTooltip": ".Identifier for the dish",
+                        "createdAt": "Created at",
+                        "createdAtTooltip": ".The time the new dish is created",
+                        "name": "Name",
+                        "nameTooltip": "Name of the dish.",
+                        "nameIsRequired": "Please input the name!",
+                        "desc": "Description",
+                        "descTooltip": "Short description of the dish.",
+                        "descIsRequired": "Please input the description!",
+                        "price": "Price",
+                        "priceTooltip": "Price of the dish.",
+                        "priceIsRequired": "Please input the price!",
+                        "completionTime": "Completion time (minutes)",
+                        "completionTimeTooltip": "Estimated dish completion time is calculated in minutes.",
+                        "completionTimeIsRequired": "Please input the completion time!",
+                        "isActive": "Active",
+                        "isActiveTooltip": "Operational status of the dish. When disabled, dishes will not be displayed on the menu.",
+                        "qtyPerDate": "Quantity per date",
+                        "qtyPerDateTooltip": "Estimated number of dishes produced per day.",
+                        "qtyPerDateIsRequired": "Please input the quantity per date!",
+                        "type": "Type",
+                        "typeTooltip": "Type is food or drink.",
+                        "cancelButton": "Cancel",
+                        "createButton": "Update",
+                        "title": "Edit dish",
+                        "resetButton": "Reset"
+                    }
+                },
+                "menu": {
+                    "label": "Menu management",
+                    "button": {
+                        "add": "Create new",
+                        "activeLog": "Active log",
+                        "refresh": "Refresh"
+                    },
+                    "createForm": {
+                        "name": "Name",
+                        "nameTooltip": "Name of the menu.",
+                        "nameIsRequired": "Please input the name!",
+                        "desc": "Description",
+                        "descTooltip": "Short description of the menu.",
+                        "descIsRequired": "Please input the description!",
+                        "isActive": "Active",
+                        "isActiveTooltip": "Operational status of the menu. When disabled, menus will not be displayed on the restaurant.",
+                        "dishes": "Dishes",
+                        "dishesTooltip": "Choose dishes for this menu",
+                        "cancelButton": "Cancel",
+                        "createButton": "Create",
+                        "title": "Create new a menu",
+                        "resetButton": "Reset"
+                    },
+                    "editForm": {
+                        "id": "Id",
+                        "idTooltip": ".Identifier for the menu",
+                        "createdAt": "Created at",
+                        "createdAtTooltip": ".The time the new menu is created",
+                        "name": "Name",
+                        "nameTooltip": "Name of the menu.",
+                        "nameIsRequired": "Please input the name!",
+                        "desc": "Description",
+                        "descTooltip": "Short description of the menu.",
+                        "descIsRequired": "Please input the description!",
+                        "isActive": "Active",
+                        "isActiveTooltip": "Operational status of the menu. When disabled, menus will not be displayed on the restaurant.",
+                        "dishes": "Dishes",
+                        "dishesTooltip": "Choose dishes for this menu",
+                        "cancelButton": "Cancel",
+                        "createButton": "Update",
+                        "title": "Edit dish",
+                        "resetButton": "Reset"
+                    }
+                },
+                "table": { "label": "Table management" }
+            },
+            "sales": {
+                "label": "Sales",
+                "booking": { "label": "Booking management" },
+                "order": { "label": "Order management" },
+                "analytics": { "label": "Analytics" }
+            },
+            "account": {
+                "label": "Account management"
+            },
+            "settings": {
+                "label": "Settings",
+                "system": { "label": "System settings" },
+                "account": { "label": "Account settings" }
+            },
+            "accountQuickAccess": {
+                "label": "Account",
+                "infomation": "Account settings",
+                "logoutButton": "Log out"
+            },
+            "table": {
+                "emptyData": "No Data",
+                "triggerDesc": "Click to sort descending",
+                "triggerAsc": "Click to sort ascending",
+                "cancelSort": "Click to cancel sort",
+                "searchKeyword": "Search",
+                "searchButton": "Search",
+                "searchReset": "Reset",
+                "searchClose": "Close",
+                "noColumn": "No",
+                "actionColumn": "Action",
+                "buttonColumn": {
+                    "edit": "Edit",
+                    "delete": "Delete",
+                    "turnOff": "Turn off",
+                    "turnOn": "Turn on"
+                },
+                "dishManagement": {
+                    "name": "Name",
+                    "price": "Price",
+                    "completionTime": "Completion time (minutes)",
+                    "qtyPerDate": "Quantity/date",
+                    "isActive": {
+                        "label": "Is active",
+                        "active": "Active",
+                        "off": "Off"
+                    },
+                    "typeName": {
+                        "label": "Type",
+                        "food": "Food",
+                        "drink": "Drink"
+                    }
+                },
+                "menuManagement": {
+                    "name": "Name",
+                    "isActive": {
+                        "label": "Is active",
+                        "active": "Active",
+                        "off": "Off"
+                    }
+                }
+            }
+        },
+        "notification": {
+            "accountQuickAccess": {
+                "title": "Do you wish to end the current session?",
+                "message": "The current login details on this device will be deleted after this operation. The next time, you may still log in.",
+                "cancelButton": "Cancel",
+                "acceptButton": "Log out"
+            },
+            "form": {
+                "createFinish": "Create new success!",
+                "createFinishFail": "Create new failed!",
+                "editFinish": "Update success!",
+                "editFinishFail": "Update failed!",
+                "actionInProgress": "Action in progress..."
+            },
+            "table": {
+                "deleteAction": {
+                    "title": "Are you sure?",
+                    "content": "This action will delete all infomation of this {{target}}. \n You will not be able to revert this.",
+                    "acceptButton": "Delete"
+                },
+                "turnOffActiveAction": {
+                    "title": "Change active status to off?",
+                    "content": "The activity status of this {{target}} will change to off. You will still be able to change the activity status of this {{target}} next time.",
+                    "acceptButton": "Change to off"
+                },
+                "turnOnActiveAction": {
+                    "title": "Change active status to active?",
+                    "content": "The activity status of this {{target}} will change to active. You will still be able to change the activity status of this {{target}} next time.",
+                    "acceptButton": "Change to active"
+                },
+                "cancelButton": "Cancel",
+                "popConfirm": {
+                    "quickTurnOff": {
+                        "title": "Change to off",
+                        "content": "Are you sure to turn off active status of this {{target}}?",
+                        "acceptButton": "Turn off"
+                    },
+                    "quickDelete": {
+                        "title": "Delete this {{target}}",
+                        "content": "Are you sure to delete this {{target}}?",
+                        "acceptButton": "Delete"
+                    }
+                }
+            }
+        },
+        "common": {
+            "footer": { "line1": "UOrder- Scan and make a reservation" },
+            "systemKey": { "dish": "dish", "menu": "menu" }
+        },
+        "utilities": {
+            "upload": {
+                "text": "Click or drag file to this area to upload",
+                "hint": "Support for a single or bulk upload. Strictlyprohibited from uploading banned files. (Max: 8)"
+            }
+        }
+    }
+}
