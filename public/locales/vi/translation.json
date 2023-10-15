@@ -106,7 +106,42 @@
                         "resetButton": "Đặt lại"
                     }
                 },
-                "table": { "label": "Quản lý bàn" }
+                "table": {
+                    "label": "Quản lý bàn",
+                    "button": { "add": "Thêm mới", "activeLog": "Lịch sử", "refresh": "Làm mới" },
+                    "createForm": {
+                        "name": "Tên",
+                        "nameTooltip": "Tên của bàn.",
+                        "nameIsRequired": "Vui lòng nhập tên của bàn!",
+                        "desc": "Mô tả",
+                        "descTooltip": "Đoạn mô tả ngắn về bàn.",
+                        "descIsRequired": "Vui lòng nhập mô tả của bàn!",
+                        "isActive": "Hoạt động",
+                        "isActiveTooltip": "Tình trạng hoạt động của bàn. Khi tắt, mã QR của bàn sẽ không thể quét được.",
+                        "cancelButton": "Hủy",
+                        "createButton": "Thêm",
+                        "title": "Thêm mới bàn",
+                        "resetButton": "Đặt lại"
+                    },
+                    "editForm": {
+                        "id": "Mã định danh",
+                        "idTooltip": ".Mã định danh của bàn",
+                        "createdAt": "Thời gian tạo mới",
+                        "createdAtTooltip": ".Thời gian bàn được tạo mới",
+                        "name": "Tên",
+                        "nameTooltip": "Tên của bàn.",
+                        "nameIsRequired": "Vui lòng nhập tên của bàn!",
+                        "desc": "Mô tả",
+                        "descTooltip": "Đoạn mô tả ngắn về bàn.",
+                        "descIsRequired": "Vui lòng nhập mô tả của bàn!",
+                        "isActive": "Hoạt động",
+                        "isActiveTooltip": "Tình trạng hoạt động của bàn. Khi tắt, mã QR của bàn sẽ không thể quét được.",
+                        "cancelButton": "Hủy",
+                        "createButton": "Cập nhật",
+                        "title": "Chỉnh sửa bàn",
+                        "resetButton": "Đặt lại"
+                    }
+                }
             },
             "sales": {
                 "label": "Kinh doanh",
@@ -159,6 +194,17 @@
                         "food": "Thức ăn",
                         "drink": "Nước uống"
                     }
+                },
+                "tableManagement": {
+                    "name": "Tên",
+                    "isActive": {
+                        "label": "Hoạt động",
+                        "active": "Hoạt động",
+                        "off": "Tắt"
+                    },
+                    "qrCode": {
+                        "label": "Mã QR"
+                    }
                 }
             }
         },
@@ -205,11 +251,16 @@
                         "acceptButton": "Xóa"
                     }
                 }
+            },
+            "qrCode": {
+                "title": "Đây là mã QR của {{table}}",
+                "downloadButton": "Tải về",
+                "cancelButton": "Hủy"
             }
         },
         "common": {
             "footer": { "line1": "UOrder- Quét mã và đặt bàn" },
-            "systemKey": { "dish": "món ăn", "menu": "thực đơn" }
+            "systemKey": { "dish": "món ăn", "menu": "thực đơn", "table": "bàn" }
         },
         "utilities": {
             "upload": {

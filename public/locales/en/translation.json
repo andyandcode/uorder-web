@@ -114,7 +114,46 @@
                         "resetButton": "Reset"
                     }
                 },
-                "table": { "label": "Table management" }
+                "table": {
+                    "label": "Table management",
+                    "button": {
+                        "add": "Create new",
+                        "activeLog": "Active log",
+                        "refresh": "Refresh"
+                    },
+                    "createForm": {
+                        "name": "Name",
+                        "nameTooltip": "Name of the table.",
+                        "nameIsRequired": "Please input the name!",
+                        "desc": "Description",
+                        "descTooltip": "Short description of the table.",
+                        "descIsRequired": "Please input the description!",
+                        "isActive": "Active",
+                        "isActiveTooltip": "Operational status of the table. When disabled, the QR code of table will not be scannable.",
+                        "cancelButton": "Cancel",
+                        "createButton": "Create",
+                        "title": "Create new a table",
+                        "resetButton": "Reset"
+                    },
+                    "editForm": {
+                        "id": "Id",
+                        "idTooltip": ".Identifier for the table",
+                        "createdAt": "Created at",
+                        "createdAtTooltip": ".The time the new table is created",
+                        "name": "Name",
+                        "nameTooltip": "Name of the table.",
+                        "nameIsRequired": "Please input the name!",
+                        "desc": "Description",
+                        "descTooltip": "Short description of the table.",
+                        "descIsRequired": "Please input the description!",
+                        "isActive": "Active",
+                        "isActiveTooltip": "Operational status of the table. When disabled, the QR code of table will not be scannable.",
+                        "cancelButton": "Cancel",
+                        "createButton": "Update",
+                        "title": "Edit dish",
+                        "resetButton": "Reset"
+                    }
+                }
             },
             "sales": {
                 "label": "Sales",
@@ -175,6 +214,17 @@
                         "active": "Active",
                         "off": "Off"
                     }
+                },
+                "tableManagement": {
+                    "name": "Name",
+                    "isActive": {
+                        "label": "Is active",
+                        "active": "Active",
+                        "off": "Off"
+                    },
+                    "qrCode": {
+                        "label": "QR code"
+                    }
                 }
             }
         },
@@ -221,16 +271,21 @@
                         "acceptButton": "Delete"
                     }
                 }
+            },
+            "qrCode": {
+                "title": "This is QR code of {{table}}",
+                "downloadButton": "Download",
+                "cancelButton": "Cancel"
             }
         },
         "common": {
             "footer": { "line1": "UOrder- Scan and make a reservation" },
-            "systemKey": { "dish": "dish", "menu": "menu" }
+            "systemKey": { "dish": "dish", "menu": "menu", "table": "table" }
         },
         "utilities": {
             "upload": {
                 "text": "Click or drag file to this area to upload",
-                "hint": "Support for a single or bulk upload. Strictlyprohibited from uploading banned files. (Max: 8)"
+                "hint": "Support for a single or bulk upload. Strictly prohibited from uploading banned files. (Max: 8)"
             }
         }
     }

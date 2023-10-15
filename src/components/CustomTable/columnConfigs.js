@@ -156,6 +156,47 @@ const MenuColumns = (t) => {
     ];
 };
 
+const TablesColumns = (t) => {
+    return [
+        {
+            key: 'name',
+            dataIndex: 'name',
+            title: t('app.feature.table.tableManagement.name'),
+            sorter: {
+                compare: (a, b) => a.name.localeCompare(b.name),
+                multiple: 1,
+            },
+            ...TableFilter('name', t('app.feature.table.tableManagement.name')),
+            ellipsis: {
+                showTitle: false,
+            },
+            render: (data) => (
+                <Tooltip placement='topLeft' title={data}>
+                    {data}
+                </Tooltip>
+            ),
+        },
+        {
+            key: 'isActive',
+            dataIndex: 'isActive',
+            title: t('app.feature.table.tableManagement.isActive.label'),
+            align: 'center',
+            sorter: {
+                compare: (a, b) => a.isActive - b.isActive,
+                multiple: 2,
+            },
+            render: (data) => {
+                let status = data === true ? 'success' : 'default';
+                let typeName =
+                    data === true
+                        ? t('app.feature.table.tableManagement.isActive.active')
+                        : t('app.feature.table.tableManagement.isActive.off');
+                return <Badge status={status} text={typeName} />;
+            },
+        },
+    ];
+};
+
 const expandedRowRenderSelection = (t, record, props) => {
     const plug = record.dishes ? true : false;
     switch (plug) {
@@ -233,5 +274,11 @@ const expandedRowRenderSelection = (t, record, props) => {
     }
 };
 
-const TableColumns = { TableSwitch, DishColumns, MenuColumns, expandedRowRenderSelection };
+const TableColumns = {
+    TableSwitch,
+    DishColumns,
+    MenuColumns,
+    expandedRowRenderSelection,
+    TablesColumns,
+};
 export default TableColumns;

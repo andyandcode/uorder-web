@@ -13,6 +13,8 @@ export default function propsProvider(props) {
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
         loadingTable,
+        extraColumns,
+        handleShowQrCodeClick,
     } = props;
     return {
         t,
@@ -28,5 +30,7 @@ export default function propsProvider(props) {
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
         loadingTable,
+        extraColumns,
+        handleShowQrCodeClick,
     };
 }
