@@ -212,7 +212,7 @@ export default function CreateModal(props) {
                         <Col span={12}>
                             <ConfigProvider direction='ltr'>
                                 <Form.Item
-                                    name='files'
+                                    name='medias'
                                     label={t('app.feature.manage.dish.createForm.upload')}
                                     valuePropName='fileList'
                                     className={'custom_input'}

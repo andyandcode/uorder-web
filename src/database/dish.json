@@ -10,7 +10,11 @@
         "qtyPerDate": 100,
         "type": 0,
         "typeName": "Food",
-        "createdAt": "7/2/2083"
+        "createdAt": "7/2/2083",
+        "medias": [
+            { "id": "bc83b165-1328-5052-ab52-6327bfb24421", "path": "http://pigulu.dm/omurup" },
+            { "id": "bc83b165-1328-5052-ab52-6327bfb24421", "path": "http://ankenzul.ie/izevoga" }
+        ]
     },
     {
         "id": "b294c03a-db71-57dc-b366-e15a6774d7e9",

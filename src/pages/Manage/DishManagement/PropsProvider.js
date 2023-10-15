@@ -29,6 +29,7 @@ export default function propsProvider(props) {
         loadingTable,
         handleRefreshDataClick,
         loadingsRefreshButton,
+        defaultFileList,
     } = props;
     return {
         history,
@@ -60,5 +61,6 @@ export default function propsProvider(props) {
         loadingTable,
         handleRefreshDataClick,
         loadingsRefreshButton,
+        defaultFileList,
     };
 }

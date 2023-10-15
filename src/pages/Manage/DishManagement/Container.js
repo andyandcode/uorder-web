@@ -18,6 +18,33 @@ function Conainer(props) {
     const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
     const [loadingTable, setLoadingTable] = useState(false);
+
+    const [defaultFileList, setDefaultFileList] = useState([
+        {
+            uid: '-1',
+            name: 'image.png',
+            status: 'done',
+            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        },
+        {
+            uid: '-2',
+            name: 'image.png',
+            status: 'done',
+            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        },
+        {
+            uid: '-3',
+            name: 'image.png',
+            status: 'done',
+            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        },
+        {
+            uid: '-4',
+            name: 'image.png',
+            status: 'done',
+            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        },
+    ]);
     const draggerFileProps = {
         name: 'file',
         multiple: true,
@@ -198,6 +225,7 @@ function Conainer(props) {
         loadingTable,
         handleRefreshDataClick,
         loadingsRefreshButton,
+        defaultFileList,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }
