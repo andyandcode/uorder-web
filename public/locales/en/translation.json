@@ -159,7 +159,29 @@
                 "label": "Sales",
                 "booking": { "label": "Booking management" },
                 "order": { "label": "Order management" },
-                "analytics": { "label": "Analytics" }
+                "analytics": {
+                    "label": "Analytics",
+                    "ordersToday": {
+                        "title": "Orders today",
+                        "countAll": "All",
+                        "countOrdered": "Ordered",
+                        "countToReceive": "To receive",
+                        "countCompleted": "Completed",
+                        "countCancelled": "Cannelled"
+                    },
+                    "revenue": { "title": "Revenue" },
+                    "topSellers": {
+                        "title": "Top Sellers",
+                        "selectRange": { "title": "Select time", "submitButton": "Submit" }
+                    },
+                    "countManagement": {
+                        "dishes": "Dishes",
+                        "menus": "Menus",
+                        "tables": "Tables",
+                        "totalRevenue": "Revenue",
+                        "totalOrderCompleted": "Orders Completed"
+                    }
+                }
             },
             "account": {
                 "label": "Account management"

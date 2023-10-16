@@ -147,7 +147,29 @@
                 "label": "Kinh doanh",
                 "booking": { "label": "Quản lý đặt món" },
                 "order": { "label": "Quản lý đơn hàng" },
-                "analytics": { "label": "Phân tích thống kê" }
+                "analytics": {
+                    "label": "Phân tích thống kê",
+                    "ordersToday": {
+                        "title": "Đơn hàng hôm nay",
+                        "countAll": "Tất cả",
+                        "countOrdered": "Đã đặt hàng",
+                        "countToReceive": "Chờ nhận",
+                        "countCompleted": "Đã hoàn thành",
+                        "countCancelled": "Đã hủy"
+                    },
+                    "revenue": { "title": "Doanh thu" },
+                    "topSellers": {
+                        "title": "Sản phẩm bán chạy",
+                        "selectRange": { "title": "Chọn khoảng thời gian", "submitButton": "Gửi" }
+                    },
+                    "countManagement": {
+                        "dishes": "Món ăn",
+                        "menus": "Thực đơn",
+                        "tables": "Bàn",
+                        "totalRevenue": "Tổng doanh thu",
+                        "totalOrderCompleted": "Đơn hàng đã hoàn thành"
+                    }
+                }
             },
             "account": {
                 "label": "Quản lý tài khoản"
