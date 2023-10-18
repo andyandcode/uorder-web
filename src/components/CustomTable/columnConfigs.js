@@ -1,5 +1,7 @@
-import { Badge, Tag, Tooltip } from 'antd';
+import { Badge, Tooltip } from 'antd';
+import moment from 'moment/moment';
 import { NumericFormat } from 'react-number-format';
+import { EnumRender } from '../EnumRender';
 import NestedTable from '../NestedTable';
 import TableFilter from '../TableFilter';
 
@@ -69,12 +71,7 @@ const DishColumns = (t) => {
                 multiple: 3,
             },
             render: (data) => {
-                let status = data === true ? 'success' : 'default';
-                let typeName =
-                    data === true
-                        ? t('app.feature.table.dishManagement.isActive.active')
-                        : t('app.feature.table.dishManagement.isActive.off');
-                return <Badge status={status} text={typeName} />;
+                return EnumRender.ActiveStatus(t, data);
             },
         },
         {
@@ -100,16 +97,7 @@ const DishColumns = (t) => {
                 multiple: 1,
             },
             render: (data) => {
-                let color = data === 0 ? 'green' : 'geekblue';
-                let typeName =
-                    data === 0
-                        ? t('app.feature.table.dishManagement.typeName.food')
-                        : t('app.feature.table.dishManagement.typeName.drink');
-                return (
-                    <Tag color={color} key={data}>
-                        {typeName}
-                    </Tag>
-                );
+                return EnumRender.DishType(t, data);
             },
         },
     ];
@@ -145,12 +133,7 @@ const MenuColumns = (t) => {
                 multiple: 3,
             },
             render: (data) => {
-                let status = data === true ? 'success' : 'default';
-                let typeName =
-                    data === true
-                        ? t('app.feature.table.dishManagement.isActive.active')
-                        : t('app.feature.table.dishManagement.isActive.off');
-                return <Badge status={status} text={typeName} />;
+                return EnumRender.ActiveStatus(t, data);
             },
         },
     ];
@@ -186,13 +169,85 @@ const TablesColumns = (t) => {
                 multiple: 2,
             },
             render: (data) => {
-                let status = data === true ? 'success' : 'default';
-                let typeName =
-                    data === true
-                        ? t('app.feature.table.tableManagement.isActive.active')
-                        : t('app.feature.table.tableManagement.isActive.off');
-                return <Badge status={status} text={typeName} />;
+                return EnumRender.ActiveStatus(t, data);
             },
+        },
+    ];
+};
+
+const OrderColumns = (t) => {
+    return [
+        {
+            key: 'id',
+            dataIndex: 'id',
+            title: t('app.feature.table.orderManagement.id'),
+            ellipsis: {
+                showTitle: true,
+            },
+            ...TableFilter('id', t('app.feature.table.orderManagement.id')),
+            render: (data) => (
+                <Tooltip placement='topLeft' title={data}>
+                    {data}
+                </Tooltip>
+            ),
+        },
+        {
+            key: 'createdAt',
+            dataIndex: 'createdAt',
+            title: t('app.feature.table.orderManagement.createdAt'),
+            sorter: {
+                compare: (a, b) => moment(a.createdAt).unix() - moment(b.createdAt).unix(),
+                multiple: 1,
+            },
+            ellipsis: {
+                showTitle: false,
+            },
+        },
+        {
+            key: 'tableName',
+            dataIndex: 'tableName',
+            title: t('app.feature.table.orderManagement.tableName'),
+            sorter: {
+                compare: (a, b) => a.tableName.localeCompare(b.tableName),
+                multiple: 2,
+            },
+            ellipsis: {
+                showTitle: false,
+            },
+        },
+        {
+            key: 'total',
+            dataIndex: 'total',
+            title: t('app.feature.table.orderManagement.total'),
+            sorter: {
+                compare: (a, b) => a.total - b.total,
+                multiple: 3,
+            },
+            ellipsis: {
+                showTitle: false,
+            },
+            render: (data) => {
+                return (
+                    <NumericFormat
+                        value={data}
+                        suffix={' VND'}
+                        thousandSeparator=','
+                        displayType='text'
+                    />
+                );
+            },
+        },
+        {
+            key: 'orderStatus',
+            dataIndex: 'orderStatus',
+            title: t('app.feature.table.orderManagement.orderStatus'),
+            render: (data) => EnumRender.OrderStatus(t, data),
+        },
+        {
+            key: 'paymentStatus',
+            dataIndex: 'paymentStatus',
+            title: t('app.feature.table.orderManagement.paymentStatus'),
+            render: (data) => EnumRender.PaymentStatus(t, data),
         },
     ];
 };
@@ -280,5 +335,6 @@ const TableColumns = {
     MenuColumns,
     expandedRowRenderSelection,
     TablesColumns,
+    OrderColumns,
 };
 export default TableColumns;

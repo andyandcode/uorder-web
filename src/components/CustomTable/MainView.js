@@ -8,6 +8,7 @@ const { ActionColumn, ExtraColumnBuilder } = ColumnBuilder;
 
 export default function MainView(props) {
     const { t, columns, dataSource, loadingTable, extraColumns } = props;
+
     return (
         <>
             <Table
