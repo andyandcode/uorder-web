@@ -93,7 +93,7 @@ export default function MainView(props) {
                                 }}
                             >
                                 <Button type='link' icon={<UserOutlined />}>
-                                    {t('app.feature.accountQuickAccess.label')}
+                                    {t('main.navigation.account_quick_access.label')}
                                 </Button>
                             </Dropdown>
                         </Space>
@@ -115,7 +115,7 @@ export default function MainView(props) {
                             background: colorBgContainer,
                         }}
                     >
-                        {t('app.common.footer.line1')}
+                        {t('main.common.footer')}
                     </Footer>
                 </Layout>
             </Layout>

@@ -1,4 +1,5 @@
 import { Badge, Tag } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 const OrderStatus = (t, data) => {
     switch (data) {
@@ -6,7 +7,7 @@ const OrderStatus = (t, data) => {
             return (
                 <>
                     <Tag color='default' key={data}>
-                        {t('app.utilities.orderStatus.ordered')}
+                        {t('main.entities.order_status.ordered')}
                     </Tag>
                 </>
             );
@@ -14,7 +15,7 @@ const OrderStatus = (t, data) => {
             return (
                 <>
                     <Tag color='gold' key={data}>
-                        {t('app.utilities.orderStatus.toReceive')}
+                        {t('main.entities.order_status.to_receive')}
                     </Tag>
                 </>
             );
@@ -22,7 +23,7 @@ const OrderStatus = (t, data) => {
             return (
                 <>
                     <Tag color='green' key={data}>
-                        {t('app.utilities.orderStatus.completed')}
+                        {t('main.entities.order_status.completed')}
                     </Tag>
                 </>
             );
@@ -30,7 +31,7 @@ const OrderStatus = (t, data) => {
             return (
                 <>
                     <Tag color='volcano' key={data}>
-                        {t('app.utilities.orderStatus.cancelled')}
+                        {t('main.entities.order_status.cancelled')}
                     </Tag>
                 </>
             );
@@ -45,7 +46,7 @@ const PaymentStatus = (t, data) => {
             return (
                 <>
                     <Tag color='cyan' key={data}>
-                        {t('app.utilities.paymentStatus.paid')}
+                        {t('main.entities.payment_status.paid')}
                     </Tag>
                 </>
             );
@@ -53,7 +54,7 @@ const PaymentStatus = (t, data) => {
             return (
                 <>
                     <Tag color='default' key={data}>
-                        {t('app.utilities.paymentStatus.unpaid')}
+                        {t('main.entities.payment_status.unpaid')}
                     </Tag>
                 </>
             );
@@ -68,7 +69,7 @@ const DishType = (t, data) => {
             return (
                 <>
                     <Tag color='green' key={data}>
-                        {t('app.feature.table.dishManagement.typeName.food')}
+                        {t('main.entities.dish_type.food')}
                     </Tag>
                 </>
             );
@@ -76,7 +77,30 @@ const DishType = (t, data) => {
             return (
                 <>
                     <Tag color='geekblue' key={data}>
-                        {t('app.feature.table.dishManagement.typeName.drink')}
+                        {t('main.entities.dish_type.drink')}
+                    </Tag>
+                </>
+            );
+        default:
+            break;
+    }
+};
+
+const DishTypeWithActievStatus = (t, data, status) => {
+    switch (data) {
+        case 0:
+            return (
+                <>
+                    <Tag color={status === true ? 'green' : ''} key={data}>
+                        {t('main.entities.dish_type.food')}
+                    </Tag>
+                </>
+            );
+        case 1:
+            return (
+                <>
+                    <Tag color={status === true ? 'geekblue' : ''} key={data}>
+                        {t('main.entities.dish_type.drink')}
                     </Tag>
                 </>
             );
@@ -90,19 +114,15 @@ const ActiveStatus = (t, data) => {
         case true:
             return (
                 <>
-                    <Badge
-                        status={'success'}
-                        text={t('app.feature.table.dishManagement.isActive.active')}
-                    />
+                    {' '}
+                    <Badge status={'success'} text={t('main.entities.active_status.active')} />{' '}
                 </>
             );
         case false:
             return (
                 <>
-                    <Badge
-                        status={'default'}
-                        text={t('app.feature.table.dishManagement.isActive.off')}
-                    />
+                    {' '}
+                    <Badge status={'default'} text={t('main.entities.active_status.off')} />{' '}
                 </>
             );
         default:
@@ -110,55 +130,57 @@ const ActiveStatus = (t, data) => {
     }
 };
 
-const OrderStatusKey = (t) => {
+const OrderStatusKey = () => {
+    const { t } = useTranslation();
     return [
         {
             value: -1,
-            label: t('app.utilities.orderStatus.all'),
-            text: t('app.utilities.orderStatus.all'),
+            label: t('main.entities.order_status.all'),
+            text: t('main.entities.order_status.all'),
         },
         {
             value: 0,
-            label: t('app.utilities.orderStatus.ordered'),
-            text: t('app.utilities.orderStatus.ordered'),
+            label: t('main.entities.order_status.ordered'),
+            text: t('main.entities.order_status.ordered'),
         },
         {
             value: 1,
-            label: t('app.utilities.orderStatus.toReceive'),
-            text: t('app.utilities.orderStatus.toReceive'),
+            label: t('main.entities.order_status.to_receive'),
+            text: t('main.entities.order_status.to_receive'),
         },
         {
             value: 2,
-            label: t('app.utilities.orderStatus.completed'),
-            text: t('app.utilities.orderStatus.completed'),
+            label: t('main.entities.order_status.completed'),
+            text: t('main.entities.order_status.completed'),
         },
         {
             value: 3,
-            label: t('app.utilities.orderStatus.cancelled'),
-            text: t('app.utilities.orderStatus.cancelled'),
+            label: t('main.entities.order_status.cancelled'),
+            text: t('main.entities.order_status.cancelled'),
         },
     ];
 };
-const PaymentStatusKey = (t) => {
+const PaymentStatusKey = () => {
+    const { t } = useTranslation();
     return [
         {
             value: -1,
-            text: t('app.utilities.paymentStatus.all'),
-            label: t('app.utilities.paymentStatus.all'),
+            text: t('main.entities.payment_status.all'),
+            label: t('main.entities.payment_status.all'),
         },
         {
             value: 0,
-            text: t('app.utilities.paymentStatus.paid'),
-            label: t('app.utilities.paymentStatus.paid'),
+            text: t('main.entities.payment_status.paid'),
+            label: t('main.entities.payment_status.paid'),
         },
         {
             value: 1,
-            text: t('app.utilities.paymentStatus.unpaid'),
-            label: t('app.utilities.paymentStatus.unpaid'),
+            text: t('main.entities.payment_status.unpaid'),
+            label: t('main.entities.payment_status.unpaid'),
         },
     ];
 };
 
 export const EnumKey = { OrderStatusKey, PaymentStatusKey };
 
-export const EnumRender = { OrderStatus, PaymentStatus, DishType, ActiveStatus };
+export const EnumRender = { OrderStatus, PaymentStatus, DishType, ActiveStatus, DishTypeWithActievStatus };

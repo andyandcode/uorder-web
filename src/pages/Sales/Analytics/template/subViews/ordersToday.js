@@ -18,7 +18,7 @@ export default function OrdersToday(props) {
                 }}
             >
                 <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('app.feature.sales.analytics.ordersToday.title')}
+                    {t('main.pages.analytics.orders_today.title')}
                 </Title>
                 <ProCard
                     tabs={{
@@ -35,9 +35,7 @@ export default function OrdersToday(props) {
                                         status={item.status}
                                         style={{
                                             width: 120,
-                                            borderInlineEnd: item.total
-                                                ? '1px solid #f0f0f0'
-                                                : undefined,
+                                            borderInlineEnd: item.total ? '1px solid #f0f0f0' : undefined,
                                         }}
                                     />
                                 ),

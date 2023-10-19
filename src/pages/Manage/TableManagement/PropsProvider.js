@@ -25,7 +25,7 @@ export default function propsProvider(props) {
         handleCreateCancelClick,
         messageContextHolder,
         draggerFileProps,
-        expandedRowRenderSelection,
+        ExpandedRowRenderSelection,
         dishData,
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
@@ -35,6 +35,8 @@ export default function propsProvider(props) {
         loadingsRefreshButton,
         handleShowQrCodeClick,
         extraColumns,
+        handleCreateNewClick,
+        handleRefreshClick,
     } = props;
     return {
         history,
@@ -62,7 +64,7 @@ export default function propsProvider(props) {
         handleCreateCancelClick,
         messageContextHolder,
         draggerFileProps,
-        expandedRowRenderSelection,
+        ExpandedRowRenderSelection,
         dishData,
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
@@ -72,5 +74,7 @@ export default function propsProvider(props) {
         loadingsRefreshButton,
         handleShowQrCodeClick,
         extraColumns,
+        handleCreateNewClick,
+        handleRefreshClick,
     };
 }

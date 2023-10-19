@@ -21,20 +21,14 @@ export default function TopSellersChart(props) {
                 <Row>
                     <Col span={12}>
                         <Title style={{ marginBottom: 32 }} level={3}>
-                            {t('app.feature.sales.analytics.topSellers.title')}
+                            {t('main.pages.analytics.top_sellers.title')}
                         </Title>
                     </Col>
                     <Col span={12} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <Form
-                            name='time_related_controls'
-                            layout='inline'
-                            onFinish={onFinishSelectTimeTopSellers}
-                        >
+                        <Form name='time_related_controls' layout='inline' onFinish={onFinishSelectTimeTopSellers}>
                             <Form.Item
                                 name='range-picker'
-                                label={t(
-                                    'app.feature.sales.analytics.topSellers.selectRange.title',
-                                )}
+                                label={t('main.pages.analytics.top_sellers.select_range')}
                                 rules={[
                                     {
                                         type: 'array',
@@ -45,9 +39,7 @@ export default function TopSellersChart(props) {
                             </Form.Item>
                             <Form.Item>
                                 <Button type='primary' htmlType='submit'>
-                                    {t(
-                                        'app.feature.sales.analytics.topSellers.selectRange.submitButton',
-                                    )}
+                                    {t('main.components.button.submit')}
                                 </Button>
                             </Form.Item>
                         </Form>

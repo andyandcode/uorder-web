@@ -17,10 +17,10 @@ export default function MainView(props) {
             <Table
                 dataSource={dataSource}
                 locale={{
-                    emptyText: t('app.feature.table.emptyData'),
-                    triggerDesc: t('app.feature.table.triggerDesc'),
-                    triggerAsc: t('app.feature.table.triggerAsc'),
-                    cancelSort: t('app.feature.table.cancelSort'),
+                    emptyText: t('main.components.table.empty_data'),
+                    triggerDesc: t('main.components.table.trigger_desc'),
+                    triggerAsc: t('main.components.table.trigger_asc'),
+                    cancelSort: t('main.components.button.cancel'),
                 }}
                 size='small'
             >
@@ -28,29 +28,29 @@ export default function MainView(props) {
                     return <Column {...props} />;
                 })}
                 <Column
-                    title={t('app.feature.table.actionColumn')}
+                    title={t('main.components.table.action_column')}
                     key='action'
                     align='center'
                     render={(record) => (
                         <Space wrap size={'small'}>
                             <Popconfirm
-                                title={t('app.notification.table.popConfirm.quickTurnOff.title')}
+                                title={t(
+                                    'main.notification.table.pop_confirm.quick_turn_off.title',
+                                )}
                                 description={t(
-                                    'app.notification.table.popConfirm.quickTurnOff.content',
-                                    { target: t('app.common.systemKey.dish') },
+                                    'main.notification.table.pop_confirm.quick_turn_off.content',
+                                    { target: t('main.common.system_key.dish') },
                                 )}
                                 onConfirm={() => handleQuickTurnOffConfirm(record)}
-                                okText={t(
-                                    'app.notification.table.popConfirm.quickTurnOff.acceptButton',
-                                )}
-                                cancelText={t('app.notification.table.cancelButton')}
+                                okText={t('main.components.button.turn_off')}
+                                cancelText={t('main.components.button.cancel')}
                             >
                                 <Button
                                     disabled={record.isActive ? false : true}
                                     size='small'
                                     type='link'
                                 >
-                                    {t('app.feature.table.buttonColumn.turnOff')}
+                                    {t('main.components.button.turn_off')}
                                 </Button>
                             </Popconfirm>
                             <Button
@@ -59,25 +59,23 @@ export default function MainView(props) {
                                 type='link'
                                 onClick={() => handleQuickActionButtonTurnOnClick(record)}
                             >
-                                {t('app.feature.table.buttonColumn.turnOn')}
+                                {t('main.components.button.turn_on')}
                             </Button>
                             <Popconfirm
-                                title={t('app.notification.table.popConfirm.quickDelete.title', {
-                                    target: t('app.common.systemKey.dish'),
+                                title={t('main.notification.table.pop_confirm.quick_delete.title', {
+                                    target: t('main.common.system_key.dish'),
                                 })}
                                 description={t(
-                                    'app.notification.table.popConfirm.quickDelete.content',
-                                    { target: t('app.common.systemKey.dish') },
+                                    'main.notification.table.pop_confirm.quick_delete.content',
+                                    { target: t('main.common.system_key.dish') },
                                 )}
                                 onConfirm={() => handleQuickDeleteConfirm(record)}
-                                okText={t(
-                                    'app.notification.table.popConfirm.quickDelete.acceptButton',
-                                )}
-                                cancelText={t('app.notification.table.cancelButton')}
+                                okText={t('main.components.button.delete')}
+                                cancelText={t('main.components.button.cancel')}
                                 okType='danger'
                             >
                                 <Button danger size='small' type='link'>
-                                    {t('app.feature.table.buttonColumn.delete')}
+                                    {t('main.components.button.delete')}
                                 </Button>
                             </Popconfirm>
                         </Space>

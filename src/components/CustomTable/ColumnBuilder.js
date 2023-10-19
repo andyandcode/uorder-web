@@ -19,7 +19,7 @@ const menuSelection = (props, record) => {
     const process = () => {
         let menuArr = [
             {
-                label: t('app.feature.table.buttonColumn.delete'),
+                label: t('main.components.button.delete'),
                 key: '1',
                 icon: <DeleteOutlined />,
                 danger: true,
@@ -29,14 +29,14 @@ const menuSelection = (props, record) => {
         if (record.hasOwnProperty('isActive')) {
             if (record.isActive) {
                 menuArr.push({
-                    label: t('app.feature.table.buttonColumn.turnOff'),
+                    label: t('main.components.button.turn_off'),
                     key: '2',
                     icon: <EyeInvisibleOutlined />,
                     onClick: () => handleActionButtonTurnOffClick(record),
                 });
             } else {
                 menuArr.push({
-                    label: t('app.feature.table.buttonColumn.turnOn'),
+                    label: t('main.components.button.turn_on'),
                     key: '2',
                     icon: <EyeOutlined />,
                     onClick: () => handleActionButtonTurnOnClick(record),
@@ -58,7 +58,7 @@ const ActionColumn = (props) => {
     return (
         <>
             <Column
-                title={t('app.feature.table.actionColumn')}
+                title={t('main.components.table.action_column')}
                 key='action'
                 align='center'
                 render={(record) => (
@@ -69,7 +69,7 @@ const ActionColumn = (props) => {
                             trigger={['click']}
                             onClick={() => handleActionButtonEditClick(record)}
                         >
-                            {t('app.feature.table.buttonColumn.edit')}
+                            {t('main.components.button.edit')}
                         </Dropdown.Button>
                     </Space>
                 )}
@@ -106,7 +106,7 @@ const ExtraColumnBuilder = (props, key) => {
             return (
                 <>
                     <Column
-                        title={t('app.feature.table.tableManagement.qrCode.label')}
+                        title={t('main.entities.qr_code')}
                         key='action'
                         align='center'
                         render={(record) => (

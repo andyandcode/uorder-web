@@ -1,87 +1,28 @@
 import { Form, message, Modal } from 'antd';
 import React, { useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
+import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
 import DishData from '../../../database/dish.json';
 import propsProvider from './PropsProvider';
 import MainView from './template/MainView';
 
 function Conainer(props) {
     const { history, t } = props;
-    const columns = TableColumns.DishColumns(t);
-    const expandedRowRenderSelection = TableColumns.expandedRowRenderSelection;
+    const columns = TableColumns.DishColumns();
+    const expandedRowRenderSelection = TableColumns.ExpandedRowRenderSelection;
     const data = DishData;
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
-    const [loadings, setLoadings] = useState([]);
     const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
     const [loadingTable, setLoadingTable] = useState(false);
 
-    const [defaultFileList, setDefaultFileList] = useState([
-        {
-            uid: '-1',
-            name: 'image.png',
-            status: 'done',
-            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        },
-        {
-            uid: '-2',
-            name: 'image.png',
-            status: 'done',
-            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        },
-        {
-            uid: '-3',
-            name: 'image.png',
-            status: 'done',
-            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        },
-        {
-            uid: '-4',
-            name: 'image.png',
-            status: 'done',
-            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        },
-    ]);
-    const draggerFileProps = {
-        name: 'file',
-        multiple: true,
-        maxCount: 8,
-        accept: 'image/png, image/jpeg',
-        action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
-        onChange(info) {
-            const { status } = info.file;
-            if (status !== 'uploading') {
-                console.log(info.file, info.fileList);
-            }
-            if (status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully.`);
-            } else if (status === 'error') {
-                message.error(`${info.file.name} file upload failed.`);
-            }
-        },
-        onDrop(e) {
-            console.log('Dropped files', e.dataTransfer.files);
-        },
-    };
+    const [defaultFileList, setDefaultFileList] = useState([]);
 
-    const enterLoading = (index) => {
-        setLoadings((prevLoadings) => {
-            const newLoadings = [...prevLoadings];
-            newLoadings[index] = true;
-            return newLoadings;
-        });
-        setTimeout(() => {
-            setLoadings((prevLoadings) => {
-                const newLoadings = [...prevLoadings];
-                newLoadings[index] = false;
-
-                setOpenCreateModel(true);
-                return newLoadings;
-            });
-        }, 1000);
+    const handleCreateNewClick = () => {
+        setOpenCreateModel(true);
     };
 
     const handleEditCancelClick = () => {
@@ -93,46 +34,27 @@ function Conainer(props) {
     };
 
     const handleActionButtonEditClick = (data) => {
+        setDefaultFileList(data.medias != null ? data.medias : []);
         editForm.setFieldsValue({ ...data });
         setOpenEditModel(true);
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        Modal.confirm({
-            title: t('app.notification.table.deleteAction.title'),
-            content: t('app.notification.table.deleteAction.content', {
-                target: t('app.common.systemKey.dish'),
-            }),
-            okText: t('app.notification.table.deleteAction.acceptButton'),
-            cancelText: t('app.notification.table.cancelButton'),
-            okType: 'danger',
+        Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Dish), {
             onOk() {},
             onCancel() {},
         });
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        Modal.confirm({
-            title: t('app.notification.table.turnOffActiveAction.title'),
-            content: t('app.notification.table.turnOffActiveAction.content', {
-                target: t('app.common.systemKey.dish'),
-            }),
-            okText: t('app.notification.table.turnOffActiveAction.acceptButton'),
-            cancelText: t('app.notification.table.cancelButton'),
-            okType: 'danger',
+        Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Dish), {
             onOk() {},
             onCancel() {},
         });
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        Modal.confirm({
-            title: t('app.notification.table.turnOnActiveAction.title'),
-            content: t('app.notification.table.turnOnActiveAction.content', {
-                target: t('app.common.systemKey.dish'),
-            }),
-            okText: t('app.notification.table.turnOnActiveAction.acceptButton'),
-            cancelText: t('app.notification.table.cancelButton'),
+        Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Dish), {
             onOk() {},
             onCancel() {},
         });
@@ -144,19 +66,15 @@ function Conainer(props) {
             .then(() => {
                 console.log('Created: ', values);
                 messageApi
-                    .open({
-                        type: 'loading',
-                        content: t('app.notification.form.actionInProgress'),
-                        duration: 2.5,
-                    })
+                    .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
-                        message.success(t('app.notification.form.createFinish'), 2);
+                        UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
                     })
                     .then(() => createForm.resetFields());
             })
             .catch(() => {
-                message.error(t('app.notification.form.createFinishFail'), 2);
+                UseNotification.Message.FinishFailMessage(t, UserAction.CreateFinishFail);
             });
     };
 
@@ -166,23 +84,19 @@ function Conainer(props) {
             .then(() => {
                 console.log('Edited: ', values);
                 messageApi
-                    .open({
-                        type: 'loading',
-                        content: t('app.notification.form.actionInProgress'),
-                        duration: 2.5,
-                    })
+                    .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
-                        message.success(t('app.notification.form.editFinish'), 2);
+                        UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                         setOpenEditModel(false);
                     })
                     .then(() => editForm.resetFields());
             })
             .catch(() => {
-                message.error(t('app.notification.form.editFinishFail'), 2);
+                UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
             });
     };
 
-    const handleRefreshDataClick = (index) => {
+    const handleRefreshClick = (index) => {
         setLoadingsRefreshButton((prevLoadings) => {
             const newLoadings = [...prevLoadings];
             newLoadings[index] = true;
@@ -205,14 +119,11 @@ function Conainer(props) {
         t,
         columns,
         data,
-        loadings,
         openCreateModel,
         openEditModel,
         createForm,
         editForm,
         messageContextHolder,
-        draggerFileProps,
-        enterLoading,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
@@ -223,9 +134,10 @@ function Conainer(props) {
         handleCreateCancelClick,
         expandedRowRenderSelection,
         loadingTable,
-        handleRefreshDataClick,
         loadingsRefreshButton,
         defaultFileList,
+        handleCreateNewClick,
+        handleRefreshClick,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

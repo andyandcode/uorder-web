@@ -4,32 +4,32 @@ const OrdersToday = (props) => {
     return [
         {
             key: All,
-            title: t('app.feature.sales.analytics.ordersToday.countAll'),
+            title: t('main.pages.analytics.orders_today.count_all'),
             value: 10,
             total: true,
         },
         {
             key: Ordered,
             status: 'default',
-            title: t('app.feature.sales.analytics.ordersToday.countOrdered'),
+            title: t('main.pages.analytics.orders_today.count_ordered'),
             value: 5,
         },
         {
             key: ToReceive,
             status: 'processing',
-            title: t('app.feature.sales.analytics.ordersToday.countToReceive'),
+            title: t('main.pages.analytics.orders_today.count_to_receive'),
             value: 3,
         },
         {
             key: Completed,
             status: 'success',
-            title: t('app.feature.sales.analytics.ordersToday.countCompleted'),
+            title: t('main.pages.analytics.orders_today.count_completed'),
             value: 1,
         },
         {
             key: Cancelled,
             status: 'error',
-            title: t('app.feature.sales.analytics.ordersToday.countCancelled'),
+            title: t('main.pages.analytics.orders_today.count_cancelled'),
             value: 1,
         },
     ];

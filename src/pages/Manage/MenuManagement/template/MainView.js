@@ -1,6 +1,6 @@
-import { CloudDownloadOutlined, HourglassOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Divider, Layout, Space, Typography } from 'antd';
+import { Divider, Layout, Space, Typography } from 'antd';
 import React from 'react';
+import { ButtonLocated } from '../../../../components/ButtonLocated';
 import CustomTable from '../../../../components/CustomTable';
 import CreateModal from './subViews/createModal';
 import EditModal from './subViews/editModal';
@@ -13,8 +13,6 @@ export default function MainView(props) {
         t,
         columns,
         data,
-        enterLoading,
-        loadings,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
@@ -23,15 +21,15 @@ export default function MainView(props) {
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
         loadingTable,
-        handleRefreshDataClick,
-        loadingsRefreshButton,
+        handleCreateNewClick,
+        handleRefreshClick,
     } = props;
 
     return (
         <>
             <Content>
                 <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('app.feature.manage.menu.label')}
+                    {t('main.navigation.manage.menu')}
                 </Title>
                 <Divider />
 
@@ -43,24 +41,9 @@ export default function MainView(props) {
                         paddingBottom: '24px',
                     }}
                 >
-                    <Button
-                        type='primary'
-                        icon={<PlusOutlined />}
-                        loading={loadings[0]}
-                        onClick={() => enterLoading(0)}
-                    >
-                        {t('app.feature.manage.menu.button.add')}
-                    </Button>
-                    <Button
-                        icon={<CloudDownloadOutlined />}
-                        loading={loadingsRefreshButton[1]}
-                        onClick={() => handleRefreshDataClick(1)}
-                    >
-                        {t('app.feature.manage.dish.button.refresh')}
-                    </Button>
-                    <Button icon={<HourglassOutlined />} block>
-                        {t('app.feature.manage.menu.button.activeLog')}
-                    </Button>
+                    <ButtonLocated.AddButton handleCreateNewClick={handleCreateNewClick} />
+                    <ButtonLocated.RefreshButton handleRefreshClick={handleRefreshClick} />
+                    <ButtonLocated.ActiveLogButton />
                 </Space>
                 <CustomTable
                     loadingTable={loadingTable}
@@ -71,9 +54,7 @@ export default function MainView(props) {
                     handleActionButtonTurnOffClick={(data) => handleActionButtonTurnOffClick(data)}
                     handleActionButtonTurnOnClick={(data) => handleActionButtonTurnOnClick(data)}
                     handleQuickTurnOffConfirm={(data) => handleQuickTurnOffConfirm(data)}
-                    handleQuickActionButtonTurnOnClick={(data) =>
-                        handleQuickActionButtonTurnOnClick(data)
-                    }
+                    handleQuickActionButtonTurnOnClick={(data) => handleQuickActionButtonTurnOnClick(data)}
                     handleQuickDeleteConfirm={(data) => handleQuickDeleteConfirm(data)}
                 />
                 <CreateModal {...props}></CreateModal>

@@ -18,7 +18,7 @@ export default function RevenueChart(props) {
                 }}
             >
                 <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('app.feature.sales.analytics.revenue.title')}
+                    {t('main.pages.analytics.revenue')}
                 </Title>
                 <Line {...revenueChartConfig} />
             </Content>

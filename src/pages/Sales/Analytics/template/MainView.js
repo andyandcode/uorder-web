@@ -13,7 +13,7 @@ export default function MainView(props) {
         <>
             <Content>
                 <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('app.feature.sales.analytics.label')}
+                    {t('main.pages.analytics.label')}
                 </Title>
                 <OrdersToday {...props} />
                 <RevenueChart {...props} />

@@ -8,21 +8,19 @@ const { ActionColumn, ExtraColumnBuilder } = ColumnBuilder;
 
 export default function MainView(props) {
     const { t, columns, dataSource, loadingTable, extraColumns } = props;
-
     return (
         <>
             <Table
                 dataSource={dataSource}
                 locale={{
-                    emptyText: t('app.feature.table.emptyData'),
-                    triggerDesc: t('app.feature.table.triggerDesc'),
-                    triggerAsc: t('app.feature.table.triggerAsc'),
-                    cancelSort: t('app.feature.table.cancelSort'),
+                    emptyText: t('main.components.table.empty_data'),
+                    triggerDesc: t('main.components.table.trigger_desc'),
+                    triggerAsc: t('main.components.table.trigger_asc'),
+                    cancelSort: t('main.components.button.cancel'),
                 }}
                 loading={loadingTable}
                 expandable={{
-                    expandedRowRender: (record) =>
-                        TableColumns.expandedRowRenderSelection(t, record, props),
+                    expandedRowRender: (record) => TableColumns.ExpandedRowRenderSelection(record, props),
                     rowExpandable: (record) => NestedExpendedConfig(record),
                 }}
             >

@@ -17,7 +17,7 @@ function Conainer(props) {
         filtedOrderStatus: filteredOrderStatus,
         filtedPaymentStatus: filteredPaymentStatus,
     });
-    const expandedRowRenderSelection = TableColumns.expandedRowRenderSelection;
+    const expandedRowRenderSelection = TableColumns.ExpandedRowRenderSelection;
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);

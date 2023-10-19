@@ -24,7 +24,7 @@ export default function MainView(props) {
         <>
             <Content>
                 <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('app.feature.sales.order.label')}
+                    {t('main.navigation.sales.order')}
                 </Title>
                 <Divider />
 
@@ -36,7 +36,7 @@ export default function MainView(props) {
                     <Col span={18}>
                         <Space size={'large'}>
                             <Space>
-                                <Text>{t('app.utilities.orderStatus.label')}</Text>
+                                <Text>{t('main.entities.order_status.label')}</Text>
                                 <Select
                                     defaultValue={-1}
                                     style={{
@@ -47,7 +47,7 @@ export default function MainView(props) {
                                 />
                             </Space>
                             <Space>
-                                <Text>{t('app.utilities.paymentStatus.label')}</Text>
+                                <Text>{t('main.entities.payment_status.label')}</Text>
                                 <Select
                                     defaultValue={-1}
                                     style={{
@@ -61,7 +61,7 @@ export default function MainView(props) {
                     </Col>
                     <Col span={6} style={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <Button type='text' icon={<PlusOutlined />} style={{ color: '#5d56d5' }}>
-                            {t('app.feature.sales.order.newOrderButton')}
+                            {t('main.components.button.new_order')}
                         </Button>
                     </Col>
                 </Row>

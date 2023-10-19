@@ -7,13 +7,35 @@
         "price": 76864,
         "completionTime": 42,
         "isActive": true,
-        "qtyPerDate": 100,
+        "qtyPerDay": 100,
         "type": 0,
         "typeName": "Food",
         "createdAt": "7/2/2083",
         "medias": [
-            { "id": "bc83b165-1328-5052-ab52-6327bfb24421", "path": "http://pigulu.dm/omurup" },
-            { "id": "bc83b165-1328-5052-ab52-6327bfb24421", "path": "http://ankenzul.ie/izevoga" }
+            {
+                "uid": "-1",
+                "name": "image.png",
+                "status": "done",
+                "url": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+            },
+            {
+                "uid": "-2",
+                "name": "image.png",
+                "status": "done",
+                "url": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+            },
+            {
+                "uid": "-3",
+                "name": "image.png",
+                "status": "done",
+                "url": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+            },
+            {
+                "uid": "-4",
+                "name": "image.png",
+                "status": "done",
+                "url": "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+            }
         ]
     },
     {
@@ -24,7 +46,7 @@
         "price": 187120,
         "completionTime": 30,
         "isActive": false,
-        "qtyPerDate": 100,
+        "qtyPerDay": 100,
         "type": 0,
         "typeName": "Food",
         "createdAt": "5/28/2049"
@@ -37,7 +59,7 @@
         "price": 116491,
         "completionTime": 19,
         "isActive": true,
-        "qtyPerDate": 100,
+        "qtyPerDay": 100,
         "type": 0,
         "typeName": "Food",
         "createdAt": "4/28/2027"
@@ -50,7 +72,7 @@
         "price": 79618,
         "completionTime": 22,
         "isActive": true,
-        "qtyPerDate": 1000,
+        "qtyPerDay": 1000,
         "type": 1,
         "typeName": "Food",
         "createdAt": "5/30/2094"
@@ -63,7 +85,7 @@
         "price": 157523,
         "completionTime": 52,
         "isActive": false,
-        "qtyPerDate": 100,
+        "qtyPerDay": 100,
         "type": 1,
         "typeName": "Drink",
         "createdAt": "7/13/2116"
@@ -76,7 +98,7 @@
         "price": 96468,
         "completionTime": 40,
         "isActive": true,
-        "qtyPerDate": 100,
+        "qtyPerDay": 100,
         "type": 0,
         "typeName": "Food",
         "createdAt": "6/28/2082"
@@ -89,7 +111,7 @@
         "price": 96468,
         "completionTime": 40,
         "isActive": true,
-        "qtyPerDate": 100,
+        "qtyPerDay": 100,
         "type": 0,
         "typeName": "Food",
         "createdAt": "6/28/2082"
@@ -102,7 +124,7 @@
         "price": 96468,
         "completionTime": 40,
         "isActive": true,
-        "qtyPerDate": 100,
+        "qtyPerDay": 100,
         "type": 0,
         "typeName": "Food",
         "createdAt": "6/28/2082"
@@ -115,7 +137,7 @@
         "price": 96468,
         "completionTime": 40,
         "isActive": true,
-        "qtyPerDate": 100,
+        "qtyPerDay": 100,
         "type": 0,
         "typeName": "Food",
         "createdAt": "6/28/2082"
@@ -128,7 +150,7 @@
         "price": 96468,
         "completionTime": 40,
         "isActive": true,
-        "qtyPerDate": 100,
+        "qtyPerDay": 100,
         "type": 0,
         "typeName": "Food",
         "createdAt": "6/28/2082"
@@ -141,7 +163,7 @@
         "price": 96468,
         "completionTime": 40,
         "isActive": true,
-        "qtyPerDate": 100,
+        "qtyPerDay": 100,
         "type": 0,
         "typeName": "Food",
         "createdAt": "6/28/2082"
@@ -154,7 +176,7 @@
         "price": 96468,
         "completionTime": 40,
         "isActive": true,
-        "qtyPerDate": 100,
+        "qtyPerDay": 100,
         "type": 0,
         "typeName": "Food",
         "createdAt": "6/28/2082"
