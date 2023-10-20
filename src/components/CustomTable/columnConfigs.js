@@ -8,11 +8,13 @@ import TableFilter from '../TableFilter';
 
 const DishTable = 'DishTable';
 const MenuTable = 'MenuTable';
+const OrderTable = 'OrderTable';
+const BookingTable = 'BookingTable';
+const TableTable = 'TableTable';
 
-const TableSwitch = { DishTable, MenuTable };
+const TableSwitch = { DishTable, MenuTable, OrderTable, BookingTable, TableTable };
 
-const DishColumns = () => {
-    const { t } = useTranslation();
+const DishColumns = (t) => {
     return [
         {
             key: 'name',
@@ -223,11 +225,9 @@ const OrderColumns = () => {
     ];
 };
 
-const ExpandedRowRenderSelection = (data, props) => {
-    const { t } = props;
-    const plug = data.dishes ? true : false;
-    switch (plug) {
-        case true:
+const ExpandedRowRenderSelection = (data, t, switchActionColumn) => {
+    switch (switchActionColumn) {
+        case TableColumns.TableSwitch.MenuTable:
             const menuColumns = [
                 {
                     key: 'name',
@@ -260,7 +260,7 @@ const ExpandedRowRenderSelection = (data, props) => {
                         compare: (a, b) => a.isActive - b.isActive,
                         multiple: 3,
                     },
-                    render: (data) => EnumRender.ActiveStatus(data),
+                    render: (data) => EnumRender.ActiveStatus(t, data),
                 },
             ];
             return (
@@ -275,14 +275,88 @@ const ExpandedRowRenderSelection = (data, props) => {
                         cancelSort: t('main.components.button.cancel'),
                     }}
                     size='small'
+                    switchActionColumn={switchActionColumn}
                 />
             );
-        default:
+        case TableColumns.TableSwitch.DishTable:
             return (
                 <>
                     <p>{data.desc}</p>
                 </>
             );
+        case TableColumns.TableSwitch.TableTable:
+            return (
+                <>
+                    <p>{data.desc}</p>
+                </>
+            );
+        case TableColumns.TableSwitch.OrderTable:
+            const orderColumns = [
+                {
+                    key: 'dishName',
+                    dataIndex: 'dishName',
+                    title: t('main.entities.name'),
+                    sorter: {
+                        compare: (a, b) => a.dishName.localeCompare(b.dishName),
+                        multiple: 1,
+                    },
+                },
+                {
+                    key: 'qty',
+                    dataIndex: 'qty',
+                    title: t('main.entities.qty'),
+                    align: 'right',
+                    sorter: {
+                        compare: (a, b) => a.qty - b.qty,
+                        multiple: 2,
+                    },
+                    render: (data) => {
+                        return <NumericFormat value={data} thousandSeparator=',' displayType='text' />;
+                    },
+                },
+                {
+                    key: 'unitPrice',
+                    dataIndex: 'unitPrice',
+                    title: t('main.entities.unitPrice'),
+                    align: 'right',
+                    sorter: {
+                        compare: (a, b) => a.unitPrice - b.unitPrice,
+                        multiple: 3,
+                    },
+                    render: (data) => {
+                        return <NumericFormat value={data} suffix=' VND' thousandSeparator=',' displayType='text' />;
+                    },
+                },
+                {
+                    key: 'amount',
+                    dataIndex: 'amount',
+                    title: t('main.entities.amount'),
+                    align: 'right',
+                    sorter: {
+                        compare: (a, b) => a.amount - b.amount,
+                        multiple: 4,
+                    },
+                    render: (data) => {
+                        return <NumericFormat value={data} suffix=' VND' thousandSeparator=',' displayType='text' />;
+                    },
+                },
+            ];
+            return (
+                <NestedTable
+                    columns={orderColumns}
+                    dataSource={data.orderDetail}
+                    pagination={false}
+                    locale={{
+                        emptyText: t('main.components.table.empty_data'),
+                        triggerDesc: t('main.components.table.trigger_desc'),
+                        triggerAsc: t('main.components.table.trigger_asc'),
+                        cancelSort: t('main.components.button.cancel'),
+                    }}
+                    size='small'
+                />
+            );
+        default:
+            break;
     }
 };
 

@@ -4,7 +4,7 @@ export default function propsProvider(props) {
         dispatch,
         t,
         columns,
-        data,
+        tableData,
         getColumnSearchProps,
         enterLoading,
         loadings,
@@ -37,13 +37,14 @@ export default function propsProvider(props) {
         extraColumns,
         handleCreateNewClick,
         handleRefreshClick,
+        switchActionColumn,
     } = props;
     return {
         history,
         dispatch,
         t,
         columns,
-        data,
+        tableData,
         getColumnSearchProps,
         enterLoading,
         loadings,
@@ -76,5 +77,6 @@ export default function propsProvider(props) {
         extraColumns,
         handleCreateNewClick,
         handleRefreshClick,
+        switchActionColumn,
     };
 }

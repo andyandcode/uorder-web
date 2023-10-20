@@ -1,5 +1,5 @@
 import { Form, message, Modal, QRCode } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
 import TableData from '../../../database/table.json';
@@ -10,6 +10,7 @@ function Conainer(props) {
     const { history, t } = props;
     const columns = TableColumns.TablesColumns(t);
     const data = TableData;
+    const [tableData, setTableData] = useState([]);
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
@@ -17,6 +18,14 @@ function Conainer(props) {
     const [messageApi, messageContextHolder] = message.useMessage();
     const [loadingTable, setLoadingTable] = useState(false);
     const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
+
+    useEffect(() => {
+        setLoadingTable(true);
+        setTimeout(() => {
+            setTableData(data);
+            setLoadingTable(false);
+        }, 500);
+    }, [data]);
 
     const handleEditCancelClick = () => {
         setOpenEditModel(false);
@@ -156,7 +165,7 @@ function Conainer(props) {
         history,
         t,
         columns,
-        data,
+        tableData,
         openCreateModel,
         openEditModel,
         createForm,

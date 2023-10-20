@@ -36,6 +36,8 @@ export default function propsProvider(props) {
         tableData,
         onChangeOrderStatusSelect,
         handleNewOrderClick,
+        switchActionColumn,
+        handleActionButtonViewClick,
     } = props;
     return {
         history,
@@ -74,5 +76,7 @@ export default function propsProvider(props) {
         tableData,
         onChangeOrderStatusSelect,
         handleNewOrderClick,
+        switchActionColumn,
+        handleActionButtonViewClick,
     };
 }

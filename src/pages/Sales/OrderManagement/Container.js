@@ -1,5 +1,5 @@
 import { Form, message, Modal } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { EnumKey } from '../../../components/EnumRender';
 import { UseNotification, UserAction } from '../../../components/UseNotification';
@@ -14,7 +14,7 @@ function Conainer(props) {
     const columns = TableColumns.OrderColumns(t);
     const data = OrderData;
     const [tableData, setTableData] = useState({
-        dataSource: data,
+        dataSource: [],
         filtedOrderStatus: filteredOrderStatus,
         filtedPaymentStatus: filteredPaymentStatus,
     });
@@ -28,6 +28,14 @@ function Conainer(props) {
 
     const orderStatusSelect = EnumKey.OrderStatusKey(t);
     const paymentStatusSelect = EnumKey.PaymentStatusKey(t);
+
+    useEffect(() => {
+        setLoadingTable(true);
+        setTimeout(() => {
+            setTableData({ dataSource: data });
+            setLoadingTable(false);
+        }, 500);
+    }, [data]);
 
     const onChangeOrderStatusSelect = (e) => {
         setFilterOrderStatus(e);
@@ -62,6 +70,10 @@ function Conainer(props) {
     const handleActionButtonEditClick = (data) => {
         editForm.setFieldsValue({ ...data });
         setOpenEditModel(true);
+    };
+
+    const handleActionButtonViewClick = (data) => {
+        console.log('sad');
     };
 
     const handleActionButtonDeleteClick = (data) => {
@@ -130,6 +142,9 @@ function Conainer(props) {
         editForm,
         messageContextHolder,
         loadingTable,
+        tableData,
+        orderStatusSelect,
+        paymentStatusSelect,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleCreateSubmitClick,
@@ -137,12 +152,10 @@ function Conainer(props) {
         handleEditCancelClick,
         handleCreateCancelClick,
         expandedRowRenderSelection,
-        orderStatusSelect,
-        paymentStatusSelect,
         onChangePaymentStatusSelect,
-        tableData,
         onChangeOrderStatusSelect,
         handleNewOrderClick,
+        handleActionButtonViewClick,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

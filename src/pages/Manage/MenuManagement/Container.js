@@ -1,5 +1,5 @@
 import { Form, message, Modal } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
 import DishData from '../../../database/dish.json';
@@ -11,6 +11,7 @@ function Conainer(props) {
     const { history, t } = props;
     const columns = TableColumns.MenuColumns(t);
     const data = MenuData;
+    const [tableData, setTableData] = useState([]);
     const dishData = DishData;
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
@@ -19,6 +20,14 @@ function Conainer(props) {
     const [messageApi, messageContextHolder] = message.useMessage();
     const [loadingTable, setLoadingTable] = useState(false);
     const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
+
+    useEffect(() => {
+        setLoadingTable(true);
+        setTimeout(() => {
+            setTableData(data);
+            setLoadingTable(false);
+        }, 500);
+    }, [data]);
 
     const handleEditCancelClick = () => {
         setOpenEditModel(false);
@@ -122,7 +131,7 @@ function Conainer(props) {
         history,
         t,
         columns,
-        data,
+        tableData,
         openCreateModel,
         openEditModel,
         createForm,

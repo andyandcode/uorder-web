@@ -15,6 +15,8 @@ export default function propsProvider(props) {
         loadingTable,
         extraColumns,
         handleShowQrCodeClick,
+        switchActionColumn,
+        handleActionButtonViewClick,
     } = props;
     return {
         t,
@@ -32,5 +34,7 @@ export default function propsProvider(props) {
         loadingTable,
         extraColumns,
         handleShowQrCodeClick,
+        switchActionColumn,
+        handleActionButtonViewClick,
     };
 }

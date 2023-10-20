@@ -2,17 +2,15 @@ import { Modal } from 'antd';
 import React from 'react';
 import { FormBuilder } from '../../../../../components/FormBuilder';
 
-export default function EditModal(props) {
-    const {
-        t,
-        editForm,
-        openEditModel,
-        handleEditSubmitClick,
-        handleEditCancelClick,
-        messageContextHolder,
-        defaultFileList,
-    } = props;
-
+export default function EditModal({
+    t,
+    editForm,
+    openEditModel,
+    handleEditSubmitClick,
+    handleEditCancelClick,
+    messageContextHolder,
+    defaultFileList,
+}) {
     return (
         <>
             <Modal

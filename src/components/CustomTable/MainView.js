@@ -7,7 +7,7 @@ const { Column } = Table;
 const { ActionColumn, ExtraColumnBuilder } = ColumnBuilder;
 
 export default function MainView(props) {
-    const { t, columns, dataSource, loadingTable, extraColumns } = props;
+    const { t, columns, dataSource, loadingTable, extraColumns, switchActionColumn } = props;
     return (
         <>
             <Table
@@ -20,15 +20,16 @@ export default function MainView(props) {
                 }}
                 loading={loadingTable}
                 expandable={{
-                    expandedRowRender: (record) => TableColumns.ExpandedRowRenderSelection(record, props),
-                    rowExpandable: (record) => NestedExpendedConfig(record),
+                    expandedRowRender: (record) =>
+                        TableColumns.ExpandedRowRenderSelection(record, t, switchActionColumn),
+                    rowExpandable: (record) => NestedExpendedConfig(record, switchActionColumn),
                 }}
             >
                 {columns.map((props) => {
                     return <Column {...props} />;
                 })}
                 {ExtraColumnBuilder(props, extraColumns)}
-                {ActionColumn(props)}
+                {ActionColumn(props, switchActionColumn)}
             </Table>
         </>
     );

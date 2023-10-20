@@ -1,5 +1,5 @@
 import { Form, message, Modal } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
 import DishData from '../../../database/dish.json';
@@ -8,9 +8,10 @@ import MainView from './template/MainView';
 
 function Conainer(props) {
     const { history, t } = props;
-    const columns = TableColumns.DishColumns();
+    const columns = TableColumns.DishColumns(t);
     const expandedRowRenderSelection = TableColumns.ExpandedRowRenderSelection;
     const data = DishData;
+    const [tableData, setTableData] = useState([]);
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
@@ -18,6 +19,14 @@ function Conainer(props) {
     const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
     const [loadingTable, setLoadingTable] = useState(false);
+
+    useEffect(() => {
+        setLoadingTable(true);
+        setTimeout(() => {
+            setTableData(data);
+            setLoadingTable(false);
+        }, 500);
+    }, [data]);
 
     const [defaultFileList, setDefaultFileList] = useState([]);
 
@@ -118,12 +127,15 @@ function Conainer(props) {
         history,
         t,
         columns,
-        data,
+        tableData,
         openCreateModel,
         openEditModel,
         createForm,
         editForm,
         messageContextHolder,
+        loadingTable,
+        loadingsRefreshButton,
+        defaultFileList,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
@@ -133,9 +145,6 @@ function Conainer(props) {
         handleEditCancelClick,
         handleCreateCancelClick,
         expandedRowRenderSelection,
-        loadingTable,
-        loadingsRefreshButton,
-        defaultFileList,
         handleCreateNewClick,
         handleRefreshClick,
     };

@@ -2,6 +2,7 @@ import { Divider, Layout, Space, Typography } from 'antd';
 import React from 'react';
 import { ButtonLocated } from '../../../../components/ButtonLocated';
 import CustomTable from '../../../../components/CustomTable';
+import TableColumns from '../../../../components/CustomTable/columnConfigs';
 import CreateModal from './subViews/createModal';
 import EditModal from './subViews/editModal';
 
@@ -12,7 +13,7 @@ export default function MainView(props) {
     const {
         t,
         columns,
-        data,
+        tableData,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
@@ -21,6 +22,16 @@ export default function MainView(props) {
         loadingTable,
         handleCreateNewClick,
         handleRefreshClick,
+        createForm,
+        openCreateModel,
+        handleCreateCancelClick,
+        handleCreateSubmitClick,
+        messageContextHolder,
+        editForm,
+        openEditModel,
+        handleEditSubmitClick,
+        handleEditCancelClick,
+        defaultFileList,
     } = props;
 
     return (
@@ -46,15 +57,31 @@ export default function MainView(props) {
                 <CustomTable
                     loadingTable={loadingTable}
                     columns={columns}
-                    dataSource={data}
+                    dataSource={tableData}
                     handleActionButtonEditClick={(data) => handleActionButtonEditClick(data)}
                     handleActionButtonDeleteClick={(data) => handleActionButtonDeleteClick(data)}
                     handleActionButtonTurnOffClick={(data) => handleActionButtonTurnOffClick(data)}
                     handleActionButtonTurnOnClick={(data) => handleActionButtonTurnOnClick(data)}
-                    expandedRowRenderSelection={() => expandedRowRenderSelection}
+                    expandedRowRenderSelection={expandedRowRenderSelection}
+                    switchActionColumn={TableColumns.TableSwitch.DishTable}
                 />
-                <CreateModal {...props}></CreateModal>
-                <EditModal {...props}></EditModal>
+                <CreateModal
+                    t={t}
+                    createForm={createForm}
+                    openCreateModel={openCreateModel}
+                    handleCreateCancelClick={handleCreateCancelClick}
+                    handleCreateSubmitClick={handleCreateSubmitClick}
+                    messageContextHolder={messageContextHolder}
+                />
+                <EditModal
+                    t={t}
+                    editForm={editForm}
+                    openEditModel={openEditModel}
+                    handleEditSubmitClick={handleEditSubmitClick}
+                    handleEditCancelClick={handleEditCancelClick}
+                    messageContextHolder={messageContextHolder}
+                    defaultFileList={defaultFileList}
+                />
             </Content>
         </>
     );

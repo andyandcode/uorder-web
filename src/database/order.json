@@ -9,7 +9,24 @@
         "orderStatus": 0,
         "paymentStatus": 0,
         "createdAt": "12/28/2012",
-        "orderDetail": []
+        "orderDetail": [
+            {
+                "id": "509ca0e3-e252-5963-a440-9b0dcd73c326",
+                "dishName": "Tillie Adams",
+                "qty": "1",
+                "unitPrice": "12000",
+                "amount": "12000",
+                "dishNote": ""
+            },
+            {
+                "id": "7bcc1bdd-e973-5576-998f-4ea56dc90da7",
+                "dishName": "Ethan Burton",
+                "qty": "1",
+                "unitPrice": "24000",
+                "amount": "24000",
+                "dishNote": "just note"
+            }
+        ]
     },
     {
         "key": "f2637c94-32b1-5963-a0cb-4aa25ec8bee7",

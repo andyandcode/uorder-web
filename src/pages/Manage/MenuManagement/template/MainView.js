@@ -2,6 +2,7 @@ import { Divider, Layout, Space, Typography } from 'antd';
 import React from 'react';
 import { ButtonLocated } from '../../../../components/ButtonLocated';
 import CustomTable from '../../../../components/CustomTable';
+import TableColumns from '../../../../components/CustomTable/columnConfigs';
 import CreateModal from './subViews/createModal';
 import EditModal from './subViews/editModal';
 
@@ -12,7 +13,7 @@ export default function MainView(props) {
     const {
         t,
         columns,
-        data,
+        tableData,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
@@ -48,7 +49,7 @@ export default function MainView(props) {
                 <CustomTable
                     loadingTable={loadingTable}
                     columns={columns}
-                    dataSource={data}
+                    dataSource={tableData}
                     handleActionButtonEditClick={(data) => handleActionButtonEditClick(data)}
                     handleActionButtonDeleteClick={(data) => handleActionButtonDeleteClick(data)}
                     handleActionButtonTurnOffClick={(data) => handleActionButtonTurnOffClick(data)}
@@ -56,6 +57,7 @@ export default function MainView(props) {
                     handleQuickTurnOffConfirm={(data) => handleQuickTurnOffConfirm(data)}
                     handleQuickActionButtonTurnOnClick={(data) => handleQuickActionButtonTurnOnClick(data)}
                     handleQuickDeleteConfirm={(data) => handleQuickDeleteConfirm(data)}
+                    switchActionColumn={TableColumns.TableSwitch.MenuTable}
                 />
                 <CreateModal {...props}></CreateModal>
                 <EditModal {...props}></EditModal>

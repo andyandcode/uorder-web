@@ -1,21 +1,16 @@
-import {
-    DeleteOutlined,
-    EyeInvisibleOutlined,
-    EyeOutlined,
-    QrcodeOutlined,
-} from '@ant-design/icons';
+import { DeleteOutlined, EyeInvisibleOutlined, EyeOutlined, QrcodeOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Space, Table } from 'antd';
+import TableColumns from './columnConfigs';
 
 const { Column } = Table;
 
-const menuSelection = (props, record) => {
-    const {
-        t,
-        handleActionButtonDeleteClick,
-        handleActionButtonTurnOffClick,
-        handleActionButtonTurnOnClick,
-    } = props;
-
+const menuSelection = ({
+    t,
+    record,
+    handleActionButtonDeleteClick,
+    handleActionButtonTurnOffClick,
+    handleActionButtonTurnOnClick,
+}) => {
     const process = () => {
         let menuArr = [
             {
@@ -53,29 +48,65 @@ const menuSelection = (props, record) => {
     );
 };
 
-const ActionColumn = (props) => {
-    const { t, handleActionButtonEditClick } = props;
-    return (
-        <>
-            <Column
-                title={t('main.components.table.action_column')}
-                key='action'
-                align='center'
-                render={(record) => (
-                    <Space>
-                        <Dropdown.Button
-                            type='text'
-                            dropdownRender={() => menuSelection(props, record)}
-                            trigger={['click']}
-                            onClick={() => handleActionButtonEditClick(record)}
-                        >
-                            {t('main.components.button.edit')}
-                        </Dropdown.Button>
-                    </Space>
-                )}
-            />
-        </>
-    );
+const ActionColumn = ({
+    t,
+    handleActionButtonEditClick,
+    handleActionButtonDeleteClick,
+    handleActionButtonTurnOffClick,
+    handleActionButtonTurnOnClick,
+    switchActionColumn,
+    handleActionButtonViewClick,
+}) => {
+    switch (switchActionColumn) {
+        case TableColumns.TableSwitch.OrderTable:
+            return (
+                <>
+                    <Column
+                        title={t('main.components.table.action_column')}
+                        key='action'
+                        align='center'
+                        render={(record) => (
+                            <Space>
+                                <Button type='text' onClick={() => handleActionButtonViewClick(record)}>
+                                    {t('main.components.button.view_order')}
+                                </Button>
+                            </Space>
+                        )}
+                    />
+                </>
+            );
+
+        default:
+            return (
+                <>
+                    <Column
+                        title={t('main.components.table.action_column')}
+                        key='action'
+                        align='center'
+                        render={(record) => (
+                            <Space>
+                                <Dropdown.Button
+                                    type='text'
+                                    dropdownRender={() =>
+                                        menuSelection({
+                                            t,
+                                            record,
+                                            handleActionButtonDeleteClick,
+                                            handleActionButtonTurnOffClick,
+                                            handleActionButtonTurnOnClick,
+                                        })
+                                    }
+                                    trigger={['click']}
+                                    onClick={() => handleActionButtonEditClick(record)}
+                                >
+                                    {t('main.components.button.edit')}
+                                </Dropdown.Button>
+                            </Space>
+                        )}
+                    />
+                </>
+            );
+    }
 };
 
 const ShowQrCodeColumn = (props) => {
@@ -112,9 +143,7 @@ const ExtraColumnBuilder = (props, key) => {
                         render={(record) => (
                             <Button
                                 type='text'
-                                icon={
-                                    <QrcodeOutlined style={{ fontSize: '16px', color: '#08c' }} />
-                                }
+                                icon={<QrcodeOutlined style={{ fontSize: '16px', color: '#08c' }} />}
                                 onClick={() => handleShowQrCodeClick(record)}
                             ></Button>
                         )}

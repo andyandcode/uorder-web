@@ -186,7 +186,8 @@
                 "submit": "Submit",
                 "close": "Close",
                 "add_order_item": "Add item",
-                "remove_order_item": "Remove"
+                "remove_order_item": "Remove",
+                "view_order": "View"
             }
         }
     },

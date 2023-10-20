@@ -13,7 +13,7 @@ export default function MainView(props) {
         columns,
         data,
         loadingTable,
-        handleActionButtonEditClick,
+        handleActionButtonViewClick,
         expandedRowRenderSelection,
         orderStatusSelect,
         paymentStatusSelect,
@@ -69,11 +69,12 @@ export default function MainView(props) {
                     loadingTable={loadingTable}
                     columns={columns}
                     dataSource={tableData.dataSource}
-                    handleActionButtonEditClick={(data) => handleActionButtonEditClick(data)}
+                    handleActionButtonViewClick={(data) => handleActionButtonViewClick(data)}
                     // handleActionButtonDeleteClick={(data) => handleActionButtonDeleteClick(data)}
                     expandedRowRenderSelection={() =>
-                        expandedRowRenderSelection(t, data, TableColumns.TableSwitch.DishTable)
+                        expandedRowRenderSelection(t, data, TableColumns.TableSwitch.OrderTable)
                     }
+                    switchActionColumn={TableColumns.TableSwitch.OrderTable}
                 />
                 <CreateModal {...props} />
                 {/* <EditModal {...props}></EditModal> */}

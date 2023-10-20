@@ -5,6 +5,7 @@ import CustomTable from '../../../../components/CustomTable';
 import { ColumnBuilderKey } from '../../../../components/CustomTable/ColumnBuilder';
 import CreateModal from './subViews/createModal';
 import EditModal from './subViews/editModal';
+import TableColumns from '../../../../components/CustomTable/columnConfigs';
 
 const { Content } = Layout;
 const { Title } = Typography;
@@ -13,7 +14,7 @@ export default function MainView(props) {
     const {
         t,
         columns,
-        data,
+        tableData,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
@@ -50,7 +51,7 @@ export default function MainView(props) {
                 <CustomTable
                     loadingTable={loadingTable}
                     columns={columns}
-                    dataSource={data}
+                    dataSource={tableData}
                     handleActionButtonEditClick={(data) => handleActionButtonEditClick(data)}
                     handleActionButtonDeleteClick={(data) => handleActionButtonDeleteClick(data)}
                     handleActionButtonTurnOffClick={(data) => handleActionButtonTurnOffClick(data)}
@@ -60,6 +61,7 @@ export default function MainView(props) {
                     handleQuickDeleteConfirm={(data) => handleQuickDeleteConfirm(data)}
                     extraColumns={ColumnBuilderKey.ShowQrCodeColumnKey}
                     handleShowQrCodeClick={handleShowQrCodeClick}
+                    switchActionColumn={TableColumns.TableSwitch.TableTable}
                 />
                 <CreateModal {...props}></CreateModal>
                 <EditModal {...props}></EditModal>
