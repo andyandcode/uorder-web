@@ -35,6 +35,7 @@ export default function propsProvider(props) {
         onChangePaymentStatusSelect,
         tableData,
         onChangeOrderStatusSelect,
+        handleNewOrderClick,
     } = props;
     return {
         history,
@@ -72,5 +73,6 @@ export default function propsProvider(props) {
         onChangePaymentStatusSelect,
         tableData,
         onChangeOrderStatusSelect,
+        handleNewOrderClick,
     };
 }

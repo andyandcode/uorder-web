@@ -96,6 +96,28 @@ const UpdateButton = ({ form, handleButton }) => {
     );
 };
 
+const NewOrderButton = ({ handleButton }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Button type='text' icon={<PlusOutlined />} style={{ color: '#5d56d5' }} onClick={handleButton}>
+                {t('main.components.button.new_order')}
+            </Button>
+        </>
+    );
+};
+
+const AddOrderItem = ({ handleButton }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Button type='dashed' onClick={handleButton} block icon={<PlusOutlined />}>
+                {t('main.components.button.add_order_item')}
+            </Button>
+        </>
+    );
+};
+
 export const ButtonLocated = {
     AddButton,
     RefreshButton,
@@ -104,4 +126,6 @@ export const ButtonLocated = {
     CancelButton,
     CreateButton,
     UpdateButton,
+    NewOrderButton,
+    AddOrderItem,
 };

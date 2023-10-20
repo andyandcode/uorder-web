@@ -1,7 +1,8 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, Col, Divider, Layout, Row, Select, Space, Typography } from 'antd';
+import { Col, Divider, Layout, Row, Select, Space, Typography } from 'antd';
+import { ButtonLocated } from '../../../../components/ButtonLocated';
 import CustomTable from '../../../../components/CustomTable';
 import TableColumns from '../../../../components/CustomTable/columnConfigs';
+import CreateModal from './subViews/createModal';
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
@@ -19,6 +20,7 @@ export default function MainView(props) {
         onChangePaymentStatusSelect,
         tableData,
         onChangeOrderStatusSelect,
+        handleNewOrderClick,
     } = props;
     return (
         <>
@@ -60,9 +62,7 @@ export default function MainView(props) {
                         </Space>
                     </Col>
                     <Col span={6} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <Button type='text' icon={<PlusOutlined />} style={{ color: '#5d56d5' }}>
-                            {t('main.components.button.new_order')}
-                        </Button>
+                        <ButtonLocated.NewOrderButton handleButton={handleNewOrderClick} />
                     </Col>
                 </Row>
                 <CustomTable
@@ -71,12 +71,12 @@ export default function MainView(props) {
                     dataSource={tableData.dataSource}
                     handleActionButtonEditClick={(data) => handleActionButtonEditClick(data)}
                     // handleActionButtonDeleteClick={(data) => handleActionButtonDeleteClick(data)}
-                    // handleActionButtonTurnOffClick={(data) => handleActionButtonTurnOffClick(data)}
-                    // handleActionButtonTurnOnClick={(data) => handleActionButtonTurnOnClick(data)}
                     expandedRowRenderSelection={() =>
                         expandedRowRenderSelection(t, data, TableColumns.TableSwitch.DishTable)
                     }
                 />
+                <CreateModal {...props} />
+                {/* <EditModal {...props}></EditModal> */}
             </Content>
         </>
     );

@@ -194,18 +194,6 @@ const OrderColumns = () => {
             },
         },
         {
-            key: 'tableName',
-            dataIndex: 'tableName',
-            title: t('main.entities.table'),
-            sorter: {
-                compare: (a, b) => a.tableName.localeCompare(b.tableName),
-                multiple: 2,
-            },
-            ellipsis: {
-                showTitle: false,
-            },
-        },
-        {
             key: 'total',
             dataIndex: 'total',
             title: t('main.entities.total'),

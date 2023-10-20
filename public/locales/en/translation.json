@@ -49,6 +49,11 @@
             "table_tooltip": "",
             "total": "Total",
             "total_tooltip": "",
+            "qty": "Quantity",
+            "unitPrice": "Unit price",
+            "amount": "Amount",
+            "dishNote": "Dish note...",
+            "note": "Order note...",
             "dishes": "Dishes",
             "is_required": "This filed is required!",
             "form_create_title": "Create new {{target}}",
@@ -145,7 +150,7 @@
         },
         "common": {
             "footer": "UOrder- Scan and make a reservation",
-            "system_key": { "dish": "dish", "menu": "menu", "table": "table" }
+            "system_key": { "dish": "dish", "menu": "menu", "table": "table", "order": "order" }
         },
         "utilities": {},
         "components": {
@@ -179,7 +184,9 @@
                 "search": "Search",
                 "new_order": "New Order",
                 "submit": "Submit",
-                "close": "Close"
+                "close": "Close",
+                "add_order_item": "Add item",
+                "remove_order_item": "Remove"
             }
         }
     },

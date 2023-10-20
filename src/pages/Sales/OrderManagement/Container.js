@@ -2,6 +2,7 @@ import { Form, message, Modal } from 'antd';
 import React, { useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { EnumKey } from '../../../components/EnumRender';
+import { UseNotification, UserAction } from '../../../components/UseNotification';
 import OrderData from '../../../database/order.json';
 import propsProvider from './PropsProvider';
 import MainView from './template/MainView';
@@ -22,30 +23,11 @@ function Conainer(props) {
     const [editForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
-    const [loadings, setLoadings] = useState([]);
-    const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
     const [loadingTable, setLoadingTable] = useState(false);
 
     const orderStatusSelect = EnumKey.OrderStatusKey(t);
     const paymentStatusSelect = EnumKey.PaymentStatusKey(t);
-
-    const enterLoading = (index) => {
-        setLoadings((prevLoadings) => {
-            const newLoadings = [...prevLoadings];
-            newLoadings[index] = true;
-            return newLoadings;
-        });
-        setTimeout(() => {
-            setLoadings((prevLoadings) => {
-                const newLoadings = [...prevLoadings];
-                newLoadings[index] = false;
-
-                setOpenCreateModel(true);
-                return newLoadings;
-            });
-        }, 1000);
-    };
 
     const onChangeOrderStatusSelect = (e) => {
         setFilterOrderStatus(e);
@@ -96,52 +78,21 @@ function Conainer(props) {
         });
     };
 
-    const handleActionButtonTurnOffClick = (data) => {
-        Modal.confirm({
-            title: t('app.notification.table.turnOffActiveAction.title'),
-            content: t('app.notification.table.turnOffActiveAction.content', {
-                target: t('app.common.systemKey.dish'),
-            }),
-            okText: t('app.notification.table.turnOffActiveAction.acceptButton'),
-            cancelText: t('app.notification.table.cancelButton'),
-            okType: 'danger',
-            onOk() {},
-            onCancel() {},
-        });
-    };
-
-    const handleActionButtonTurnOnClick = (data) => {
-        Modal.confirm({
-            title: t('app.notification.table.turnOnActiveAction.title'),
-            content: t('app.notification.table.turnOnActiveAction.content', {
-                target: t('app.common.systemKey.dish'),
-            }),
-            okText: t('app.notification.table.turnOnActiveAction.acceptButton'),
-            cancelText: t('app.notification.table.cancelButton'),
-            onOk() {},
-            onCancel() {},
-        });
-    };
-
     const handleCreateSubmitClick = (values) => {
         createForm
             .validateFields()
             .then(() => {
                 console.log('Created: ', values);
                 messageApi
-                    .open({
-                        type: 'loading',
-                        content: t('app.notification.form.actionInProgress'),
-                        duration: 2.5,
-                    })
+                    .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
-                        message.success(t('app.notification.form.createFinish'), 2);
+                        UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
                     })
                     .then(() => createForm.resetFields());
             })
             .catch(() => {
-                message.error(t('app.notification.form.createFinishFail'), 2);
+                UseNotification.Message.FinishFailMessage(t, UserAction.CreateFinishFail);
             });
     };
 
@@ -151,37 +102,20 @@ function Conainer(props) {
             .then(() => {
                 console.log('Edited: ', values);
                 messageApi
-                    .open({
-                        type: 'loading',
-                        content: t('app.notification.form.actionInProgress'),
-                        duration: 2.5,
-                    })
+                    .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
-                        message.success(t('app.notification.form.editFinish'), 2);
+                        UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                         setOpenEditModel(false);
                     })
                     .then(() => editForm.resetFields());
             })
             .catch(() => {
-                message.error(t('app.notification.form.editFinishFail'), 2);
+                UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
             });
     };
 
-    const handleRefreshDataClick = (index) => {
-        setLoadingsRefreshButton((prevLoadings) => {
-            const newLoadings = [...prevLoadings];
-            newLoadings[index] = true;
-            setLoadingTable(true);
-            return newLoadings;
-        });
-        setTimeout(() => {
-            setLoadingsRefreshButton((prevLoadings) => {
-                const newLoadings = [...prevLoadings];
-                newLoadings[index] = false;
-                setLoadingTable(false);
-                return newLoadings;
-            });
-        }, 1000);
+    const handleNewOrderClick = () => {
+        setOpenCreateModel(true);
     };
 
     const containerProps = {
@@ -190,30 +124,25 @@ function Conainer(props) {
         t,
         columns,
         data,
-        loadings,
         openCreateModel,
         openEditModel,
         createForm,
         editForm,
         messageContextHolder,
         loadingTable,
-        loadingsRefreshButton,
-        enterLoading,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
-        handleActionButtonTurnOffClick,
-        handleActionButtonTurnOnClick,
         handleCreateSubmitClick,
         handleEditSubmitClick,
         handleEditCancelClick,
         handleCreateCancelClick,
-        handleRefreshDataClick,
         expandedRowRenderSelection,
         orderStatusSelect,
         paymentStatusSelect,
         onChangePaymentStatusSelect,
         tableData,
         onChangeOrderStatusSelect,
+        handleNewOrderClick,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }
