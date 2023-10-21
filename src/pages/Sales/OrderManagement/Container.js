@@ -1,4 +1,4 @@
-import { Form, message, Modal } from 'antd';
+import { Form, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { EnumKey } from '../../../components/EnumRender';
@@ -20,11 +20,13 @@ function Conainer(props) {
     });
     const expandedRowRenderSelection = TableColumns.ExpandedRowRenderSelection;
     const [createForm] = Form.useForm();
-    const [editForm] = Form.useForm();
+    const [viewForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
-    const [openEditModel, setOpenEditModel] = useState(false);
+    const [openViewModel, setOpenViewModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
     const [loadingTable, setLoadingTable] = useState(false);
+
+    const [viewData, setViewData] = useState();
 
     const orderStatusSelect = EnumKey.OrderStatusKey(t);
     const paymentStatusSelect = EnumKey.PaymentStatusKey(t);
@@ -59,35 +61,18 @@ function Conainer(props) {
         }
     };
 
-    const handleEditCancelClick = () => {
-        setOpenEditModel(false);
+    const handleViewCancelClick = () => {
+        setOpenViewModel(false);
     };
 
     const handleCreateCancelClick = () => {
         setOpenCreateModel(false);
     };
 
-    const handleActionButtonEditClick = (data) => {
-        editForm.setFieldsValue({ ...data });
-        setOpenEditModel(true);
-    };
-
     const handleActionButtonViewClick = (data) => {
-        console.log('sad');
-    };
-
-    const handleActionButtonDeleteClick = (data) => {
-        Modal.confirm({
-            title: t('app.notification.table.deleteAction.title'),
-            content: t('app.notification.table.deleteAction.content', {
-                target: t('app.common.systemKey.dish'),
-            }),
-            okText: t('app.notification.table.deleteAction.acceptButton'),
-            cancelText: t('app.notification.table.cancelButton'),
-            okType: 'danger',
-            onOk() {},
-            onCancel() {},
-        });
+        setViewData(data);
+        // viewForm.setFieldsValue({ ...data });
+        setOpenViewModel(true);
     };
 
     const handleCreateSubmitClick = (values) => {
@@ -108,24 +93,6 @@ function Conainer(props) {
             });
     };
 
-    const handleEditSubmitClick = (values) => {
-        editForm
-            .validateFields()
-            .then(() => {
-                console.log('Edited: ', values);
-                messageApi
-                    .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
-                        UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
-                        setOpenEditModel(false);
-                    })
-                    .then(() => editForm.resetFields());
-            })
-            .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
-            });
-    };
-
     const handleNewOrderClick = () => {
         setOpenCreateModel(true);
     };
@@ -137,25 +104,23 @@ function Conainer(props) {
         columns,
         data,
         openCreateModel,
-        openEditModel,
+        openViewModel,
         createForm,
-        editForm,
+        viewForm,
         messageContextHolder,
         loadingTable,
         tableData,
         orderStatusSelect,
         paymentStatusSelect,
-        handleActionButtonEditClick,
-        handleActionButtonDeleteClick,
         handleCreateSubmitClick,
-        handleEditSubmitClick,
-        handleEditCancelClick,
+        handleViewCancelClick,
         handleCreateCancelClick,
         expandedRowRenderSelection,
         onChangePaymentStatusSelect,
         onChangeOrderStatusSelect,
         handleNewOrderClick,
         handleActionButtonViewClick,
+        viewData,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

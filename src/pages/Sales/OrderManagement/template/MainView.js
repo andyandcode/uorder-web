@@ -3,6 +3,7 @@ import { ButtonLocated } from '../../../../components/ButtonLocated';
 import CustomTable from '../../../../components/CustomTable';
 import TableColumns from '../../../../components/CustomTable/columnConfigs';
 import CreateModal from './subViews/createModal';
+import ViewModal from './subViews/viewModal';
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
@@ -70,14 +71,13 @@ export default function MainView(props) {
                     columns={columns}
                     dataSource={tableData.dataSource}
                     handleActionButtonViewClick={(data) => handleActionButtonViewClick(data)}
-                    // handleActionButtonDeleteClick={(data) => handleActionButtonDeleteClick(data)}
                     expandedRowRenderSelection={() =>
                         expandedRowRenderSelection(t, data, TableColumns.TableSwitch.OrderTable)
                     }
                     switchActionColumn={TableColumns.TableSwitch.OrderTable}
                 />
                 <CreateModal {...props} />
-                {/* <EditModal {...props}></EditModal> */}
+                <ViewModal {...props} />
             </Content>
         </>
     );

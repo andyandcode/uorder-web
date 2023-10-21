@@ -58,6 +58,9 @@
             "is_required": "This filed is required!",
             "form_create_title": "Create new {{target}}",
             "form_edit_title": "Edit {{target}}",
+            "form_view_title": "View {{target}}",
+            "subtotal": "Subtotal",
+            "discount": "Discount",
             "active_status": {
                 "label": "Active status",
                 "active": "Active",

@@ -26,7 +26,6 @@ export const NestedExpendedColumnSwitch = (props) => {
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
     } = props;
-    console.log(props);
 
     switch (switchActionColumn) {
         case TableColumns.TableSwitch.OrderTable:

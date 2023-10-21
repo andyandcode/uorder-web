@@ -2,6 +2,7 @@ import { Tooltip } from 'antd';
 import moment from 'moment/moment';
 import { useTranslation } from 'react-i18next';
 import { NumericFormat } from 'react-number-format';
+import CurrencyFormat from '../CurrencyFormat';
 import { EnumRender } from '../EnumRender';
 import NestedTable from '../NestedTable';
 import TableFilter from '../TableFilter';
@@ -44,7 +45,7 @@ const DishColumns = (t) => {
                 multiple: 5,
             },
             render: (data) => {
-                return <NumericFormat value={data} suffix={' VND'} thousandSeparator=',' displayType='text' />;
+                return <CurrencyFormat value={data} />;
             },
         },
         {
@@ -207,7 +208,7 @@ const OrderColumns = () => {
                 showTitle: false,
             },
             render: (data) => {
-                return <NumericFormat value={data} suffix={' VND'} thousandSeparator=',' displayType='text' />;
+                return <CurrencyFormat value={data} />;
             },
         },
         {
@@ -248,7 +249,7 @@ const ExpandedRowRenderSelection = (data, t, switchActionColumn) => {
                         multiple: 5,
                     },
                     render: (data) => {
-                        return <NumericFormat value={data} suffix={' VND'} thousandSeparator=',' displayType='text' />;
+                        return <CurrencyFormat value={data} />;
                     },
                 },
                 {
@@ -324,7 +325,7 @@ const ExpandedRowRenderSelection = (data, t, switchActionColumn) => {
                         multiple: 3,
                     },
                     render: (data) => {
-                        return <NumericFormat value={data} suffix=' VND' thousandSeparator=',' displayType='text' />;
+                        return <CurrencyFormat value={data} />;
                     },
                 },
                 {
@@ -337,7 +338,7 @@ const ExpandedRowRenderSelection = (data, t, switchActionColumn) => {
                         multiple: 4,
                     },
                     render: (data) => {
-                        return <NumericFormat value={data} suffix=' VND' thousandSeparator=',' displayType='text' />;
+                        return <CurrencyFormat value={data} />;
                     },
                 },
             ];
