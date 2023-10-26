@@ -61,6 +61,9 @@
             "form_view_title": "View {{target}}",
             "subtotal": "Subtotal",
             "discount": "Discount",
+            "username": "Username",
+            "pwd": "Password",
+            "pwd_tooltip": "The password will have to be changed after logging into your account for the first time.",
             "active_status": {
                 "label": "Active status",
                 "active": "Active",
@@ -153,7 +156,14 @@
         },
         "common": {
             "footer": "UOrder- Scan and make a reservation",
-            "system_key": { "dish": "dish", "menu": "menu", "table": "table", "order": "order", "booking": "booking" }
+            "system_key": {
+                "dish": "dish",
+                "menu": "menu",
+                "table": "table",
+                "order": "order",
+                "booking": "booking",
+                "account": "account"
+            }
         },
         "utilities": {},
         "components": {

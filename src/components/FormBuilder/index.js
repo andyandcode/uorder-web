@@ -689,6 +689,53 @@ const ViewBookingForm = ({ viewData, form, handleButtonCancel, handleButtonSubmi
     );
 };
 
+const CreateNewAccountForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
+    return (
+        <>
+            <Form
+                form={form}
+                layout='horizontal'
+                name='form_create_in_modal'
+                align='end'
+                initialValues={{ isActive: true }}
+            >
+                <FormEntities.Username />
+                <FormEntities.Password />
+                <FormEntities.ActiveStatus />
+
+                <Space>
+                    <ButtonLocated.ResetButton />
+                    <ButtonLocated.CancelButton handleButton={handleButtonCancel} />
+                    <ButtonLocated.CreateButton form={form} handleButton={handleButtonSubmit} />
+                </Space>
+            </Form>
+        </>
+    );
+};
+
+const EditAccountForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
+    return (
+        <>
+            <Form
+                form={form}
+                layout='horizontal'
+                name='form_create_in_modal'
+                align='end'
+                initialValues={{ isActive: true }}
+            >
+                <FormEntities.Username />
+                <FormEntities.Password />
+                <FormEntities.ActiveStatus />
+
+                <Space>
+                    <ButtonLocated.CancelButton handleButton={handleButtonCancel} />
+                    <ButtonLocated.UpdateButton form={form} handleButton={handleButtonSubmit} />
+                </Space>
+            </Form>
+        </>
+    );
+};
+
 export const FormBuilder = {
     CreateNewDishForm,
     EditDishForm,
@@ -699,4 +746,6 @@ export const FormBuilder = {
     CreateNewOrderForm,
     ViewOrderForm,
     ViewBookingForm,
+    CreateNewAccountForm,
+    EditAccountForm,
 };

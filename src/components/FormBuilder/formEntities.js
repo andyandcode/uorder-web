@@ -529,6 +529,49 @@ const PaymentStatus = ({ hidden }) => {
     );
 };
 
+const Username = () => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item
+                name='username'
+                label={t('main.entities.username')}
+                rules={[
+                    {
+                        required: true,
+                        message: t('main.entities.is_required'),
+                    },
+                ]}
+            >
+                <Input allowClear />
+            </Form.Item>
+        </>
+    );
+};
+
+const Password = () => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item
+                name='pwd'
+                label={t('main.entities.pwd')}
+                tooltip={t('main.entities.pwd_tooltip', {
+                    target: t('main.common.system_key.dish'),
+                })}
+                rules={[
+                    {
+                        required: true,
+                        message: t('main.entities.is_required'),
+                    },
+                ]}
+            >
+                <Input allowClear />
+            </Form.Item>
+        </>
+    );
+};
+
 export const FormEntities = {
     Id,
     CreatedAt,
@@ -546,4 +589,6 @@ export const FormEntities = {
     DishesInOrder,
     OrderStatus,
     PaymentStatus,
+    Username,
+    Password,
 };

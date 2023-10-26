@@ -1,0 +1,30 @@
+[
+    {
+        "id": "b6b31675-b560-5a86-977d-e0234301188e",
+        "key": "b6b31675-b560-5a86-977d-e0234301188e",
+        "username": "voice",
+        "password": "kr2l90cVTjCOnK66MyX4",
+        "isActive": true
+    },
+    {
+        "id": "c0485003-e575-5a09-83af-ee3a85e9571a",
+        "key": "c0485003-e575-5a09-83af-ee3a85e9571a",
+        "username": "volume",
+        "password": "N9EImFfaiqbhiE8MZ",
+        "isActive": false
+    },
+    {
+        "id": "f0cc5cd2-2eb7-5862-9632-d0ba9c31bc31",
+        "key": "f0cc5cd2-2eb7-5862-9632-d0ba9c31bc31",
+        "username": "flight",
+        "password": "bzvAt",
+        "isActive": false
+    },
+    {
+        "id": "2dbc05d4-7ec6-5fe5-99c6-289086bfde91",
+        "key": "2dbc05d4-7ec6-5fe5-99c6-289086bfde91",
+        "username": "hand",
+        "password": "xvGLg2lJOpKP0LY5qG",
+        "isActive": true
+    }
+]

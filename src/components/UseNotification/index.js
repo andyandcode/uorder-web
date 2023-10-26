@@ -57,13 +57,14 @@ const Message = { InProgressMessage, FinishMessage, FinishFailMessage };
 const Dish = 'main.common.system_key.dish';
 const Menu = 'main.common.system_key.menu';
 const Table = 'main.common.system_key.table';
+const Account = 'main.common.system_key.account';
 
 const CreateFinish = 'main.notification.form.create_finish';
 const UpdateFinish = 'main.notification.form.edit_finish';
 const CreateFinishFail = 'main.notification.form.create_finish_fail';
 const UpdateFinishFail = 'main.notification.form.edit_finish_fail';
 
-export const NotificationTarget = { Dish, Menu, Table };
+export const NotificationTarget = { Dish, Menu, Table, Account };
 
 export const UserAction = { CreateFinish, UpdateFinish, CreateFinishFail, UpdateFinishFail };
 

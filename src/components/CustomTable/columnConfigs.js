@@ -12,8 +12,9 @@ const MenuTable = 'MenuTable';
 const OrderTable = 'OrderTable';
 const BookingTable = 'BookingTable';
 const TableTable = 'TableTable';
+const AccountTable = 'AccountColumns';
 
-const TableSwitch = { DishTable, MenuTable, OrderTable, BookingTable, TableTable };
+const TableSwitch = { DishTable, MenuTable, OrderTable, BookingTable, TableTable, AccountTable };
 
 const DishColumns = (t) => {
     return [
@@ -109,6 +110,58 @@ const MenuColumns = () => {
                 multiple: 6,
             },
             ...TableFilter('name', t('main.entities.name')),
+            ellipsis: {
+                showTitle: false,
+            },
+            render: (data) => (
+                <Tooltip placement='topLeft' title={data}>
+                    {data}
+                </Tooltip>
+            ),
+        },
+        {
+            key: 'isActive',
+            dataIndex: 'isActive',
+            title: t('main.entities.active_status.label'),
+            align: 'center',
+            sorter: {
+                compare: (a, b) => a.isActive - b.isActive,
+                multiple: 3,
+            },
+            render: (data) => EnumRender.ActiveStatus(t, data),
+        },
+    ];
+};
+
+const AccountColumns = () => {
+    const { t } = useTranslation();
+    return [
+        {
+            key: 'id',
+            dataIndex: 'id',
+            title: t('main.entities.id'),
+            sorter: {
+                compare: (a, b) => a.id.localeCompare(b.id),
+                multiple: 1,
+            },
+            ...TableFilter('id', t('main.entities.id')),
+            ellipsis: {
+                showTitle: false,
+            },
+            render: (data) => (
+                <Tooltip placement='topLeft' title={data}>
+                    {data}
+                </Tooltip>
+            ),
+        },
+        {
+            key: 'username',
+            dataIndex: 'username',
+            title: t('main.entities.username'),
+            sorter: {
+                compare: (a, b) => a.id.localeCompare(b.id),
+                multiple: 2,
+            },
             ellipsis: {
                 showTitle: false,
             },
@@ -368,5 +421,6 @@ const TableColumns = {
     ExpandedRowRenderSelection,
     TablesColumns,
     OrderColumns,
+    AccountColumns,
 };
 export default TableColumns;
