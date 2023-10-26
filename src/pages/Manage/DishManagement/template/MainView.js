@@ -1,6 +1,6 @@
-import { CloudDownloadOutlined, HourglassOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Divider, Layout, Space, Typography } from 'antd';
+import { Divider, Layout, Space, Typography } from 'antd';
 import React from 'react';
+import { ButtonLocated } from '../../../../components/ButtonLocated';
 import CustomTable from '../../../../components/CustomTable';
 import TableColumns from '../../../../components/CustomTable/columnConfigs';
 import CreateModal from './subViews/createModal';
@@ -13,24 +13,32 @@ export default function MainView(props) {
     const {
         t,
         columns,
-        data,
-        enterLoading,
-        loadings,
+        tableData,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
         handleActionButtonTurnOnClick,
         expandedRowRenderSelection,
-        handleRefreshDataClick,
-        loadingsRefreshButton,
         loadingTable,
+        handleCreateNewClick,
+        handleRefreshClick,
+        createForm,
+        openCreateModel,
+        handleCreateCancelClick,
+        handleCreateSubmitClick,
+        messageContextHolder,
+        editForm,
+        openEditModel,
+        handleEditSubmitClick,
+        handleEditCancelClick,
+        defaultFileList,
     } = props;
 
     return (
         <>
             <Content>
                 <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('app.feature.manage.dish.label')}
+                    {t('main.navigation.manage.dish')}
                 </Title>
                 <Divider />
 
@@ -42,39 +50,38 @@ export default function MainView(props) {
                         paddingBottom: '24px',
                     }}
                 >
-                    <Button
-                        type='primary'
-                        icon={<PlusOutlined />}
-                        loading={loadings[0]}
-                        onClick={() => enterLoading(0)}
-                    >
-                        {t('app.feature.manage.dish.button.add')}
-                    </Button>
-                    <Button
-                        icon={<CloudDownloadOutlined />}
-                        loading={loadingsRefreshButton[1]}
-                        onClick={() => handleRefreshDataClick(1)}
-                    >
-                        {t('app.feature.manage.dish.button.refresh')}
-                    </Button>
-                    <Button icon={<HourglassOutlined />} block>
-                        {t('app.feature.manage.dish.button.activeLog')}
-                    </Button>
+                    <ButtonLocated.AddButton handleCreateNewClick={handleCreateNewClick} />
+                    <ButtonLocated.RefreshButton handleRefreshClick={handleRefreshClick} />
+                    <ButtonLocated.ActiveLogButton />
                 </Space>
                 <CustomTable
                     loadingTable={loadingTable}
                     columns={columns}
-                    dataSource={data}
+                    dataSource={tableData}
                     handleActionButtonEditClick={(data) => handleActionButtonEditClick(data)}
                     handleActionButtonDeleteClick={(data) => handleActionButtonDeleteClick(data)}
                     handleActionButtonTurnOffClick={(data) => handleActionButtonTurnOffClick(data)}
                     handleActionButtonTurnOnClick={(data) => handleActionButtonTurnOnClick(data)}
-                    expandedRowRenderSelection={() =>
-                        expandedRowRenderSelection(t, data, TableColumns.TableSwitch.DishTable)
-                    }
+                    expandedRowRenderSelection={expandedRowRenderSelection}
+                    switchActionColumn={TableColumns.TableSwitch.DishTable}
                 />
-                <CreateModal {...props}></CreateModal>
-                <EditModal {...props}></EditModal>
+                <CreateModal
+                    t={t}
+                    createForm={createForm}
+                    openCreateModel={openCreateModel}
+                    handleCreateCancelClick={handleCreateCancelClick}
+                    handleCreateSubmitClick={handleCreateSubmitClick}
+                    messageContextHolder={messageContextHolder}
+                />
+                <EditModal
+                    t={t}
+                    editForm={editForm}
+                    openEditModel={openEditModel}
+                    handleEditSubmitClick={handleEditSubmitClick}
+                    handleEditCancelClick={handleEditCancelClick}
+                    messageContextHolder={messageContextHolder}
+                    defaultFileList={defaultFileList}
+                />
             </Content>
         </>
     );

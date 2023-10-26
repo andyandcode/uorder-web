@@ -1,6 +1,7 @@
 import { Form, message, Modal } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
+import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
 import DishData from '../../../database/dish.json';
 import MenuData from '../../../database/menu.json';
 import propsProvider from './PropsProvider';
@@ -10,32 +11,23 @@ function Conainer(props) {
     const { history, t } = props;
     const columns = TableColumns.MenuColumns(t);
     const data = MenuData;
+    const [tableData, setTableData] = useState([]);
     const dishData = DishData;
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
-    const [loadings, setLoadings] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
     const [loadingTable, setLoadingTable] = useState(false);
     const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
 
-    const enterLoading = (index) => {
-        setLoadings((prevLoadings) => {
-            const newLoadings = [...prevLoadings];
-            newLoadings[index] = true;
-            return newLoadings;
-        });
+    useEffect(() => {
+        setLoadingTable(true);
         setTimeout(() => {
-            setLoadings((prevLoadings) => {
-                const newLoadings = [...prevLoadings];
-                newLoadings[index] = false;
-
-                setOpenCreateModel(true);
-                return newLoadings;
-            });
-        }, 1000);
-    };
+            setTableData(data);
+            setLoadingTable(false);
+        }, 500);
+    }, [data]);
 
     const handleEditCancelClick = () => {
         setOpenEditModel(false);
@@ -51,41 +43,21 @@ function Conainer(props) {
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        Modal.confirm({
-            title: t('app.notification.table.deleteAction.title'),
-            content: t('app.notification.table.deleteAction.content', {
-                target: t('app.common.systemKey.menu'),
-            }),
-            okText: t('app.notification.table.deleteAction.acceptButton'),
-            cancelText: t('app.notification.table.cancelButton'),
-            okType: 'danger',
+        Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Menu), {
             onOk() {},
             onCancel() {},
         });
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        Modal.confirm({
-            title: t('app.notification.table.turnOffActiveAction.title'),
-            content: t('app.notification.table.turnOffActiveAction.content', {
-                target: t('app.common.systemKey.menu'),
-            }),
-            okText: t('app.notification.table.turnOffActiveAction.acceptButton'),
-            cancelText: t('app.notification.table.cancelButton'),
-            okType: 'danger',
+        Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Menu), {
             onOk() {},
             onCancel() {},
         });
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        Modal.confirm({
-            title: t('app.notification.table.turnOnActiveAction.title'),
-            content: t('app.notification.table.turnOnActiveAction.content', {
-                target: t('app.common.systemKey.menu'),
-            }),
-            okText: t('app.notification.table.turnOnActiveAction.acceptButton'),
-            cancelText: t('app.notification.table.cancelButton'),
+        Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Menu), {
             onOk() {},
             onCancel() {},
         });
@@ -103,19 +75,15 @@ function Conainer(props) {
             .then(() => {
                 console.log('Created: ', values);
                 messageApi
-                    .open({
-                        type: 'loading',
-                        content: t('app.notification.form.actionInProgress'),
-                        duration: 2.5,
-                    })
+                    .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
-                        message.success(t('app.notification.form.createFinish'), 2);
+                        UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
                     })
                     .then(() => createForm.resetFields());
             })
             .catch(() => {
-                message.error(t('app.notification.form.createFinishFail'), 2);
+                UseNotification.Message.FinishFailMessage(t, UserAction.CreateFinishFail);
             });
     };
 
@@ -125,24 +93,23 @@ function Conainer(props) {
             .then(() => {
                 console.log('Edited: ', values);
                 messageApi
-                    .open({
-                        type: 'loading',
-                        content: t('app.notification.form.actionInProgress'),
-                        duration: 2.5,
-                    })
+                    .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
-                        message.success(t('app.notification.form.editFinish'), 2);
+                        UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                         setOpenEditModel(false);
                     })
                     .then(() => editForm.resetFields());
             })
             .catch(() => {
-                message.error(t('app.notification.form.editFinishFail'), 2);
+                UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
             });
     };
 
-    const handleRefreshDataClick = (index) => {
-        console.log('click');
+    const handleCreateNewClick = () => {
+        setOpenCreateModel(true);
+    };
+
+    const handleRefreshClick = (index) => {
         setLoadingsRefreshButton((prevLoadings) => {
             const newLoadings = [...prevLoadings];
             newLoadings[index] = true;
@@ -164,15 +131,13 @@ function Conainer(props) {
         history,
         t,
         columns,
-        data,
-        loadings,
+        tableData,
         openCreateModel,
         openEditModel,
         createForm,
         editForm,
         messageContextHolder,
         dishData,
-        enterLoading,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
@@ -184,9 +149,10 @@ function Conainer(props) {
         handleQuickTurnOffConfirm,
         handleQuickDeleteConfirm,
         handleQuickActionButtonTurnOnClick,
-        handleRefreshDataClick,
         loadingTable,
         loadingsRefreshButton,
+        handleCreateNewClick,
+        handleRefreshClick,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

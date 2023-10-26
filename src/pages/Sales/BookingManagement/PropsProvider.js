@@ -1,4 +1,40 @@
 export default function propsProvider(props) {
-    const { history, dispatch, t } = props;
-    return { history, dispatch, t };
+    const {
+        history,
+        dispatch,
+        t,
+        currentBookingData,
+        handlePrintBillClick,
+        handleViewBookingDetailClick,
+        handlePayBillClick,
+        cardLoading,
+        handleCompleteOrderClick,
+        openViewModel,
+        viewData,
+        handleViewCancelClick,
+        loadingTable,
+        columns,
+        tableData,
+        handleActionButtonViewClick,
+        expandedRowRenderSelection,
+    } = props;
+    return {
+        history,
+        dispatch,
+        t,
+        currentBookingData,
+        handlePrintBillClick,
+        handleViewBookingDetailClick,
+        handlePayBillClick,
+        cardLoading,
+        handleCompleteOrderClick,
+        openViewModel,
+        viewData,
+        handleViewCancelClick,
+        loadingTable,
+        columns,
+        tableData,
+        handleActionButtonViewClick,
+        expandedRowRenderSelection,
+    };
 }

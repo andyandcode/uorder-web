@@ -12,73 +12,73 @@ export const MenuList = () => {
     const { t } = useTranslation();
     return [
         {
-            label: t('app.feature.home.label'),
+            label: t('main.navigation.home.label'),
             key: rootKeys.homeUrl,
             path: rootKeys.homeUrl,
             icon: <PieChartOutlined />,
         },
         {
-            label: t('app.feature.manage.label'),
+            label: t('main.navigation.manage.label'),
             key: rootKeys.manageUrl,
             icon: <DesktopOutlined />,
             children: [
                 {
-                    label: t('app.feature.manage.dish.label'),
+                    label: t('main.navigation.manage.dish'),
                     key: rootKeys.dishManagementUrl,
                     path: rootKeys.dishManagementUrl,
                 },
                 {
-                    label: t('app.feature.manage.menu.label'),
+                    label: t('main.navigation.manage.menu'),
                     key: rootKeys.menuManagementUrl,
                     path: rootKeys.menuManagementUrl,
                 },
                 {
-                    label: t('app.feature.manage.table.label'),
+                    label: t('main.navigation.manage.table'),
                     key: rootKeys.tableManagementUrl,
                     path: rootKeys.tableManagementUrl,
                 },
             ],
         },
         {
-            label: t('app.feature.sales.label'),
+            label: t('main.navigation.sales.label'),
             key: rootKeys.salesUrl,
             icon: <ShoppingCartOutlined />,
             children: [
                 {
-                    label: t('app.feature.sales.analytics.label'),
+                    label: t('main.navigation.sales.analytics'),
                     key: rootKeys.analyticsUrl,
                     path: rootKeys.analyticsUrl,
                 },
                 {
-                    label: t('app.feature.sales.booking.label'),
+                    label: t('main.navigation.sales.booking'),
                     key: rootKeys.bookingManagementUrl,
                     path: rootKeys.bookingManagementUrl,
                 },
                 {
-                    label: t('app.feature.sales.order.label'),
+                    label: t('main.navigation.sales.order'),
                     key: rootKeys.orderManagementUrl,
                     path: rootKeys.orderManagementUrl,
                 },
             ],
         },
         {
-            label: t('app.feature.account.label'),
+            label: t('main.navigation.account'),
             key: rootKeys.accountManagementUrl,
             path: rootKeys.accountManagementUrl,
             icon: <UserOutlined />,
         },
         {
-            label: t('app.feature.settings.label'),
+            label: t('main.navigation.settings.label'),
             key: rootKeys.settingUrl,
             icon: <SettingOutlined />,
             children: [
                 {
-                    label: t('app.feature.settings.system.label'),
+                    label: t('main.navigation.settings.system'),
                     key: rootKeys.systemSettingUrl,
                     path: rootKeys.systemSettingUrl,
                 },
                 {
-                    label: t('app.feature.settings.account.label'),
+                    label: t('main.navigation.settings.account'),
                     key: rootKeys.accountSettingUrl,
                     path: rootKeys.accountSettingUrl,
                 },

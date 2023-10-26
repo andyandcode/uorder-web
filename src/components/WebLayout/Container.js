@@ -33,12 +33,12 @@ export default function Conainer(props) {
 
     const showLogOutConfirm = () => {
         confirm({
-            title: t('app.notification.accountQuickAccess.title'),
+            title: t('main.notification.account_quick_access.title'),
             icon: <ExclamationCircleFilled />,
-            content: t('app.notification.accountQuickAccess.message'),
+            content: t('main.notification.account_quick_access.message'),
             okType: 'danger',
-            okText: t('app.notification.accountQuickAccess.acceptButton'),
-            cancelText: t('app.notification.accountQuickAccess.cancelButton'),
+            okText: t('main.components.button.logout'),
+            cancelText: t('main.components.button.cancel'),
             onOk() {},
             onCancel() {},
         });
@@ -46,12 +46,12 @@ export default function Conainer(props) {
 
     const items = [
         {
-            label: t('app.feature.accountQuickAccess.infomation'),
+            label: t('main.navigation.account_quick_access.infomation'),
             onClick: () => navigate(rootKeys.accountSettingUrl),
             key: '1',
         },
         {
-            label: t('app.feature.accountQuickAccess.logoutButton'),
+            label: t('main.components.button.logout'),
             type: 'danger',
 
             onClick: showLogOutConfirm,

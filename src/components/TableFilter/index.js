@@ -30,7 +30,7 @@ export default function TableFilter(dataIndex, tableKey) {
                 <Input
                     ref={searchInput}
                     placeholder={`${t(
-                        'app.feature.table.searchKeyword',
+                        'main.components.table.search_keyword',
                     )} ${tableKey.toLowerCase()}`}
                     value={selectedKeys[0]}
                     onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
@@ -47,10 +47,10 @@ export default function TableFilter(dataIndex, tableKey) {
                         icon={<SearchOutlined />}
                         size='small'
                     >
-                        {t('app.feature.table.searchButton')}
+                        {t('main.components.button.search')}
                     </Button>
                     <Button onClick={() => clearFilters && handleReset(clearFilters)} size='small'>
-                        {t('app.feature.table.searchReset')}
+                        {t('main.components.button.reset')}
                     </Button>
                     <Button
                         type='link'
@@ -59,7 +59,7 @@ export default function TableFilter(dataIndex, tableKey) {
                             close();
                         }}
                     >
-                        {t('app.feature.table.searchClose')}
+                        {t('main.components.button.close')}
                     </Button>
                 </Space>
             </div>

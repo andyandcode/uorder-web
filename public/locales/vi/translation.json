@@ -1,221 +1,211 @@
 {
-    "app": {
-        "feature": {
+    "main": {
+        "navigation": {
             "home": {
                 "label": "Trang chủ"
             },
             "manage": {
                 "label": "Quản lý",
-                "dish": {
-                    "label": "Quản lý món ăn",
-                    "button": { "add": "Thêm mới", "activeLog": "Lịch sử", "refresh": "Làm mới" },
-                    "createForm": {
-                        "name": "Tên",
-                        "nameTooltip": "Tên món ăn.",
-                        "nameIsRequired": "Vui lòng nhập tên món ăn!",
-                        "desc": "Mô tả",
-                        "descTooltip": "Đoạn mô tả ngắn về món ăn.",
-                        "descIsRequired": "Vui lòng nhập mô tả món ăn!",
-                        "price": "Giá",
-                        "priceTooltip": "Giá bán của món ăn. Mức giá phải trong khoảng 1,000 - 1,000,000,000.",
-                        "priceIsRequired": "Vui lòng nhập giá bán!",
-                        "completionTime": "Thời gian hoàn thành (phút)",
-                        "completionTimeTooltip": "Thời gian hoàn thành món ăn dự kiến. Thời gian phải trong khoảng 1 - 1,000.",
-                        "completionTimeIsRequired": "Vui lòng nhập thời gian hoàn thành!",
-                        "isActive": "Hoạt động",
-                        "isActiveTooltip": "Tình trạng hoạt động của món ăn. Khi tắt, món ăn sẽ không hiển thị trên thực đơn.",
-                        "qtyPerDate": "Số lượng mỗi ngày",
-                        "qtyPerDateTooltip": "Số lượng món ăn làm ra mỗi ngày dự kiến. Số lượng phải trong khoảng 1,000 - 1,000,000,000.",
-                        "qtyPerDateIsRequired": "Vui lòng nhập số lượng!",
-                        "type": "Loại",
-                        "typeTooltip": "Loại là thức ăn hoặc thức uống.",
-                        "cancelButton": "Hủy",
-                        "createButton": "Thêm",
-                        "title": "Thêm mới món ăn",
-                        "resetButton": "Đặt lại",
-                        "upload": "Ảnh món ăn",
-                        "uploadIsRequired": "Vui lòng tải lên ít nhất 1 hình ảnh!"
-                    },
-                    "editForm": {
-                        "id": "Mã định danh",
-                        "idTooltip": ".Mã định danh của món ăn",
-                        "createdAt": "Thời gian tạo mới",
-                        "createdAtTooltip": ".Thời gian món ăn được tạo mới",
-                        "name": "Tên",
-                        "nameTooltip": "Tên món ăn.",
-                        "nameIsRequired": "Vui lòng nhập tên món ăn!",
-                        "desc": "Mô tả",
-                        "descTooltip": "Đoạn mô tả ngắn về món ăn.",
-                        "descIsRequired": "Vui lòng nhập mô tả món ăn!",
-                        "price": "Giá",
-                        "priceTooltip": "Giá bán của món ăn.",
-                        "priceIsRequired": "Vui lòng nhập giá bán!",
-                        "completionTime": "Thời gian hoàn thành (phút)",
-                        "completionTimeTooltip": "Thời gian hoàn thành món ăn dự kiến.",
-                        "completionTimeIsRequired": "Vui lòng nhập thời gian hoàn thành!",
-                        "isActive": "Hoạt động",
-                        "isActiveTooltip": "Tình trạng hoạt động của món ăn. Khi tắt, món ăn sẽ không hiển thị trên thực đơn.",
-                        "qtyPerDate": "Số lượng mỗi ngày",
-                        "qtyPerDateTooltip": "Số lượng món ăn làm ra mỗi ngày.",
-                        "qtyPerDateIsRequired": "Vui lòng nhập số lượng!",
-                        "type": "Loại",
-                        "typeTooltip": "Loại là thức ăn hoặc thức uống.",
-                        "cancelButton": "Hủy",
-                        "createButton": "Cập nhật",
-                        "title": "Chỉnh sửa món ăn",
-                        "resetButton": "Đặt lại"
-                    }
-                },
-                "menu": {
-                    "label": "Quản lý thực đơn",
-                    "button": { "add": "Thêm mới", "activeLog": "Lịch sử", "refresh": "Làm mới" },
-                    "createForm": {
-                        "name": "Tên",
-                        "nameTooltip": "Tên của thực đơn.",
-                        "nameIsRequired": "Vui lòng nhập tên của thực đơn!",
-                        "desc": "Mô tả",
-                        "descTooltip": "Đoạn mô tả ngắn về thực đơn.",
-                        "descIsRequired": "Vui lòng nhập mô tả của thực đơn!",
-                        "isActive": "Hoạt động",
-                        "isActiveTooltip": "Tình trạng hoạt động của thực đơn. Khi tắt, thực đơn sẽ không được hiển thị trên nhà hàng.",
-                        "dishes": "Món ăn",
-                        "dishesTooltip": "Chọn các món ăn cho thực đơn",
-                        "cancelButton": "Hủy",
-                        "createButton": "Thêm",
-                        "title": "Thêm mới thực đơn",
-                        "resetButton": "Đặt lại"
-                    },
-                    "editForm": {
-                        "id": "Mã định danh",
-                        "idTooltip": ".Mã định danh của thực đơn",
-                        "createdAt": "Thời gian tạo mới",
-                        "createdAtTooltip": ".Thời gian thực đơn được tạo mới",
-                        "name": "Tên",
-                        "nameTooltip": "Tên của thực đơn.",
-                        "nameIsRequired": "Vui lòng nhập tên của thực đơn!",
-                        "desc": "Mô tả",
-                        "descTooltip": "Đoạn mô tả ngắn về thực đơn.",
-                        "descIsRequired": "Vui lòng nhập mô tả của thực đơn!",
-                        "isActive": "Hoạt động",
-                        "isActiveTooltip": "Tình trạng hoạt động của thực đơn. Khi tắt, thực đơn sẽ không được hiển thị trên nhà hàng.",
-                        "dishes": "Món ăn",
-                        "dishesTooltip": "Chọn các món ăn cho thực đơn",
-                        "cancelButton": "Hủy",
-                        "createButton": "Cập nhật",
-                        "title": "Chỉnh sửa thực đơn",
-                        "resetButton": "Đặt lại"
-                    }
-                },
-                "table": { "label": "Quản lý bàn" }
+                "dish": "Quản lý món ăn",
+                "menu": "Quản lý thực đơn",
+                "table": "Quản lý bàn"
             },
             "sales": {
                 "label": "Kinh doanh",
-                "booking": { "label": "Quản lý đặt món" },
-                "order": { "label": "Quản lý đơn hàng" },
-                "analytics": { "label": "Phân tích thống kê" }
+                "booking": "Quản lý đặt bàn",
+                "order": "Quản lý đơn hàng",
+                "analytics": "Phân tích&Thống kê"
             },
-            "account": {
-                "label": "Quản lý tài khoản"
-            },
+            "account": "Quản lý tài khoản",
             "settings": {
                 "label": "Cài đặt",
-                "system": { "label": "Cài đặt hệ thống" },
-                "account": { "label": "Cài đặt tài khoản" }
+                "system": "Cài đặt hệ thống",
+                "account": "Cài đặt tài khoản"
             },
-            "accountQuickAccess": {
+            "account_quick_access": {
                 "label": "Tài khoản",
-                "infomation": "Cài đặt tài khoản",
-                "logoutButton": "Đăng xuất"
+                "infomation": "Cài đặt tài khoản"
+            }
+        },
+        "entities": {
+            "id": "Mã",
+            "id_tooltip": ".Mã định danh của {{target}}",
+            "created_at": "Thời gian tạo mới",
+            "created_at_tooltip": ".Thời gian {{target}} được tạo mới",
+            "name": "Tên",
+            "name_tooltip": "Tên của {{target}}.",
+            "desc": "Mô tả",
+            "desc_tooltip": "Đoạn mô tả ngắn của {{target}}.",
+            "price": "Giá bán",
+            "price_tooltip": "Giá bán của món ăn.",
+            "completion_time": "Thời gian hoàn thành (phút)",
+            "completion_time_tooltip": "Thời gian dự kiến hoàn thành món ăn.",
+            "qty_per_day": "Số lượng/ngày",
+            "qty_per_day_tooltip": "Số lượng món ăn dự tính phục vụ trong một ngày.",
+            "upload_medias": "Ảnh món ăn",
+            "upload_medias_is_required": "Vui lòng tải lên ít nhất 1 ảnh!",
+            "qr_code": "Mã QR",
+            "table": "Bàn",
+            "table_tooltip": "",
+            "total": "Tổng",
+            "total_tooltip": "",
+            "qty": "Số lượng",
+            "unitPrice": "Đơn giá",
+            "amount": "Thành tiền",
+            "dishNote": "Ghi chi của món ăn...",
+            "note": "Ghi chú của đơn hàng...",
+            "dishes": "Món ăn",
+            "is_required": "Mục này là bắt buộc!",
+            "form_create_title": "Tạo mới {{target}}",
+            "form_edit_title": "Chỉnh sửa {{target}}",
+            "form_view_title": "Xem {{target}}",
+            "subtotal": "Tổng phụ",
+            "discount": "Giảm giá",
+            "username": "Tên người dùng",
+            "pwd": "Mật khẩu",
+            "pwd_tooltip": "Mật khẩu sẽ bắt buộc phải đổi sau khi đăng nhập tài khoản lần đầu.",
+            "active_status": {
+                "label": "Trạng thái hoạt động",
+                "active": "Hoạt động",
+                "off": "Tắt"
             },
-            "table": {
-                "emptyData": "Không có dữ liệu",
-                "triggerDesc": "Nhấn để sắp xếp giảm dần",
-                "triggerAsc": "Nhấn để sắp xếp tăng dần",
-                "cancelSort": "Nhấn để hủy sắp xếp",
-                "searchKeyword": "Tìm kiếm",
-                "searchButton": "Tìm kiếm",
-                "searchReset": "Đặt lại",
-                "searchClose": "Thoát",
-                "noColumn": "STT",
-                "actionColumn": "Hành động",
-                "buttonColumn": {
-                    "edit": "Chỉnh sửa",
-                    "delete": "Xóa",
-                    "turnOff": "Tắt hoạt động",
-                    "turnOn": "Bật hoạt động"
+            "dish_type": {
+                "label": "Loại",
+                "food": "Thức ăn",
+                "drink": "Thức uống"
+            },
+            "order_status": {
+                "label": "Trạng thái đơn hàng",
+                "all": "Tất cả",
+                "ordered": "Đã đặt hàng",
+                "to_receive": "Chờ nhận",
+                "completed": "Đã hoàn thành",
+                "cancelled": "Đã hủy"
+            },
+            "payment_status": {
+                "label": "Trạng thái thanh toán",
+                "all": "Tất cả",
+                "paid": "Đã thanh toán",
+                "unpaid": "Chưa thanh toán"
+            }
+        },
+        "pages": {
+            "analytics": {
+                "label": "Phân tích&Thống kê",
+                "orders_today": {
+                    "title": "Đơn hàng hôm nay",
+                    "count_all": "Tất cả",
+                    "count_ordered": "Đã đặt hàng",
+                    "count_to_receive": "Chờ nhận",
+                    "count_completed": "Đã hoàn thành",
+                    "count_cancelled": "Đã hủy"
                 },
-                "dishManagement": {
-                    "name": "Tên",
-                    "price": "Giá",
-                    "completionTime": "Thời gian hoàn thành (phút)",
-                    "qtyPerDate": "Số lượng/ngày",
-                    "isActive": {
-                        "label": "Hoạt động",
-                        "active": "Hoạt động",
-                        "off": "Tắt"
-                    },
-                    "typeName": {
-                        "label": "Loại",
-                        "food": "Thức ăn",
-                        "drink": "Nước uống"
-                    }
+                "revenue": "Doanh thu",
+                "top_sellers": {
+                    "title": "Món ăn bán chạy",
+                    "select_range": "Chọn thời gian"
+                },
+                "count_management": {
+                    "dishes": "Món ăn",
+                    "menus": "Thực đơn",
+                    "tables": "Bàn",
+                    "total_revenue": "Doanh thu",
+                    "total_order_completed": "Đơn hàng đã hoàn thành"
                 }
             }
         },
         "notification": {
-            "accountQuickAccess": {
-                "title": "Bạn chắc chắn muốn đăng xuất phiên làm việc hiện tại?",
-                "message": "Hành động này sẽ xóa thông tin đăng nhập hiện tại trên thiết bị này. Bạn vẫn có thể đăng nhập lại vào lần sau.",
-                "cancelButton": "Hủy",
-                "acceptButton": "Đăng xuất"
+            "account_quick_access": {
+                "title": "Bạn chắc chắn muốn thoát phiên làm việc hiện tại?",
+                "message": "Trạng thái đăng nhập sẽ bị xóa khỏi thiết bị hiện tại. Tuy nhiên bạn vẫn có thể đăng nhập lại vào lần sau."
             },
             "form": {
-                "createFinish": "Thêm mới thành công!",
-                "createFinishFail": "Thêm mới thất bại!",
-                "editFinish": "Cập nhật thành công!",
-                "editFinishFail": "Cập nhật thất bại!",
-                "actionInProgress": "Đang xử lý..."
+                "create_finish": "Tạo mới thành công!",
+                "create_finish_fail": "Tạo mới thất bại!",
+                "edit_finish": "Cập nhật thành công!",
+                "edit_finish_fail": "Cập nhật thất bại!",
+                "action_in_progress": "Đang xử lý..."
             },
             "table": {
-                "deleteAction": {
+                "delete_action": {
                     "title": "Bạn chắc chứ?",
-                    "content": "Hành động này sẽ xóa tất của thông tin của {{target}} này. \n Bạn sẽ không thể hoàn tác hành động này.",
-                    "acceptButton": "Xóa"
+                    "content": "Hành động này sẽ xóa thông tin của {{target}}. \n Bạn sẽ không thể hoàn tác hành động này."
                 },
-                "turnOffActiveAction": {
+                "turn_off_active_action": {
                     "title": "Đổi trạng thái thành tắt?",
-                    "content": "Trạng thái hoạt động của {{target}} này sẽ đổi thành tắt. Bạn vẫn có thể đổi trạng thái hoạt động của {{target}} này vào lần sau.",
-                    "acceptButton": "Tắt hoạt động"
+                    "content": "Trạng thái hoạt động của {{target}} sẽ đổi thành tắt. Bạn sẽ vẫn có thể đổi lại trạng thái hoạt động của {{target}} vào lần tới."
                 },
-                "turnOnActiveAction": {
-                    "title": "Đổi trạng thái thành hoạt động?",
-                    "content": "Trạng thái hoạt động của {{target}} này sẽ đổi thành hoạt động. Bạn vẫn có thể đổi trạng thái hoạt động của {{target}} này vào lần sau.",
-                    "acceptButton": "Hoạt động"
+                "turn_on_active_action": {
+                    "title": "Change active status to active?",
+                    "content": "Trạng thái hoạt động của {{target}} sẽ được bật. Bạn sẽ vẫn có thể đổi lại trạng thái hoạt động của {{target}} vào lần tới."
                 },
-                "cancelButton": "Hủy",
-                "popConfirm": {
-                    "quickTurnOff": {
-                        "title": "Chuyển thành tắt",
-                        "content": "Bạn có chắc muốn tắt trạng thái hoạt động của {{target}} này?",
-                        "acceptButton": "Tắt hoạt động"
+                "pop_confirm": {
+                    "quick_turn_off": {
+                        "title": "Đổi thành tắt",
+                        "content": "Bạn có chắc muốn tắt trạng thái hoạt động của {{target}}?"
                     },
-                    "quickDelete": {
-                        "title": "Xóa {{target}} này",
-                        "content": "Bạn có chắc muôn xóa {{target}} này?",
-                        "acceptButton": "Xóa"
+                    "quick_delete": {
+                        "title": "Xóa {{target}}",
+                        "content": "Bạn có chắc muốn xóa {{target}}?"
                     }
                 }
+            },
+            "qr_code": {
+                "title": "Mã QR của {{table}}"
             }
         },
         "common": {
-            "footer": { "line1": "UOrder- Quét mã và đặt bàn" },
-            "systemKey": { "dish": "món ăn", "menu": "thực đơn" }
+            "footer": "UOrder- Quét mã và đặt bàn",
+            "system_key": {
+                "dish": "món ăn",
+                "menu": "thực đơn",
+                "table": "bàn",
+                "order": "đơn hàng",
+                "booking": "đặt bàn",
+                "account": "tài khoản"
+            }
         },
-        "utilities": {
-            "upload": {
-                "text": "Nhấp hoặc kéo tệp vào khu vực này để tải lên",
-                "hint": "Hỗ trợ tải lên một lần hoặc hàng loạt. Nghiêm cấm tải lên dữ liệu bị cấm khác. (Tối đa: 8)"
+        "utilities": {},
+        "components": {
+            "antd_dragger": {
+                "text": "Nhấn hoặc kéo tệp vào vùng để tải ảnh lên",
+                "hint": "Hỗ trợ tải lên một lần hoặc hàng loạt. Nghiêm cấm tải lên các tập tin bị cấm. (Tối đa: 8)"
+            },
+            "table": {
+                "empty_data": "Không có dữ liệu",
+                "trigger_desc": "Nhấn để sắp xếp giảm dần",
+                "trigger_asc": "Nhấn để sắp xếp tăng dần",
+                "cancel_sort": "Nhấn để hủy sắp xếp",
+                "search_keyword": "Tìm kiếm",
+                "no_column": "STT",
+                "action_column": "Tác vụ"
+            },
+            "button": {
+                "active_log": "Lịch sử hoạt động",
+                "add": "Tạo mới",
+                "refresh": "Tải lại",
+                "cancel": "Hủy",
+                "edit": "Chỉnh sửa",
+                "delete": "Xóa",
+                "turn_on": "Tắt",
+                "turn_off": "Bật",
+                "reset": "Đặt lại",
+                "create": "Tạo mới",
+                "update": "Cập nhật",
+                "download": "Tải về",
+                "logout": "Đăng xuất",
+                "search": "Tìm kiếm",
+                "new_order": "Tạo đơn hàng mới",
+                "submit": "Xác nhận",
+                "close": "Đóng",
+                "add_order_item": "Thêm món mới",
+                "remove_order_item": "Xóa",
+                "view_order": "Xem"
             }
         }
+    },
+    "system": {
+        "lang_label": "Tiếng Việt",
+        "lang_key": "vi"
     }
 }

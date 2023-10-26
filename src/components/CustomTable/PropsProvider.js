@@ -8,11 +8,15 @@ export default function propsProvider(props) {
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
         handleActionButtonTurnOnClick,
-        expandedRowRenderSelection,
+        ExpandedRowRenderSelection,
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
         loadingTable,
+        extraColumns,
+        handleShowQrCodeClick,
+        switchActionColumn,
+        handleActionButtonViewClick,
     } = props;
     return {
         t,
@@ -23,10 +27,14 @@ export default function propsProvider(props) {
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,
         handleActionButtonTurnOnClick,
-        expandedRowRenderSelection,
+        ExpandedRowRenderSelection,
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
         loadingTable,
+        extraColumns,
+        handleShowQrCodeClick,
+        switchActionColumn,
+        handleActionButtonViewClick,
     };
 }

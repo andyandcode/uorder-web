@@ -4,19 +4,21 @@ export default function propsProvider(props) {
         columns,
         dataSource,
         locale,
-        expandedRowRenderSelection,
+        ExpandedRowRenderSelection,
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
+        switchActionColumn,
     } = props;
     return {
         t,
         columns,
         dataSource,
         locale,
-        expandedRowRenderSelection,
+        ExpandedRowRenderSelection,
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
+        switchActionColumn,
     };
 }
