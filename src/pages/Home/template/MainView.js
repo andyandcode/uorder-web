@@ -10,7 +10,7 @@ export default function MainView(props) {
         <>
             <Content>
                 <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('main.navigation.home')}
+                    {t('main.navigation.home.label')}
                 </Title>
             </Content>
         </>

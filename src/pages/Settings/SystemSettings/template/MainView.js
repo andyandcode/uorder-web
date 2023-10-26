@@ -10,7 +10,7 @@ export default function MainView(props) {
         <>
             <Content>
                 <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('app.feature.settings.system.label')}
+                    {t('main.navigation.settings.system')}
                 </Title>
             </Content>
         </>
