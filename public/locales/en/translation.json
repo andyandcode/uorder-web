@@ -153,7 +153,7 @@
         },
         "common": {
             "footer": "UOrder- Scan and make a reservation",
-            "system_key": { "dish": "dish", "menu": "menu", "table": "table", "order": "order" }
+            "system_key": { "dish": "dish", "menu": "menu", "table": "table", "order": "order", "booking": "booking" }
         },
         "utilities": {},
         "components": {
