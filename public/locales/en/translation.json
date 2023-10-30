@@ -112,7 +112,8 @@
                     "total_revenue": "Revenue",
                     "total_order_completed": "Orders Completed"
                 }
-            }
+            },
+            "login": { "title": "Login", "sub_title": "Online ordering management platform" }
         },
         "notification": {
             "account_quick_access": {
@@ -200,7 +201,10 @@
                 "close": "Close",
                 "add_order_item": "Add item",
                 "remove_order_item": "Remove",
-                "view_order": "View"
+                "view_order": "View",
+                "remember_login": "Remember login",
+                "forgot_pwd": "Forgot password",
+                "login": "Login"
             }
         }
     },

@@ -1,5 +1,6 @@
-import { PrinterOutlined } from '@ant-design/icons';
-import { Button, Col, Divider, Form, Input, Row, Select, Space, Typography } from 'antd';
+import { LockOutlined, PrinterOutlined, UserOutlined } from '@ant-design/icons';
+import { LoginFormPage, ProFormText } from '@ant-design/pro-components';
+import { Button, Col, Divider, Form, Input, Row, Select, Space, Typography, theme } from 'antd';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NumericFormat } from 'react-number-format';
@@ -736,6 +737,95 @@ const EditAccountForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
     );
 };
 
+const LoginForm = ({ t, handleButtonSubmit }) => {
+    const { token } = theme.useToken();
+    return (
+        <>
+            <div
+                style={{
+                    backgroundColor: 'white',
+                    height: '100vh',
+                }}
+            >
+                <LoginFormPage
+                    backgroundImageUrl='https://media.licdn.com/dms/image/C4D12AQHTBV0aw2Yqbw/article-cover_image-shrink_720_1280/0/1634637189100?e=2147483647&v=beta&t=xDJKaAHDoXd14IXAx7RTndH4GjdcAtH8OnGLU1qwMjI'
+                    title={t('main.pages.login.title')}
+                    containerStyle={{
+                        backgroundColor: 'rgba(255, 255, 255,0.55)',
+                        backdropFilter: 'blur(4px)',
+                    }}
+                    subTitle={t('main.pages.login.sub_title')}
+                    submitter={{
+                        render: (props, doms) => {
+                            return [
+                                <Button
+                                    type='primary'
+                                    block
+                                    onClick={(e) => handleButtonSubmit(props.form.getFieldsValue())}
+                                >
+                                    {t('main.components.button.login')}
+                                </Button>,
+                            ];
+                        },
+                    }}
+                >
+                    <ProFormText
+                        name='username'
+                        fieldProps={{
+                            size: 'large',
+                            prefix: (
+                                <UserOutlined
+                                    style={{
+                                        color: token.colorText,
+                                    }}
+                                    className={'prefixIcon'}
+                                />
+                            ),
+                        }}
+                        placeholder={t('main.entities.username')}
+                        rules={[
+                            {
+                                required: true,
+                                message: t('main.entities.is_required'),
+                            },
+                        ]}
+                    />
+                    <ProFormText.Password
+                        name='password'
+                        fieldProps={{
+                            size: 'large',
+                            prefix: (
+                                <LockOutlined
+                                    style={{
+                                        color: token.colorText,
+                                    }}
+                                    className={'prefixIcon'}
+                                />
+                            ),
+                        }}
+                        placeholder={t('main.entities.pwd')}
+                        rules={[
+                            {
+                                required: true,
+                                message: t('main.entities.is_required'),
+                            },
+                        ]}
+                    />
+                    <Button
+                        type='link'
+                        style={{
+                            float: 'right',
+                            marginBlockEnd: 20,
+                        }}
+                    >
+                        {t('main.components.button.forgot_pwd')}
+                    </Button>
+                </LoginFormPage>
+            </div>
+        </>
+    );
+};
+
 export const FormBuilder = {
     CreateNewDishForm,
     EditDishForm,
@@ -748,4 +838,5 @@ export const FormBuilder = {
     ViewBookingForm,
     CreateNewAccountForm,
     EditAccountForm,
+    LoginForm,
 };

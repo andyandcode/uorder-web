@@ -6,7 +6,7 @@ import store from './app/store';
 import Loading from './components/FullPageLoading';
 import WebLayout from './components/WebLayout/index';
 import './configuration/i18n';
-import { routeList } from './configuration/routesConfig';
+import { routeList, routeWithoutLayout } from './configuration/routesConfig';
 import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -26,6 +26,9 @@ root.render(
                             </WebLayout>
                         }
                     />
+                ))}
+                {routeWithoutLayout.map((route) => (
+                    <Route key={`route-${route.name}`} exact path={route.path} element={<route.component />} />
                 ))}
             </Routes>
         </BrowserRouter>

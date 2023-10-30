@@ -1,4 +1,5 @@
 import AccountManagement from '../pages/AccountManagement';
+import Login from '../pages/Authentication/Login';
 import Home from '../pages/Home';
 import DishManagement from '../pages/Manage/DishManagement';
 import MenuManagement from '../pages/Manage/MenuManagement';
@@ -22,6 +23,7 @@ const accountManagementUrl = '/account-management';
 const settingUrl = '/settings';
 const accountSettingUrl = `${settingUrl}/account-settings`;
 const systemSettingUrl = `${settingUrl}/system-settings`;
+const loginUrl = '/login';
 
 export const routeList = [
     { path: homeUrl, name: homeUrl, component: Home },
@@ -35,6 +37,8 @@ export const routeList = [
     { path: accountSettingUrl, name: accountSettingUrl, component: AccountSettings },
     { path: systemSettingUrl, name: systemSettingUrl, component: SystemSettings },
 ];
+
+export const routeWithoutLayout = [{ path: loginUrl, name: loginUrl, component: Login }];
 
 export const rootKeys = {
     homeUrl,
