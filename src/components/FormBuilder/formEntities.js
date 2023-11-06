@@ -10,6 +10,7 @@ import {
     Select,
     Space,
     Switch,
+    Typography,
     Upload,
     message,
 } from 'antd';
@@ -21,31 +22,57 @@ import DishData from '../../database/dish.json';
 import { ButtonLocated } from '../ButtonLocated';
 import { EnumRender } from '../EnumRender';
 
-const Id = () => {
+const Id = ({ data }) => {
     const { t } = useTranslation();
     return (
         <>
-            <ConfigProvider direction='rtl'>
-                <Form.Item name='id' label={t('main.entities.id')} tooltip={t('main.entities.id_tooltip')}>
-                    <Input disabled bordered={false} />
-                </Form.Item>
-            </ConfigProvider>
+            <Form.Item
+                name='id'
+                label={t('main.entities.id')}
+                tooltip={
+                    (t('main.entities.id_tooltip'),
+                    {
+                        target: t('main.common.system_key.dish'),
+                    })
+                }
+                style={{ display: 'none' }}
+            >
+                <Input disabled bordered={false} />
+            </Form.Item>
+            <Row style={{ marginBottom: 16 }}>
+                <Col>{t('main.entities.id')}</Col>
+                <Col flex={'auto'}>
+                    <Typography.Text type='secondary'>{data.getFieldsValue().id}</Typography.Text>
+                </Col>
+            </Row>
         </>
     );
 };
-const CreatedAt = () => {
+const CreatedAt = ({ data }) => {
     const { t } = useTranslation();
     return (
         <>
-            <ConfigProvider direction='rtl'>
-                <Form.Item
-                    name='createdAt'
-                    label={t('main.entities.created_at')}
-                    tooltip={t('main.entities.created_at_tooltip')}
-                >
-                    <Input disabled bordered={false} value={moment().format('DD/MM/YYYY')} />
-                </Form.Item>
-            </ConfigProvider>
+            <Form.Item
+                name='createdAt'
+                label={t('main.entities.created_at')}
+                tooltip={
+                    (t('main.entities.created_at_tooltip'),
+                    {
+                        target: t('main.common.system_key.dish'),
+                    })
+                }
+                style={{ display: 'none' }}
+            >
+                <Input />
+            </Form.Item>
+            <Row style={{ marginBottom: 16 }}>
+                <Col>{t('main.entities.created_at')}</Col>
+                <Col flex={'auto'}>
+                    <Typography.Text type='secondary'>
+                        {moment(data.getFieldsValue().createdAt).format('DD/MM/YYYY')}
+                    </Typography.Text>
+                </Col>
+            </Row>
         </>
     );
 };
@@ -159,12 +186,7 @@ const CompletionTime = () => {
     );
 };
 const UploadMedias = ({ defaultFileList }) => {
-    console.log(defaultFileList);
     const { t } = useTranslation();
-    const [fileList, setFileList] = useState([]);
-    useEffect(() => {
-        setFileList(defaultFileList);
-    }, [defaultFileList]);
     const draggerFileProps = {
         name: 'file',
         multiple: true,
@@ -204,7 +226,7 @@ const UploadMedias = ({ defaultFileList }) => {
                     initialValue={{ medias: defaultFileList }}
                 >
                     <Space>
-                        <Upload.Dragger {...draggerFileProps} defaultFileList={fileList}>
+                        <Upload.Dragger {...draggerFileProps} defaultFileList={[]}>
                             <p className='ant-upload-drag-icon'>
                                 <InboxOutlined />
                             </p>

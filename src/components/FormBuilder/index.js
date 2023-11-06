@@ -51,8 +51,8 @@ const EditDishForm = ({ form, handleButtonCancel, handleButtonSubmit, defaultFil
             <Form form={form} align='end' layout='horizontal' name='form_edit_in_modal'>
                 <Row gutter={[52]}>
                     <Col span={12}>
-                        <FormEntities.Id />
-                        <FormEntities.CreatedAt />
+                        <FormEntities.Id data={form} />
+                        <FormEntities.CreatedAt data={form} />
                         <FormEntities.Name />
                         <FormEntities.Desc />
                         <FormEntities.Price />

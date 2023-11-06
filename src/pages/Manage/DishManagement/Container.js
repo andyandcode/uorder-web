@@ -2,15 +2,15 @@ import { Form, message, Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
-import DishData from '../../../database/dish.json';
+import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
+import { getListDishAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
-    const { history, t } = props;
+    const { history, t, dispatch } = props;
     const columns = TableColumns.DishColumns(t);
     const expandedRowRenderSelection = TableColumns.ExpandedRowRenderSelection;
-    const data = DishData;
     const [tableData, setTableData] = useState([]);
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
@@ -23,10 +23,12 @@ function Conainer(props) {
     useEffect(() => {
         setLoadingTable(true);
         setTimeout(() => {
-            setTableData(data);
+            dispatch(getListDishAdmin()).then((result) => {
+                setTableData(Utils.getValues(result, 'payload', []));
+            });
             setLoadingTable(false);
         }, 500);
-    }, [data]);
+    }, [dispatch]);
 
     const [defaultFileList, setDefaultFileList] = useState([]);
 
