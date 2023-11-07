@@ -18,17 +18,17 @@ export const getListDishAdmin = createAsyncThunk('dishAdmin/listDishAdmin', asyn
     return res;
 });
 
-export const insertGinsengAdmin = createAsyncThunk('dishAdmin/insertDishAdmin', async (params) => {
+export const insertDishAdmin = createAsyncThunk('dishAdmin/insertDishAdmin', async (params) => {
     const res = await DishAdmin.insertDish(params);
     return res;
 });
 
-export const updateGinsengAdmin = createAsyncThunk('dishAdmin/updateDishAdmin', async (params) => {
+export const updateDishAdmin = createAsyncThunk('dishAdmin/updateDishAdmin', async (params) => {
     const res = await DishAdmin.updateDish(params);
     return res;
 });
 
-export const deleteGinsengAdmin = createAsyncThunk('dishAdmin/deleteDishAdmin', async (params) => {
+export const deleteDishAdmin = createAsyncThunk('dishAdmin/deleteDishAdmin', async (params) => {
     const res = await DishAdmin.deleteDish(params);
     return res;
 });

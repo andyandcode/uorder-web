@@ -7,8 +7,7 @@ import Config from '../configuration/index';
 const axiosClient = axios.create({
     baseURL: Config.endPointAdmin,
     headers: {
-        'content-type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        'content-type': 'multipart/form-data',
     },
     timeout: 10000,
     paramsSerializer: (params) => queryString.stringify(params),

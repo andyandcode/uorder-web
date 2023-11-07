@@ -1,6 +1,6 @@
 import { message } from 'antd';
 
-const DeleteModal = (t, target) => {
+const DeleteModal = (t, target, onOk) => {
     return {
         title: t('main.notification.table.delete_action.title'),
         content: t('main.notification.table.delete_action.content', {
@@ -9,10 +9,11 @@ const DeleteModal = (t, target) => {
         okText: t('main.components.button.delete'),
         cancelText: t('main.components.button.cancel'),
         okType: 'danger',
+        onOk: onOk,
     };
 };
 
-const TurnOffModal = (t, target) => {
+const TurnOffModal = (t, target, onOk) => {
     return {
         title: t('main.notification.table.turn_off_active_action.title'),
         content: t('main.notification.table.turn_off_active_action.content', {
@@ -21,10 +22,11 @@ const TurnOffModal = (t, target) => {
         okText: t('main.components.button.turn_off'),
         cancelText: t('main.components.button.cancel'),
         okType: 'danger',
+        onOk: onOk,
     };
 };
 
-const TurnOnModal = (t, target) => {
+const TurnOnModal = (t, target, onOk) => {
     return {
         title: t('main.notification.table.turn_on_active_action.title'),
         content: t('main.notification.table.turn_on_active_action.content', {
@@ -32,6 +34,7 @@ const TurnOnModal = (t, target) => {
         }),
         okText: t('main.components.button.turn_on'),
         cancelText: t('main.components.button.cancel'),
+        onOk: onOk,
     };
 };
 

@@ -21,7 +21,10 @@ const CreateNewDishForm = ({ form, handleButtonCancel, handleButtonSubmit }) => 
                 initialValues={{ type: 0, isActive: true }}
             >
                 <Row gutter={[52]}>
-                    <Col span={12}>
+                    <Col>
+                        <FormEntities.UploadMedias />
+                    </Col>
+                    <Col>
                         <FormEntities.Name />
                         <FormEntities.Desc />
                         <FormEntities.Price />
@@ -29,9 +32,6 @@ const CreateNewDishForm = ({ form, handleButtonCancel, handleButtonSubmit }) => 
                         <FormEntities.QtyPerDay />
                         <FormEntities.DishType />
                         <FormEntities.ActiveStatus />
-                    </Col>
-                    <Col span={12}>
-                        <FormEntities.UploadMedias />
                     </Col>
                 </Row>
 
@@ -50,7 +50,10 @@ const EditDishForm = ({ form, handleButtonCancel, handleButtonSubmit, defaultFil
         <>
             <Form form={form} align='end' layout='horizontal' name='form_edit_in_modal'>
                 <Row gutter={[52]}>
-                    <Col span={12}>
+                    <Col>
+                        <FormEntities.UploadMedias defaultFileList={defaultFileList} />
+                    </Col>
+                    <Col>
                         <FormEntities.Id data={form} />
                         <FormEntities.CreatedAt data={form} />
                         <FormEntities.Name />
@@ -60,9 +63,6 @@ const EditDishForm = ({ form, handleButtonCancel, handleButtonSubmit, defaultFil
                         <FormEntities.QtyPerDay />
                         <FormEntities.DishType />
                         <FormEntities.ActiveStatus />
-                    </Col>
-                    <Col span={12}>
-                        <FormEntities.UploadMedias defaultFileList={defaultFileList} />
                     </Col>
                 </Row>
 

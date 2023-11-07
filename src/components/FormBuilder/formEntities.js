@@ -1,4 +1,4 @@
-import { CheckOutlined, CloseOutlined, DeleteOutlined, InboxOutlined } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined, DeleteOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import {
     Button,
     Col,
@@ -143,7 +143,7 @@ const Price = () => {
                     allowLeadingZeros={false}
                     isAllowed={(values) => {
                         const { formattedValue, floatValue } = values;
-                        return formattedValue === '' || (floatValue <= 1000000000 && floatValue >= 1);
+                        return formattedValue === '' || floatValue <= 1000000000;
                     }}
                     style={{
                         width: 250,
@@ -187,53 +187,74 @@ const CompletionTime = () => {
 };
 const UploadMedias = ({ defaultFileList }) => {
     const { t } = useTranslation();
-    const draggerFileProps = {
-        name: 'file',
-        multiple: true,
-        maxCount: 8,
-        accept: 'image/png, image/jpeg',
-        action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
-        onChange(info) {
-            const { status } = info.file;
-            if (status !== 'uploading') {
-                console.log(info.file, info.fileList);
-            }
-            if (status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully.`);
-            } else if (status === 'error') {
-                message.error(`${info.file.name} file upload failed.`);
-            }
-        },
-        onDrop(e) {
-            console.log('Dropped files', e.dataTransfer.files);
-        },
+    const [loading, setLoading] = useState(false);
+    const [imageUrl, setImageUrl] = useState();
+    const getBase64 = (img, callback) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
     };
-
+    const beforeUpload = (file) => {
+        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+        if (!isJpgOrPng) {
+            message.error('You can only upload JPG/PNG file!');
+        }
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+            message.error('Image must smaller than 2MB!');
+        }
+        return isJpgOrPng && isLt2M;
+    };
+    const handleChange = (info) => {
+        if (info.file.status === 'uploading') {
+            setLoading(true);
+            return;
+        }
+        if (info.file.status === 'done') {
+            // Get this url from response in real world.
+            getBase64(info.file.originFileObj, (url) => {
+                setLoading(false);
+                setImageUrl(url);
+            });
+        }
+    };
+    const uploadButton = (
+        <div>
+            {loading ? <LoadingOutlined /> : <PlusOutlined />}
+            <div
+                style={{
+                    marginTop: 8,
+                }}
+            >
+                Upload
+            </div>
+        </div>
+    );
     return (
         <>
             <ConfigProvider direction='ltr'>
-                <Form.Item
-                    name='medias'
-                    label={t('main.entities.upload_medias')}
-                    valuePropName='fileList'
-                    className={'custom_input'}
-                    rules={[
-                        {
-                            required: true,
-                            message: t('main.entities.upload_medias_is_required'),
-                        },
-                    ]}
-                    initialValue={{ medias: defaultFileList }}
-                >
-                    <Space>
-                        <Upload.Dragger {...draggerFileProps} defaultFileList={[]}>
-                            <p className='ant-upload-drag-icon'>
-                                <InboxOutlined />
-                            </p>
-                            <p className='ant-upload-text'>{t('main.components.antd_dragger.text')}</p>
-                            <p className='ant-upload-hint'>{t('main.components.antd_dragger.hint')}</p>
-                        </Upload.Dragger>
-                    </Space>
+                <Form.Item name='medias' label={t('main.entities.upload_medias')} className={'custom_input'}>
+                    <Upload
+                        name='medias'
+                        listType='picture-card'
+                        className='avatar-uploader'
+                        showUploadList={false}
+                        action='https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188'
+                        beforeUpload={beforeUpload}
+                        onChange={handleChange}
+                    >
+                        {imageUrl ? (
+                            <img
+                                src={imageUrl}
+                                alt='avatar'
+                                style={{
+                                    width: '100%',
+                                }}
+                            />
+                        ) : (
+                            uploadButton
+                        )}
+                    </Upload>
                 </Form.Item>
             </ConfigProvider>
         </>
