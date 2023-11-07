@@ -72,7 +72,7 @@ function Conainer(props) {
         function onOk() {
             const modifiedItem = {
                 ...data,
-                isActive: true,
+                isActive: false,
             };
             dispatch(updateDishAdmin(modifiedItem));
             getNewTableData();
@@ -85,7 +85,7 @@ function Conainer(props) {
             console.log(data);
             const modifiedItem = {
                 ...data,
-                isActive: false,
+                isActive: true,
             };
             dispatch(updateDishAdmin(modifiedItem));
             getNewTableData();

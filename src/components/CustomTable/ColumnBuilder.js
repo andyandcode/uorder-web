@@ -22,18 +22,18 @@ const menuSelection = ({
             },
         ];
         if (record.hasOwnProperty('isActive')) {
-            if (!record.isActive) {
+            if (record.isActive === true) {
                 menuArr.push({
                     label: t('main.components.button.turn_off'),
                     key: '2',
-                    icon: <EyeOutlined />,
+                    icon: <EyeInvisibleOutlined />,
                     onClick: () => handleActionButtonTurnOffClick(record),
                 });
             } else {
                 menuArr.push({
                     label: t('main.components.button.turn_on'),
                     key: '2',
-                    icon: <EyeInvisibleOutlined />,
+                    icon: <EyeOutlined />,
                     onClick: () => handleActionButtonTurnOnClick(record),
                 });
             }

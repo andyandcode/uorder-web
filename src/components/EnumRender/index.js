@@ -114,15 +114,13 @@ const ActiveStatus = (t, data) => {
         case true:
             return (
                 <>
-                    {' '}
-                    <Badge status={'success'} text={t('main.entities.active_status.active')} />{' '}
+                    <Badge status={'success'} text={t('main.entities.active_status.active')} />
                 </>
             );
         case false:
             return (
                 <>
-                    {' '}
-                    <Badge status={'default'} text={t('main.entities.active_status.off')} />{' '}
+                    <Badge status={'default'} text={t('main.entities.active_status.off')} />
                 </>
             );
         default:

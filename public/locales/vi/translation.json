@@ -137,7 +137,7 @@
                     "content": "Trạng thái hoạt động của {{target}} sẽ đổi thành tắt. Bạn sẽ vẫn có thể đổi lại trạng thái hoạt động của {{target}} vào lần tới."
                 },
                 "turn_on_active_action": {
-                    "title": "Change active status to active?",
+                    "title": "Đổi trạng thái thành bật?",
                     "content": "Trạng thái hoạt động của {{target}} sẽ được bật. Bạn sẽ vẫn có thể đổi lại trạng thái hoạt động của {{target}} vào lần tới."
                 },
                 "pop_confirm": {
@@ -188,8 +188,8 @@
                 "cancel": "Hủy",
                 "edit": "Chỉnh sửa",
                 "delete": "Xóa",
-                "turn_on": "Tắt",
-                "turn_off": "Bật",
+                "turn_on": "Bật",
+                "turn_off": "Tắt",
                 "reset": "Đặt lại",
                 "create": "Tạo mới",
                 "update": "Cập nhật",
