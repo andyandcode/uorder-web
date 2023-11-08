@@ -22,10 +22,12 @@ function Conainer(props) {
 
     useEffect(() => {
         setLoadingTable(true);
-        dispatch(getListMenuAdmin()).then((result) => {
-            setTableData(Utils.getValues(result, 'payload', []));
+        setTimeout(() => {
+            dispatch(getListMenuAdmin()).then((result) => {
+                setTableData(Utils.getValues(result, 'payload', []));
+            });
             setLoadingTable(false);
-        });
+        }, 500);
     }, [dispatch]);
 
     const getNewTableData = () => {
