@@ -1,4 +1,12 @@
-import { CheckOutlined, CloseOutlined, DeleteOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import {
+    CheckOutlined,
+    CloseOutlined,
+    DeleteOutlined,
+    GlobalOutlined,
+    LoadingOutlined,
+    PlusOutlined,
+    UserOutlined,
+} from '@ant-design/icons';
 import {
     Button,
     Col,
@@ -48,6 +56,15 @@ const Id = ({ data }) => {
                     <Typography.Text type='secondary'>{data.getFieldsValue().id}</Typography.Text>
                 </Col>
             </Row>
+        </>
+    );
+};
+const HiddenId = () => {
+    return (
+        <>
+            <Form.Item name='id' style={{ display: 'none' }}>
+                <Input />
+            </Form.Item>
         </>
     );
 };
@@ -621,8 +638,104 @@ const Password = () => {
     );
 };
 
+const ChiefCount = ({ data, form, handleChiefCountSubmitClick }) => {
+    const { t } = useTranslation();
+    const [disableSubmit, setDisableSubmit] = useState(true);
+
+    const onCheckInput = (e) => {
+        if (e === data) {
+            setDisableSubmit(true);
+        } else {
+            setDisableSubmit(false);
+        }
+    };
+    return (
+        <>
+            <Row>
+                <Col flex={'auto'}>
+                    <Form.Item
+                        name='chiefCount'
+                        label={t('main.entities.chief_count')}
+                        tooltip={t('main.entities.chief_count_tooltip', {
+                            target: t('main.common.system_key.chief_count'),
+                        })}
+                        rules={[
+                            {
+                                required: true,
+                                message: t('main.entities.is_required'),
+                            },
+                        ]}
+                    >
+                        <InputNumber
+                            addonBefore={<UserOutlined />}
+                            min={1}
+                            keyboard={true}
+                            onChange={(e) => onCheckInput(e)}
+                        />
+                    </Form.Item>
+                </Col>
+                <Col span={2}>
+                    <Space>
+                        <ButtonLocated.SubmitSystemSettingsButtom
+                            disabled={disableSubmit}
+                            handleButton={handleChiefCountSubmitClick}
+                            form={form}
+                        />
+                    </Space>
+                </Col>
+            </Row>
+        </>
+    );
+};
+const Domain = ({ data, form, handleDomainSubmitClick }) => {
+    const { t } = useTranslation();
+    const [disableSubmit, setDisableSubmit] = useState(true);
+
+    const onCheckInput = (e) => {
+        if (e.target.value === data) {
+            setDisableSubmit(true);
+        } else {
+            setDisableSubmit(false);
+        }
+    };
+
+    return (
+        <>
+            <Row>
+                <Col flex={'auto'}>
+                    <Form.Item
+                        name='domain'
+                        label={t('main.entities.domain')}
+                        tooltip={t('main.entities.domain_tooltip', {
+                            target: t('main.common.system_key.domain'),
+                        })}
+                        rules={[
+                            {
+                                required: true,
+                                message: t('main.entities.is_required'),
+                            },
+                        ]}
+                    >
+                        <Input addonBefore={<GlobalOutlined />} allowClear onChange={(e) => onCheckInput(e)} />
+                    </Form.Item>
+                </Col>
+                <Col span={2}>
+                    <Space>
+                        <ButtonLocated.SubmitSystemSettingsButtom
+                            disabled={disableSubmit}
+                            handleButton={handleDomainSubmitClick}
+                            form={form}
+                        />
+                    </Space>
+                </Col>
+            </Row>
+        </>
+    );
+};
+
 export const FormEntities = {
     Id,
+    HiddenId,
     CreatedAt,
     Name,
     Desc,
@@ -640,4 +753,6 @@ export const FormEntities = {
     PaymentStatus,
     Username,
     Password,
+    ChiefCount,
+    Domain,
 };

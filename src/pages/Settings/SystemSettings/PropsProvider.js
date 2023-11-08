@@ -1,4 +1,22 @@
 export default function propsProvider(props) {
-    const { history, dispatch, t } = props;
-    return { history, dispatch, t };
+    const {
+        history,
+        dispatch,
+        t,
+        editForm,
+        settingsData,
+        handleDomainSubmitClick,
+        handleChiefCountSubmitClick,
+        messageContextHolder,
+    } = props;
+    return {
+        history,
+        dispatch,
+        t,
+        editForm,
+        settingsData,
+        handleDomainSubmitClick,
+        handleChiefCountSubmitClick,
+        messageContextHolder,
+    };
 }

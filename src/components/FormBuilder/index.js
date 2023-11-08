@@ -828,6 +828,22 @@ const LoginForm = ({ t, handleButtonSubmit }) => {
     );
 };
 
+const SystemSettingsForm = ({ t, form, data, handleDomainSubmitClick, handleChiefCountSubmitClick }) => {
+    return (
+        <>
+            <Form form={form} layout='horizontal' name='form_create_in_modal' align='end'>
+                <FormEntities.HiddenId />
+                <FormEntities.ChiefCount
+                    data={data}
+                    form={form}
+                    handleChiefCountSubmitClick={handleChiefCountSubmitClick}
+                />
+                <FormEntities.Domain data={data} form={form} handleDomainSubmitClick={handleDomainSubmitClick} />
+            </Form>
+        </>
+    );
+};
+
 export const FormBuilder = {
     CreateNewDishForm,
     EditDishForm,
@@ -841,4 +857,5 @@ export const FormBuilder = {
     CreateNewAccountForm,
     EditAccountForm,
     LoginForm,
+    SystemSettingsForm,
 };

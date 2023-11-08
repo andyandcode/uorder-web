@@ -63,11 +63,11 @@ const ResetButton = () => {
     );
 };
 
-const CancelButton = ({ handleButton }) => {
+const CancelButton = ({ handleButton, disabled }) => {
     const { t } = useTranslation();
     return (
         <>
-            <Button danger onClick={handleButton}>
+            <Button danger onClick={handleButton} disabled={disabled}>
                 {t('main.components.button.cancel')}
             </Button>
         </>
@@ -118,6 +118,17 @@ const AddOrderItem = ({ handleButton }) => {
     );
 };
 
+const SubmitSystemSettingsButtom = ({ form, handleButton, disabled }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Button type='primary' onClick={() => handleButton(form.getFieldsValue())} form={form} disabled={disabled}>
+                {t('main.components.button.submit')}
+            </Button>
+        </>
+    );
+};
+
 export const ButtonLocated = {
     AddButton,
     RefreshButton,
@@ -128,4 +139,5 @@ export const ButtonLocated = {
     UpdateButton,
     NewOrderButton,
     AddOrderItem,
+    SubmitSystemSettingsButtom,
 };
