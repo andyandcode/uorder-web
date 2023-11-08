@@ -118,6 +118,8 @@ const EditMenuForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
             >
                 <Row gutter={[52]}>
                     <Col span={12}>
+                        <FormEntities.Id data={form} />
+                        <FormEntities.CreatedAt data={form} />
                         <FormEntities.Name />
                         <FormEntities.Desc />
                         <FormEntities.ActiveStatus />

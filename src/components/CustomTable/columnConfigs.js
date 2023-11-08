@@ -279,7 +279,14 @@ const OrderColumns = () => {
     ];
 };
 
-const ExpandedRowRenderSelection = (data, t, switchActionColumn) => {
+const ExpandedRowRenderSelection = (
+    data,
+    t,
+    switchActionColumn,
+    handleQuickActionButtonTurnOnClick,
+    handleQuickDeleteConfirm,
+    handleQuickTurnOffConfirm,
+) => {
     switch (switchActionColumn) {
         case TableColumns.TableSwitch.MenuTable:
             const menuColumns = [
@@ -330,6 +337,9 @@ const ExpandedRowRenderSelection = (data, t, switchActionColumn) => {
                     }}
                     size='small'
                     switchActionColumn={switchActionColumn}
+                    handleQuickActionButtonTurnOnClick={handleQuickActionButtonTurnOnClick}
+                    handleQuickDeleteConfirm={handleQuickDeleteConfirm}
+                    handleQuickTurnOffConfirm={handleQuickTurnOffConfirm}
                 />
             );
         case TableColumns.TableSwitch.DishTable:

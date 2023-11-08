@@ -18,7 +18,10 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NumericFormat } from 'react-number-format';
+import { useDispatch } from 'react-redux';
 import DishData from '../../database/dish.json';
+import { getListDishAdmin } from '../../pages/Manage/DishManagement/Slice';
+import Utils from '../../utilities';
 import { ButtonLocated } from '../ButtonLocated';
 import { EnumRender } from '../EnumRender';
 
@@ -299,11 +302,14 @@ const Table = () => {
 };
 const Dishes = () => {
     const { t } = useTranslation();
-    const data = DishData;
+    const dispatch = useDispatch();
     const [dishData, setDishData] = useState([]);
     useEffect(() => {
-        setDishData(data);
-    }, [data]);
+        dispatch(getListDishAdmin()).then((result) => {
+            setDishData(Utils.getValues(result, 'payload', []));
+        });
+    }, [dispatch]);
+
     return (
         <>
             <ConfigProvider direction='ltr'>

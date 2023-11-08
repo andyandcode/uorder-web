@@ -2,17 +2,16 @@ import { Form, message, Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
-import DishData from '../../../database/dish.json';
-import MenuData from '../../../database/menu.json';
+import Utils from '../../../utilities';
+import { deleteDishAdmin, updateDishAdmin } from '../DishManagement/Slice';
 import propsProvider from './PropsProvider';
+import { deleteMenuAdmin, getListMenuAdmin, insertMenuAdmin, updateMenuAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
-    const { history, t } = props;
+    const { history, t, dispatch } = props;
     const columns = TableColumns.MenuColumns(t);
-    const data = MenuData;
     const [tableData, setTableData] = useState([]);
-    const dishData = DishData;
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
@@ -23,11 +22,21 @@ function Conainer(props) {
 
     useEffect(() => {
         setLoadingTable(true);
+        dispatch(getListMenuAdmin()).then((result) => {
+            setTableData(Utils.getValues(result, 'payload', []));
+            setLoadingTable(false);
+        });
+    }, [dispatch]);
+
+    const getNewTableData = () => {
+        setLoadingTable(true);
         setTimeout(() => {
-            setTableData(data);
+            dispatch(getListMenuAdmin()).then((result) => {
+                setTableData(Utils.getValues(result, 'payload', []));
+            });
             setLoadingTable(false);
         }, 500);
-    }, [data]);
+    };
 
     const handleEditCancelClick = () => {
         setOpenEditModel(false);
@@ -43,42 +52,76 @@ function Conainer(props) {
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Menu), {
-            onOk() {},
-            onCancel() {},
-        });
+        function onOk() {
+            dispatch(deleteMenuAdmin(data.id));
+            getNewTableData();
+        }
+        Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Menu, onOk));
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Menu), {
-            onOk() {},
-            onCancel() {},
-        });
+        console.log(data);
+        function onOk() {
+            const modifiedItem = {
+                ...data,
+                isActive: false,
+                dishes: data.dishes.map((item) => item.id),
+            };
+            console.log(modifiedItem);
+            dispatch(updateMenuAdmin(modifiedItem));
+            getNewTableData();
+        }
+        Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Menu, onOk));
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Menu), {
-            onOk() {},
-            onCancel() {},
-        });
+        console.log(data);
+        function onOk() {
+            const modifiedItem = {
+                ...data,
+                isActive: true,
+                dishes: data.dishes.map((item) => item.id),
+            };
+            dispatch(updateMenuAdmin(modifiedItem));
+            getNewTableData();
+        }
+        Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Menu, onOk));
     };
 
-    const handleQuickDeleteConfirm = (data) => {};
+    const handleQuickDeleteConfirm = (data) => {
+        dispatch(deleteDishAdmin(data.id));
+        getNewTableData();
+    };
 
-    const handleQuickTurnOffConfirm = (data) => {};
+    const handleQuickTurnOffConfirm = (data) => {
+        const modifiedItem = {
+            ...data,
+            isActive: false,
+        };
+        dispatch(updateDishAdmin(modifiedItem));
+        getNewTableData();
+    };
 
-    const handleQuickActionButtonTurnOnClick = (data) => {};
+    const handleQuickActionButtonTurnOnClick = (data) => {
+        const modifiedItem = {
+            ...data,
+            isActive: true,
+        };
+        dispatch(updateDishAdmin(modifiedItem));
+        getNewTableData();
+    };
 
     const handleCreateSubmitClick = (values) => {
         createForm
             .validateFields()
             .then(() => {
-                console.log('Created: ', values);
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
+                        dispatch(insertMenuAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
+                        getNewTableData();
                     })
                     .then(() => createForm.resetFields());
             })
@@ -91,12 +134,14 @@ function Conainer(props) {
         editForm
             .validateFields()
             .then(() => {
-                console.log('Edited: ', values);
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
+                        console.log(values);
+                        dispatch(updateMenuAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                         setOpenEditModel(false);
+                        getNewTableData();
                     })
                     .then(() => editForm.resetFields());
             })
@@ -110,20 +155,7 @@ function Conainer(props) {
     };
 
     const handleRefreshClick = (index) => {
-        setLoadingsRefreshButton((prevLoadings) => {
-            const newLoadings = [...prevLoadings];
-            newLoadings[index] = true;
-            setLoadingTable(true);
-            return newLoadings;
-        });
-        setTimeout(() => {
-            setLoadingsRefreshButton((prevLoadings) => {
-                const newLoadings = [...prevLoadings];
-                newLoadings[index] = false;
-                setLoadingTable(false);
-                return newLoadings;
-            });
-        }, 1000);
+        getNewTableData();
     };
 
     const containerProps = {
@@ -137,7 +169,6 @@ function Conainer(props) {
         createForm,
         editForm,
         messageContextHolder,
-        dishData,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,

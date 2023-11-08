@@ -34,4 +34,25 @@ const DishAdmin = {
     },
 };
 
-export { DishAdmin, FileUpload };
+const MenuAdmin = {
+    getListMenu: (params) => {
+        const url = '/menu/getAll';
+        return axiosClient.get(url, { params });
+    },
+    insertMenu: (params) => {
+        const url = '/menu/post';
+        return axiosClient.post(url, params, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+    },
+    updateMenu: (params) => {
+        const url = `/menu/put/${params.id}`;
+        return axiosClient.put(url, params);
+    },
+    deleteMenu: (params) => {
+        const url = `/menu/delete/${params}`;
+        return axiosClient.delete(url);
+    },
+};
+
+export { DishAdmin, FileUpload, MenuAdmin };
