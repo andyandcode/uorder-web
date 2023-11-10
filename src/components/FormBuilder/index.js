@@ -165,13 +165,10 @@ const CreateNewTableForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
 const EditTableForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
     return (
         <>
-            <Form
-                form={form}
-                layout='horizontal'
-                name='form_create_in_modal'
-                align='end'
-                initialValues={{ type: 0, isActive: true }}
-            >
+            <Form form={form} layout='horizontal' name='form_create_in_modal' align='end'>
+                <FormEntities.ScanRoute />
+                <FormEntities.Id data={form} />
+                <FormEntities.CreatedAt data={form} />
                 <FormEntities.Name />
                 <FormEntities.Desc />
                 <FormEntities.ActiveStatus />

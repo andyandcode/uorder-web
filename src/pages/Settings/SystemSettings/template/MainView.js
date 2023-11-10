@@ -22,7 +22,7 @@ export default function MainView({
                 {settingsData.length === undefined
                     ? settingsData.domain.length === 0 && (
                           <Alert
-                              message={t('main.notification.system_settings.not_have_domain_alert')}
+                              message={t('main.components.alert.not_have_domain_warning')}
                               type='warning'
                               showIcon
                               style={{ marginBottom: 24 }}

@@ -2,6 +2,7 @@ import { Form, message, Modal, QRCode } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
+import data from '../../../database/table.json';
 import propsProvider from './PropsProvider';
 import MainView from './template/MainView';
 
@@ -20,7 +21,7 @@ function Conainer(props) {
     useEffect(() => {
         setLoadingTable(true);
         setTimeout(() => {
-            setTableData([]);
+            setTableData(data);
             setLoadingTable(false);
         }, 500);
     }, []);

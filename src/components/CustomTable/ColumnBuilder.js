@@ -140,13 +140,19 @@ const ExtraColumnBuilder = (props, key) => {
                         title={t('main.entities.qr_code')}
                         key='action'
                         align='center'
-                        render={(record) => (
-                            <Button
-                                type='text'
-                                icon={<QrcodeOutlined style={{ fontSize: '16px', color: '#08c' }} />}
-                                onClick={() => handleShowQrCodeClick(record)}
-                            ></Button>
-                        )}
+                        render={(record) => {
+                            if (record.route.length === 0) {
+                                return;
+                            } else {
+                                return (
+                                    <Button
+                                        type='text'
+                                        icon={<QrcodeOutlined style={{ fontSize: '16px', color: '#08c' }} />}
+                                        onClick={() => handleShowQrCodeClick(record)}
+                                    ></Button>
+                                );
+                            }
+                        }}
                     />
                 </>
             );

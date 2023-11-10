@@ -95,7 +95,7 @@ const DishColumns = (t) => {
             },
             render: (data) => EnumRender.DishType(t, data),
         },
-    ];
+    ].filter((item) => !item.hidden);
 };
 
 const MenuColumns = () => {
@@ -130,7 +130,7 @@ const MenuColumns = () => {
             },
             render: (data) => EnumRender.ActiveStatus(t, data),
         },
-    ];
+    ].filter((item) => !item.hidden);
 };
 
 const AccountColumns = () => {
@@ -182,7 +182,7 @@ const AccountColumns = () => {
             },
             render: (data) => EnumRender.ActiveStatus(t, data),
         },
-    ];
+    ].filter((item) => !item.hidden);
 };
 
 const TablesColumns = () => {
@@ -217,7 +217,12 @@ const TablesColumns = () => {
             },
             render: (data) => EnumRender.ActiveStatus(t, data),
         },
-    ];
+        {
+            key: 'route',
+            dataIndex: 'route',
+            hidden: true,
+        },
+    ].filter((item) => !item.hidden);
 };
 
 const OrderColumns = () => {
@@ -276,7 +281,7 @@ const OrderColumns = () => {
             title: t('main.entities.payment_status.label'),
             render: (data) => EnumRender.PaymentStatus(t, data),
         },
-    ];
+    ].filter((item) => !item.hidden);
 };
 
 const ExpandedRowRenderSelection = (

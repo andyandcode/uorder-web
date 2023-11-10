@@ -353,7 +353,6 @@ const Dishes = () => {
         </>
     );
 };
-
 const DishesInOrder = () => {
     const { t } = useTranslation();
     const data = DishData;
@@ -384,7 +383,6 @@ const DishesInOrder = () => {
         </>
     );
 };
-
 const ActiveStatus = () => {
     const { t } = useTranslation();
     return (
@@ -395,7 +393,6 @@ const ActiveStatus = () => {
         </>
     );
 };
-
 const DishType = () => {
     const { t } = useTranslation();
     return (
@@ -414,7 +411,6 @@ const DishType = () => {
         </>
     );
 };
-
 const OrderDishItem = ({ dishData }) => {
     const { t } = useTranslation();
 
@@ -554,7 +550,6 @@ const OrderDishItem = ({ dishData }) => {
         </>
     );
 };
-
 const OrderStatus = ({ hidden }) => {
     const { t } = useTranslation();
     return (
@@ -575,7 +570,6 @@ const OrderStatus = ({ hidden }) => {
         </>
     );
 };
-
 const PaymentStatus = ({ hidden }) => {
     const { t } = useTranslation();
     return (
@@ -594,7 +588,6 @@ const PaymentStatus = ({ hidden }) => {
         </>
     );
 };
-
 const Username = () => {
     const { t } = useTranslation();
     return (
@@ -614,7 +607,6 @@ const Username = () => {
         </>
     );
 };
-
 const Password = () => {
     const { t } = useTranslation();
     return (
@@ -637,7 +629,6 @@ const Password = () => {
         </>
     );
 };
-
 const ChiefCount = ({ data, form, handleChiefCountSubmitClick }) => {
     const { t } = useTranslation();
     const [disableSubmit, setDisableSubmit] = useState(true);
@@ -732,6 +723,23 @@ const Domain = ({ data, form, handleDomainSubmitClick }) => {
         </>
     );
 };
+const ScanRoute = () => {
+    return (
+        <>
+            <Form.Item
+                name='route'
+                rules={[
+                    {
+                        required: true,
+                    },
+                ]}
+                style={{ display: 'none' }}
+            >
+                <Input allowClear />
+            </Form.Item>
+        </>
+    );
+};
 
 export const FormEntities = {
     Id,
@@ -755,4 +763,5 @@ export const FormEntities = {
     Password,
     ChiefCount,
     Domain,
+    ScanRoute,
 };

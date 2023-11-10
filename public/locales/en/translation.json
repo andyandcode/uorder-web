@@ -157,9 +157,6 @@
             },
             "qr_code": {
                 "title": "This is QR code of {{table}}"
-            },
-            "system_settings": {
-                "not_have_domain_alert": "Warning: Add a domain to display the qr code to scan and order."
             }
         },
         "common": {
@@ -175,6 +172,10 @@
         },
         "utilities": {},
         "components": {
+            "alert": {
+                "not_have_domain_warning": "Warning: Add a domain to display the qr code to scan and order.",
+                "not_have_domain_alert": "This table does not have a qr code to scan. Please add domain in system settings."
+            },
             "antd_dragger": {
                 "text": "Click or drag file to this area to upload",
                 "hint": "Support for a single or bulk upload. Strictly prohibited from uploading banned files. (Max: 8)"
