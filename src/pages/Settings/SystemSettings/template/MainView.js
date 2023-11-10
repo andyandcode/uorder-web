@@ -22,8 +22,7 @@ export default function MainView({
                 {settingsData.length === undefined
                     ? settingsData.domain.length === 0 && (
                           <Alert
-                              message='Warning'
-                              description='Add a domain to display the qr code to scan and order.'
+                              message={t('main.notification.system_settings.not_have_domain_alert')}
                               type='warning'
                               showIcon
                               style={{ marginBottom: 24 }}

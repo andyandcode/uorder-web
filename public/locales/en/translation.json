@@ -157,6 +157,9 @@
             },
             "qr_code": {
                 "title": "This is QR code of {{table}}"
+            },
+            "system_settings": {
+                "not_have_domain_alert": "Warning: Add a domain to display the qr code to scan and order."
             }
         },
         "common": {
