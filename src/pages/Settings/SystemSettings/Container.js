@@ -1,8 +1,9 @@
 import { Form, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { UseNotification, UserAction } from '../../../components/UseNotification';
-import pageData from '../../../database/systemSettings.json';
+import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
+import { getSystemSettingsAdmin, updateSystemSettingsAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -12,13 +13,20 @@ function Conainer(props) {
     const [messageApi, messageContextHolder] = message.useMessage();
 
     useEffect(() => {
-        setSettingsData(pageData[0]);
-        editForm.setFieldsValue({ ...settingsData });
-    }, [settingsData, editForm]);
+        dispatch(getSystemSettingsAdmin())
+            .then((result) => {
+                editForm.setFieldsValue({ ...Utils.getValues(result, 'payload', []) });
+                setSettingsData(Utils.getValues(result, 'payload', []));
+            })
+            .then();
+    }, [dispatch, editForm]);
 
     const getNewData = () => {
-        setSettingsData(pageData[0]);
-        editForm.setFieldsValue({ ...settingsData });
+        dispatch(getSystemSettingsAdmin()).then((result) => {
+            console.log(result);
+            editForm.setFieldsValue({ ...Utils.getValues(result, 'payload', []) });
+            setSettingsData(Utils.getValues(result, 'payload', []));
+        });
     };
 
     const handleDomainSubmitClick = (values) => {
@@ -28,26 +36,26 @@ function Conainer(props) {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
-                        console.log('Edited: ', values);
+                        dispatch(updateSystemSettingsAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                     })
-                    .then(() => getNewData());
+                    .then();
             })
             .catch(() => {
                 UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
             });
     };
-    const handleChiefCountSubmitClick = (values) => {
+    const handleChefCountSubmitClick = (values) => {
         editForm
             .validateFields()
             .then(() => {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
-                        console.log('Edited: ', values);
+                        dispatch(updateSystemSettingsAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                     })
-                    .then(() => getNewData());
+                    .then();
             })
             .catch(() => {
                 UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
@@ -61,7 +69,7 @@ function Conainer(props) {
         editForm,
         settingsData,
         handleDomainSubmitClick,
-        handleChiefCountSubmitClick,
+        handleChefCountSubmitClick,
         messageContextHolder,
     };
     return <MainView {...propsProvider(containerProps)} />;

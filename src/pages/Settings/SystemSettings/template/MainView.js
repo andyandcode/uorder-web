@@ -1,4 +1,4 @@
-import { Alert, Divider, Layout, Typography } from 'antd';
+import { Divider, Layout, Typography } from 'antd';
 import { FormBuilder } from '../../../../components/FormBuilder';
 
 const { Content } = Layout;
@@ -9,7 +9,7 @@ export default function MainView({
     editForm,
     settingsData,
     handleDomainSubmitClick,
-    handleChiefCountSubmitClick,
+    handleChefCountSubmitClick,
     messageContextHolder,
 }) {
     return (
@@ -19,22 +19,12 @@ export default function MainView({
                     {t('main.navigation.settings.system')}
                 </Title>
                 <Divider style={{ marginTop: 60 }} />
-                {settingsData.length === undefined
-                    ? settingsData.domain.length === 0 && (
-                          <Alert
-                              message={t('main.components.alert.not_have_domain_warning')}
-                              type='warning'
-                              showIcon
-                              style={{ marginBottom: 24 }}
-                          />
-                      )
-                    : ''}
                 {messageContextHolder}
                 <FormBuilder.SystemSettingsForm
                     form={editForm}
                     data={settingsData}
                     handleDomainSubmitClick={handleDomainSubmitClick}
-                    handleChiefCountSubmitClick={handleChiefCountSubmitClick}
+                    handleChefCountSubmitClick={handleChefCountSubmitClick}
                 />
             </Content>
         </>

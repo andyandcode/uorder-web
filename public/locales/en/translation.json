@@ -88,8 +88,8 @@
                 "paid": "Paid",
                 "unpaid": "Unpaid"
             },
-            "chief_count": "Chief",
-            "chief_count_tooltip": "Number of chefs",
+            "chef_count": "Chef",
+            "chef_count_tooltip": "Number of chefs",
             "domain": "Domain name",
             "domain_tooltip": "Domain name of website scan to order. (example: example.com)"
         },

@@ -120,9 +120,15 @@ const AddOrderItem = ({ handleButton }) => {
 
 const SubmitSystemSettingsButtom = ({ form, handleButton, disabled }) => {
     const { t } = useTranslation();
+
     return (
         <>
-            <Button type='primary' onClick={() => handleButton(form.getFieldsValue())} form={form} disabled={disabled}>
+            <Button
+                type='primary'
+                onClick={(e) => handleButton(form.getFieldsValue(), (e.currentTarget.disabled = true))}
+                form={form}
+                disabled={disabled}
+            >
                 {t('main.components.button.submit')}
             </Button>
         </>

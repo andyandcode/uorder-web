@@ -55,4 +55,15 @@ const MenuAdmin = {
     },
 };
 
-export { DishAdmin, FileUpload, MenuAdmin };
+const SystemSettingsAdmin = {
+    getSettings: (params) => {
+        const url = '/systemSettings/getSettings';
+        return axiosClient.get(url, { params });
+    },
+    updateSystemSettings: (params) => {
+        const url = `/systemSettings/put/${params.id}`;
+        return axiosClient.put(url, params);
+    },
+};
+
+export { DishAdmin, FileUpload, MenuAdmin, SystemSettingsAdmin };

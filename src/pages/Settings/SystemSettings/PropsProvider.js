@@ -6,7 +6,7 @@ export default function propsProvider(props) {
         editForm,
         settingsData,
         handleDomainSubmitClick,
-        handleChiefCountSubmitClick,
+        handleChefCountSubmitClick,
         messageContextHolder,
     } = props;
     return {
@@ -16,7 +16,7 @@ export default function propsProvider(props) {
         editForm,
         settingsData,
         handleDomainSubmitClick,
-        handleChiefCountSubmitClick,
+        handleChefCountSubmitClick,
         messageContextHolder,
     };
 }

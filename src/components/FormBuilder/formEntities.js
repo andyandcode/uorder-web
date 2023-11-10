@@ -629,12 +629,12 @@ const Password = () => {
         </>
     );
 };
-const ChiefCount = ({ data, form, handleChiefCountSubmitClick }) => {
+const ChefCount = ({ data, form, handleChefCountSubmitClick }) => {
     const { t } = useTranslation();
     const [disableSubmit, setDisableSubmit] = useState(true);
 
     const onCheckInput = (e) => {
-        if (e === data) {
+        if (e === data.chefCount) {
             setDisableSubmit(true);
         } else {
             setDisableSubmit(false);
@@ -645,10 +645,10 @@ const ChiefCount = ({ data, form, handleChiefCountSubmitClick }) => {
             <Row>
                 <Col flex={'auto'}>
                     <Form.Item
-                        name='chiefCount'
-                        label={t('main.entities.chief_count')}
-                        tooltip={t('main.entities.chief_count_tooltip', {
-                            target: t('main.common.system_key.chief_count'),
+                        name='chefCount'
+                        label={t('main.entities.chef_count')}
+                        tooltip={t('main.entities.chef_count_tooltip', {
+                            target: t('main.common.system_key.chef_count'),
                         })}
                         rules={[
                             {
@@ -669,7 +669,7 @@ const ChiefCount = ({ data, form, handleChiefCountSubmitClick }) => {
                     <Space>
                         <ButtonLocated.SubmitSystemSettingsButtom
                             disabled={disableSubmit}
-                            handleButton={handleChiefCountSubmitClick}
+                            handleButton={handleChefCountSubmitClick}
                             form={form}
                         />
                     </Space>
@@ -683,7 +683,7 @@ const Domain = ({ data, form, handleDomainSubmitClick }) => {
     const [disableSubmit, setDisableSubmit] = useState(true);
 
     const onCheckInput = (e) => {
-        if (e.target.value === data) {
+        if (e.target.value === data.domain) {
             setDisableSubmit(true);
         } else {
             setDisableSubmit(false);
@@ -761,7 +761,7 @@ export const FormEntities = {
     PaymentStatus,
     Username,
     Password,
-    ChiefCount,
+    ChefCount,
     Domain,
     ScanRoute,
 };
