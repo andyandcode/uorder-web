@@ -1,51 +1,23 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { DishAdmin } from '../../../api/adminApi';
-import Config from '../../../configuration';
 
-const initialDishAdminList = () => {
-    if (sessionStorage.getItem(Config.storageKey.dishAdmin)) {
-        return {
-            ...JSON.parse(sessionStorage.getItem(Config.storageKey.dishAdmin)),
-        };
-    }
-    return {
-        dishAdminList: [],
-    };
-};
-
-export const getListDishAdmin = createAsyncThunk('dishAdmin/listDishAdmin', async () => {
-    const res = await DishAdmin.getListDish();
+export const getListDishAdmin = createAsyncThunk('dishAdmin/list', async () => {
+    const res = await DishAdmin.getList();
     return res;
 });
 
-export const insertDishAdmin = createAsyncThunk('dishAdmin/insertDishAdmin', async (params) => {
-    const res = await DishAdmin.insertDish(params);
+export const createDishAdmin = createAsyncThunk('dishAdmin/create', async (params) => {
+    const res = await DishAdmin.create(params);
+    console.log(res);
     return res;
 });
 
-export const updateDishAdmin = createAsyncThunk('dishAdmin/updateDishAdmin', async (params) => {
-    const res = await DishAdmin.updateDish(params);
+export const updateDishAdmin = createAsyncThunk('dishAdmin/update', async (params) => {
+    const res = await DishAdmin.update(params);
     return res;
 });
 
-export const deleteDishAdmin = createAsyncThunk('dishAdmin/deleteDishAdmin', async (params) => {
-    const res = await DishAdmin.deleteDish(params);
+export const deleteDishAdmin = createAsyncThunk('dishAdmin/delete', async (params) => {
+    const res = await DishAdmin.delete(params);
     return res;
 });
-
-const dishAdmin = createSlice({
-    name: 'dishAdmin',
-    initialState: initialDishAdminList(),
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(getListDishAdmin.fulfilled, (state, action) => {
-                console.log(action);
-                state.dishAdminList = action.data;
-            })
-            .addCase(getListDishAdmin.rejected, (state, action) => {});
-    },
-});
-
-const { reducer } = dishAdmin;
-export default reducer;

@@ -5,7 +5,7 @@ import { NotificationTarget, UseNotification, UserAction } from '../../../compon
 import Utils from '../../../utilities';
 import { deleteDishAdmin, updateDishAdmin } from '../DishManagement/Slice';
 import propsProvider from './PropsProvider';
-import { deleteMenuAdmin, getListMenuAdmin, insertMenuAdmin, updateMenuAdmin } from './Slice';
+import { createMenuAdmin, deleteMenuAdmin, getListMenuAdmin, updateMenuAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -120,7 +120,7 @@ function Conainer(props) {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
-                        dispatch(insertMenuAdmin(values));
+                        dispatch(createMenuAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
                         getNewTableData();

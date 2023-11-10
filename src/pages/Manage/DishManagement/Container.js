@@ -4,7 +4,7 @@ import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
-import { deleteDishAdmin, getListDishAdmin, insertDishAdmin, updateDishAdmin } from './Slice';
+import { createDishAdmin, deleteDishAdmin, getListDishAdmin, updateDishAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -109,7 +109,7 @@ function Conainer(props) {
                             completionTime: completionTimeParse,
                             qtyPerDay: qtyPerDayParse,
                         };
-                        dispatch(insertDishAdmin(modifiedItem));
+                        dispatch(createDishAdmin(modifiedItem));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
                         getNewTableData();
@@ -159,7 +159,6 @@ function Conainer(props) {
                         const status = Utils.getValues(result, 'error.code', []);
 
                         if (status === 'ERR_BAD_REQUEST') {
-                            console.log(result);
                             UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
                             setOpenEditModel(false);
                         } else {

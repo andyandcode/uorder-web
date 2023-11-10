@@ -2,12 +2,13 @@ import { Form, message, Modal, QRCode } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
-import data from '../../../database/table.json';
+import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
+import { createTableAdmin, deleteTableAdmin, getListTableAdmin, updateTableAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
-    const { history, t } = props;
+    const { history, t, dispatch } = props;
     const columns = TableColumns.TablesColumns(t);
     const [tableData, setTableData] = useState([]);
     const [createForm] = Form.useForm();
@@ -21,10 +22,22 @@ function Conainer(props) {
     useEffect(() => {
         setLoadingTable(true);
         setTimeout(() => {
-            setTableData(data);
+            dispatch(getListTableAdmin()).then((result) => {
+                setTableData(Utils.getValues(result, 'payload', []));
+            });
             setLoadingTable(false);
         }, 500);
-    }, []);
+    }, [dispatch]);
+
+    const getNewTableData = () => {
+        setLoadingTable(true);
+        setTimeout(() => {
+            dispatch(getListTableAdmin()).then((result) => {
+                setTableData(Utils.getValues(result, 'payload', []));
+            });
+            setLoadingTable(false);
+        }, 500);
+    };
 
     const handleEditCancelClick = () => {
         setOpenEditModel(false);
@@ -51,6 +64,7 @@ function Conainer(props) {
             document.body.removeChild(a);
         }
     };
+
     const handleShowQrCodeClick = (data) => {
         Modal.confirm({
             title: t('main.notification.qr_code.title', { table: data.name }),
@@ -76,24 +90,35 @@ function Conainer(props) {
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Table), {
-            onOk() {},
-            onCancel() {},
-        });
+        function onOk() {
+            dispatch(deleteTableAdmin(data.id));
+            getNewTableData();
+        }
+        Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Table, onOk));
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Table), {
-            onOk() {},
-            onCancel() {},
-        });
+        function onOk() {
+            const modifiedItem = {
+                ...data,
+                isActive: false,
+            };
+            dispatch(updateTableAdmin(modifiedItem));
+            getNewTableData();
+        }
+        Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Table, onOk));
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Table), {
-            onOk() {},
-            onCancel() {},
-        });
+        function onOk() {
+            const modifiedItem = {
+                ...data,
+                isActive: true,
+            };
+            dispatch(updateTableAdmin(modifiedItem));
+            getNewTableData();
+        }
+        Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Table, onOk));
     };
 
     const handleQuickDeleteConfirm = (data) => {};
@@ -106,12 +131,13 @@ function Conainer(props) {
         createForm
             .validateFields()
             .then(() => {
-                console.log('Created: ', values);
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
+                        dispatch(createTableAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
+                        getNewTableData();
                     })
                     .then(() => createForm.resetFields());
             })
@@ -120,16 +146,24 @@ function Conainer(props) {
             });
     };
 
-    const handleEditSubmitClick = (values) => {
+    const handleEditSubmitClick = async (values) => {
         editForm
             .validateFields()
             .then(() => {
-                console.log('Edited: ', values);
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
-                        UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
-                        setOpenEditModel(false);
+                    .then(async () => {
+                        const result = await dispatch(updateTableAdmin(values));
+                        const status = Utils.getValues(result, 'error.code', []);
+
+                        if (status === 'ERR_BAD_REQUEST') {
+                            UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
+                            setOpenEditModel(false);
+                        } else {
+                            UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
+                            setOpenEditModel(false);
+                            getNewTableData();
+                        }
                     })
                     .then(() => editForm.resetFields());
             })
@@ -153,6 +187,9 @@ function Conainer(props) {
             setLoadingsRefreshButton((prevLoadings) => {
                 const newLoadings = [...prevLoadings];
                 newLoadings[index] = false;
+                dispatch(getListTableAdmin()).then((result) => {
+                    setTableData(Utils.getValues(result, 'payload', []));
+                });
                 setLoadingTable(false);
                 return newLoadings;
             });
