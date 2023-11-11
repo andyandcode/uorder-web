@@ -27,7 +27,6 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NumericFormat } from 'react-number-format';
 import { useDispatch } from 'react-redux';
-import DishData from '../../database/dish.json';
 import { getListDishAdmin } from '../../pages/Manage/DishManagement/Slice';
 import Utils from '../../utilities';
 import { ButtonLocated } from '../ButtonLocated';
@@ -355,11 +354,10 @@ const Dishes = () => {
 };
 const DishesInOrder = () => {
     const { t } = useTranslation();
-    const data = DishData;
     const [dishData, setDishData] = useState([]);
     useEffect(() => {
-        setDishData(data.filter((a) => (a.isActive = true)));
-    }, [data]);
+        setDishData(Utils.getValues(getListDishAdmin(), 'payload', []));
+    }, []);
     return (
         <>
             <Form.Item name='dishes'>
@@ -411,9 +409,17 @@ const DishType = () => {
         </>
     );
 };
+const OrderType = () => {
+    return (
+        <>
+            <Form.Item name='orderType' style={{ display: 'none' }}>
+                <Input />
+            </Form.Item>
+        </>
+    );
+};
 const OrderDishItem = ({ dishData }) => {
     const { t } = useTranslation();
-
     return (
         <>
             <Form.List name='orderDetails'>
@@ -427,7 +433,7 @@ const OrderDishItem = ({ dishData }) => {
                                             <Col flex='auto' style={{ display: 'flex' }}>
                                                 <Form.Item
                                                     {...restField}
-                                                    name={[name, 'dish']}
+                                                    name={[name, 'dishId']}
                                                     rules={[
                                                         {
                                                             required: true,
@@ -554,7 +560,7 @@ const OrderStatus = ({ hidden }) => {
     const { t } = useTranslation();
     return (
         <>
-            <Form.Item name='order_status' label={t('main.entities.order_status.label')} hidden={hidden && hidden}>
+            <Form.Item name='orderStatus' label={t('main.entities.order_status.label')} hidden={hidden && hidden}>
                 <Select
                     style={{
                         width: 120,
@@ -574,7 +580,7 @@ const PaymentStatus = ({ hidden }) => {
     const { t } = useTranslation();
     return (
         <>
-            <Form.Item name='payment_status' label={t('main.entities.payment_status.label')} hidden={hidden && hidden}>
+            <Form.Item name='paymentStatus' label={t('main.entities.payment_status.label')} hidden={hidden && hidden}>
                 <Select
                     style={{
                         width: 120,
@@ -764,4 +770,5 @@ export const FormEntities = {
     ChefCount,
     Domain,
     ScanRoute,
+    OrderType,
 };

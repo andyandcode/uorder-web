@@ -12,7 +12,7 @@ export default function NestedExpendedConfig(record, switchActionColumn) {
         case TableColumns.TableSwitch.TableTable:
             return record.desc.length > 1;
         case TableColumns.TableSwitch.OrderTable:
-            return record.orderDetail.length > 1;
+            return record.orderDetails.length > 0;
         default:
             break;
     }

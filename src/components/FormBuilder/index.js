@@ -1,10 +1,13 @@
 import { LockOutlined, PrinterOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginFormPage, ProFormText } from '@ant-design/pro-components';
 import { Button, Col, Divider, Form, Input, Row, Select, Space, Typography, theme } from 'antd';
+import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NumericFormat } from 'react-number-format';
-import DishData from '../../database/dish.json';
+import { useDispatch } from 'react-redux';
+import { getListDishAdmin } from '../../pages/Manage/DishManagement/Slice';
+import Utils from '../../utilities';
 import { ButtonLocated } from '../ButtonLocated';
 import CurrencyFormat from '../CurrencyFormat';
 import { EnumRender } from '../EnumRender';
@@ -184,12 +187,14 @@ const EditTableForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
 
 const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
     const { t } = useTranslation();
-    const data = DishData;
+    const dispatch = useDispatch();
     const [dishData, setDishData] = useState([]);
 
     useEffect(() => {
-        setDishData(data.filter((a) => (a.isActive = true)));
-    }, [data]);
+        dispatch(getListDishAdmin()).then((result) => {
+            setDishData(Utils.getValues(result, 'payload', []).filter((a) => (a.isActive = true)));
+        });
+    }, [dispatch]);
 
     const onFormChange = (data) => {
         const tempitem = dishData.find((a) => a.id === data.value);
@@ -197,8 +202,8 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
         const fieldPrice = form.getFieldValue([data.name[0], data.name[1], 'unitPrice']);
 
         const fieldNote = form.getFieldValue('note');
-        const fieldOrderStatus = form.getFieldValue('order_status');
-        const fieldPaymentStatus = form.getFieldValue('payment_status');
+        const fieldOrderStatus = form.getFieldValue('orderStatus');
+        const fieldPaymentStatus = form.getFieldValue('paymentStatus');
 
         const arr = form.getFieldsValue();
         let total = 0;
@@ -223,11 +228,11 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
                 value: fieldNote,
             },
             {
-                name: 'order_status',
+                name: 'orderStatus',
                 value: fieldOrderStatus,
             },
             {
-                name: 'payment_status',
+                name: 'paymentStatus',
                 value: fieldPaymentStatus,
             },
         ]);
@@ -240,10 +245,11 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
                 name='form_create_in_modal'
                 align='end'
                 initialValues={{
-                    orderDetails: [{ dish: '', qty: 1, unitPrice: 0, amount: 0, dishNote: '' }],
-                    order_status: 0,
-                    payment_status: 0,
+                    orderDetails: [{ dishId: '', qty: 1, unitPrice: 0, amount: 0, dishNote: '' }],
+                    orderStatus: 0,
+                    paymentStatus: 0,
                     note: '',
+                    tableId: '',
                 }}
                 onFieldsChange={(data) => onFormChange(data[0])}
             >
@@ -267,18 +273,15 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
                     <Col span={3}></Col>
                 </Row>
                 <FormEntities.OrderDishItem dishData={dishData} />
-
                 <FormEntities.OrderStatus hidden />
                 <FormEntities.PaymentStatus />
-
+                <FormEntities.OrderType />
                 <Form.Item name='note'>
                     <Input.TextArea rows={3} placeholder={t('main.entities.note')}></Input.TextArea>
                 </Form.Item>
-
                 <Form.Item name='total' initialValue={0} label={t('main.entities.total')}>
                     <NumericFormat thousandSeparator=',' displayType='text' defaultValue={0} suffix=' VND' />
                 </Form.Item>
-
                 <Space>
                     <ButtonLocated.ResetButton />
                     <ButtonLocated.CancelButton handleButton={handleButtonCancel} />
@@ -289,13 +292,13 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
     );
 };
 
-const ViewOrderForm = ({ viewData, form, handleButtonCancel, handleButtonSubmit }) => {
+const ViewOrderForm = ({ viewData, form, handleButtonCancel, handleButtonSubmit, handleChangeOrderStatus }) => {
     const { t } = useTranslation();
     return (
         <>
             <Row style={{ marginTop: 40 }}>
                 <Col flex='auto'>
-                    <Typography.Title level={4}>{viewData.createdAt}</Typography.Title>
+                    <Typography.Title level={4}>{moment(viewData.createdAt).format('DD/MM/YYYY')}</Typography.Title>
                     <Typography.Text type='secondary'>
                         {t('main.entities.id')}: {viewData.id}
                     </Typography.Text>
@@ -311,6 +314,7 @@ const ViewOrderForm = ({ viewData, form, handleButtonCancel, handleButtonSubmit 
                                     width: 120,
                                 }}
                                 value={viewData.orderStatus}
+                                onChange={(e) => handleChangeOrderStatus(e, viewData.id)}
                             >
                                 <Select.Option value={0} disabled={viewData.orderStatus > 0}>
                                     {t('main.entities.order_status.ordered')}
@@ -379,7 +383,7 @@ const ViewOrderForm = ({ viewData, form, handleButtonCancel, handleButtonSubmit 
                     {t('main.entities.amount')}
                 </Col>
             </Row>
-            {viewData.orderDetail.map((e) => (
+            {viewData.orderDetails.map((e) => (
                 <Row gutter={[8, 0]} style={{ marginBottom: 20 }}>
                     <Col flex='auto'>
                         <Row style={{ marginBottom: 4, width: '100%' }}>
@@ -417,7 +421,7 @@ const ViewOrderForm = ({ viewData, form, handleButtonCancel, handleButtonSubmit 
                                 <CurrencyFormat value={e.amount} />
                             </Col>
                         </Row>
-                        {e.dishNote.length > 0 ? (
+                        {e.dishNote != null && e.dishNote.length > 0 ? (
                             <Row>
                                 <Col flex='auto' style={{ display: 'flex' }}>
                                     <Typography.Text type='secondary'>{e.dishNote}</Typography.Text>
@@ -429,6 +433,12 @@ const ViewOrderForm = ({ viewData, form, handleButtonCancel, handleButtonSubmit 
                     </Col>
                 </Row>
             ))}
+            {viewData.note != null && (
+                <>
+                    <Divider />
+                    <Typography.Text type='secondary'>{viewData.note}</Typography.Text>
+                </>
+            )}
             <Divider />
             <Row style={{ width: '100%' }}>
                 <Col flex={'auto'} style={{ marginBottom: 14 }}></Col>

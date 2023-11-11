@@ -5,6 +5,10 @@ export const getListDishAdmin = createAsyncThunk('dishAdmin/list', async () => {
     const res = await DishAdmin.getList();
     return res;
 });
+export const getListDishAvailableAdmin = createAsyncThunk('dishAdmin/listAvailable', async () => {
+    const res = await DishAdmin.getListAvailable();
+    return res;
+});
 
 export const createDishAdmin = createAsyncThunk('dishAdmin/create', async (params) => {
     const res = await DishAdmin.create(params);

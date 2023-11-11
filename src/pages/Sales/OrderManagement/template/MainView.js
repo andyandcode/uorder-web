@@ -12,7 +12,7 @@ export default function MainView(props) {
     const {
         t,
         columns,
-        data,
+        dishData,
         loadingTable,
         handleActionButtonViewClick,
         expandedRowRenderSelection,
@@ -72,7 +72,7 @@ export default function MainView(props) {
                     dataSource={tableData.dataSource}
                     handleActionButtonViewClick={(data) => handleActionButtonViewClick(data)}
                     expandedRowRenderSelection={() =>
-                        expandedRowRenderSelection(t, data, TableColumns.TableSwitch.OrderTable)
+                        expandedRowRenderSelection(t, dishData, TableColumns.TableSwitch.OrderTable)
                     }
                     switchActionColumn={TableColumns.TableSwitch.OrderTable}
                 />

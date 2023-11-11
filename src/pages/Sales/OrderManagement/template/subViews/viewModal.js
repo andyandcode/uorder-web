@@ -8,6 +8,7 @@ export default function ViewModal({
     handleViewCancelClick,
     handleCreateSubmitClick,
     messageContextHolder,
+    handleChangeOrderStatus,
 }) {
     const target = t('main.common.system_key.order');
 
@@ -29,6 +30,7 @@ export default function ViewModal({
                     viewData={viewData}
                     handleButtonSubmit={handleCreateSubmitClick}
                     handleButtonCancel={handleViewCancelClick}
+                    handleChangeOrderStatus={handleChangeOrderStatus}
                 />
             </Modal>
         </>

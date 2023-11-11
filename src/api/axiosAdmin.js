@@ -4,10 +4,19 @@ import Config from '../configuration/index';
 
 // Set up default config for http requests here
 // Please have a look at here `https://github.com/axios/axios#request- config` for the full list of configs
-const axiosClient = axios.create({
+export const axiosClient = axios.create({
     baseURL: Config.endPointAdmin,
     headers: {
         'content-type': 'multipart/form-data',
+    },
+    timeout: 10000,
+    paramsSerializer: (params) => queryString.stringify(params),
+});
+
+export const axiosClientJson = axios.create({
+    baseURL: Config.endPointAdmin,
+    headers: {
+        'content-type': 'application/json-patch+json',
     },
     timeout: 10000,
     paramsSerializer: (params) => queryString.stringify(params),
@@ -29,5 +38,3 @@ axiosClient.interceptors.response.use(
         throw error;
     },
 );
-
-export default axiosClient;

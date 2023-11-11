@@ -39,6 +39,8 @@ export default function propsProvider(props) {
         switchActionColumn,
         handleActionButtonViewClick,
         viewData,
+        dishData,
+        handleChangeOrderStatus,
     } = props;
     return {
         history,
@@ -80,5 +82,7 @@ export default function propsProvider(props) {
         switchActionColumn,
         handleActionButtonViewClick,
         viewData,
+        dishData,
+        handleChangeOrderStatus,
     };
 }

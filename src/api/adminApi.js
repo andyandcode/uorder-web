@@ -1,4 +1,4 @@
-import axiosClient from './axiosAdmin';
+import { axiosClient, axiosClientJson } from './axiosAdmin';
 
 const FileUpload = {
     uploadFile: (params) => {
@@ -16,6 +16,10 @@ const FileUpload = {
 const DishAdmin = {
     getList: (params) => {
         const url = '/dish/getAll';
+        return axiosClient.get(url, { params });
+    },
+    getListAvailable: (params) => {
+        const url = '/dish/getAllAvailable';
         return axiosClient.get(url, { params });
     },
     create: (params) => {
@@ -87,4 +91,32 @@ const SystemSettingsAdmin = {
     },
 };
 
-export { DishAdmin, FileUpload, MenuAdmin, SystemSettingsAdmin, TableAdmin };
+const OrderAdmin = {
+    getAll: (params) => {
+        const url = '/order/getAll';
+        return axiosClient.get(url, { params });
+    },
+    create: (params) => {
+        const url = '/order/post';
+        return axiosClient.post(url, params, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+    },
+    update: (params) => {
+        const url = `/order/put/${params.id}`;
+        return axiosClient.put(url, params);
+    },
+    updateOrderStatus: (params) => {
+        const modifiedArray = [];
+
+        for (const item of params) {
+            const { path, op, value } = item;
+            const modifiedItem = { path, op, value };
+            modifiedArray.push(modifiedItem);
+        }
+        const url = `/order/patch/${params[0].id}`;
+        return axiosClientJson.patch(url, modifiedArray);
+    },
+};
+
+export { DishAdmin, FileUpload, MenuAdmin, OrderAdmin, SystemSettingsAdmin, TableAdmin };

@@ -253,6 +253,9 @@ const OrderColumns = () => {
             ellipsis: {
                 showTitle: false,
             },
+            render: (data) => {
+                return <p>{moment(data).format('DD/MM/YYYY')}</p>;
+            },
         },
         {
             key: 'total',
@@ -413,7 +416,7 @@ const ExpandedRowRenderSelection = (
             return (
                 <NestedTable
                     columns={orderColumns}
-                    dataSource={data.orderDetail}
+                    dataSource={data.orderDetails}
                     pagination={false}
                     locale={{
                         emptyText: t('main.components.table.empty_data'),
