@@ -91,7 +91,12 @@
             "chef_count": "Chef",
             "chef_count_tooltip": "Number of chefs",
             "domain": "Domain name",
-            "domain_tooltip": "Domain name of website scan to order. (example: example.com)"
+            "domain_tooltip": "Domain name of website scan to order. (example: example.com)",
+            "order_discount": "Discount",
+            "order_subtotal": "Subtotal",
+            "order_total": "Total",
+            "dish_note_placeholder": "Dish note",
+            "order_note_placeholder": "Order note"
         },
         "pages": {
             "analytics": {
@@ -117,7 +122,14 @@
                     "total_order_completed": "Orders Completed"
                 }
             },
-            "login": { "title": "Login", "sub_title": "Online ordering management platform" }
+            "login": { "title": "Login", "sub_title": "Online ordering management platform" },
+            "order": {
+                "titel": "Order Information",
+                "payment_details": "Payment Details",
+                "no_code": "No codes available",
+                "discount_title": "Discount",
+                "payment_method_title": "Select payment method"
+            }
         },
         "notification": {
             "account_quick_access": {
@@ -209,11 +221,14 @@
                 "close": "Close",
                 "add_order_item": "Add item",
                 "remove_order_item": "Remove",
-                "view_order": "View",
+                "view_order": "View Order",
                 "remember_login": "Remember login",
                 "forgot_pwd": "Forgot password",
-                "login": "Login"
-            }
+                "login": "Login",
+                "add_to_card": "Add",
+                "order": "Order"
+            },
+            "cart_navbar": { "items": "items" }
         }
     },
     "system": {
