@@ -303,6 +303,18 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
     );
 };
 
+const PaymentStepInCreateNewOrderForm = ({ form }) => {
+    return (
+        <>
+            <Form form={form} layout='horizontal' name='form_create_in_modal' align='end'>
+                <FormEntities.PaymentMethod />
+                <FormEntities.MoneyReceive />
+                <FormEntities.MoneyChange />
+            </Form>
+        </>
+    );
+};
+
 const ViewOrderForm = ({
     viewData,
     form,
@@ -883,4 +895,5 @@ export const FormBuilder = {
     EditAccountForm,
     LoginForm,
     SystemSettingsForm,
+    PaymentStepInCreateNewOrderForm,
 };

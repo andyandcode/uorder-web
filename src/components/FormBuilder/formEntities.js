@@ -34,6 +34,10 @@ import { EnumRender } from '../EnumRender';
 
 const Id = ({ data }) => {
     const { t } = useTranslation();
+    const [tempId, setTempId] = useState();
+    useEffect(() => {
+        setTempId(data.getFieldsValue().id);
+    }, [data]);
     return (
         <>
             <Form.Item
@@ -52,7 +56,7 @@ const Id = ({ data }) => {
             <Row style={{ marginBottom: 16 }}>
                 <Col>{t('main.entities.id')}</Col>
                 <Col flex={'auto'}>
-                    <Typography.Text type='secondary'>{data.getFieldsValue().id}</Typography.Text>
+                    <Typography.Text type='secondary'>{tempId}</Typography.Text>
                 </Col>
             </Row>
         </>
