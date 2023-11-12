@@ -5,8 +5,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import store from './app/store';
 import Loading from './components/FullPageLoading';
 import WebLayout from './components/WebLayout/index';
+import WebLayoutInClient from './components/WebLayoutInClient';
 import './configuration/i18n';
-import { routeList, routeWithoutLayout } from './configuration/routesConfig';
+import { routeClientLayout, routeList, routeWithoutLayout } from './configuration/routesConfig';
 import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -29,6 +30,19 @@ root.render(
                 ))}
                 {routeWithoutLayout.map((route) => (
                     <Route key={`route-${route.name}`} exact path={route.path} element={<route.component />} />
+                ))}
+
+                {routeClientLayout.map((route) => (
+                    <Route
+                        key={`route-${route.name}`}
+                        exact
+                        path={route.path}
+                        element={
+                            <WebLayoutInClient>
+                                <route.component />
+                            </WebLayoutInClient>
+                        }
+                    />
                 ))}
             </Routes>
         </BrowserRouter>

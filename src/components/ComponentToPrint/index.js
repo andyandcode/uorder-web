@@ -3,7 +3,7 @@ import moment from 'moment';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NumericFormat } from 'react-number-format';
-import CurrencyFormat from '../CurrencyFormat';
+import { CurrencyFormat } from '../CurrencyFormat';
 
 const OrderBill = React.forwardRef(({ data, componentRef }) => {
     const { t } = useTranslation();
@@ -36,7 +36,7 @@ const OrderBill = React.forwardRef(({ data, componentRef }) => {
                                     alignItems: 'center',
                                 }}
                             >
-                                <CurrencyFormat value={e.amount} />
+                                <CurrencyFormat.Minimal value={e.amount} />
                             </Col>
                         </Row>
                         {e.dishNote != null && e.dishNote.length > 0 ? (
@@ -56,7 +56,7 @@ const OrderBill = React.forwardRef(({ data, componentRef }) => {
                 <Row style={{ width: '100%', marginBottom: 4 }}>
                     <Col flex={6}>{t('main.entities.subtotal')}</Col>
                     <Col flex={6} style={{ display: 'inline-flex', justifyContent: 'end' }}>
-                        <CurrencyFormat value={data.total} />
+                        <CurrencyFormat.Minimal value={data.total} />
                     </Col>
                 </Row>
                 <Row style={{ width: '100%', marginBottom: 4 }}>
@@ -83,7 +83,7 @@ const OrderBill = React.forwardRef(({ data, componentRef }) => {
                         }}
                     >
                         <Typography.Title level={4}>
-                            <CurrencyFormat value={data.total} />
+                            <CurrencyFormat.Minimal value={data.total} />
                         </Typography.Title>
                     </Col>
                 </Row>

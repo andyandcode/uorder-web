@@ -2,7 +2,7 @@ import { Tooltip } from 'antd';
 import moment from 'moment/moment';
 import { useTranslation } from 'react-i18next';
 import { NumericFormat } from 'react-number-format';
-import CurrencyFormat from '../CurrencyFormat';
+import { CurrencyFormat } from '../CurrencyFormat';
 import { EnumRender } from '../EnumRender';
 import NestedTable from '../NestedTable';
 import TableFilter from '../TableFilter';
@@ -46,7 +46,7 @@ const DishColumns = (t) => {
                 multiple: 5,
             },
             render: (data) => {
-                return <CurrencyFormat value={data} />;
+                return <CurrencyFormat.Minimal value={data} />;
             },
         },
         {
@@ -269,7 +269,7 @@ const OrderColumns = () => {
                 showTitle: false,
             },
             render: (data) => {
-                return <CurrencyFormat value={data} />;
+                return <CurrencyFormat.Minimal value={data} />;
             },
         },
         {
@@ -317,7 +317,7 @@ const ExpandedRowRenderSelection = (
                         multiple: 5,
                     },
                     render: (data) => {
-                        return <CurrencyFormat value={data} />;
+                        return <CurrencyFormat.Minimal value={data} />;
                     },
                 },
                 {
@@ -396,7 +396,7 @@ const ExpandedRowRenderSelection = (
                         multiple: 3,
                     },
                     render: (data) => {
-                        return <CurrencyFormat value={data} />;
+                        return <CurrencyFormat.Minimal value={data} />;
                     },
                 },
                 {
@@ -409,7 +409,7 @@ const ExpandedRowRenderSelection = (
                         multiple: 4,
                     },
                     render: (data) => {
-                        return <CurrencyFormat value={data} />;
+                        return <CurrencyFormat.Minimal value={data} />;
                     },
                 },
             ];

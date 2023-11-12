@@ -134,7 +134,32 @@ const SubmitSystemSettingsButtom = ({ form, handleButton, disabled }) => {
         </>
     );
 };
-
+const OrderButton = ({ handleOrderClick }) => {
+    const { t } = useTranslation();
+    const [loadings, setLoadings] = useState([]);
+    const enterLoading = (index) => {
+        setLoadings((prevLoadings) => {
+            const newLoadings = [...prevLoadings];
+            newLoadings[index] = true;
+            return newLoadings;
+        });
+        setTimeout(() => {
+            setLoadings((prevLoadings) => {
+                const newLoadings = [...prevLoadings];
+                newLoadings[index] = false;
+                handleOrderClick();
+                return newLoadings;
+            });
+        }, 500);
+    };
+    return (
+        <>
+            <Button type='primary' loading={loadings[0]} onClick={() => enterLoading(0)} block>
+                {t('main.components.button.order')}
+            </Button>
+        </>
+    );
+};
 export const ButtonLocated = {
     AddButton,
     RefreshButton,
@@ -146,4 +171,5 @@ export const ButtonLocated = {
     NewOrderButton,
     AddOrderItem,
     SubmitSystemSettingsButtom,
+    OrderButton,
 };

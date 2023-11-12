@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { getListDishAdmin } from '../../pages/Manage/DishManagement/Slice';
 import Utils from '../../utilities';
 import { ButtonLocated } from '../ButtonLocated';
-import CurrencyFormat from '../CurrencyFormat';
+import { CurrencyFormat } from '../CurrencyFormat';
 import { EnumRender } from '../EnumRender';
 import { FormEntities } from './formEntities';
 
@@ -428,7 +428,7 @@ const ViewOrderForm = ({
                                     alignItems: 'center',
                                 }}
                             >
-                                <CurrencyFormat value={e.unitPrice} />
+                                <CurrencyFormat.Minimal value={e.unitPrice} />
                             </Col>
                             <Col
                                 span={4}
@@ -448,7 +448,7 @@ const ViewOrderForm = ({
                                     alignItems: 'center',
                                 }}
                             >
-                                <CurrencyFormat value={e.amount} />
+                                <CurrencyFormat.Minimal value={e.amount} />
                             </Col>
                         </Row>
                         {e.dishNote != null && e.dishNote.length > 0 ? (
@@ -478,7 +478,7 @@ const ViewOrderForm = ({
                             {t('main.entities.subtotal')}
                         </Col>
                         <Col flex={6} style={{ marginBottom: 14, display: 'inline-flex', justifyContent: 'end' }}>
-                            <CurrencyFormat value={viewData.total} />
+                            <CurrencyFormat.Minimal value={viewData.total} />
                         </Col>
                     </Row>
                 </Col>
@@ -519,7 +519,7 @@ const ViewOrderForm = ({
                             }}
                         >
                             <Typography.Title level={4}>
-                                <CurrencyFormat value={viewData.total} />
+                                <CurrencyFormat.Minimal value={viewData.total} />
                             </Typography.Title>
                         </Col>
                     </Row>
@@ -634,7 +634,7 @@ const ViewBookingForm = ({ viewData, form, handleButtonCancel, handleButtonSubmi
                                     alignItems: 'center',
                                 }}
                             >
-                                <CurrencyFormat value={e.unitPrice} />
+                                <CurrencyFormat.Minimal value={e.unitPrice} />
                             </Col>
                             <Col
                                 span={4}
@@ -654,7 +654,7 @@ const ViewBookingForm = ({ viewData, form, handleButtonCancel, handleButtonSubmi
                                     alignItems: 'center',
                                 }}
                             >
-                                <CurrencyFormat value={e.amount} />
+                                <CurrencyFormat.Minimal value={e.amount} />
                             </Col>
                         </Row>
                         {e.dishNote.length > 0 ? (
@@ -678,7 +678,7 @@ const ViewBookingForm = ({ viewData, form, handleButtonCancel, handleButtonSubmi
                             {t('main.entities.subtotal')}
                         </Col>
                         <Col flex={6} style={{ marginBottom: 14, display: 'inline-flex', justifyContent: 'end' }}>
-                            <CurrencyFormat value={viewData.total} />
+                            <CurrencyFormat.Minimal value={viewData.total} />
                         </Col>
                     </Row>
                 </Col>
@@ -719,7 +719,7 @@ const ViewBookingForm = ({ viewData, form, handleButtonCancel, handleButtonSubmi
                             }}
                         >
                             <Typography.Title level={4}>
-                                <CurrencyFormat value={viewData.total} />
+                                <CurrencyFormat.Minimal value={viewData.total} />
                             </Typography.Title>
                         </Col>
                     </Row>
@@ -881,6 +881,55 @@ const SystemSettingsForm = ({ t, form, data, handleDomainSubmitClick, handleChef
     );
 };
 
+const OrderForm = ({
+    t,
+    form,
+    orderData,
+    handleSelectPaymentClick,
+    paymentSelectTarget,
+    handleSelectDiscountClick,
+    handleOrderClick,
+}) => {
+    return (
+        <>
+            <Form
+                form={form}
+                layout='horizontal'
+                name='form_create_in_modal'
+                align='end'
+                style={{
+                    padding: 8,
+                    marginBottom: 100,
+                }}
+                initialValues={{ note: '', discount: 0, paymentMethod: 0, orderType: 0 }}
+            >
+                <FormEntities.OrderItems t={t} data={orderData.results} />
+                <FormEntities.OrderNote t={t} />
+                <FormEntities.OrderSubTotal t={t} data={orderData.total} />
+                <FormEntities.OrderDiscount t={t} data={0} />
+                <div className='order_bottom_nav'>
+                    <FormEntities.OrderTotal t={t} data={orderData.total} />
+                    <ButtonLocated.OrderButton handleOrderClick={handleOrderClick} />
+                </div>
+                <Divider />
+                <>
+                    <Typography.Title level={5} style={{ textAlign: 'left' }}>
+                        {t('main.pages.order.payment_details')}
+                    </Typography.Title>
+                    <FormEntities.OrderPaymentMethodSelect
+                        t={t}
+                        handleSelectPaymentClick={handleSelectPaymentClick}
+                        paymentSelectTarget={paymentSelectTarget}
+                    />
+                    <FormEntities.OrderTypeInClient />
+                    <FormEntities.OrderStatusInClient />
+                    <Divider style={{ margin: '1px 0' }} />
+                    <FormEntities.OrderDiscountSelect t={t} handleSelectDiscountClick={handleSelectDiscountClick} />
+                </>
+            </Form>
+        </>
+    );
+};
 export const FormBuilder = {
     CreateNewDishForm,
     EditDishForm,
@@ -896,4 +945,5 @@ export const FormBuilder = {
     LoginForm,
     SystemSettingsForm,
     PaymentStepInCreateNewOrderForm,
+    OrderForm,
 };

@@ -5,6 +5,8 @@ import {
     GlobalOutlined,
     LoadingOutlined,
     PlusOutlined,
+    RightOutlined,
+    TagFilled,
     UserOutlined,
 } from '@ant-design/icons';
 import {
@@ -789,6 +791,249 @@ const ScanRoute = () => {
     );
 };
 
+const OrderNote = ({ t }) => {
+    return (
+        <>
+            <Form.Item name='note'>
+                <Input.TextArea rows={3} placeholder={t('main.entities.order_note_placeholder')} bordered={false} />
+            </Form.Item>
+        </>
+    );
+};
+
+const OrderTotal = ({ t, data }) => {
+    return (
+        <>
+            <Row>
+                <Col span={6} style={{ display: 'flex' }}>
+                    <Typography.Text>{t('main.entities.order_total')}</Typography.Text>
+                </Col>
+                <Col flex={'auto'}>
+                    <Form.Item name='total' initialValue={data} style={{ margin: 0 }}>
+                        <NumericFormat thousandSeparator=',' displayType='text' suffix=' VND' />
+                    </Form.Item>
+                </Col>
+            </Row>
+        </>
+    );
+};
+
+const OrderSubTotal = ({ t, data }) => {
+    return (
+        <>
+            <Row style={{ height: 'min-content' }}>
+                <Col span={6} style={{ display: 'flex' }}>
+                    <Typography.Text>{t('main.entities.order_subtotal')}</Typography.Text>
+                </Col>
+                <Col flex={'auto'}>
+                    <Form.Item name='subTotal' initialValue={data} style={{ margin: 0 }}>
+                        <NumericFormat thousandSeparator=',' displayType='text' value={data} suffix=' VND' />
+                    </Form.Item>
+                </Col>
+            </Row>
+        </>
+    );
+};
+
+const OrderDiscount = ({ t, data }) => {
+    return (
+        <>
+            <Row style={{ height: 'min-content' }}>
+                <Col span={6} style={{ display: 'flex' }}>
+                    <Typography.Text>{t('main.entities.order_discount')}</Typography.Text>
+                </Col>
+                <Col flex={'auto'}>
+                    <Form.Item initialValue={data} style={{ margin: 0 }}>
+                        <NumericFormat thousandSeparator=',' displayType='text' value={data} suffix=' VND' />
+                    </Form.Item>
+                </Col>
+            </Row>
+        </>
+    );
+};
+
+const OrderDiscountSelect = ({ t, handleSelectDiscountClick }) => {
+    return (
+        <>
+            <Row onClick={handleSelectDiscountClick} style={{ marginTop: 12 }}>
+                <Col>
+                    <TagFilled style={{ width: 24, marginRight: 8, marginLeft: 6, color: '#f25022' }} />
+                </Col>
+                <Col>{'Save using codes'}</Col>
+                <Col>
+                    <Form.Item
+                        name={'discount'}
+                        style={{ margin: 0 }}
+                        rules={[
+                            {
+                                required: true,
+                                message: '',
+                            },
+                        ]}
+                    >
+                        <Input value={'asd'} style={{ display: 'none' }} />
+                    </Form.Item>
+                </Col>
+                <Col flex={'auto'}>
+                    <RightOutlined />
+                </Col>
+            </Row>
+        </>
+    );
+};
+
+const OrderPaymentMethodSelect = ({ t, handleSelectPaymentClick, paymentSelectTarget }) => {
+    return (
+        <>
+            <Row onClick={handleSelectPaymentClick} style={{ marginTop: 12 }}>
+                <Col>
+                    <img alt='' src={paymentSelectTarget.icon} style={{ width: 24, marginRight: 12 }} />
+                </Col>
+                <Col>{paymentSelectTarget.label}</Col>
+                <Col>
+                    <Form.Item
+                        name={'paymentMethod'}
+                        style={{ margin: 0, display: 'none' }}
+                        rules={[
+                            {
+                                required: true,
+                                message: '',
+                            },
+                        ]}
+                    >
+                        <Input value={paymentSelectTarget.value} bordered={false} />
+                    </Form.Item>
+                </Col>
+                <Col flex={'auto'}>
+                    <RightOutlined />
+                </Col>
+            </Row>
+        </>
+    );
+};
+
+const OrderItems = ({ t, data }) => {
+    return (
+        <>
+            <Form.List name='orderDetails' initialValue={data}>
+                {(fields, { add, remove }) => (
+                    <>
+                        {fields.map(({ key, name, ...restField }) => (
+                            <>
+                                <Row style={{ marginBottom: 8 }} key={key}>
+                                    <Col span={1}>
+                                        <Form.Item
+                                            {...restField}
+                                            name={[name, 'qty']}
+                                            style={{
+                                                margin: 0,
+                                                fontWeight: 600,
+                                            }}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: '',
+                                                },
+                                            ]}
+                                        >
+                                            <NumericFormat thousandSeparator=',' displayType='text' suffix='x' />
+                                        </Form.Item>
+                                    </Col>
+                                    <Col flex={'auto'}>
+                                        <Form.Item
+                                            {...restField}
+                                            name={[name, 'dishId']}
+                                            style={{ margin: 0, display: 'none' }}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: '',
+                                                },
+                                            ]}
+                                        >
+                                            <Input bordered={false} />
+                                        </Form.Item>
+                                        <Form.Item
+                                            {...restField}
+                                            name={[name, 'name']}
+                                            style={{ margin: 0 }}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: '',
+                                                },
+                                            ]}
+                                        >
+                                            <Input bordered={false} />
+                                        </Form.Item>
+                                        <Form.Item
+                                            {...restField}
+                                            name={[name, 'dishNote']}
+                                            style={{ margin: 0 }}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: '',
+                                                },
+                                            ]}
+                                        >
+                                            <Input
+                                                bordered={false}
+                                                placeholder={t('main.entities.dish_note_placeholder')}
+                                            />
+                                        </Form.Item>
+                                    </Col>
+                                    <Col span={6}>
+                                        <Form.Item
+                                            {...restField}
+                                            name={[name, 'amount']}
+                                            style={{ margin: 0 }}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: '',
+                                                },
+                                            ]}
+                                        >
+                                            <NumericFormat thousandSeparator=',' displayType='text' suffix=' VND' />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            </>
+                        ))}
+                    </>
+                )}
+            </Form.List>
+        </>
+    );
+};
+const OrderTypeInClient = () => {
+    return (
+        <>
+            <Form.Item name='orderType' style={{ display: 'none' }}>
+                <Input />
+            </Form.Item>
+        </>
+    );
+};
+const OrderStatusInClient = () => {
+    return (
+        <>
+            <Form.Item name='orderStatus' style={{ display: 'none' }} initialValue={0}>
+                <Input />
+            </Form.Item>
+        </>
+    );
+};
+const OrderTable = ({ data }) => {
+    return (
+        <>
+            <Form.Item name='tableId' style={{ display: 'none' }} initialValue={0}>
+                <Input />
+            </Form.Item>
+        </>
+    );
+};
 export const FormEntities = {
     Id,
     HiddenId,
@@ -816,4 +1061,14 @@ export const FormEntities = {
     PaymentMethod,
     MoneyReceive,
     MoneyChange,
+    OrderItems,
+    OrderNote,
+    OrderTotal,
+    OrderSubTotal,
+    OrderDiscount,
+    OrderDiscountSelect,
+    OrderPaymentMethodSelect,
+    OrderTypeInClient,
+    OrderStatusInClient,
+    OrderTable,
 };

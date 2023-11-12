@@ -10,6 +10,10 @@ import OrderManagement from '../pages/Sales/OrderManagement';
 import AccountSettings from '../pages/Settings/AccountSettings';
 import SystemSettings from '../pages/Settings/SystemSettings';
 
+import ClientHome from '../pages/ClientHome';
+import ClientOrder from '../pages/ClientOrder';
+import ClientOrderTracker from '../pages/ClientOrderTracker';
+
 const homeUrl = '/';
 const manageUrl = '/manage';
 const dishManagementUrl = `${manageUrl}/dish-management`;
@@ -25,6 +29,10 @@ const accountSettingUrl = `${settingUrl}/account-settings`;
 const systemSettingUrl = `${settingUrl}/system-settings`;
 const loginUrl = '/login';
 
+const ClientHomeUrl = '/booking';
+const ClientOrederUrl = `${ClientHomeUrl}/order`;
+const ClientOrderTrackerUrl = `${ClientHomeUrl}/tracker`;
+
 export const routeList = [
     { path: homeUrl, name: homeUrl, component: Home },
     { path: dishManagementUrl, name: dishManagementUrl, component: DishManagement },
@@ -39,6 +47,12 @@ export const routeList = [
 ];
 
 export const routeWithoutLayout = [{ path: loginUrl, name: loginUrl, component: Login }];
+
+export const routeClientLayout = [
+    { path: ClientHomeUrl, name: homeUrl, component: ClientHome },
+    { path: ClientOrederUrl, name: ClientOrederUrl, component: ClientOrder },
+    { path: ClientOrderTrackerUrl, name: ClientOrderTrackerUrl, component: ClientOrderTracker },
+];
 
 export const rootKeys = {
     homeUrl,
