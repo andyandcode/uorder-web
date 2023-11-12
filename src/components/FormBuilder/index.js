@@ -196,19 +196,25 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
         });
     }, [dispatch]);
 
+    let tempitem;
+    let fieldQty;
+    let fieldPrice;
+    let fieldNote;
+    let fieldOrderStatus;
+    let fieldPaymentStatus;
+    let arr;
+    let total;
+
     const onFormChange = (data) => {
-        const tempitem = dishData.find((a) => a.id === data.value);
-        const fieldQty = form.getFieldValue([data.name[0], data.name[1], 'qty']);
-        const fieldPrice = form.getFieldValue([data.name[0], data.name[1], 'unitPrice']);
-
-        const fieldNote = form.getFieldValue('note');
-        const fieldOrderStatus = form.getFieldValue('orderStatus');
-        const fieldPaymentStatus = form.getFieldValue('paymentStatus');
-
-        const arr = form.getFieldsValue();
-        let total = 0;
+        tempitem = dishData.find((a) => a.id === data.value);
+        fieldQty = form.getFieldValue([data.name[0], data.name[1], 'qty']);
+        fieldPrice = form.getFieldValue([data.name[0], data.name[1], 'unitPrice']);
+        fieldNote = form.getFieldValue('note');
+        fieldOrderStatus = form.getFieldValue('orderStatus');
+        fieldPaymentStatus = form.getFieldValue('paymentStatus');
+        arr = form.getFieldsValue();
+        total = 0;
         arr.orderDetails.map((e) => (e !== undefined ? (total += e.amount) : total));
-
         form.setFields([
             { name: [data.name[0], data.name[1], 'qty'], value: fieldQty === undefined ? 1 : fieldQty },
             {
@@ -275,6 +281,11 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
                 <FormEntities.OrderDishItem dishData={dishData} />
                 <FormEntities.OrderStatus hidden />
                 <FormEntities.PaymentStatus />
+
+                {/* <FormEntities.PaymentMethod />
+                <FormEntities.MoneyReceive />
+                <FormEntities.MoneyChange /> */}
+
                 <FormEntities.OrderType />
                 <Form.Item name='note'>
                     <Input.TextArea rows={3} placeholder={t('main.entities.note')}></Input.TextArea>
@@ -292,7 +303,14 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
     );
 };
 
-const ViewOrderForm = ({ viewData, form, handleButtonCancel, handleButtonSubmit, handleChangeOrderStatus }) => {
+const ViewOrderForm = ({
+    viewData,
+    form,
+    handleButtonCancel,
+    handleButtonSubmit,
+    handleChangeOrderStatus,
+    handlePrintClick,
+}) => {
     const { t } = useTranslation();
     return (
         <>
@@ -343,7 +361,7 @@ const ViewOrderForm = ({ viewData, form, handleButtonCancel, handleButtonSubmit,
                             ''
                         )}
 
-                        <Button icon={<PrinterOutlined />} onClick={() => {}} />
+                        <Button icon={<PrinterOutlined />} onClick={handlePrintClick} />
                     </Space>
                 </Col>
             </Row>

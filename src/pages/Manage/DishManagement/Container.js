@@ -82,7 +82,6 @@ function Conainer(props) {
 
     const handleActionButtonTurnOnClick = (data) => {
         function onOk() {
-            console.log(data);
             const modifiedItem = {
                 ...data,
                 isActive: true,

@@ -62,14 +62,12 @@ function Conainer(props) {
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        console.log(data);
         function onOk() {
             const modifiedItem = {
                 ...data,
                 isActive: false,
                 dishes: data.dishes.map((item) => item.id),
             };
-            console.log(modifiedItem);
             dispatch(updateMenuAdmin(modifiedItem));
             getNewTableData();
         }
@@ -77,7 +75,6 @@ function Conainer(props) {
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        console.log(data);
         function onOk() {
             const modifiedItem = {
                 ...data,
@@ -139,7 +136,6 @@ function Conainer(props) {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
-                        console.log(values);
                         dispatch(updateMenuAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                         setOpenEditModel(false);

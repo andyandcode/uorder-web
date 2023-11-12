@@ -18,6 +18,5 @@ export const updateOrderAdmin = createAsyncThunk('orderAdmin/update', async (par
 
 export const updateOrderStatusAdmin = createAsyncThunk('orderAdmin/updateOrderStatus', async (params) => {
     const res = await OrderAdmin.updateOrderStatus(params);
-    console.log(res);
     return res;
 });

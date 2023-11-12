@@ -2,6 +2,7 @@ import { Col, Divider, Layout, Row, Select, Space, Typography } from 'antd';
 import { ButtonLocated } from '../../../../components/ButtonLocated';
 import CustomTable from '../../../../components/CustomTable';
 import TableColumns from '../../../../components/CustomTable/columnConfigs';
+import BillQuickViewModal from './subViews/billQuickViewModal';
 import CreateModal from './subViews/createModal';
 import ViewModal from './subViews/viewModal';
 
@@ -78,6 +79,7 @@ export default function MainView(props) {
                 />
                 <CreateModal {...props} />
                 <ViewModal {...props} />
+                <BillQuickViewModal {...props} />
             </Content>
         </>
     );

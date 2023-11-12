@@ -1,5 +1,6 @@
 import { Form, message } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { EnumKey } from '../../../components/EnumRender';
 import { UseNotification, UserAction } from '../../../components/UseNotification';
@@ -23,6 +24,7 @@ function Conainer(props) {
     const [createForm] = Form.useForm();
     const [viewForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
+    const [openBillQuickViewModal, setOpenBillQuickViewModal] = useState(false);
     const [openViewModel, setOpenViewModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
     const [loadingTable, setLoadingTable] = useState(false);
@@ -120,7 +122,6 @@ function Conainer(props) {
     };
 
     const handleChangeOrderStatus = (status, id) => {
-        console.log(id);
         dispatch(
             updateOrderStatusAdmin([
                 {
@@ -134,7 +135,19 @@ function Conainer(props) {
             .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
             .then(getNewTableData());
     };
-
+    const componentRef = useRef();
+    const handlePrintClick = () => {
+        setOpenViewModel(false);
+        setOpenBillQuickViewModal(true);
+        setTimeout(() => {
+            setOpenBillQuickViewModal(false);
+            handlePrint();
+        }, 500);
+    };
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+        documentTitle: viewData && viewData.id,
+    });
     const containerProps = {
         ...props,
         history,
@@ -160,6 +173,9 @@ function Conainer(props) {
         viewData,
         dishData,
         handleChangeOrderStatus,
+        handlePrintClick,
+        openBillQuickViewModal,
+        componentRef,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

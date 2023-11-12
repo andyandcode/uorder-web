@@ -41,6 +41,9 @@ export default function propsProvider(props) {
         viewData,
         dishData,
         handleChangeOrderStatus,
+        handlePrintClick,
+        componentRef,
+        openBillQuickViewModal,
     } = props;
     return {
         history,
@@ -84,5 +87,8 @@ export default function propsProvider(props) {
         viewData,
         dishData,
         handleChangeOrderStatus,
+        handlePrintClick,
+        componentRef,
+        openBillQuickViewModal,
     };
 }

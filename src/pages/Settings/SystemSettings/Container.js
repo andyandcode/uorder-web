@@ -23,7 +23,6 @@ function Conainer(props) {
 
     const getNewData = () => {
         dispatch(getSystemSettingsAdmin()).then((result) => {
-            console.log(result);
             editForm.setFieldsValue({ ...Utils.getValues(result, 'payload', []) });
             setSettingsData(Utils.getValues(result, 'payload', []));
         });

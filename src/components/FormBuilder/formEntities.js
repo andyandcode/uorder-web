@@ -585,10 +585,48 @@ const PaymentStatus = ({ hidden }) => {
                     style={{
                         width: 120,
                     }}
-                    defaultValue={0}
+                    defaultValue={1}
                 >
                     <Select.Option value={0}>{t('main.entities.payment_status.paid')}</Select.Option>
                     <Select.Option value={1}>{t('main.entities.payment_status.unpaid')}</Select.Option>
+                </Select>
+            </Form.Item>
+        </>
+    );
+};
+const MoneyReceive = ({ hidden }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item name='moneyReceive' label={t('main.entities.money_receive')} hidden={hidden && hidden}>
+                <Input />
+            </Form.Item>
+        </>
+    );
+};
+const MoneyChange = ({ hidden }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item name='moneyChange' label={t('main.entities.money_change')} hidden={hidden && hidden}>
+                <Input />
+            </Form.Item>
+        </>
+    );
+};
+const PaymentMethod = ({ hidden }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item name='paymentMethod' label={t('main.entities.payment_method')} hidden={hidden && hidden}>
+                <Select
+                    style={{
+                        width: 120,
+                    }}
+                    defaultValue={0}
+                >
+                    <Select.Option value={0}>Momo</Select.Option>
+                    <Select.Option value={1}>Cash</Select.Option>
                 </Select>
             </Form.Item>
         </>
@@ -771,4 +809,7 @@ export const FormEntities = {
     Domain,
     ScanRoute,
     OrderType,
+    PaymentMethod,
+    MoneyReceive,
+    MoneyChange,
 };

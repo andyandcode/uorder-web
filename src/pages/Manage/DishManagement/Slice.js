@@ -12,7 +12,6 @@ export const getListDishAvailableAdmin = createAsyncThunk('dishAdmin/listAvailab
 
 export const createDishAdmin = createAsyncThunk('dishAdmin/create', async (params) => {
     const res = await DishAdmin.create(params);
-    console.log(res);
     return res;
 });
 
