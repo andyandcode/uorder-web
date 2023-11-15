@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Conainer from './Container';
 
-export default function Home(props) {
+export default function ClientOrder(props) {
     const history = useNavigate();
     const dispatch = useDispatch();
     const { t } = useTranslation();

@@ -7,4 +7,15 @@ const MenuClient = {
     },
 };
 
-export { MenuClient };
+const BookingClient = {
+    getBooking: (params) => {
+        const url = `/booking/${params}`;
+        return axiosClient.get(url, { params });
+    },
+    letsBooking: (params) => {
+        const url = `/booking/${params}`;
+        return axiosClient.get(url, { params });
+    },
+};
+
+export { BookingClient, MenuClient };

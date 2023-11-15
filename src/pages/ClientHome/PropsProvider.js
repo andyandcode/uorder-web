@@ -12,6 +12,7 @@ export default function propsProvider(props) {
         setCartItems,
         orderResult,
         handleViewOrderClick,
+        tableData,
     } = props;
     return {
         history,
@@ -26,5 +27,6 @@ export default function propsProvider(props) {
         setCartItems,
         orderResult,
         handleViewOrderClick,
+        tableData,
     };
 }

@@ -1,11 +1,12 @@
 import { Form } from 'antd';
 import React, { useState } from 'react';
 import { rootKeys } from '../../configuration/routesConfig';
+import { createOrderAdmin } from '../Sales/OrderManagement/Slice';
 import propsProvider from './PropsProvider';
 import MainView from './template/MainView';
 
 function Conainer(props) {
-    const { history, t, location } = props;
+    const { history, t, location, dispatch } = props;
     const [orderForm] = Form.useForm();
     const [orderData, setOrderData] = useState(location.state.data);
     const [openPaymentDrawer, setOpenPaymentDrawer] = useState(false);
@@ -26,7 +27,7 @@ function Conainer(props) {
     };
 
     const handleBackToHomeClick = () => {
-        history(rootKeys.homeUrl);
+        history(`${rootKeys.clientHomeRoorUrl}/${location.state.preId.tableId}`);
     };
 
     const handleSelectPaymentClick = () => {
@@ -42,7 +43,12 @@ function Conainer(props) {
     };
 
     const handleOrderClick = () => {
-        console.log(orderForm.getFieldsValue());
+        const modifiedItem = {
+            ...orderForm.getFieldsValue(),
+            tableId: location.state.preId.tableId,
+        };
+        dispatch(createOrderAdmin(modifiedItem));
+        history(rootKeys.clientOrderTrackerUrl);
     };
 
     const containerProps = {

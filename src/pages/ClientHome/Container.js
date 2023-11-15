@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { rootKeys } from '../../configuration/routesConfig';
 import Utils from '../../utilities';
 import propsProvider from './PropsProvider';
-import { getListAvailable } from './Slice';
+import { getBooking } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
     const { history, t, dispatch } = props;
     const [menuData, setMenuData] = useState([]);
+    const [tableData, setTableData] = useState([]);
     const [availableMenuData, setAvailableMenuData] = useState([]);
     const [cartItems, setCartItems] = useState([]);
     const [orderResult, setOrderResult] = useState([]);
     const [isShowNavbar, setIsShowNavbar] = useState(false);
+    const params = useParams();
 
     useEffect(() => {
-        dispatch(getListAvailable()).then((result) => {
-            setMenuData(Utils.getValues(result, 'payload', []));
+        dispatch(getBooking(params.tableId)).then((result) => {
+            setMenuData(Utils.getValues(result, 'payload.menus', []));
             setAvailableMenuData(
-                Utils.getValues(result, 'payload', []).map((item) => ({ name: item.name, key: item.key, id: item.id })),
+                Utils.getValues(result, 'payload.menus', []).map((item) => ({
+                    name: item.name,
+                    key: item.key,
+                    id: item.id,
+                })),
             );
+            setTableData(Utils.getValues(result, 'payload.table', []));
         });
     }, [dispatch]);
 
@@ -55,7 +63,7 @@ function Conainer(props) {
 
     const handleViewOrderClick = () => {
         localStorage.setItem('cartItems', JSON.stringify(orderResult));
-        history(rootKeys.orederUrl, { state: { data: orderResult } });
+        history(rootKeys.clientOrederUrl, { state: { data: orderResult, preId: params } });
     };
 
     const containerProps = {
@@ -69,6 +77,7 @@ function Conainer(props) {
         setCartItems,
         orderResult,
         handleViewOrderClick,
+        tableData,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

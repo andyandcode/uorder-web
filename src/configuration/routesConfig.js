@@ -29,9 +29,10 @@ const accountSettingUrl = `${settingUrl}/account-settings`;
 const systemSettingUrl = `${settingUrl}/system-settings`;
 const loginUrl = '/login';
 
-const ClientHomeUrl = '/booking';
-const ClientOrederUrl = `${ClientHomeUrl}/order`;
-const ClientOrderTrackerUrl = `${ClientHomeUrl}/tracker`;
+const clientHomeRoorUrl = '/booking';
+const clientHomeUrl = `${clientHomeRoorUrl}/:tableId`;
+const clientOrederUrl = `${clientHomeRoorUrl}/order`;
+const clientOrderTrackerUrl = `${clientHomeRoorUrl}/tracker`;
 
 export const routeList = [
     { path: homeUrl, name: homeUrl, component: Home },
@@ -49,9 +50,9 @@ export const routeList = [
 export const routeWithoutLayout = [{ path: loginUrl, name: loginUrl, component: Login }];
 
 export const routeClientLayout = [
-    { path: ClientHomeUrl, name: homeUrl, component: ClientHome },
-    { path: ClientOrederUrl, name: ClientOrederUrl, component: ClientOrder },
-    { path: ClientOrderTrackerUrl, name: ClientOrderTrackerUrl, component: ClientOrderTracker },
+    { path: clientHomeUrl, name: homeUrl, component: ClientHome },
+    { path: clientOrederUrl, name: clientOrederUrl, component: ClientOrder },
+    { path: clientOrderTrackerUrl, name: clientOrderTrackerUrl, component: ClientOrderTracker },
 ];
 
 export const rootKeys = {
@@ -68,4 +69,9 @@ export const rootKeys = {
     settingUrl,
     accountSettingUrl,
     systemSettingUrl,
+    loginUrl,
+    clientHomeUrl,
+    clientOrederUrl,
+    clientOrderTrackerUrl,
+    clientHomeRoorUrl,
 };
