@@ -13,7 +13,7 @@ export default function BookingCard({
     handlePayBillClick,
     handleCompleteOrderClick,
 }) {
-    const Completionist = () => <span>Done!</span>;
+    const Completionist = () => <Typography.Text type='danger'>Done!!!</Typography.Text>;
     const renderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
             return <Completionist />;

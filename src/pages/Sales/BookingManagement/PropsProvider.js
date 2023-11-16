@@ -17,6 +17,10 @@ export default function propsProvider(props) {
         tableData,
         handleActionButtonViewClick,
         expandedRowRenderSelection,
+        handleChangeOrderStatus,
+        handlePrintClick,
+        openBillQuickViewModal,
+        componentRef,
     } = props;
     return {
         history,
@@ -36,5 +40,9 @@ export default function propsProvider(props) {
         tableData,
         handleActionButtonViewClick,
         expandedRowRenderSelection,
+        handleChangeOrderStatus,
+        handlePrintClick,
+        openBillQuickViewModal,
+        componentRef,
     };
 }

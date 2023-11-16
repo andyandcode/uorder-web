@@ -8,6 +8,8 @@ export default function ViewModal({
     handleViewCancelClick,
     handleCreateSubmitClick,
     messageContextHolder,
+    handleChangeOrderStatus,
+    handlePrintClick,
 }) {
     const target = t('main.common.system_key.booking');
     return (
@@ -24,10 +26,12 @@ export default function ViewModal({
                 width='50%'
             >
                 {messageContextHolder}
-                <FormBuilder.ViewBookingForm
+                <FormBuilder.ViewOrderForm
                     viewData={viewData}
                     handleButtonSubmit={handleCreateSubmitClick}
                     handleButtonCancel={handleViewCancelClick}
+                    handleChangeOrderStatus={handleChangeOrderStatus}
+                    handlePrintClick={handlePrintClick}
                 />
             </Modal>
         </>

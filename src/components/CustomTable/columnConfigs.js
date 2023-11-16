@@ -254,7 +254,7 @@ const OrderColumns = () => {
                 showTitle: false,
             },
             render: (data) => {
-                return <p>{moment(data).format('DD/MM/YYYY')}</p>;
+                return <p>{moment(data).format('hh:mm DD/MM/YYYY')}</p>;
             },
         },
         {
@@ -416,6 +416,71 @@ const ExpandedRowRenderSelection = (
             return (
                 <NestedTable
                     columns={orderColumns}
+                    dataSource={data.orderDetails}
+                    pagination={false}
+                    locale={{
+                        emptyText: t('main.components.table.empty_data'),
+                        triggerDesc: t('main.components.table.trigger_desc'),
+                        triggerAsc: t('main.components.table.trigger_asc'),
+                        cancelSort: t('main.components.button.cancel'),
+                    }}
+                    size='small'
+                />
+            );
+        case TableColumns.TableSwitch.BookingTable:
+            const bookingColumns = [
+                {
+                    key: 'dishName',
+                    dataIndex: 'dishName',
+                    title: t('main.entities.name'),
+                    sorter: {
+                        compare: (a, b) => a.dishName.localeCompare(b.dishName),
+                        multiple: 1,
+                    },
+                },
+                {
+                    key: 'qty',
+                    dataIndex: 'qty',
+                    title: t('main.entities.qty'),
+                    align: 'right',
+                    sorter: {
+                        compare: (a, b) => a.qty - b.qty,
+                        multiple: 2,
+                    },
+                    render: (data) => {
+                        return <NumericFormat value={data} thousandSeparator=',' displayType='text' />;
+                    },
+                },
+                {
+                    key: 'unitPrice',
+                    dataIndex: 'unitPrice',
+                    title: t('main.entities.unitPrice'),
+                    align: 'right',
+                    sorter: {
+                        compare: (a, b) => a.unitPrice - b.unitPrice,
+                        multiple: 3,
+                    },
+                    render: (data) => {
+                        return <CurrencyFormat.Minimal value={data} />;
+                    },
+                },
+                {
+                    key: 'amount',
+                    dataIndex: 'amount',
+                    title: t('main.entities.amount'),
+                    align: 'right',
+                    sorter: {
+                        compare: (a, b) => a.amount - b.amount,
+                        multiple: 4,
+                    },
+                    render: (data) => {
+                        return <CurrencyFormat.Minimal value={data} />;
+                    },
+                },
+            ];
+            return (
+                <NestedTable
+                    columns={bookingColumns}
                     dataSource={data.orderDetails}
                     pagination={false}
                     locale={{

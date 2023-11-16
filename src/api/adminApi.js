@@ -119,4 +119,26 @@ const OrderAdmin = {
     },
 };
 
-export { DishAdmin, FileUpload, MenuAdmin, OrderAdmin, SystemSettingsAdmin, TableAdmin };
+const BookingAdmin = {
+    getAll: (params) => {
+        const url = '/booking/getAll';
+        return axiosAdmin.get(url, { params });
+    },
+    getCurrentBooking: (params) => {
+        const url = '/booking/getCurrentBooking';
+        return axiosAdmin.get(url, { params });
+    },
+    updateBookingStatus: (params) => {
+        const modifiedArray = [];
+
+        for (const item of params) {
+            const { path, op, value } = item;
+            const modifiedItem = { path, op, value };
+            modifiedArray.push(modifiedItem);
+        }
+        const url = `/booking/patch/${params[0].id}`;
+        return axiosAdminJson.patch(url, modifiedArray);
+    },
+};
+
+export { BookingAdmin, DishAdmin, FileUpload, MenuAdmin, OrderAdmin, SystemSettingsAdmin, TableAdmin };

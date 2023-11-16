@@ -328,7 +328,9 @@ const ViewOrderForm = ({
         <>
             <Row style={{ marginTop: 40 }}>
                 <Col flex='auto'>
-                    <Typography.Title level={4}>{moment(viewData.createdAt).format('DD/MM/YYYY')}</Typography.Title>
+                    <Typography.Title level={4}>
+                        {moment(viewData.createdAt).format('hh:mm:ss DD/MM/YYYY')}
+                    </Typography.Title>
                     <Typography.Text type='secondary'>
                         {t('main.entities.id')}: {viewData.id}
                     </Typography.Text>
