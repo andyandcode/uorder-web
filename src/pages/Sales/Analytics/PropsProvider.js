@@ -9,6 +9,7 @@ export default function propsProvider(props) {
         topSellersChartConfig,
         topSellersData,
         onFinishSelectTimeTopSellers,
+        countManagementData,
     } = props;
     return {
         history,
@@ -20,5 +21,6 @@ export default function propsProvider(props) {
         topSellersChartConfig,
         topSellersData,
         onFinishSelectTimeTopSellers,
+        countManagementData,
     };
 }

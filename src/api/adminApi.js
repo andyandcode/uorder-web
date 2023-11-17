@@ -141,4 +141,19 @@ const BookingAdmin = {
     },
 };
 
-export { BookingAdmin, DishAdmin, FileUpload, MenuAdmin, OrderAdmin, SystemSettingsAdmin, TableAdmin };
+const AnalyticsAdmin = {
+    getRevenue: (params) => {
+        const url = '/analytics/getRevenue';
+        return axiosAdmin.get(url, { params });
+    },
+    getTopSellers: (params) => {
+        const url = '/analytics/getTopSellers';
+        return axiosAdmin.get(url, { params });
+    },
+    getCountManagement: (params) => {
+        const url = '/analytics/countManagement';
+        return axiosAdmin.get(url, { params });
+    },
+};
+
+export { AnalyticsAdmin, BookingAdmin, DishAdmin, FileUpload, MenuAdmin, OrderAdmin, SystemSettingsAdmin, TableAdmin };

@@ -1,26 +1,38 @@
-import { useState } from 'react';
-import RenevueData from '../../../database/revenue.json';
-import TopSellersData from '../../../database/topSellers.json';
+import { useEffect, useState } from 'react';
+import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
+import { getCountManagement, getRevenue, getTopSellers } from './Slice';
 import { AnalyticsConfig } from './analyticsConfig';
 import MainView from './template/MainView';
 
 function Conainer(props) {
-    const { history, t } = props;
-    const [revenueData, setRevenueData] = useState(RenevueData);
-    const [topSellersData, setTopSellersData] = useState(RenevueData);
+    const { history, t, dispatch } = props;
+    const [revenueData, setRevenueData] = useState([]);
+    const [topSellersData, setTopSellersData] = useState([]);
+    const [countManagementData, setCountManagementData] = useState([]);
 
     const ordersToday = AnalyticsConfig.OrdersToday(props);
     const revenueChartConfig = AnalyticsConfig.RevenueChart(revenueData);
-    const topSellersChartConfig = AnalyticsConfig.TopSellersChart(TopSellersData);
+    const topSellersChartConfig = AnalyticsConfig.TopSellersChart(topSellersData);
+
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch(getRevenue()).then((result) => {
+                setRevenueData(Utils.getValues(result, 'payload', []));
+            });
+            dispatch(getTopSellers()).then((result) => {
+                setTopSellersData(Utils.getValues(result, 'payload', []));
+            });
+            dispatch(getCountManagement()).then((result) => {
+                setCountManagementData(Utils.getValues(result, 'payload', []));
+            });
+        }, 500);
+    }, [dispatch]);
 
     const onFinishSelectTimeTopSellers = (fieldsValue) => {
         const rangeValue = fieldsValue['range-picker'];
         const values = {
-            'range-picker': [
-                rangeValue[0].format('DD/MM/YYYY'),
-                rangeValue[1].format('DD/MM/YYYY'),
-            ],
+            'range-picker': [rangeValue[0].format('DD/MM/YYYY'), rangeValue[1].format('DD/MM/YYYY')],
         };
         console.log('Received values of form: ', values);
     };
@@ -35,6 +47,7 @@ function Conainer(props) {
         topSellersChartConfig,
         topSellersData,
         onFinishSelectTimeTopSellers,
+        countManagementData,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

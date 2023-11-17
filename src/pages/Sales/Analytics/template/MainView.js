@@ -1,6 +1,5 @@
 import { Layout, Typography } from 'antd';
 import CountManagement from './subViews/countManagement';
-import OrdersToday from './subViews/ordersToday';
 import RevenueChart from './subViews/revenueChart';
 import TopSellersChart from './subViews/topSellers';
 
@@ -15,7 +14,7 @@ export default function MainView(props) {
                 <Title style={{ marginBottom: 32 }} level={3}>
                     {t('main.pages.analytics.label')}
                 </Title>
-                <OrdersToday {...props} />
+                {/* <OrdersToday {...props} /> */}
                 <RevenueChart {...props} />
                 <TopSellersChart {...props} />
                 <CountManagement {...props} />
