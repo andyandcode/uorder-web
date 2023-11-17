@@ -182,7 +182,7 @@ export default function MainView({ t, orderData }) {
             ) : (
                 <div style={{ padding: 8 }}>
                     <Typography.Title level={4}>{t('main.pages.tracker.title')}</Typography.Title>
-                    <Countdown date={orderData.timeToReceive} renderer={renderer} />
+                    <Countdown date={Date.now() + orderData.timeToReceive} renderer={renderer} />
                     <Collapse
                         bordered={false}
                         defaultActiveKey={['1']}

@@ -48,7 +48,7 @@ function Conainer(props) {
             tableId: location.state.preId.tableId,
         };
         dispatch(createOrderAdmin(modifiedItem));
-        history(`${rootKeys.clientOrderSuccessfulUrl}/${location.state.preId.tableId}`);
+        history(`/booking/successfully/${location.state.preId.tableId}`);
     };
 
     const containerProps = {
