@@ -129,6 +129,16 @@
                 "no_code": "No codes available",
                 "discount_title": "Discount",
                 "payment_method_title": "Select payment method"
+            },
+            "tracker": {
+                "title": "Tracking",
+                "completed_note": "Order has been completed. (If you have not received your order, please contact staff)",
+                "in_progess_note": "Expected completion later:",
+                "order_overview": "Order Overview",
+                "order_details": "Order Details",
+                "order": "Order:",
+                "order_successfully_title": "Placed order successfully",
+                "order_successfully_subtitle": "You can re-scan this code to check order information."
             }
         },
         "notification": {
@@ -226,7 +236,8 @@
                 "forgot_pwd": "Forgot password",
                 "login": "Login",
                 "add_to_card": "Add",
-                "order": "Order"
+                "order": "Order",
+                "call_staff": "Call Staff"
             },
             "cart_navbar": { "items": "items" }
         }

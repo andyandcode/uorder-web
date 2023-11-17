@@ -4,7 +4,7 @@ import MainView from './template/MainView';
 
 function Conainer(props) {
     const { history, t, location } = props;
-    const [orderData, setOrderData] = useState([]);
+    const [orderData, setOrderData] = useState(location.state != null ? location.state.data : []);
 
     const containerProps = {
         ...props,

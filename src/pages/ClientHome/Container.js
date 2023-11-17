@@ -18,6 +18,12 @@ function Conainer(props) {
 
     useEffect(() => {
         dispatch(getBooking(params.tableId)).then((result) => {
+            if (Utils.getValues(result, 'payload', []).hasOwnProperty('orderDetails')) {
+                history(`${rootKeys.clientOrderTrackerNullUrl}/${params.tableId}`, {
+                    state: { data: Utils.getValues(result, 'payload', []) },
+                });
+            }
+
             setMenuData(Utils.getValues(result, 'payload.menus', []));
             setAvailableMenuData(
                 Utils.getValues(result, 'payload.menus', []).map((item) => ({

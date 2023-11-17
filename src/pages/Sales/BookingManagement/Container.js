@@ -28,19 +28,14 @@ function Conainer(props) {
             .configureLogging(signalR.LogLevel.Information)
             .build();
 
-        connection
-            .start()
-            .then(() => {
-                console.log('SignalR Connected');
-            })
-            .catch((err) => console.error('SignalR Connection Error: ', err));
+        connection.start().catch((err) => console.error('SignalR Connection Error: ', err));
 
         connection.on('ReceiveOrderNotification', (message) => {
             getNewTableData();
         });
 
         return () => {
-            connection.stop().then(() => console.log('SignalR Disconnected'));
+            connection.stop();
         };
     }, []);
 
@@ -86,7 +81,20 @@ function Conainer(props) {
 
     const handlePayBillClick = (data) => {};
 
-    const handleCompleteOrderClick = (data) => {};
+    const handleCompleteOrderClick = (data) => {
+        dispatch(
+            updateOrderStatusAdmin([
+                {
+                    path: '/OrderStatus',
+                    op: 'replace',
+                    value: 2,
+                    id: data.id,
+                },
+            ]),
+        )
+            .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
+            .then(getNewTableData());
+    };
 
     const handleViewCancelClick = () => {
         setOpenViewModel(false);
