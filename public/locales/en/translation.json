@@ -132,13 +132,19 @@
             },
             "tracker": {
                 "title": "Tracking",
-                "completed_note": "Order has been completed. (If you have not received your order, please contact staff)",
+                "completed_note": "Booking has been completed. (If you have not received your booking, please contact staff)",
                 "in_progess_note": "Expected completion later:",
-                "order_overview": "Order Overview",
-                "order_details": "Order Details",
-                "order": "Order:",
-                "order_successfully_title": "Placed order successfully",
-                "order_successfully_subtitle": "You can re-scan this code to check order information."
+                "booking_overview": "Booking Overview",
+                "booking_details": "Booking Details",
+                "booking_summary": "Booking Summary",
+                "booking": "Booking:",
+                "booking_successfully_title": "Placed booking successfully",
+                "booking_successfully_subtitle": "You can re-scan this code to check booking information.",
+                "booking_at": "Booked at:",
+                "booking_status": "Booking status:",
+                "timeline": "Timeline",
+                "404_title": "Invalid request!",
+                "404_subtitle": "Sorry, something went wrong!"
             }
         },
         "notification": {

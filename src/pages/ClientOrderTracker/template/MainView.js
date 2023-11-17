@@ -1,5 +1,6 @@
 import { CaretRightOutlined } from '@ant-design/icons';
-import { Button, Col, Collapse, Divider, Result, Row, Space, Typography, theme } from 'antd';
+import { Button, Col, Collapse, Divider, Result, Row, Space, Timeline, Typography, theme } from 'antd';
+import moment from 'moment';
 import Countdown, { zeroPad } from 'react-countdown';
 import { CurrencyFormat } from '../../../components/CurrencyFormat';
 import { EnumRender } from '../../../components/EnumRender';
@@ -29,19 +30,24 @@ export default function MainView({ t, orderData }) {
     const getItems = (panelStyle) => [
         {
             key: '1',
-            label: t('main.pages.tracker.order_overview'),
+            label: t('main.pages.tracker.booking_overview'),
             children: (
                 <>
                     <Row gutter={[8, 8]}>
-                        <Typography.Text style={{ width: '100%' }}>
-                            {t('main.pages.tracker.order')} {orderData.id}
+                        <Typography.Text style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                            {t('main.pages.tracker.booking')} <span>{orderData.id}</span>
                         </Typography.Text>
-                        <Typography.Text style={{ width: '100%' }}>
-                            {t('main.entities.order_status.label')}: {EnumRender.OrderStatus(t, orderData.orderStatus)}
+                        <Typography.Text style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                            {t('main.pages.tracker.booking_at')}
+                            <span>{moment(orderData.createdAd).format('hh:mm DD/MM/YYYY')}</span>
                         </Typography.Text>
-                        <Typography.Text style={{ width: '100%' }}>
-                            {t('main.entities.payment_status.label')}:{' '}
-                            {EnumRender.PaymentStatus(t, orderData.paymentStatus)}
+                        <Typography.Text style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                            {t('main.pages.tracker.booking_status')}
+                            {EnumRender.OrderStatusMinimal(t, orderData.orderStatus)}
+                        </Typography.Text>
+                        <Typography.Text style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                            {t('main.entities.payment_status.label')}:
+                            {EnumRender.PaymentStatusMinimal(t, orderData.paymentStatus)}
                         </Typography.Text>
                     </Row>
                 </>
@@ -50,7 +56,36 @@ export default function MainView({ t, orderData }) {
         },
         {
             key: '2',
-            label: t('main.pages.tracker.order_details'),
+            label: t('main.pages.tracker.timeline'),
+            children: (
+                <>
+                    <Timeline
+                        mode={'left'}
+                        items={[
+                            {
+                                label: '2015-09-01',
+                                children: 'Create a services',
+                            },
+                            {
+                                label: '2015-09-01 09:12:11',
+                                children: 'Solve initial network problems',
+                            },
+                            {
+                                children: 'Technical testing',
+                            },
+                            {
+                                label: '2015-09-01 09:12:11',
+                                children: 'Network problems being solved',
+                            },
+                        ]}
+                    />
+                </>
+            ),
+            style: panelStyle,
+        },
+        {
+            key: '3',
+            label: t('main.pages.tracker.booking_details'),
             children: (
                 <>
                     {orderData.orderDetails.map((e) => (
@@ -115,19 +150,39 @@ export default function MainView({ t, orderData }) {
             ),
             style: panelStyle,
         },
+        {
+            key: '4',
+            label: t('main.pages.tracker.booking_summary'),
+            children: (
+                <>
+                    <Row gutter={[8, 8]}>
+                        <Typography.Text style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                            {t('main.entities.subtotal')}: {<CurrencyFormat.Minimal value={orderData.subtotal} />}
+                        </Typography.Text>
+                        <Typography.Text style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                            {t('main.entities.discount')}: {<CurrencyFormat.Minimal value={orderData.discount} />}
+                        </Typography.Text>
+                        <Typography.Text style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                            {t('main.entities.total')}: {<CurrencyFormat.Minimal value={orderData.total} />}
+                        </Typography.Text>
+                    </Row>
+                </>
+            ),
+            style: panelStyle,
+        },
     ];
     return (
         <>
             {orderData.length === 0 ? (
                 <Result
-                    status='success'
-                    title={t('main.pages.tracker.order_successfully_title')}
-                    subTitle={t('main.pages.tracker.order_successfully_subtitle')}
+                    status='500'
+                    title={t('main.pages.tracker.404_title')}
+                    subTitle={t('main.pages.tracker.404_subtitle')}
                 />
             ) : (
                 <div style={{ padding: 8 }}>
                     <Typography.Title level={4}>{t('main.pages.tracker.title')}</Typography.Title>
-                    <Countdown date={Date.now() + orderData.timeToReceive} renderer={renderer} />
+                    <Countdown date={orderData.timeToReceive} renderer={renderer} />
                     <Collapse
                         bordered={false}
                         defaultActiveKey={['1']}

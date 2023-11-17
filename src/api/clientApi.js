@@ -12,6 +12,10 @@ const BookingClient = {
         const url = `/booking/${params}`;
         return axiosClient.get(url, { params });
     },
+    getTracking: (params) => {
+        const url = `/booking/tracker/${params}`;
+        return axiosClient.get(url, { params });
+    },
     letsBooking: (params) => {
         const url = `/booking/${params}`;
         return axiosClient.get(url, { params });

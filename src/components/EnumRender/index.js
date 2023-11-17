@@ -1,4 +1,4 @@
-import { Badge, Tag } from 'antd';
+import { Badge, Tag, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 const OrderStatus = (t, data) => {
@@ -39,6 +39,36 @@ const OrderStatus = (t, data) => {
             break;
     }
 };
+const OrderStatusMinimal = (t, data) => {
+    switch (data) {
+        case 0:
+            return (
+                <>
+                    <Typography.Text>{t('main.entities.order_status.ordered')}</Typography.Text>
+                </>
+            );
+        case 1:
+            return (
+                <>
+                    <Typography.Text>{t('main.entities.order_status.to_receive')}</Typography.Text>
+                </>
+            );
+        case 2:
+            return (
+                <>
+                    <Typography.Text>{t('main.entities.order_status.completed')}</Typography.Text>
+                </>
+            );
+        case 3:
+            return (
+                <>
+                    <Typography.Text>{t('main.entities.order_status.cancelled')}</Typography.Text>
+                </>
+            );
+        default:
+            break;
+    }
+};
 
 const PaymentStatus = (t, data) => {
     switch (data) {
@@ -56,6 +86,24 @@ const PaymentStatus = (t, data) => {
                     <Tag color='default' key={data}>
                         {t('main.entities.payment_status.unpaid')}
                     </Tag>
+                </>
+            );
+        default:
+            break;
+    }
+};
+const PaymentStatusMinimal = (t, data) => {
+    switch (data) {
+        case 0:
+            return (
+                <>
+                    <Typography.Text>{t('main.entities.payment_status.paid')}</Typography.Text>
+                </>
+            );
+        case 1:
+            return (
+                <>
+                    <Typography.Text>{t('main.entities.payment_status.unpaid')}</Typography.Text>
                 </>
             );
         default:
@@ -181,4 +229,12 @@ const PaymentStatusKey = () => {
 
 export const EnumKey = { OrderStatusKey, PaymentStatusKey };
 
-export const EnumRender = { OrderStatus, PaymentStatus, DishType, ActiveStatus, DishTypeWithActievStatus };
+export const EnumRender = {
+    OrderStatus,
+    PaymentStatus,
+    DishType,
+    ActiveStatus,
+    DishTypeWithActievStatus,
+    PaymentStatusMinimal,
+    OrderStatusMinimal,
+};

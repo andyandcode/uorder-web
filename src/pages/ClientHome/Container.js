@@ -18,8 +18,8 @@ function Conainer(props) {
 
     useEffect(() => {
         dispatch(getBooking(params.tableId)).then((result) => {
-            if (Utils.getValues(result, 'payload', []).hasOwnProperty('orderDetails')) {
-                history(`${rootKeys.clientOrderTrackerNullUrl}/${params.tableId}`, {
+            if (result.error !== undefined && result.error.code === 'ERR_BAD_REQUEST') {
+                history(`/booking/tracker/${params.tableId}`, {
                     state: { data: Utils.getValues(result, 'payload', []) },
                 });
             }

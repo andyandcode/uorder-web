@@ -12,6 +12,7 @@ import SystemSettings from '../pages/Settings/SystemSettings';
 
 import ClientHome from '../pages/ClientHome';
 import ClientOrder from '../pages/ClientOrder';
+import ClientOrderSuccessful from '../pages/ClientOrderSuccessful';
 import ClientOrderTracker from '../pages/ClientOrderTracker';
 
 const homeUrl = '/';
@@ -32,7 +33,7 @@ const loginUrl = '/login';
 const clientHomeRoorUrl = '/booking';
 const clientHomeUrl = `${clientHomeRoorUrl}/:tableId`;
 const clientOrederUrl = `${clientHomeRoorUrl}/order`;
-const clientOrderTrackerNullUrl = `${clientHomeRoorUrl}/tracker`;
+const clientOrderSuccessfulUrl = `${clientHomeRoorUrl}/successfully/:tableId`;
 const clientOrderTrackerUrl = `${clientHomeRoorUrl}/tracker/:tableId`;
 
 export const routeList = [
@@ -53,7 +54,7 @@ export const routeWithoutLayout = [{ path: loginUrl, name: loginUrl, component: 
 export const routeClientLayout = [
     { path: clientHomeUrl, name: homeUrl, component: ClientHome },
     { path: clientOrederUrl, name: clientOrederUrl, component: ClientOrder },
-    { path: clientOrderTrackerNullUrl, name: clientOrderTrackerNullUrl, component: ClientOrderTracker },
+    { path: clientOrderSuccessfulUrl, name: clientOrderSuccessfulUrl, component: ClientOrderSuccessful },
     { path: clientOrderTrackerUrl, name: clientOrderTrackerUrl, component: ClientOrderTracker },
 ];
 
@@ -76,5 +77,5 @@ export const rootKeys = {
     clientOrederUrl,
     clientOrderTrackerUrl,
     clientHomeRoorUrl,
-    clientOrderTrackerNullUrl,
+    clientOrderSuccessfulUrl,
 };

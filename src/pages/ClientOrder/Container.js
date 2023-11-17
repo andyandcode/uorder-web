@@ -48,7 +48,7 @@ function Conainer(props) {
             tableId: location.state.preId.tableId,
         };
         dispatch(createOrderAdmin(modifiedItem));
-        history(`${rootKeys.clientOrderTrackerNullUrl}/${location.state.preId.tableId}`);
+        history(`${rootKeys.clientOrderSuccessfulUrl}/${location.state.preId.tableId}`);
     };
 
     const containerProps = {

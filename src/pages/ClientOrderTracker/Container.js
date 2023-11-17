@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Utils from '../../utilities';
 import propsProvider from './PropsProvider';
+import { getTracking } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
-    const { history, t, location } = props;
-    const [orderData, setOrderData] = useState(location.state != null ? location.state.data : []);
-
+    const { history, t, location, dispatch } = props;
+    const [orderData, setOrderData] = useState([]);
+    const params = useParams();
+    useEffect(() => {
+        dispatch(getTracking(params.tableId)).then((result) => {
+            setOrderData(Utils.getValues(result, 'payload', []));
+        });
+    }, [dispatch]);
     const containerProps = {
         ...props,
         history,
