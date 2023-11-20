@@ -14,27 +14,36 @@ import ClientHome from '../pages/ClientHome';
 import ClientOrder from '../pages/ClientOrder';
 import ClientOrderSuccessful from '../pages/ClientOrderSuccessful';
 import ClientOrderTracker from '../pages/ClientOrderTracker';
+import NotFound from '../pages/Redirect/NotFound';
 
-const homeUrl = '/';
-const manageUrl = '/manage';
+const adminUrl = '/admin-zone';
+const homeUrl = `${adminUrl}/home`;
+
+const manageUrl = `${adminUrl}/manage`;
 const dishManagementUrl = `${manageUrl}/dish-management`;
 const menuManagementUrl = `${manageUrl}/menu-management`;
 const tableManagementUrl = `${manageUrl}/table-management`;
-const salesUrl = '/sales';
+
+const salesUrl = `${adminUrl}/sales`;
 const bookingManagementUrl = `${salesUrl}/booking-management`;
 const orderManagementUrl = `${salesUrl}/order-management`;
 const analyticsUrl = `${salesUrl}/analytics`;
+
 const accountManagementUrl = '/account-management';
-const settingUrl = '/settings';
+
+const settingUrl = `${adminUrl}/settings`;
 const accountSettingUrl = `${settingUrl}/account-settings`;
 const systemSettingUrl = `${settingUrl}/system-settings`;
-const loginUrl = '/login';
+
+const loginUrl = `${adminUrl}/login`;
 
 const clientHomeRoorUrl = '/booking';
 const clientHomeUrl = `${clientHomeRoorUrl}/:tableId`;
 const clientOrederUrl = `${clientHomeRoorUrl}/order`;
 const clientOrderSuccessfulUrl = `${clientHomeRoorUrl}/successfully/:tableId`;
 const clientOrderTrackerUrl = `${clientHomeRoorUrl}/tracker/:tableId`;
+
+const notFoundUrl = '/*';
 
 export const routeList = [
     { path: homeUrl, name: homeUrl, component: Home },
@@ -49,13 +58,19 @@ export const routeList = [
     { path: systemSettingUrl, name: systemSettingUrl, component: SystemSettings },
 ];
 
-export const routeWithoutLayout = [{ path: loginUrl, name: loginUrl, component: Login }];
+export const routeWithoutLayout = [
+    { path: loginUrl, name: loginUrl, component: Login },
+    // Keep "Not found page" the last one
+    { path: notFoundUrl, component: NotFound },
+];
 
 export const routeClientLayout = [
     { path: clientHomeUrl, name: homeUrl, component: ClientHome },
     { path: clientOrederUrl, name: clientOrederUrl, component: ClientOrder },
     { path: clientOrderSuccessfulUrl, name: clientOrderSuccessfulUrl, component: ClientOrderSuccessful },
     { path: clientOrderTrackerUrl, name: clientOrderTrackerUrl, component: ClientOrderTracker },
+    // Keep "Not found page" the last one
+    { path: notFoundUrl, component: NotFound },
 ];
 
 export const rootKeys = {

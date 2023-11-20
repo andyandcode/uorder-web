@@ -33,10 +33,11 @@ function Conainer(props) {
     const getNewTableData = () => {
         setLoadingTable(true);
         setTimeout(() => {
-            dispatch(getListMenuAdmin()).then((result) => {
-                setTableData(Utils.getValues(result, 'payload', []));
-            });
-            setLoadingTable(false);
+            dispatch(getListMenuAdmin())
+                .then((result) => {
+                    setTableData(Utils.getValues(result, 'payload', []));
+                })
+                .then(setLoadingTable(false));
         }, 500);
     };
 
@@ -135,11 +136,20 @@ function Conainer(props) {
             .then(() => {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
-                        dispatch(updateMenuAdmin(values));
-                        UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
-                        setOpenEditModel(false);
-                        getNewTableData();
+                    .then(async () => {
+                        const result = await dispatch(updateMenuAdmin(values));
+                        const status = Utils.getValues(result, 'error.code', []);
+                        console.log(result);
+                        console.log(status);
+
+                        if (status === 'ERR_BAD_REQUEST') {
+                            UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
+                            setOpenEditModel(false);
+                        } else {
+                            UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
+                            setOpenEditModel(false);
+                            getNewTableData();
+                        }
                     })
                     .then(() => editForm.resetFields());
             })

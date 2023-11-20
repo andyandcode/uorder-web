@@ -156,4 +156,21 @@ const AnalyticsAdmin = {
     },
 };
 
-export { AnalyticsAdmin, BookingAdmin, DishAdmin, FileUpload, MenuAdmin, OrderAdmin, SystemSettingsAdmin, TableAdmin };
+const AuthAdmin = {
+    login: (params) => {
+        const url = '/auth/login';
+        return axiosAdminJson.post(url, params);
+    },
+};
+
+export {
+    AnalyticsAdmin,
+    AuthAdmin,
+    BookingAdmin,
+    DishAdmin,
+    FileUpload,
+    MenuAdmin,
+    OrderAdmin,
+    SystemSettingsAdmin,
+    TableAdmin,
+};

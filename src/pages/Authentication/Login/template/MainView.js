@@ -1,14 +1,10 @@
 import { FormBuilder } from '../../../../components/FormBuilder';
 
-export default function MainView({ t, createForm, handleLoginSubmitClick }) {
+export default function MainView({ loginForm, t, handleLoginSubmitClick, contextHolder }) {
     return (
-        <div
-            style={{
-                backgroundColor: 'white',
-                height: '100vh',
-            }}
-        >
-            <FormBuilder.LoginForm t={t} form={createForm} handleButtonSubmit={handleLoginSubmitClick} />
-        </div>
+        <>
+            {contextHolder}
+            <FormBuilder.LoginForm t={t} form={loginForm} handleButtonSubmit={handleLoginSubmitClick} />
+        </>
     );
 }

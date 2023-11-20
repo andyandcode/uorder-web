@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import store from './app/store';
 import Loading from './components/FullPageLoading';
 import WebLayout from './components/WebLayout/index';
@@ -13,7 +13,7 @@ import './index.scss';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <Router>
             <Loading />
             <Routes>
                 {routeList.map((route) => (
@@ -45,6 +45,6 @@ root.render(
                     />
                 ))}
             </Routes>
-        </BrowserRouter>
+        </Router>
     </Provider>,
 );

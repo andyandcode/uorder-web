@@ -1,6 +1,5 @@
-import { LockOutlined, PrinterOutlined, UserOutlined } from '@ant-design/icons';
-import { LoginFormPage, ProFormText } from '@ant-design/pro-components';
-import { Button, Col, Divider, Form, Input, Row, Select, Space, Typography, theme } from 'antd';
+import { PrinterOutlined } from '@ant-design/icons';
+import { Button, Col, Divider, Form, Input, Row, Select, Space, Typography } from 'antd';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -778,81 +777,24 @@ const EditAccountForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
     );
 };
 
-const LoginForm = ({ t, handleButtonSubmit }) => {
-    const { token } = theme.useToken();
+const LoginForm = ({ form, t, handleButtonSubmit }) => {
     return (
         <>
-            <div
-                style={{
-                    backgroundColor: 'white',
-                    height: '100vh',
-                }}
-            >
-                <LoginFormPage
-                    backgroundImageUrl='https://media.licdn.com/dms/image/C4D12AQHTBV0aw2Yqbw/article-cover_image-shrink_720_1280/0/1634637189100?e=2147483647&v=beta&t=xDJKaAHDoXd14IXAx7RTndH4GjdcAtH8OnGLU1qwMjI'
-                    title={t('main.pages.login.title')}
-                    containerStyle={{
-                        backgroundColor: 'rgba(255, 255, 255,0.55)',
-                        backdropFilter: 'blur(4px)',
-                    }}
-                    subTitle={t('main.pages.login.sub_title')}
-                    submitter={{
-                        render: (props, doms) => {
-                            return [
-                                <Button
-                                    type='primary'
-                                    block
-                                    onClick={(e) => handleButtonSubmit(props.form.getFieldsValue())}
-                                >
-                                    {t('main.components.button.login')}
-                                </Button>,
-                            ];
-                        },
-                    }}
-                >
-                    <ProFormText
-                        name='username'
-                        fieldProps={{
-                            size: 'large',
-                            prefix: (
-                                <UserOutlined
-                                    style={{
-                                        color: token.colorText,
-                                    }}
-                                    className={'prefixIcon'}
-                                />
-                            ),
-                        }}
-                        placeholder={t('main.entities.username')}
-                        rules={[
-                            {
-                                required: true,
-                                message: t('main.entities.is_required'),
-                            },
-                        ]}
-                    />
-                    <ProFormText.Password
-                        name='password'
-                        fieldProps={{
-                            size: 'large',
-                            prefix: (
-                                <LockOutlined
-                                    style={{
-                                        color: token.colorText,
-                                    }}
-                                    className={'prefixIcon'}
-                                />
-                            ),
-                        }}
-                        placeholder={t('main.entities.pwd')}
-                        rules={[
-                            {
-                                required: true,
-                                message: t('main.entities.is_required'),
-                            },
-                        ]}
-                    />
-                    <Button
+            <div className='loginPage'>
+                <Form form={form} layout='vertical' name='form_create_in_modal'>
+                    <div style={{ display: 'flex', marginBottom: 40, flexDirection: 'column', alignItems: 'center' }}>
+                        <Typography.Title>{t('main.pages.login.title')}</Typography.Title>
+                        <Typography.Text>{t('main.pages.login.sub_title')}</Typography.Text>
+                    </div>
+                    <FormEntities.Username />
+                    <FormEntities.Password />
+                    <Form.Item>
+                        <Button type='primary' block onClick={() => handleButtonSubmit(form.getFieldsValue())}>
+                            {t('main.components.button.login')}
+                        </Button>
+                    </Form.Item>
+                </Form>
+                {/* <Button
                         type='link'
                         style={{
                             float: 'right',
@@ -860,8 +802,7 @@ const LoginForm = ({ t, handleButtonSubmit }) => {
                         }}
                     >
                         {t('main.components.button.forgot_pwd')}
-                    </Button>
-                </LoginFormPage>
+                    </Button> */}
             </div>
         </>
     );

@@ -34,3 +34,23 @@
     left: 0;
     right: 0;
 }
+
+.loginPage {
+    background-color: #ebf2fa;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > form {
+        border: 1px solid #dfdfdf;
+        background-color: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(4px);
+        padding: 40px;
+        width: '100%';
+        border-radius: 12px;
+        margin-right: 20px;
+    }
+}

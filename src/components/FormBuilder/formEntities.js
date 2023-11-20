@@ -4,6 +4,7 @@ import {
     DeleteOutlined,
     GlobalOutlined,
     LoadingOutlined,
+    LockOutlined,
     PlusOutlined,
     RightOutlined,
     TagFilled,
@@ -58,7 +59,7 @@ const Id = ({ data }) => {
             <Row style={{ marginBottom: 16 }}>
                 <Col>{t('main.entities.id')}</Col>
                 <Col flex={'auto'}>
-                    <Typography.Text type='secondary'>{tempId}</Typography.Text>
+                    <Typography.Text type='secondary'>{data.getFieldsValue().id}</Typography.Text>
                 </Col>
             </Row>
         </>
@@ -652,7 +653,11 @@ const Username = () => {
                     },
                 ]}
             >
-                <Input allowClear />
+                <Input
+                    allowClear
+                    placeholder='Enter your username'
+                    prefix={<UserOutlined className='site-form-item-icon' />}
+                />
             </Form.Item>
         </>
     );
@@ -662,11 +667,8 @@ const Password = () => {
     return (
         <>
             <Form.Item
-                name='pwd'
+                name='password'
                 label={t('main.entities.pwd')}
-                tooltip={t('main.entities.pwd_tooltip', {
-                    target: t('main.common.system_key.dish'),
-                })}
                 rules={[
                     {
                         required: true,
@@ -674,7 +676,7 @@ const Password = () => {
                     },
                 ]}
             >
-                <Input allowClear />
+                <Input.Password allowClear prefix={<LockOutlined />} />
             </Form.Item>
         </>
     );

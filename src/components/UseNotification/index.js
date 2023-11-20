@@ -54,8 +54,48 @@ const FinishFailMessage = (t, action) => {
     return message.error(t(action), 2);
 };
 
+const NotFoundAccountMessage = (t) => {
+    return {
+        type: 'loading',
+        content: t('main.notification.auth.not_found_account'),
+        duration: 3,
+    };
+};
+
+const WrongPasswordMessage = (t) => {
+    return {
+        type: 'loading',
+        content: t('main.notification.auth.wrong_password'),
+        duration: 3,
+    };
+};
+
+const AccountLockedMessage = (t) => {
+    return {
+        type: 'loading',
+        content: t('main.notification.auth.account_locked'),
+        duration: 3,
+    };
+};
+
+const LoginSuccessMessage = (t) => {
+    return {
+        type: 'loading',
+        content: t('main.notification.auth.login_success'),
+        duration: 3,
+    };
+};
+
 const Modal = { DeleteModal, TurnOffModal, TurnOnModal };
-const Message = { InProgressMessage, FinishMessage, FinishFailMessage };
+const Message = {
+    InProgressMessage,
+    FinishMessage,
+    FinishFailMessage,
+    NotFoundAccountMessage,
+    AccountLockedMessage,
+    WrongPasswordMessage,
+    LoginSuccessMessage,
+};
 
 const Dish = 'main.common.system_key.dish';
 const Menu = 'main.common.system_key.menu';

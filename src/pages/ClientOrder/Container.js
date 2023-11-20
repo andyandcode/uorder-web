@@ -1,8 +1,8 @@
 import { Form } from 'antd';
 import React, { useState } from 'react';
 import { rootKeys } from '../../configuration/routesConfig';
-import { createOrderAdmin } from '../Sales/OrderManagement/Slice';
 import propsProvider from './PropsProvider';
+import { bookingClient } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -47,7 +47,7 @@ function Conainer(props) {
             ...orderForm.getFieldsValue(),
             tableId: location.state.preId.tableId,
         };
-        dispatch(createOrderAdmin(modifiedItem));
+        dispatch(bookingClient(modifiedItem));
         history(`/booking/successfully/${location.state.preId.tableId}`);
     };
 

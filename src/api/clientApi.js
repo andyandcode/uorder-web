@@ -16,9 +16,11 @@ const BookingClient = {
         const url = `/booking/tracker/${params}`;
         return axiosClient.get(url, { params });
     },
-    letsBooking: (params) => {
-        const url = `/booking/${params}`;
-        return axiosClient.get(url, { params });
+    create: (params) => {
+        const url = '/booking/post';
+        return axiosClient.post(url, params, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
     },
 };
 

@@ -154,7 +154,7 @@ function Conainer(props) {
                             completionTime: completionTimeParse,
                             qtyPerDay: qtyPerDayParse,
                         };
-                        const result = await dispatch(updateDishAdmin(modifiedItem));
+                        const result = dispatch(updateDishAdmin(modifiedItem));
                         const status = Utils.getValues(result, 'error.code', []);
 
                         if (status === 'ERR_BAD_REQUEST') {

@@ -122,7 +122,7 @@
                     "total_order_completed": "Orders Completed"
                 }
             },
-            "login": { "title": "Login", "sub_title": "Online ordering management platform" },
+            "login": { "title": "Admin Panel", "sub_title": "Online ordering management platform" },
             "order": {
                 "titel": "Order Information",
                 "payment_details": "Payment Details",
@@ -159,6 +159,12 @@
                 "edit_finish_fail": "Update failed!",
                 "action_in_progress": "Action in progress..."
             },
+            "auth": {
+                "account_locked": "Account has been locked!",
+                "not_found_account": "Account does not exist!",
+                "wrong_password": "Wrong password!",
+                "login_success": "Logged in successfully!"
+            },
             "table": {
                 "delete_action": {
                     "title": "Are you sure?",
@@ -185,6 +191,10 @@
             },
             "qr_code": {
                 "title": "This is QR code of {{table}}"
+            },
+            "login_expired": {
+                "title": "Login session has expired",
+                "contetn": "The current login session with username {{username}} has expired, please log in again."
             }
         },
         "common": {

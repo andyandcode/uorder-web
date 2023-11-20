@@ -1,3 +1,6 @@
+import Cookies from 'universal-cookie';
+import Config from '../configuration';
+
 const getValues = (source, variables = '', fallbackValue = false, allowNull = false) => {
     const targetValueHierarchy = (variables || '')
         .toString()
@@ -38,6 +41,15 @@ const getValues = (source, variables = '', fallbackValue = false, allowNull = fa
     return result !== undefined ? result : fallbackValue;
 };
 
-const Utils = { getValues };
+const getAccessToken = () => {
+    const cookies = new Cookies();
+    const jwt = cookies.get(Config.storageKey.tokenKey);
+    if (jwt) {
+        return jwt;
+    }
+    return false;
+};
+
+const Utils = { getValues, getAccessToken };
 
 export default Utils;
