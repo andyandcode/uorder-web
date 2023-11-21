@@ -2,14 +2,20 @@ import { Form, Modal, message } from 'antd';
 import { useEffect, useState } from 'react';
 import TableColumns from '../../components/CustomTable/columnConfigs';
 import { NotificationTarget, UseNotification, UserAction } from '../../components/UseNotification';
-import AccountData from '../../database/account.json';
+import Utils from '../../utilities';
 import propsProvider from './PropsProvider';
+import {
+    createAccountAdmin,
+    deleteAccountAdmin,
+    getListAccountAdmin,
+    updateAccountAdmin,
+    updateAccountStatusAdmin,
+} from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
-    const { history, t } = props;
+    const { history, t, dispatch } = props;
     const columns = TableColumns.AccountColumns(t);
-    const data = AccountData;
     const [tableData, setTableData] = useState([]);
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
@@ -22,10 +28,22 @@ function Conainer(props) {
     useEffect(() => {
         setLoadingTable(true);
         setTimeout(() => {
-            setTableData(data);
+            dispatch(getListAccountAdmin()).then((result) => {
+                setTableData(Utils.getValues(result, 'payload', []));
+            });
             setLoadingTable(false);
         }, 500);
-    }, [data]);
+    }, [dispatch]);
+
+    const getNewTableData = () => {
+        setLoadingTable(true);
+        setTimeout(() => {
+            dispatch(getListAccountAdmin()).then((result) => {
+                setTableData(Utils.getValues(result, 'payload', []));
+            });
+            setLoadingTable(false);
+        }, 500);
+    };
 
     const handleEditCancelClick = () => {
         setOpenEditModel(false);
@@ -41,31 +59,44 @@ function Conainer(props) {
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Account), {
-            onOk() {},
-            onCancel() {},
-        });
+        function onOk() {
+            dispatch(deleteAccountAdmin(data.id));
+            getNewTableData();
+        }
+        Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Account, onOk));
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Account), {
-            onOk() {},
-            onCancel() {},
-        });
+        function onOk() {
+            dispatch(
+                updateAccountStatusAdmin([
+                    {
+                        path: '/IsActive',
+                        op: 'replace',
+                        value: false,
+                        id: data.id,
+                    },
+                ]),
+            ).then(getNewTableData());
+        }
+        Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Account, onOk));
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Account), {
-            onOk() {},
-            onCancel() {},
-        });
+        function onOk() {
+            dispatch(
+                updateAccountStatusAdmin([
+                    {
+                        path: '/IsActive',
+                        op: 'replace',
+                        value: true,
+                        id: data.id,
+                    },
+                ]),
+            ).then(getNewTableData());
+        }
+        Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Account, onOk));
     };
-
-    const handleQuickDeleteConfirm = (data) => {};
-
-    const handleQuickTurnOffConfirm = (data) => {};
-
-    const handleQuickActionButtonTurnOnClick = (data) => {};
 
     const handleCreateSubmitClick = (values) => {
         createForm
@@ -75,8 +106,10 @@ function Conainer(props) {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
+                        dispatch(createAccountAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
+                        getNewTableData();
                     })
                     .then(() => createForm.resetFields());
             })
@@ -93,8 +126,10 @@ function Conainer(props) {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
+                        const result = dispatch(updateAccountAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                         setOpenEditModel(false);
+                        getNewTableData();
                     })
                     .then(() => editForm.resetFields());
             })
@@ -143,9 +178,6 @@ function Conainer(props) {
         handleEditSubmitClick,
         handleEditCancelClick,
         handleCreateCancelClick,
-        handleQuickTurnOffConfirm,
-        handleQuickDeleteConfirm,
-        handleQuickActionButtonTurnOnClick,
         loadingTable,
         loadingsRefreshButton,
         handleCreateNewClick,

@@ -226,6 +226,18 @@ const PaymentStatusKey = () => {
         },
     ];
 };
+const Roles = (t, data) => {
+    switch (data) {
+        case 'admin':
+            return <>{t('main.entities.roles.admin')}</>;
+        case 'creator':
+            return <>{t('main.entities.roles.creator')}</>;
+        case 'staff':
+            return <>{t('main.entities.roles.staff')}</>;
+        default:
+            break;
+    }
+};
 
 export const EnumKey = { OrderStatusKey, PaymentStatusKey };
 
@@ -237,4 +249,5 @@ export const EnumRender = {
     DishTypeWithActievStatus,
     PaymentStatusMinimal,
     OrderStatusMinimal,
+    Roles,
 };

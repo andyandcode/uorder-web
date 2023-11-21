@@ -88,6 +88,12 @@
                 "paid": "Paid",
                 "unpaid": "Unpaid"
             },
+            "roles": {
+                "label": "Role",
+                "admin": "Admin",
+                "creator": "Creator",
+                "staff": "Staff"
+            },
             "chef_count": "Chef",
             "chef_count_tooltip": "Number of chefs",
             "domain": "Domain name",

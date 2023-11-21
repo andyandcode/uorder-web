@@ -163,7 +163,45 @@ const AuthAdmin = {
     },
 };
 
+const AccountAdmin = {
+    getAll: (params) => {
+        const url = '/account/getAll';
+        return axiosAdmin.get(url, { params });
+    },
+    getAllRoles: (params) => {
+        const url = '/account/getAllRoles';
+        return axiosAdmin.get(url, { params });
+    },
+    create: (params) => {
+        const url = '/account/post';
+        return axiosAdmin.post(url, params, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+    },
+    update: (params) => {
+        const url = `/account/put/${params.id}`;
+        return axiosAdmin.put(url, params);
+    },
+    delete: (params) => {
+        const url = `/account/delete/${params}`;
+        return axiosAdmin.delete(url);
+    },
+    updateStatus: (params) => {
+        console.log(params);
+        const modifiedArray = [];
+
+        for (const item of params) {
+            const { path, op, value } = item;
+            const modifiedItem = { path, op, value };
+            modifiedArray.push(modifiedItem);
+        }
+        const url = `/account/patch/${params[0].id}`;
+        return axiosAdminJson.patch(url, modifiedArray);
+    },
+};
+
 export {
+    AccountAdmin,
     AnalyticsAdmin,
     AuthAdmin,
     BookingAdmin,

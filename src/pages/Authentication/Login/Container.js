@@ -56,10 +56,9 @@ function Conainer(props) {
                                         secure: true,
                                     },
                                 );
-                            })
-                            .then(() => {
                                 history(rootKeys.homeUrl);
-                            });
+                            })
+                            .then(() => {});
                     }
                     setLoginBtnLoading((prevLoadings) => {
                         const newLoadings = [...prevLoadings];

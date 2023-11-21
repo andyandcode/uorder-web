@@ -159,7 +159,7 @@ const AccountColumns = () => {
             dataIndex: 'username',
             title: t('main.entities.username'),
             sorter: {
-                compare: (a, b) => a.id.localeCompare(b.id),
+                compare: (a, b) => a.username.localeCompare(b.username),
                 multiple: 2,
             },
             ellipsis: {
@@ -172,13 +172,26 @@ const AccountColumns = () => {
             ),
         },
         {
+            key: 'roleName',
+            dataIndex: 'roleName',
+            title: t('main.entities.roles.label'),
+            sorter: {
+                compare: (a, b) => a.roleName.localeCompare(b.roleName),
+                multiple: 3,
+            },
+            ellipsis: {
+                showTitle: false,
+            },
+            render: (data) => EnumRender.Roles(t, data),
+        },
+        {
             key: 'isActive',
             dataIndex: 'isActive',
             title: t('main.entities.active_status.label'),
             align: 'center',
             sorter: {
                 compare: (a, b) => a.isActive - b.isActive,
-                multiple: 3,
+                multiple: 4,
             },
             render: (data) => EnumRender.ActiveStatus(t, data),
         },

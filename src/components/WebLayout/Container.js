@@ -123,6 +123,7 @@ export default function Conainer(props) {
         handleMenuClick,
         handleChangeLocales,
         MenuList,
+        access,
     };
 
     return <MainView {...propsProvider(containerProps)} />;

@@ -742,6 +742,7 @@ const CreateNewAccountForm = ({ form, handleButtonCancel, handleButtonSubmit }) 
             >
                 <FormEntities.Username />
                 <FormEntities.Password />
+                <FormEntities.Roles />
                 <FormEntities.ActiveStatus />
 
                 <Space>
@@ -764,8 +765,11 @@ const EditAccountForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
                 align='end'
                 initialValues={{ isActive: true }}
             >
-                <FormEntities.Username />
+                <FormEntities.Id data={form} />
+                <FormEntities.CreatedAt data={form} />
+                <FormEntities.UsernameInAdmin />
                 <FormEntities.Password />
+                <FormEntities.Roles />
                 <FormEntities.ActiveStatus />
 
                 <Space>

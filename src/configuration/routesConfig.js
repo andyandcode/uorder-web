@@ -29,7 +29,7 @@ const bookingManagementUrl = `${salesUrl}/booking-management`;
 const orderManagementUrl = `${salesUrl}/order-management`;
 const analyticsUrl = `${salesUrl}/analytics`;
 
-const accountManagementUrl = '/account-management';
+const accountManagementUrl = `${adminUrl}/account-management`;
 
 const settingUrl = `${adminUrl}/settings`;
 const accountSettingUrl = `${settingUrl}/account-settings`;

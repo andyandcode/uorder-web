@@ -30,6 +30,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NumericFormat } from 'react-number-format';
 import { useDispatch } from 'react-redux';
+import { getListRolesAdmin } from '../../pages/AccountManagement/Slice';
 import { getListDishAdmin } from '../../pages/Manage/DishManagement/Slice';
 import Utils from '../../utilities';
 import { ButtonLocated } from '../ButtonLocated';
@@ -359,6 +360,45 @@ const Dishes = () => {
         </>
     );
 };
+
+const Roles = () => {
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const [roleData, setRoleData] = useState([]);
+    useEffect(() => {
+        dispatch(getListRolesAdmin()).then((result) => {
+            setRoleData(Utils.getValues(result, 'payload', []));
+        });
+    }, [dispatch]);
+    return (
+        <>
+            <ConfigProvider direction='ltr'>
+                <Form.Item
+                    name='roleId'
+                    label={t('main.entities.roles.label')}
+                    rules={[
+                        {
+                            required: true,
+                            message: t('main.entities.is_required'),
+                        },
+                    ]}
+                >
+                    <Select
+                        style={{
+                            width: '150px',
+                        }}
+                    >
+                        {roleData.map((item) => (
+                            <Select.Option value={item.id} label={item.name} key={item.key}>
+                                {EnumRender.Roles(t, item.name)}
+                            </Select.Option>
+                        ))}
+                    </Select>
+                </Form.Item>
+            </ConfigProvider>
+        </>
+    );
+};
 const DishesInOrder = () => {
     const { t } = useTranslation();
     const [dishData, setDishData] = useState([]);
@@ -654,6 +694,30 @@ const Username = () => {
                 ]}
             >
                 <Input
+                    allowClear
+                    placeholder='Enter your username'
+                    prefix={<UserOutlined className='site-form-item-icon' />}
+                />
+            </Form.Item>
+        </>
+    );
+};
+const UsernameInAdmin = () => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item
+                name='username'
+                label={t('main.entities.username')}
+                rules={[
+                    {
+                        required: true,
+                        message: t('main.entities.is_required'),
+                    },
+                ]}
+            >
+                <Input
+                    disabled
                     allowClear
                     placeholder='Enter your username'
                     prefix={<UserOutlined className='site-form-item-icon' />}
@@ -1073,4 +1137,6 @@ export const FormEntities = {
     OrderTypeInClient,
     OrderStatusInClient,
     OrderTable,
+    Roles,
+    UsernameInAdmin,
 };
