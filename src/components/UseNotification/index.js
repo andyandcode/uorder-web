@@ -56,31 +56,39 @@ const FinishFailMessage = (t, action) => {
 
 const NotFoundAccountMessage = (t) => {
     return {
-        type: 'loading',
+        type: 'error',
         content: t('main.notification.auth.not_found_account'),
-        duration: 3,
+        duration: 2,
     };
 };
 
 const WrongPasswordMessage = (t) => {
     return {
-        type: 'loading',
+        type: 'error',
         content: t('main.notification.auth.wrong_password'),
-        duration: 3,
+        duration: 2,
     };
 };
 
 const AccountLockedMessage = (t) => {
     return {
-        type: 'loading',
+        type: 'error',
         content: t('main.notification.auth.account_locked'),
-        duration: 3,
+        duration: 2,
+    };
+};
+
+const CannotConnectToServer = (t) => {
+    return {
+        type: 'error',
+        content: t('main.notification.auth.cannnot_connect_to_server'),
+        duration: 2,
     };
 };
 
 const LoginSuccessMessage = (t) => {
     return {
-        type: 'loading',
+        type: 'success',
         content: t('main.notification.auth.login_success'),
         duration: 3,
     };
@@ -95,6 +103,7 @@ const Message = {
     AccountLockedMessage,
     WrongPasswordMessage,
     LoginSuccessMessage,
+    CannotConnectToServer,
 };
 
 const Dish = 'main.common.system_key.dish';

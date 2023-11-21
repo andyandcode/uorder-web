@@ -67,6 +67,10 @@ axiosAdminJson.interceptors.response.use(
         return response;
     },
     (error) => {
+        if (error.code === 'ERR_NETWORK') {
+            return 'ERR_NETWORK';
+        }
+
         if (error.response.status === 401) {
             redirect(rootKeys.loginUrl);
         }

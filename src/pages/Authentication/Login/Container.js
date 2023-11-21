@@ -1,6 +1,6 @@
 import { Form, message } from 'antd';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
-import React from 'react';
+import React, { useState } from 'react';
 import Cookies from 'universal-cookie';
 import { UseNotification } from '../../../components/UseNotification';
 import Config from '../../../configuration';
@@ -15,13 +15,24 @@ function Conainer(props) {
     const [loginForm] = Form.useForm();
     const [messageApi, contextHolder] = message.useMessage();
     const cookies = new Cookies();
+    const [loginBtnLoading, setLoginBtnLoading] = useState([]);
 
     const handleLoginSubmitClick = (data) => {
+        setLoginBtnLoading((prevLoadings) => {
+            const newLoadings = [...prevLoadings];
+            newLoadings[0] = true;
+            return newLoadings;
+        });
         loginForm
             .validateFields()
             .then(async () => {
                 await dispatch(login(data)).then((result) => {
+                    if (result.payload === 'ERR_NETWORK') {
+                        messageApi.open(UseNotification.Message.CannotConnectToServer(t));
+                    }
+
                     const status = Utils.getValues(result, 'payload.response.status', null);
+
                     if (status === 542) {
                         messageApi.open(UseNotification.Message.NotFoundAccountMessage(t));
                     }
@@ -31,22 +42,30 @@ function Conainer(props) {
                     if (status === 562) {
                         messageApi.open(UseNotification.Message.AccountLockedMessage(t));
                     }
-                    messageApi
-                        .open(UseNotification.Message.LoginSuccessMessage(t))
-                        .then(() => {
-                            const decodedToken = jwt_decode(result.payload.token);
-                            cookies.set(
-                                Config.storageKey.tokenKey,
-                                { data: decodedToken, key: result.payload.token },
-                                {
-                                    maxAge: parseInt(decodedToken.maxa),
-                                    secure: true,
-                                },
-                            );
-                        })
-                        .then(() => {
-                            history(rootKeys.homeUrl);
-                        });
+
+                    if (result.payload.token) {
+                        messageApi
+                            .open(UseNotification.Message.LoginSuccessMessage(t))
+                            .then(() => {
+                                const decodedToken = jwt_decode(result.payload.token);
+                                cookies.set(
+                                    Config.storageKey.tokenKey,
+                                    { data: decodedToken, key: result.payload.token },
+                                    {
+                                        maxAge: parseInt(decodedToken.maxa),
+                                        secure: true,
+                                    },
+                                );
+                            })
+                            .then(() => {
+                                history(rootKeys.homeUrl);
+                            });
+                    }
+                    setLoginBtnLoading((prevLoadings) => {
+                        const newLoadings = [...prevLoadings];
+                        newLoadings[0] = false;
+                        return newLoadings;
+                    });
                 });
             })
             .catch(() => {});
@@ -59,6 +78,7 @@ function Conainer(props) {
         handleLoginSubmitClick,
         loginForm,
         contextHolder,
+        loginBtnLoading,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

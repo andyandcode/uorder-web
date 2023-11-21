@@ -777,7 +777,7 @@ const EditAccountForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
     );
 };
 
-const LoginForm = ({ form, t, handleButtonSubmit }) => {
+const LoginForm = ({ form, t, handleButtonSubmit, loginBtnLoading }) => {
     return (
         <>
             <div className='loginPage'>
@@ -789,7 +789,12 @@ const LoginForm = ({ form, t, handleButtonSubmit }) => {
                     <FormEntities.Username />
                     <FormEntities.Password />
                     <Form.Item>
-                        <Button type='primary' block onClick={() => handleButtonSubmit(form.getFieldsValue())}>
+                        <Button
+                            type='primary'
+                            block
+                            onClick={() => handleButtonSubmit(form.getFieldsValue())}
+                            loading={loginBtnLoading[0]}
+                        >
                             {t('main.components.button.login')}
                         </Button>
                     </Form.Item>

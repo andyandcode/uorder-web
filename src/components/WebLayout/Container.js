@@ -2,6 +2,8 @@ import { ExclamationCircleFilled } from '@ant-design/icons';
 import { Modal, theme } from 'antd';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import Config from '../../configuration';
 import { rootKeys } from '../../configuration/routesConfig';
 import MainView from './MainView';
 import { MenuList } from './MenuList';
@@ -9,18 +11,14 @@ import propsProvider from './PropsProvider';
 
 const { confirm } = Modal;
 
-const rootSubmenuKeys = [
-    rootKeys.homeUrl,
-    rootKeys.manageUrl,
-    rootKeys.salesUrl,
-    rootKeys.settingUrl,
-];
+const rootSubmenuKeys = [rootKeys.homeUrl, rootKeys.manageUrl, rootKeys.salesUrl, rootKeys.settingUrl];
 
 export default function Conainer(props) {
-    const { t, i18n, dispatch } = props;
+    const { t, i18n, dispatch, history } = props;
     const navigate = useNavigate();
     const [notificationCount, setNotificationCount] = useState(5);
     const [collapsed, setCollapsed] = useState(false);
+    const cookies = new Cookies();
     const {
         token: { colorBgContainer },
     } = theme.useToken();
@@ -30,6 +28,19 @@ export default function Conainer(props) {
         { label: 'Tiếng Việt', value: 'vi' },
         { label: 'English', value: 'en' },
     ];
+    const access = cookies.get(Config.storageKey.tokenKey);
+
+    useEffect(() => {
+        if (!access) {
+            Modal.error({
+                title: t('main.notification.login_expired.title'),
+                content: t('main.notification.login_expired.content'),
+                onOk() {
+                    history(rootKeys.loginUrl);
+                },
+            });
+        }
+    }, [cookies]);
 
     const showLogOutConfirm = () => {
         confirm({
@@ -39,7 +50,10 @@ export default function Conainer(props) {
             okType: 'danger',
             okText: t('main.components.button.logout'),
             cancelText: t('main.components.button.cancel'),
-            onOk() {},
+            onOk() {
+                cookies.remove(Config.storageKey.tokenKey);
+                history(rootKeys.loginUrl);
+            },
             onCancel() {},
         });
     };

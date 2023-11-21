@@ -163,7 +163,8 @@
                 "account_locked": "Account has been locked!",
                 "not_found_account": "Account does not exist!",
                 "wrong_password": "Wrong password!",
-                "login_success": "Logged in successfully!"
+                "login_success": "Logged in successfully!",
+                "cannnot_connect_to_server": "Can not connect to server!"
             },
             "table": {
                 "delete_action": {
@@ -194,7 +195,7 @@
             },
             "login_expired": {
                 "title": "Login session has expired",
-                "contetn": "The current login session with username {{username}} has expired, please log in again."
+                "content": "The current login session has expired, please log in again."
             }
         },
         "common": {
