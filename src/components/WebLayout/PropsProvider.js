@@ -16,6 +16,8 @@ export default function propsProvider(props) {
         notificationCount,
         MenuList,
         dispatch,
+        history,
+        access,
     } = props;
     return {
         t,
@@ -34,5 +36,7 @@ export default function propsProvider(props) {
         notificationCount,
         MenuList,
         dispatch,
+        history,
+        access,
     };
 }

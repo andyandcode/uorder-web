@@ -2,6 +2,7 @@ import { Col, Divider, Layout, Row, Select, Space, Typography } from 'antd';
 import { ButtonLocated } from '../../../../components/ButtonLocated';
 import CustomTable from '../../../../components/CustomTable';
 import TableColumns from '../../../../components/CustomTable/columnConfigs';
+import BillQuickViewModal from './subViews/billQuickViewModal';
 import CreateModal from './subViews/createModal';
 import ViewModal from './subViews/viewModal';
 
@@ -12,7 +13,7 @@ export default function MainView(props) {
     const {
         t,
         columns,
-        data,
+        dishData,
         loadingTable,
         handleActionButtonViewClick,
         expandedRowRenderSelection,
@@ -72,12 +73,13 @@ export default function MainView(props) {
                     dataSource={tableData.dataSource}
                     handleActionButtonViewClick={(data) => handleActionButtonViewClick(data)}
                     expandedRowRenderSelection={() =>
-                        expandedRowRenderSelection(t, data, TableColumns.TableSwitch.OrderTable)
+                        expandedRowRenderSelection(t, dishData, TableColumns.TableSwitch.OrderTable)
                     }
                     switchActionColumn={TableColumns.TableSwitch.OrderTable}
                 />
                 <CreateModal {...props} />
                 <ViewModal {...props} />
+                <BillQuickViewModal {...props} />
             </Content>
         </>
     );

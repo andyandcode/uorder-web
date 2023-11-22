@@ -20,8 +20,8 @@ export default function MainView(props) {
         notificationCount,
         MenuList,
         children,
+        access,
     } = props;
-
     return (
         <>
             <Layout
@@ -48,7 +48,7 @@ export default function MainView(props) {
                         defaultSelectedKeys={[current]}
                         selectedKeys={[current]}
                         mode='inline'
-                        items={MenuList()}
+                        items={MenuList(access && access.data.role)}
                         onOpenChange={onOpenChange}
                         openKeys={openSiderKeys}
                         onClick={handleMenuClick}

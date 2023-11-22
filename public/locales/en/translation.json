@@ -59,10 +59,14 @@
             "form_create_title": "Create new {{target}}",
             "form_edit_title": "Edit {{target}}",
             "form_view_title": "View {{target}}",
+            "form_change_password_title": "Change password",
             "subtotal": "Subtotal",
             "discount": "Discount",
             "username": "Username",
             "pwd": "Password",
+            "old_password": "Old password",
+            "new_password": "New password",
+            "re_new_password": "Comform new password",
             "pwd_tooltip": "The password will have to be changed after logging into your account for the first time.",
             "active_status": {
                 "label": "Active status",
@@ -87,7 +91,22 @@
                 "all": "All",
                 "paid": "Paid",
                 "unpaid": "Unpaid"
-            }
+            },
+            "roles": {
+                "label": "Role",
+                "admin": "Admin",
+                "creator": "Creator",
+                "staff": "Staff"
+            },
+            "chef_count": "Chef",
+            "chef_count_tooltip": "Number of chefs",
+            "domain": "Domain name",
+            "domain_tooltip": "Domain name of website scan to order. (example: example.com)",
+            "order_discount": "Discount",
+            "order_subtotal": "Subtotal",
+            "order_total": "Total",
+            "dish_note_placeholder": "Dish note",
+            "order_note_placeholder": "Order note"
         },
         "pages": {
             "analytics": {
@@ -112,6 +131,30 @@
                     "total_revenue": "Revenue",
                     "total_order_completed": "Orders Completed"
                 }
+            },
+            "login": { "title": "Admin Panel", "sub_title": "Online ordering management platform" },
+            "order": {
+                "titel": "Order Information",
+                "payment_details": "Payment Details",
+                "no_code": "No codes available",
+                "discount_title": "Discount",
+                "payment_method_title": "Select payment method"
+            },
+            "tracker": {
+                "title": "Tracking",
+                "completed_note": "Booking has been completed. (If you have not received your booking, please contact staff)",
+                "in_progess_note": "Expected completion later:",
+                "booking_overview": "Booking Overview",
+                "booking_details": "Booking Details",
+                "booking_summary": "Booking Summary",
+                "booking": "Booking:",
+                "booking_successfully_title": "Placed booking successfully",
+                "booking_successfully_subtitle": "You can re-scan this code to check booking information.",
+                "booking_at": "Booked at:",
+                "booking_status": "Booking status:",
+                "timeline": "Timeline",
+                "404_title": "Invalid request!",
+                "404_subtitle": "Sorry, something went wrong!"
             }
         },
         "notification": {
@@ -125,6 +168,17 @@
                 "edit_finish": "Update success!",
                 "edit_finish_fail": "Update failed!",
                 "action_in_progress": "Action in progress..."
+            },
+            "auth": {
+                "account_locked": "Account has been locked!",
+                "not_found_account": "Account does not exist!",
+                "wrong_password": "Wrong password!",
+                "login_success": "Logged in successfully!",
+                "cannnot_connect_to_server": "Can not connect to server!",
+                "new_re_password_not_match": "The new password and confirmation password do not match.",
+                "password_least": "Password length must be at least 8 characters.",
+                "password_not_match": "The old password is incorrect.",
+                "change_password_successful": "Reset password successfully."
             },
             "table": {
                 "delete_action": {
@@ -152,6 +206,10 @@
             },
             "qr_code": {
                 "title": "This is QR code of {{table}}"
+            },
+            "login_expired": {
+                "title": "Login session has expired",
+                "content": "The current login session has expired, please log in again."
             }
         },
         "common": {
@@ -167,6 +225,10 @@
         },
         "utilities": {},
         "components": {
+            "alert": {
+                "not_have_domain_warning": "Warning: Add a domain to display the qr code to scan and order.",
+                "not_have_domain_alert": "This table does not have a qr code to scan. Please add domain in system settings."
+            },
             "antd_dragger": {
                 "text": "Click or drag file to this area to upload",
                 "hint": "Support for a single or bulk upload. Strictly prohibited from uploading banned files. (Max: 8)"
@@ -200,8 +262,15 @@
                 "close": "Close",
                 "add_order_item": "Add item",
                 "remove_order_item": "Remove",
-                "view_order": "View"
-            }
+                "view_order": "View Order",
+                "remember_login": "Remember login",
+                "forgot_pwd": "Forgot password",
+                "login": "Login",
+                "add_to_card": "Add",
+                "order": "Order",
+                "call_staff": "Call Staff"
+            },
+            "cart_navbar": { "items": "items" }
         }
     },
     "system": {

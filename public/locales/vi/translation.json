@@ -112,7 +112,8 @@
                     "total_revenue": "Doanh thu",
                     "total_order_completed": "Đơn hàng đã hoàn thành"
                 }
-            }
+            },
+            "login": { "title": "Đăng nhập", "sub_title": "Nền tảng quản lý đặt hàng trực tuyến" }
         },
         "notification": {
             "account_quick_access": {
@@ -136,7 +137,7 @@
                     "content": "Trạng thái hoạt động của {{target}} sẽ đổi thành tắt. Bạn sẽ vẫn có thể đổi lại trạng thái hoạt động của {{target}} vào lần tới."
                 },
                 "turn_on_active_action": {
-                    "title": "Change active status to active?",
+                    "title": "Đổi trạng thái thành bật?",
                     "content": "Trạng thái hoạt động của {{target}} sẽ được bật. Bạn sẽ vẫn có thể đổi lại trạng thái hoạt động của {{target}} vào lần tới."
                 },
                 "pop_confirm": {
@@ -187,8 +188,8 @@
                 "cancel": "Hủy",
                 "edit": "Chỉnh sửa",
                 "delete": "Xóa",
-                "turn_on": "Tắt",
-                "turn_off": "Bật",
+                "turn_on": "Bật",
+                "turn_off": "Tắt",
                 "reset": "Đặt lại",
                 "create": "Tạo mới",
                 "update": "Cập nhật",
@@ -200,7 +201,10 @@
                 "close": "Đóng",
                 "add_order_item": "Thêm món mới",
                 "remove_order_item": "Xóa",
-                "view_order": "Xem"
+                "view_order": "Xem",
+                "remember_login": "Nhớ đăng nhập",
+                "forgot_pwd": "Quên mật khẩu",
+                "login": "Đăng nhập"
             }
         }
     },

@@ -1,7 +1,7 @@
 import { CheckCircleOutlined, CreditCardOutlined, PrinterOutlined, ReconciliationOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Flex, Row, Skeleton, Typography } from 'antd';
 import Countdown, { zeroPad } from 'react-countdown';
-import CurrencyFormat from '../../../../../components/CurrencyFormat';
+import { CurrencyFormat } from '../../../../../components/CurrencyFormat';
 import { EnumRender } from '../../../../../components/EnumRender';
 
 export default function BookingCard({
@@ -13,7 +13,7 @@ export default function BookingCard({
     handlePayBillClick,
     handleCompleteOrderClick,
 }) {
-    const Completionist = () => <span>Done!</span>;
+    const Completionist = () => <Typography.Text type='danger'>Done!!!</Typography.Text>;
     const renderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
             return <Completionist />;
@@ -82,7 +82,7 @@ export default function BookingCard({
                                         </Col>
                                         <Col spae={4}>
                                             <Typography.Text style={{ color: !e.paymentStatus ? 'gray' : 'red' }}>
-                                                <CurrencyFormat value={e.total} />
+                                                <CurrencyFormat.Minimal value={e.total} />
                                             </Typography.Text>
                                         </Col>
                                     </Row>,

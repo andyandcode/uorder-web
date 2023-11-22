@@ -1,30 +1,40 @@
 import axios from 'axios';
-import history from 'components/Redirect/useRedirect';
-import Config from 'configuration';
-import { pagePath } from 'configuration/routeConfig';
 import queryString from 'query-string';
-import Utils from 'utils';
+import { redirect } from 'react-router-dom';
+import history from '../components/GlobalRouter';
+import Config from '../configuration/index';
+import { rootKeys } from '../configuration/routesConfig';
+import Utils from '../utilities';
 
 // Set up default config for http requests here
 // Please have a look at here `https://github.com/axios/axios#request- config` for the full list of configs
-const axiosClient = axios.create({
+export const axiosAdmin = axios.create({
     baseURL: Config.endPointAdmin,
     headers: {
-        'content-type': 'application/json',
+        'content-type': 'multipart/form-data',
     },
     timeout: 10000,
     paramsSerializer: (params) => queryString.stringify(params),
 });
 
-axiosClient.interceptors.request.use(async (config) => {
+export const axiosAdminJson = axios.create({
+    baseURL: Config.endPointAdmin,
+    headers: {
+        'content-type': 'application/json-patch+json',
+    },
+    timeout: 10000,
+    paramsSerializer: (params) => queryString.stringify(params),
+});
+
+axiosAdmin.interceptors.request.use(async (config) => {
     const jwt = Utils.getAccessToken();
-    if (jwt) {
-        config.headers.Authorization = `Bearer ${jwt}`;
+    if (jwt.key) {
+        config.headers.Authorization = `Bearer ${jwt.key}`;
     }
     return config;
 });
 
-axiosClient.interceptors.response.use(
+axiosAdmin.interceptors.response.use(
     (response) => {
         if (response && response.data) {
             return response.data;
@@ -33,11 +43,40 @@ axiosClient.interceptors.response.use(
         return response;
     },
     (error) => {
-        if (error.response.status === 401) {
-            history.push(pagePath.signInUrl);
+        if (error.code === 'ERR_NETWORK') {
+            return 'ERR_NETWORK';
         }
-        throw error;
+        if (error.response.status === 401) {
+            history.push(rootKeys.loginUrl);
+        }
+        return error;
     },
 );
 
-export default axiosClient;
+axiosAdminJson.interceptors.request.use(async (config) => {
+    const jwt = Utils.getAccessToken();
+    if (jwt.key) {
+        config.headers.Authorization = `Bearer ${jwt.key}`;
+    }
+    return config;
+});
+
+axiosAdminJson.interceptors.response.use(
+    (response) => {
+        if (response && response.data) {
+            return response.data;
+        }
+
+        return response;
+    },
+    (error) => {
+        if (error.code === 'ERR_NETWORK') {
+            return 'ERR_NETWORK';
+        }
+
+        if (error.response.status === 401) {
+            redirect(rootKeys.loginUrl);
+        }
+        return error;
+    },
+);

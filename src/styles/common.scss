@@ -18,3 +18,39 @@
         width: 100%;
     }
 }
+
+.order_bottom_nav {
+    background-color: #fff;
+    z-index: 99;
+    margin: 0;
+    padding: 8px;
+    font-weight: 700;
+    max-width: 100%;
+    -webkit-box-shadow: 1px 13px 12px 17px #dedede;
+    box-shadow: 1px 13px 12px 17px #dedede;
+    min-height: fit-content;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.loginPage {
+    background-color: #ebf2fa;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > form {
+        border: 1px solid #dfdfdf;
+        background-color: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(4px);
+        padding: 40px;
+        width: '100%';
+        border-radius: 12px;
+        margin-right: 20px;
+    }
+}

@@ -2,15 +2,15 @@ import { Form, message, Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
-import DishData from '../../../database/dish.json';
+import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
+import { createDishAdmin, deleteDishAdmin, getListDishAdmin, updateDishAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
-    const { history, t } = props;
+    const { history, t, dispatch } = props;
     const columns = TableColumns.DishColumns(t);
     const expandedRowRenderSelection = TableColumns.ExpandedRowRenderSelection;
-    const data = DishData;
     const [tableData, setTableData] = useState([]);
     const [createForm] = Form.useForm();
     const [editForm] = Form.useForm();
@@ -23,10 +23,22 @@ function Conainer(props) {
     useEffect(() => {
         setLoadingTable(true);
         setTimeout(() => {
-            setTableData(data);
+            dispatch(getListDishAdmin()).then((result) => {
+                setTableData(Utils.getValues(result, 'payload', []));
+            });
             setLoadingTable(false);
         }, 500);
-    }, [data]);
+    }, [dispatch]);
+
+    const getNewTableData = () => {
+        setLoadingTable(true);
+        setTimeout(() => {
+            dispatch(getListDishAdmin()).then((result) => {
+                setTableData(Utils.getValues(result, 'payload', []));
+            });
+            setLoadingTable(false);
+        }, 500);
+    };
 
     const [defaultFileList, setDefaultFileList] = useState([]);
 
@@ -49,36 +61,57 @@ function Conainer(props) {
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Dish), {
-            onOk() {},
-            onCancel() {},
-        });
+        function onOk() {
+            dispatch(deleteDishAdmin(data.id));
+            getNewTableData();
+        }
+        Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Dish, onOk));
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Dish), {
-            onOk() {},
-            onCancel() {},
-        });
+        function onOk() {
+            const modifiedItem = {
+                ...data,
+                isActive: false,
+            };
+            dispatch(updateDishAdmin(modifiedItem));
+            getNewTableData();
+        }
+        Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Dish, onOk));
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Dish), {
-            onOk() {},
-            onCancel() {},
-        });
+        function onOk() {
+            const modifiedItem = {
+                ...data,
+                isActive: true,
+            };
+            dispatch(updateDishAdmin(modifiedItem));
+            getNewTableData();
+        }
+        Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Dish, onOk));
     };
 
     const handleCreateSubmitClick = (values) => {
         createForm
             .validateFields()
             .then(() => {
-                console.log('Created: ', values);
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(() => {
+                        const priceParse = parseInt(values.price.replace(/[^0-9]/g, ''));
+                        const completionTimeParse = parseInt(values.completionTime.replace(/[^0-9]/g, ''));
+                        const qtyPerDayParse = parseInt(values.qtyPerDay.replace(/[^0-9]/g, ''));
+                        const modifiedItem = {
+                            ...values,
+                            price: priceParse,
+                            completionTime: completionTimeParse,
+                            qtyPerDay: qtyPerDayParse,
+                        };
+                        dispatch(createDishAdmin(modifiedItem));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
+                        getNewTableData();
                     })
                     .then(() => createForm.resetFields());
             })
@@ -87,16 +120,51 @@ function Conainer(props) {
             });
     };
 
-    const handleEditSubmitClick = (values) => {
+    const handleEditSubmitClick = async (values) => {
         editForm
             .validateFields()
             .then(() => {
-                console.log('Edited: ', values);
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
-                        UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
-                        setOpenEditModel(false);
+                    .then(async () => {
+                        let priceParse = 0;
+                        let completionTimeParse = 0;
+                        let qtyPerDayParse = 0;
+                        if (!Number.isInteger(values.price)) {
+                            priceParse = parseInt(values.price.replace(/[^0-9]/g, ''));
+                        } else {
+                            priceParse = values.price;
+                        }
+
+                        if (!Number.isInteger(values.completionTime)) {
+                            completionTimeParse = parseInt(values.completionTime.replace(/[^0-9]/g, ''));
+                        } else {
+                            completionTimeParse = values.completionTime;
+                        }
+
+                        if (!Number.isInteger(values.qtyPerDay)) {
+                            qtyPerDayParse = parseInt(values.qtyPerDay.replace(/[^0-9]/g, ''));
+                        } else {
+                            qtyPerDayParse = values.qtyPerDay;
+                        }
+
+                        const modifiedItem = {
+                            ...values,
+                            price: priceParse,
+                            completionTime: completionTimeParse,
+                            qtyPerDay: qtyPerDayParse,
+                        };
+                        const result = dispatch(updateDishAdmin(modifiedItem));
+                        const status = Utils.getValues(result, 'error.code', []);
+
+                        if (status === 'ERR_BAD_REQUEST') {
+                            UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
+                            setOpenEditModel(false);
+                        } else {
+                            UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
+                            setOpenEditModel(false);
+                            getNewTableData();
+                        }
                     })
                     .then(() => editForm.resetFields());
             })
@@ -116,6 +184,11 @@ function Conainer(props) {
             setLoadingsRefreshButton((prevLoadings) => {
                 const newLoadings = [...prevLoadings];
                 newLoadings[index] = false;
+
+                dispatch(getListDishAdmin()).then((result) => {
+                    setTableData(Utils.getValues(result, 'payload', []));
+                });
+
                 setLoadingTable(false);
                 return newLoadings;
             });

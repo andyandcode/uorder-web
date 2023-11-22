@@ -22,7 +22,7 @@ const menuSelection = ({
             },
         ];
         if (record.hasOwnProperty('isActive')) {
-            if (record.isActive) {
+            if (record.isActive === true) {
                 menuArr.push({
                     label: t('main.components.button.turn_off'),
                     key: '2',

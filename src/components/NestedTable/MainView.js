@@ -18,8 +18,8 @@ export default function MainView(props) {
                 }}
                 size='small'
             >
-                {columns.map((props) => {
-                    return <Column {...props} />;
+                {columns.map((props, index) => {
+                    return <Column key={index} {...props} />;
                 })}
                 {NestedExpendedColumnSwitch(props)}
             </Table>

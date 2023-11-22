@@ -63,11 +63,11 @@ const ResetButton = () => {
     );
 };
 
-const CancelButton = ({ handleButton }) => {
+const CancelButton = ({ handleButton, disabled }) => {
     const { t } = useTranslation();
     return (
         <>
-            <Button danger onClick={handleButton}>
+            <Button danger onClick={handleButton} disabled={disabled}>
                 {t('main.components.button.cancel')}
             </Button>
         </>
@@ -118,6 +118,59 @@ const AddOrderItem = ({ handleButton }) => {
     );
 };
 
+const SubmitSystemSettingsButtom = ({ form, handleButton, disabled }) => {
+    const { t } = useTranslation();
+
+    return (
+        <>
+            <Button
+                type='primary'
+                onClick={(e) => handleButton(form.getFieldsValue(), (e.currentTarget.disabled = true))}
+                form={form}
+                disabled={disabled}
+            >
+                {t('main.components.button.submit')}
+            </Button>
+        </>
+    );
+};
+const SubmitButtom = ({ form, handleButton }) => {
+    const { t } = useTranslation();
+
+    return (
+        <>
+            <Button type='primary' onClick={() => handleButton(form.getFieldsValue())} form={form}>
+                {t('main.components.button.submit')}
+            </Button>
+        </>
+    );
+};
+const OrderButton = ({ handleOrderClick }) => {
+    const { t } = useTranslation();
+    const [loadings, setLoadings] = useState([]);
+    const enterLoading = (index) => {
+        setLoadings((prevLoadings) => {
+            const newLoadings = [...prevLoadings];
+            newLoadings[index] = true;
+            return newLoadings;
+        });
+        setTimeout(() => {
+            setLoadings((prevLoadings) => {
+                const newLoadings = [...prevLoadings];
+                newLoadings[index] = false;
+                handleOrderClick();
+                return newLoadings;
+            });
+        }, 500);
+    };
+    return (
+        <>
+            <Button type='primary' loading={loadings[0]} onClick={() => enterLoading(0)} block>
+                {t('main.components.button.order')}
+            </Button>
+        </>
+    );
+};
 export const ButtonLocated = {
     AddButton,
     RefreshButton,
@@ -128,4 +181,7 @@ export const ButtonLocated = {
     UpdateButton,
     NewOrderButton,
     AddOrderItem,
+    SubmitSystemSettingsButtom,
+    OrderButton,
+    SubmitButtom,
 };

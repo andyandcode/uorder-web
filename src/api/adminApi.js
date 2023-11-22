@@ -1,192 +1,222 @@
-import axiosClientAdmin from './axiosAdmin';
+import { axiosAdmin, axiosAdminJson } from './axiosAdmin';
 
 const FileUpload = {
     uploadFile: (params) => {
         const url = '/file/upload';
-        return axiosClientAdmin.post(url, params, {
+        return axiosAdmin.post(url, params, {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
     },
     deleteFile: (params) => {
         const url = `/file/delete/${params}`;
-        return axiosClientAdmin.delete(url);
+        return axiosAdmin.delete(url);
     },
 };
 
-const CertificateAdmin = {
-    getListCertificate: (params) => {
-        const url = '/certificates/getAll';
-        return axiosClientAdmin.get(url, { params });
+const DishAdmin = {
+    getList: (params) => {
+        const url = '/dish/getAll';
+        return axiosAdmin.get(url, { params });
     },
-    insertCertificate: (params) => {
-        const url = '/certificates/post';
-        return axiosClientAdmin.post(url, params, {
+    getListAvailable: (params) => {
+        const url = '/dish/getAllAvailable';
+        return axiosAdmin.get(url, { params });
+    },
+    create: (params) => {
+        const url = '/dish/post';
+        return axiosAdmin.post(url, params, {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
     },
-    updateCertificate: (params) => {
-        const url = `/certificates/put/${params.id}`;
-        return axiosClientAdmin.put(url, params.formData);
+    update: (params) => {
+        const url = `/dish/put/${params.id}`;
+        return axiosAdmin.put(url, params);
     },
-    deleteCertificate: (params) => {
-        const url = `/certificates/delete/${params}`;
-        return axiosClientAdmin.delete(url);
+    delete: (params) => {
+        const url = `/dish/delete/${params}`;
+        return axiosAdmin.delete(url);
     },
 };
 
-const ArticleAdmin = {
-    getListArticle: (params) => {
-        const url = '/article/getAll';
-        return axiosClientAdmin.get(url, { params });
+const TableAdmin = {
+    getList: (params) => {
+        const url = '/table/getAll';
+        return axiosAdmin.get(url, { params });
     },
-    insertArticle: (params) => {
-        const url = '/article/post';
-        return axiosClientAdmin.post(url, params, {
+    create: (params) => {
+        const url = '/table/post';
+        return axiosAdmin.post(url, params, {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
     },
-    updateArticle: (params) => {
-        const url = `/article/put/${params.id}`;
-        return axiosClientAdmin.put(url, params.article);
+    update: (params) => {
+        const url = `/table/put/${params.id}`;
+        return axiosAdmin.put(url, params);
     },
-    deleteArticle: (params) => {
-        const url = `/article/delete/${params}`;
-        return axiosClientAdmin.delete(url);
+    delete: (params) => {
+        const url = `/table/delete/${params}`;
+        return axiosAdmin.delete(url);
     },
 };
 
-const GinsengAdmin = {
-    getListGinseng: (params) => {
-        const url = '/ginseng/getAll';
-        return axiosClientAdmin.get(url, { params });
+const MenuAdmin = {
+    getList: (params) => {
+        const url = '/menu/getAll';
+        return axiosAdmin.get(url, { params });
     },
-    insertGinseng: (params) => {
-        const url = '/ginseng/post';
-        return axiosClientAdmin.post(url, params, {
+    create: (params) => {
+        const url = '/menu/post';
+        return axiosAdmin.post(url, params, {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
     },
-    updateGinseng: (params) => {
-        const url = `/ginseng/put/${params.id}`;
-        return axiosClientAdmin.put(url, params.formData);
+    update: (params) => {
+        const url = `/menu/put/${params.id}`;
+        return axiosAdmin.put(url, params);
     },
-    deleteGinseng: (params) => {
-        const url = `/ginseng/delete/${params}`;
-        return axiosClientAdmin.delete(url);
+    delete: (params) => {
+        const url = `/menu/delete/${params}`;
+        return axiosAdmin.delete(url);
     },
 };
 
-const ProductAdmin = {
-    getListProduct: (params) => {
-        const url = '/product/getAll';
-        return axiosClientAdmin.get(url, { params });
+const SystemSettingsAdmin = {
+    getSettings: (params) => {
+        const url = '/systemSettings/getSettings';
+        return axiosAdmin.get(url, { params });
     },
-    getProductById: (id) => {
-        const url = `/product/getByID/${id}`;
-        return axiosClientAdmin.get(url);
+    update: (params) => {
+        const url = `/systemSettings/put/${params.id}`;
+        return axiosAdmin.put(url, params);
     },
-    getUnit: () => {
-        const url = 'unit/getAll';
-        return axiosClientAdmin.get(url);
+};
+
+const OrderAdmin = {
+    getAll: (params) => {
+        const url = '/order/getAll';
+        return axiosAdmin.get(url, { params });
     },
-    getQr: (code) => {
-        const url = `product/getQR/${code}`;
-        return axiosClientAdmin.get(url);
-    },
-    insertProduct: (params) => {
-        const url = '/product/post';
-        return axiosClientAdmin.post(url, params, {
+    create: (params) => {
+        const url = '/order/post';
+        return axiosAdmin.post(url, params, {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
     },
-    updateProduct: (params) => {
-        const url = `/product/put/${params.id}`;
-        return axiosClientAdmin.put(url, params.product);
+    update: (params) => {
+        const url = `/order/put/${params.id}`;
+        return axiosAdmin.put(url, params);
     },
-    deleteProduct: (params) => {
-        const url = `/product/delete/${params}`;
-        return axiosClientAdmin.delete(url);
+    updateOrderStatus: (params) => {
+        const modifiedArray = [];
+
+        for (const item of params) {
+            const { path, op, value } = item;
+            const modifiedItem = { path, op, value };
+            modifiedArray.push(modifiedItem);
+        }
+        const url = `/order/patch/${params[0].id}`;
+        return axiosAdminJson.patch(url, modifiedArray);
     },
 };
 
-const LocationAdmin = {
-    getListLocation: (params) => {
-        const url = '/location/getAll';
-        return axiosClientAdmin.get(url, { params });
+const BookingAdmin = {
+    getAll: (params) => {
+        const url = '/booking/getAll';
+        return axiosAdmin.get(url, { params });
     },
-    insertLocation: (params) => {
-        const url = '/location/post';
-        return axiosClientAdmin.post(url, params, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-        });
+    getCurrentBooking: (params) => {
+        const url = '/booking/getCurrentBooking';
+        return axiosAdmin.get(url, { params });
     },
-    updateLocation: (params) => {
-        const url = `/location/put/${params.id}`;
-        return axiosClientAdmin.put(url, params.payload);
-    },
-    deleteLocation: (params) => {
-        const url = `/location/delete/${params}`;
-        return axiosClientAdmin.delete(url);
+    updateBookingStatus: (params) => {
+        const modifiedArray = [];
+
+        for (const item of params) {
+            const { path, op, value } = item;
+            const modifiedItem = { path, op, value };
+            modifiedArray.push(modifiedItem);
+        }
+        const url = `/booking/patch/${params[0].id}`;
+        return axiosAdminJson.patch(url, modifiedArray);
     },
 };
 
-const AdminAuth = {
+const AnalyticsAdmin = {
+    getRevenue: (params) => {
+        const url = '/analytics/getRevenue';
+        return axiosAdmin.get(url, { params });
+    },
+    getTopSellers: (params) => {
+        const url = '/analytics/getTopSellers';
+        return axiosAdmin.get(url, { params });
+    },
+    getCountManagement: (params) => {
+        const url = '/analytics/countManagement';
+        return axiosAdmin.get(url, { params });
+    },
+};
+
+const AuthAdmin = {
     login: (params) => {
-        const url = '/user/login';
-        return axiosClientAdmin
-            .post(url, params, {
-                headers: { 'Content-Type': 'application/json' },
-            })
-            .catch(function (error) {
-                return error.response.status;
-            });
+        const url = '/auth/login';
+        return axiosAdminJson.post(url, params);
+    },
+    resetPassword: (params) => {
+        const url = `/auth/resetPassword/${params.id}`;
+        return axiosAdmin.put(url, params);
     },
 };
 
-const ForgetPw = {
-    submitMail: (params) => {
-        const url = '/user/forgetPassword';
-        return axiosClientAdmin
-            .post(url, params, {
-                headers: { 'Content-Type': 'application/json' },
-            })
-            .catch(function (error) {
-                return error.response.status;
-            });
+const AccountAdmin = {
+    getAll: (params) => {
+        const url = '/account/getAll';
+        return axiosAdmin.get(url, { params });
     },
-};
+    getById: (params) => {
+        const url = `/account/getById/${params}`;
+        return axiosAdminJson.get(url);
+    },
+    getAllRoles: (params) => {
+        const url = '/account/getAllRoles';
+        return axiosAdmin.get(url, { params });
+    },
+    create: (params) => {
+        const url = '/account/post';
+        return axiosAdmin.post(url, params, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+    },
+    update: (params) => {
+        const url = `/account/put/${params.id}`;
+        return axiosAdmin.put(url, params);
+    },
+    delete: (params) => {
+        const url = `/account/delete/${params}`;
+        return axiosAdmin.delete(url);
+    },
+    updateStatus: (params) => {
+        console.log(params);
+        const modifiedArray = [];
 
-const CreateNewPw = {
-    submitVerifyCode: (params) => {
-        const url = '/user/createNewPassword';
-        return axiosClientAdmin
-            .post(url, params, {
-                headers: { 'Content-Type': 'application/json' },
-            })
-            .catch(function (error) {
-                return error.response.status;
-            });
-    },
-    createNewPw: (params) => {
-        const url = '/user/createNewPassword';
-        return axiosClientAdmin
-            .post(url, params, {
-                headers: { 'Content-Type': 'application/json' },
-            })
-            .catch(function (error) {
-                return error.response.status;
-            });
+        for (const item of params) {
+            const { path, op, value } = item;
+            const modifiedItem = { path, op, value };
+            modifiedArray.push(modifiedItem);
+        }
+        const url = `/account/patch/${params[0].id}`;
+        return axiosAdminJson.patch(url, modifiedArray);
     },
 };
 
 export {
-    AdminAuth,
-    ArticleAdmin,
-    CertificateAdmin,
-    CreateNewPw,
+    AccountAdmin,
+    AnalyticsAdmin,
+    AuthAdmin,
+    BookingAdmin,
+    DishAdmin,
     FileUpload,
-    ForgetPw,
-    GinsengAdmin,
-    LocationAdmin,
-    ProductAdmin,
+    MenuAdmin,
+    OrderAdmin,
+    SystemSettingsAdmin,
+    TableAdmin,
 };

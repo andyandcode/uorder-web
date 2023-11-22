@@ -1,6 +1,7 @@
 import { Divider, Layout, Typography } from 'antd';
 import CustomTable from '../../../../components/CustomTable';
 import TableColumns from '../../../../components/CustomTable/columnConfigs';
+import BillQuickViewModal from './subView/billQuickViewModal';
 import CurrentBooking from './subView/currentBooking';
 import ViewModal from './subView/viewModal';
 
@@ -23,6 +24,11 @@ export default function MainView({
     tableData,
     handleActionButtonViewClick,
     expandedRowRenderSelection,
+    componentRef,
+    openBillQuickViewModal,
+    handlePrintClick,
+    messageContextHolder,
+    handleChangeOrderStatus,
 }) {
     return (
         <>
@@ -46,9 +52,9 @@ export default function MainView({
                     dataSource={tableData}
                     handleActionButtonViewClick={(data) => handleActionButtonViewClick(data)}
                     expandedRowRenderSelection={() =>
-                        expandedRowRenderSelection(t, tableData, TableColumns.TableSwitch.BookingTable)
+                        expandedRowRenderSelection(t, tableData, TableColumns.TableSwitch.OrderTable)
                     }
-                    switchActionColumn={TableColumns.TableSwitch.BookingTable}
+                    switchActionColumn={TableColumns.TableSwitch.OrderTable}
                 />
             </Content>
             <ViewModal
@@ -56,6 +62,14 @@ export default function MainView({
                 openViewModel={openViewModel}
                 viewData={viewData}
                 handleViewCancelClick={handleViewCancelClick}
+                handlePrintClick={handlePrintClick}
+                messageContextHolder={messageContextHolder}
+                handleChangeOrderStatus={handleChangeOrderStatus}
+            />
+            <BillQuickViewModal
+                viewData={viewData}
+                componentRef={componentRef}
+                openBillQuickViewModal={openBillQuickViewModal}
             />
         </>
     );
