@@ -43,7 +43,6 @@ export default function MainView(props) {
                 >
                     <ButtonLocated.AddButton handleCreateNewClick={handleCreateNewClick} />
                     <ButtonLocated.RefreshButton handleRefreshClick={handleRefreshClick} />
-                    <ButtonLocated.ActiveLogButton />
                 </Space>
                 <CustomTable
                     loadingTable={loadingTable}

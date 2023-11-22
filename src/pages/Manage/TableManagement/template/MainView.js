@@ -3,9 +3,9 @@ import React from 'react';
 import { ButtonLocated } from '../../../../components/ButtonLocated';
 import CustomTable from '../../../../components/CustomTable';
 import { ColumnBuilderKey } from '../../../../components/CustomTable/ColumnBuilder';
+import TableColumns from '../../../../components/CustomTable/columnConfigs';
 import CreateModal from './subViews/createModal';
 import EditModal from './subViews/editModal';
-import TableColumns from '../../../../components/CustomTable/columnConfigs';
 
 const { Content } = Layout;
 const { Title } = Typography;
@@ -46,7 +46,6 @@ export default function MainView(props) {
                 >
                     <ButtonLocated.AddButton handleCreateNewClick={handleCreateNewClick} />
                     <ButtonLocated.RefreshButton handleRefreshClick={handleRefreshClick} />
-                    <ButtonLocated.ActiveLogButton />
                 </Space>
                 <CustomTable
                     loadingTable={loadingTable}

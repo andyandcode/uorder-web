@@ -45,7 +45,7 @@ const ActiveLogButton = ({ handleActiveLogClick }) => {
     const { t } = useTranslation();
     return (
         <>
-            <Button icon={<HourglassOutlined />} onClick={() => {}}>
+            <Button icon={<HourglassOutlined />} onClick={() => handleActiveLogClick()}>
                 {t('main.components.button.active_log')}
             </Button>
         </>

@@ -60,6 +60,7 @@
             "form_edit_title": "Edit {{target}}",
             "form_view_title": "View {{target}}",
             "form_change_password_title": "Change password",
+            "active_log_title": "Active log",
             "subtotal": "Subtotal",
             "discount": "Discount",
             "username": "Username",
