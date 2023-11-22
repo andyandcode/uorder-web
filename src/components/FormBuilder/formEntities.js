@@ -66,10 +66,83 @@ const Id = ({ data }) => {
         </>
     );
 };
+const IdInAccountSettings = ({ data }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item name='id' label={t('main.entities.id')} style={{ display: 'none' }}>
+                <Input disabled bordered={false} />
+            </Form.Item>
+            <Row style={{ marginBottom: 16 }}>
+                <Col>{t('main.entities.id')}</Col>
+                <Col flex={'auto'}>
+                    <Typography.Text>{data.getFieldsValue().id}</Typography.Text>
+                </Col>
+            </Row>
+        </>
+    );
+};
+const CreatedAtInAccountSettings = ({ data }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item name='createdAt' label={t('main.entities.created_at')} style={{ display: 'none' }}>
+                <Input disabled bordered={false} />
+            </Form.Item>
+            <Row style={{ marginBottom: 16 }}>
+                <Col>{t('main.entities.created_at')}</Col>
+                <Col flex={'auto'}>
+                    <Typography.Text>{moment(data.getFieldsValue().createdAt).format('DD/MM/YYYY')}</Typography.Text>
+                </Col>
+            </Row>
+        </>
+    );
+};
+const RoleInAccountSettings = ({ data }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item name='roleId' label={t('main.entities.roles.label')} style={{ display: 'none' }}>
+                <Input disabled bordered={false} />
+            </Form.Item>
+            <Row style={{ marginBottom: 16 }}>
+                <Col>{t('main.entities.roles.label')}</Col>
+                <Col flex={'auto'}>
+                    <Typography.Text>{EnumRender.Roles(t, data)}</Typography.Text>
+                </Col>
+            </Row>
+        </>
+    );
+};
+const UsernameInAccountSettings = ({ data }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item name='username' label={t('main.entities.username')} style={{ display: 'none' }}>
+                <Input disabled bordered={false} />
+            </Form.Item>
+            <Row style={{ marginBottom: 16 }}>
+                <Col>{t('main.entities.username')}</Col>
+                <Col flex={'auto'}>
+                    <Typography.Text>{data.getFieldsValue().username}</Typography.Text>
+                </Col>
+            </Row>
+        </>
+    );
+};
 const HiddenId = () => {
     return (
         <>
             <Form.Item name='id' style={{ display: 'none' }}>
+                <Input />
+            </Form.Item>
+        </>
+    );
+};
+const HiddenIdHaveInput = (data) => {
+    return (
+        <>
+            <Form.Item name='id' style={{ display: 'none' }} initialValue={data.data}>
                 <Input />
             </Form.Item>
         </>
@@ -745,6 +818,77 @@ const Password = () => {
         </>
     );
 };
+const OldPassword = () => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item
+                name='oldPassword'
+                label={t('main.entities.old_password')}
+                rules={[
+                    {
+                        required: true,
+                        message: t('main.entities.is_required'),
+                    },
+                ]}
+            >
+                <Input.Password allowClear prefix={<LockOutlined />} />
+            </Form.Item>
+        </>
+    );
+};
+const NewPassword = () => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item
+                name='newPassword'
+                label={t('main.entities.new_password')}
+                validateFirst
+                rules={[
+                    {
+                        required: true,
+                        message: t('main.entities.is_required'),
+                    },
+                    {
+                        min: 8,
+                        message: t('main.notification.auth.password_least'),
+                    },
+                ]}
+            >
+                <Input.Password allowClear prefix={<LockOutlined />} />
+            </Form.Item>
+        </>
+    );
+};
+const ReNewPassword = () => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Form.Item
+                name='reRewPassword'
+                label={t('main.entities.re_new_password')}
+                rules={[
+                    {
+                        required: true,
+                        message: t('main.entities.is_required'),
+                    },
+                    ({ getFieldValue }) => ({
+                        validator(_, value) {
+                            if (!value || getFieldValue('newPassword') === value) {
+                                return Promise.resolve();
+                            }
+                            return Promise.reject(new Error(t('main.notification.auth.new_re_password_not_match')));
+                        },
+                    }),
+                ]}
+                dependencies={['newPassword']}
+            >
+                <Input.Password allowClear prefix={<LockOutlined />} />
+            </Form.Item>
+        </>
+    );
+};
 const ChefCount = ({ data, form, handleChefCountSubmitClick }) => {
     const { t } = useTranslation();
     const [disableSubmit, setDisableSubmit] = useState(true);
@@ -1139,4 +1283,12 @@ export const FormEntities = {
     OrderTable,
     Roles,
     UsernameInAdmin,
+    IdInAccountSettings,
+    CreatedAtInAccountSettings,
+    UsernameInAccountSettings,
+    RoleInAccountSettings,
+    OldPassword,
+    NewPassword,
+    ReNewPassword,
+    HiddenIdHaveInput,
 };

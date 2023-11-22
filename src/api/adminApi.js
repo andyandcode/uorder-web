@@ -161,12 +161,20 @@ const AuthAdmin = {
         const url = '/auth/login';
         return axiosAdminJson.post(url, params);
     },
+    resetPassword: (params) => {
+        const url = `/auth/resetPassword/${params.id}`;
+        return axiosAdmin.put(url, params);
+    },
 };
 
 const AccountAdmin = {
     getAll: (params) => {
         const url = '/account/getAll';
         return axiosAdmin.get(url, { params });
+    },
+    getById: (params) => {
+        const url = `/account/getById/${params}`;
+        return axiosAdminJson.get(url);
     },
     getAllRoles: (params) => {
         const url = '/account/getAllRoles';

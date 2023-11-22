@@ -43,10 +43,13 @@ axiosAdmin.interceptors.response.use(
         return response;
     },
     (error) => {
+        if (error.code === 'ERR_NETWORK') {
+            return 'ERR_NETWORK';
+        }
         if (error.response.status === 401) {
             history.push(rootKeys.loginUrl);
         }
-        throw error;
+        return error;
     },
 );
 

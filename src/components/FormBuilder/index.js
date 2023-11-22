@@ -833,6 +833,38 @@ const SystemSettingsForm = ({ t, form, data, handleDomainSubmitClick, handleChef
     );
 };
 
+const AccountSettingsForm = ({ t, form, data }) => {
+    return (
+        <>
+            <Form form={form} layout='horizontal' name='form_create_in_modal' align='end'>
+                <FormEntities.IdInAccountSettings data={form} />
+                <FormEntities.CreatedAtInAccountSettings data={form} />
+                <FormEntities.RoleInAccountSettings data={data.data.role} />
+                <FormEntities.UsernameInAccountSettings data={form} />
+            </Form>
+        </>
+    );
+};
+
+const ChangePasswordForm = ({ form, data, handleButtonCancel, handleButtonSubmit }) => {
+    return (
+        <>
+            <Form form={form} layout='vertical' name='form_create_in_modal' align='end'>
+                <FormEntities.HiddenIdHaveInput data={data.data.id} />
+                <FormEntities.OldPassword />
+                <FormEntities.NewPassword />
+                <FormEntities.ReNewPassword />
+
+                <Space>
+                    <ButtonLocated.ResetButton />
+                    <ButtonLocated.CancelButton handleButton={handleButtonCancel} />
+                    <ButtonLocated.SubmitButtom form={form} handleButton={handleButtonSubmit} />
+                </Space>
+            </Form>
+        </>
+    );
+};
+
 const OrderForm = ({
     t,
     form,
@@ -898,4 +930,6 @@ export const FormBuilder = {
     SystemSettingsForm,
     PaymentStepInCreateNewOrderForm,
     OrderForm,
+    AccountSettingsForm,
+    ChangePasswordForm,
 };

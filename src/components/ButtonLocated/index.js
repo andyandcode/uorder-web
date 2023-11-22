@@ -134,6 +134,17 @@ const SubmitSystemSettingsButtom = ({ form, handleButton, disabled }) => {
         </>
     );
 };
+const SubmitButtom = ({ form, handleButton }) => {
+    const { t } = useTranslation();
+
+    return (
+        <>
+            <Button type='primary' onClick={() => handleButton(form.getFieldsValue())} form={form}>
+                {t('main.components.button.submit')}
+            </Button>
+        </>
+    );
+};
 const OrderButton = ({ handleOrderClick }) => {
     const { t } = useTranslation();
     const [loadings, setLoadings] = useState([]);
@@ -172,4 +183,5 @@ export const ButtonLocated = {
     AddOrderItem,
     SubmitSystemSettingsButtom,
     OrderButton,
+    SubmitButtom,
 };

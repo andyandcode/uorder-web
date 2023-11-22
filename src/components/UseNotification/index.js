@@ -94,6 +94,22 @@ const LoginSuccessMessage = (t) => {
     };
 };
 
+const PasswordNotMatch = (t) => {
+    return {
+        type: 'error',
+        content: t('main.notification.auth.password_not_match'),
+        duration: 3,
+    };
+};
+
+const ChangePasswordSuccessful = (t) => {
+    return {
+        type: 'success',
+        content: t('main.notification.auth.change_password_successful'),
+        duration: 3,
+    };
+};
+
 const Modal = { DeleteModal, TurnOffModal, TurnOnModal };
 const Message = {
     InProgressMessage,
@@ -104,6 +120,8 @@ const Message = {
     WrongPasswordMessage,
     LoginSuccessMessage,
     CannotConnectToServer,
+    PasswordNotMatch,
+    ChangePasswordSuccessful,
 };
 
 const Dish = 'main.common.system_key.dish';
