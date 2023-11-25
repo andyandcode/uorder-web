@@ -25,7 +25,8 @@
             "account_quick_access": {
                 "label": "Account",
                 "infomation": "Account settings"
-            }
+            },
+            "active_log": "Active log"
         },
         "entities": {
             "id": "Id",
