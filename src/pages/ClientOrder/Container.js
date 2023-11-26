@@ -1,6 +1,7 @@
 import { Form } from 'antd';
 import React, { useState } from 'react';
 import { rootKeys } from '../../configuration/routesConfig';
+import Utils from '../../utilities';
 import propsProvider from './PropsProvider';
 import { bookingClient } from './Slice';
 import MainView from './template/MainView';
@@ -42,13 +43,14 @@ function Conainer(props) {
         setPaymentSelectTarget(e);
     };
 
-    const handleOrderClick = () => {
+    const handleOrderClick = async () => {
         const modifiedItem = {
             ...orderForm.getFieldsValue(),
             tableId: location.state.preId.tableId,
         };
-        dispatch(bookingClient(modifiedItem));
-        history(`/booking/successfully/${location.state.preId.tableId}`);
+        await dispatch(bookingClient(modifiedItem)).then((result) => {
+            window.location.replace(Utils.getValues(result, 'payload', []));
+        });
     };
 
     const containerProps = {

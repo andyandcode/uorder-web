@@ -43,7 +43,7 @@ const loginUrl = `${adminUrl}/login`;
 const clientHomeRoorUrl = '/booking';
 const clientHomeUrl = `${clientHomeRoorUrl}/:tableId`;
 const clientOrederUrl = `${clientHomeRoorUrl}/order`;
-const clientOrderSuccessfulUrl = `${clientHomeRoorUrl}/successfully/:tableId`;
+const clientOrderSuccessfulUrl = `${clientHomeRoorUrl}/:orderId/successfully`;
 const clientOrderTrackerUrl = `${clientHomeRoorUrl}/tracker/:tableId`;
 
 const notFoundUrl = '/*';

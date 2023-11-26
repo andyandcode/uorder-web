@@ -27,10 +27,13 @@ function Conainer(props) {
             .withUrl('https://localhost:7297/bookingHub')
             .configureLogging(signalR.LogLevel.Information)
             .build();
-
-        connection.start().catch((err) => console.error('SignalR Connection Error: ', err));
+        connection
+            .start()
+            .then(() => console.log('Connection established'))
+            .catch((err) => console.error('SignalR Connection Error: ', err));
 
         connection.on('ReceiveOrderNotification', (message) => {
+            console.log(message);
             getNewTableData();
         });
 
