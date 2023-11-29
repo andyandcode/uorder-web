@@ -37,12 +37,11 @@ function Conainer(props) {
 
     const getNewTableData = () => {
         setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListAccountAdmin()).then((result) => {
+        dispatch(getListAccountAdmin())
+            .then((result) => {
                 setTableData(Utils.getValues(result, 'payload', []));
-            });
-            setLoadingTable(false);
-        }, 500);
+            })
+            .then(setLoadingTable(false));
     };
 
     const handleEditCancelClick = () => {

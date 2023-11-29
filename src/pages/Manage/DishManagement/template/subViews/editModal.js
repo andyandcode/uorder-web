@@ -9,7 +9,7 @@ export default function EditModal({
     handleEditSubmitClick,
     handleEditCancelClick,
     messageContextHolder,
-    defaultFileList,
+    defaultFile,
 }) {
     return (
         <>
@@ -29,7 +29,7 @@ export default function EditModal({
                     form={editForm}
                     handleButtonSubmit={handleEditSubmitClick}
                     handleButtonCancel={handleEditCancelClick}
-                    defaultFileList={defaultFileList}
+                    defaultFile={defaultFile}
                 />
             </Modal>
         </>

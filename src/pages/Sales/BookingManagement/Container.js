@@ -32,8 +32,12 @@ function Conainer(props) {
             .then(() => console.log('Connection established'))
             .catch((err) => console.error('SignalR Connection Error: ', err));
 
-        connection.on('ReceiveOrderNotification', (message) => {
+        connection.on('ReceiveMessage', (message) => {
             console.log(message);
+            getNewTableData();
+        });
+        connection.on('ReceiveOrderNotification', (bookingId) => {
+            console.log(bookingId);
             getNewTableData();
         });
 

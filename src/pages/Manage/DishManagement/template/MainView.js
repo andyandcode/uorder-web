@@ -31,7 +31,7 @@ export default function MainView(props) {
         openEditModel,
         handleEditSubmitClick,
         handleEditCancelClick,
-        defaultFileList,
+        defaultFile,
     } = props;
 
     return (
@@ -79,7 +79,7 @@ export default function MainView(props) {
                     handleEditSubmitClick={handleEditSubmitClick}
                     handleEditCancelClick={handleEditCancelClick}
                     messageContextHolder={messageContextHolder}
-                    defaultFileList={defaultFileList}
+                    defaultFile={defaultFile}
                 />
             </Content>
         </>

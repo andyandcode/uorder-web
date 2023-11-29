@@ -24,7 +24,7 @@ const CreateNewDishForm = ({ form, handleButtonCancel, handleButtonSubmit }) => 
             >
                 <Row gutter={[52]}>
                     <Col>
-                        <FormEntities.UploadMedias />
+                        <FormEntities.CoverPhoto form={form} />
                     </Col>
                     <Col>
                         <FormEntities.Name />
@@ -47,13 +47,13 @@ const CreateNewDishForm = ({ form, handleButtonCancel, handleButtonSubmit }) => 
     );
 };
 
-const EditDishForm = ({ form, handleButtonCancel, handleButtonSubmit, defaultFileList }) => {
+const EditDishForm = ({ form, handleButtonCancel, handleButtonSubmit, defaultFile }) => {
     return (
         <>
             <Form form={form} align='end' layout='horizontal' name='form_edit_in_modal'>
                 <Row gutter={[52]}>
                     <Col>
-                        <FormEntities.UploadMedias defaultFileList={defaultFileList} />
+                        <FormEntities.CoverPhoto defaultFile={defaultFile} form={form} />
                     </Col>
                     <Col>
                         <FormEntities.Id data={form} />

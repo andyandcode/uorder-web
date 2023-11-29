@@ -29,7 +29,6 @@ export default function Conainer(props) {
         { label: 'English', value: 'en' },
     ];
     const access = cookies.get(Config.storageKey.tokenKey);
-    console.log(access);
     useEffect(() => {
         if (!access) {
             Modal.error({

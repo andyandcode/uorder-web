@@ -40,7 +40,7 @@ function Conainer(props) {
         }, 500);
     };
 
-    const [defaultFileList, setDefaultFileList] = useState([]);
+    const [defaultFile, setDefaultFile] = useState([]);
 
     const handleCreateNewClick = () => {
         setOpenCreateModel(true);
@@ -55,7 +55,7 @@ function Conainer(props) {
     };
 
     const handleActionButtonEditClick = (data) => {
-        setDefaultFileList(data.medias != null ? data.medias : []);
+        setDefaultFile(data.coverLink != null ? data.coverLink : '');
         editForm.setFieldsValue({ ...data });
         setOpenEditModel(true);
     };
@@ -107,7 +107,9 @@ function Conainer(props) {
                             price: priceParse,
                             completionTime: completionTimeParse,
                             qtyPerDay: qtyPerDayParse,
+                            cover: values.cover.file.originFileObj,
                         };
+                        console.log(modifiedItem);
                         dispatch(createDishAdmin(modifiedItem));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
@@ -154,6 +156,7 @@ function Conainer(props) {
                             completionTime: completionTimeParse,
                             qtyPerDay: qtyPerDayParse,
                         };
+                        console.log(modifiedItem);
                         const result = dispatch(updateDishAdmin(modifiedItem));
                         const status = Utils.getValues(result, 'error.code', []);
 
@@ -208,7 +211,7 @@ function Conainer(props) {
         messageContextHolder,
         loadingTable,
         loadingsRefreshButton,
-        defaultFileList,
+        defaultFile,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,

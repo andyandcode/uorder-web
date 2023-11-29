@@ -1,18 +1,5 @@
 import { axiosAdmin, axiosAdminJson } from './axiosAdmin';
 
-const FileUpload = {
-    uploadFile: (params) => {
-        const url = '/file/upload';
-        return axiosAdmin.post(url, params, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-        });
-    },
-    deleteFile: (params) => {
-        const url = `/file/delete/${params}`;
-        return axiosAdmin.delete(url);
-    },
-};
-
 const DishAdmin = {
     getList: (params) => {
         const url = '/dish/getAll';
@@ -214,7 +201,6 @@ export {
     AuthAdmin,
     BookingAdmin,
     DishAdmin,
-    FileUpload,
     MenuAdmin,
     OrderAdmin,
     SystemSettingsAdmin,
