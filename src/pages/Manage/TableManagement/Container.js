@@ -19,25 +19,21 @@ function Conainer(props) {
     const [loadingTable, setLoadingTable] = useState(false);
     const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
 
-    useEffect(() => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListTableAdmin()).then((result) => {
+    const fetchData = async () => {
+        try {
+            await dispatch(getListTableAdmin()).then((result) => {
                 setTableData(Utils.getValues(result, 'payload', []));
             });
+        } catch (error) {
+            console.error(error);
+        } finally {
             setLoadingTable(false);
-        }, 500);
-    }, [dispatch]);
-
-    const getNewTableData = () => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListTableAdmin()).then((result) => {
-                setTableData(Utils.getValues(result, 'payload', []));
-            });
-            setLoadingTable(false);
-        }, 500);
+        }
     };
+
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
 
     const handleEditCancelClick = () => {
         setOpenEditModel(false);
@@ -92,7 +88,7 @@ function Conainer(props) {
     const handleActionButtonDeleteClick = (data) => {
         function onOk() {
             dispatch(deleteTableAdmin(data.id));
-            getNewTableData();
+            fetchData();
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Table, onOk));
     };
@@ -104,7 +100,7 @@ function Conainer(props) {
                 isActive: false,
             };
             dispatch(updateTableAdmin(modifiedItem));
-            getNewTableData();
+            fetchData();
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Table, onOk));
     };
@@ -116,7 +112,7 @@ function Conainer(props) {
                 isActive: true,
             };
             dispatch(updateTableAdmin(modifiedItem));
-            getNewTableData();
+            fetchData();
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Table, onOk));
     };
@@ -137,7 +133,7 @@ function Conainer(props) {
                         dispatch(createTableAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
-                        getNewTableData();
+                        fetchData();
                     })
                     .then(() => createForm.resetFields());
             })
@@ -162,7 +158,7 @@ function Conainer(props) {
                         } else {
                             UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                             setOpenEditModel(false);
-                            getNewTableData();
+                            fetchData();
                         }
                     })
                     .then(() => editForm.resetFields());
@@ -177,23 +173,7 @@ function Conainer(props) {
     };
 
     const handleRefreshClick = (index) => {
-        setLoadingsRefreshButton((prevLoadings) => {
-            const newLoadings = [...prevLoadings];
-            newLoadings[index] = true;
-            setLoadingTable(true);
-            return newLoadings;
-        });
-        setTimeout(() => {
-            setLoadingsRefreshButton((prevLoadings) => {
-                const newLoadings = [...prevLoadings];
-                newLoadings[index] = false;
-                dispatch(getListTableAdmin()).then((result) => {
-                    setTableData(Utils.getValues(result, 'payload', []));
-                });
-                setLoadingTable(false);
-                return newLoadings;
-            });
-        }, 1000);
+        fetchData();
     };
 
     const containerProps = {

@@ -1,6 +1,7 @@
 import { Form, message } from 'antd';
 import { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
+import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { UseNotification, UserAction } from '../../../components/UseNotification';
 import Config from '../../../configuration';
 import Utils from '../../../utilities';
@@ -17,16 +18,25 @@ function Conainer(props) {
     const [changePasswordForm] = Form.useForm();
     const [openChangePasswordModal, setOenChangePasswordModal] = useState(false);
 
-    const cookieData = cookies.get(Config.storageKey.tokenKey);
+    const cookieData = cookies.get(Config.storageKey.tokenKey) || [];
 
-    useEffect(() => {
-        dispatch(getAccountSettingsAdmin(cookieData.data.id))
-            .then((result) => {
+    const fetchData = async () => {
+        dispatch(showLoading());
+        try {
+            await dispatch(getAccountSettingsAdmin(cookieData.data.id)).then((result) => {
                 editForm.setFieldsValue({ ...Utils.getValues(result, 'payload', []) });
                 setSettingsData(Utils.getValues(result, 'payload', []));
-            })
-            .then();
-    }, [dispatch, editForm]);
+            });
+        } catch (error) {
+            console.error(error);
+        } finally {
+            dispatch(hideLoading());
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
 
     const handleChangePasswordClick = () => {
         setOenChangePasswordModal(true);

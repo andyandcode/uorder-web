@@ -19,7 +19,6 @@ export default function MainView(props) {
         handleActionButtonTurnOffClick,
         handleActionButtonTurnOnClick,
         expandedRowRenderSelection,
-        loadingTable,
         handleCreateNewClick,
         handleRefreshClick,
         createForm,
@@ -54,7 +53,6 @@ export default function MainView(props) {
                     <ButtonLocated.RefreshButton handleRefreshClick={handleRefreshClick} />
                 </Space>
                 <CustomTable
-                    loadingTable={loadingTable}
                     columns={columns}
                     dataSource={tableData}
                     handleActionButtonEditClick={(data) => handleActionButtonEditClick(data)}

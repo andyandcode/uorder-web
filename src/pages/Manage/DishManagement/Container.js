@@ -1,6 +1,7 @@
 import { Form, message, Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
+import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
@@ -18,29 +19,25 @@ function Conainer(props) {
     const [openEditModel, setOpenEditModel] = useState(false);
     const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
-    const [loadingTable, setLoadingTable] = useState(false);
+    const [defaultFile, setDefaultFile] = useState([]);
 
-    useEffect(() => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListDishAdmin()).then((result) => {
+    const fetchData = async () => {
+        dispatch(showLoading());
+        try {
+            await dispatch(getListDishAdmin()).then((result) => {
+                console.log(result);
                 setTableData(Utils.getValues(result, 'payload', []));
             });
-            setLoadingTable(false);
-        }, 500);
-    }, [dispatch]);
-
-    const getNewTableData = () => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListDishAdmin()).then((result) => {
-                setTableData(Utils.getValues(result, 'payload', []));
-            });
-            setLoadingTable(false);
-        }, 500);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            dispatch(hideLoading());
+        }
     };
 
-    const [defaultFile, setDefaultFile] = useState([]);
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
 
     const handleCreateNewClick = () => {
         setOpenCreateModel(true);
@@ -63,7 +60,7 @@ function Conainer(props) {
     const handleActionButtonDeleteClick = (data) => {
         function onOk() {
             dispatch(deleteDishAdmin(data.id));
-            getNewTableData();
+            fetchData();
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Dish, onOk));
     };
@@ -75,7 +72,7 @@ function Conainer(props) {
                 isActive: false,
             };
             dispatch(updateDishAdmin(modifiedItem));
-            getNewTableData();
+            fetchData();
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Dish, onOk));
     };
@@ -87,7 +84,7 @@ function Conainer(props) {
                 isActive: true,
             };
             dispatch(updateDishAdmin(modifiedItem));
-            getNewTableData();
+            fetchData();
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Dish, onOk));
     };
@@ -113,7 +110,7 @@ function Conainer(props) {
                         dispatch(createDishAdmin(modifiedItem));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
-                        getNewTableData();
+                        fetchData();
                     })
                     .then(() => createForm.resetFields());
             })
@@ -166,7 +163,7 @@ function Conainer(props) {
                         } else {
                             UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                             setOpenEditModel(false);
-                            getNewTableData();
+                            fetchData();
                         }
                     })
                     .then(() => editForm.resetFields());
@@ -177,25 +174,7 @@ function Conainer(props) {
     };
 
     const handleRefreshClick = (index) => {
-        setLoadingsRefreshButton((prevLoadings) => {
-            const newLoadings = [...prevLoadings];
-            newLoadings[index] = true;
-            setLoadingTable(true);
-            return newLoadings;
-        });
-        setTimeout(() => {
-            setLoadingsRefreshButton((prevLoadings) => {
-                const newLoadings = [...prevLoadings];
-                newLoadings[index] = false;
-
-                dispatch(getListDishAdmin()).then((result) => {
-                    setTableData(Utils.getValues(result, 'payload', []));
-                });
-
-                setLoadingTable(false);
-                return newLoadings;
-            });
-        }, 1000);
+        fetchData();
     };
 
     const containerProps = {
@@ -209,7 +188,6 @@ function Conainer(props) {
         createForm,
         editForm,
         messageContextHolder,
-        loadingTable,
         loadingsRefreshButton,
         defaultFile,
         handleActionButtonEditClick,

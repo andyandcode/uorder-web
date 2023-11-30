@@ -1,27 +1,27 @@
-import { axiosAdmin, axiosAdminJson } from './axiosAdmin';
+import { axiosAdmin, axiosAdminJson, axiosInstance } from './axiosAdmin';
 
 const DishAdmin = {
     getList: (params) => {
         const url = '/dish/getAll';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     getListAvailable: (params) => {
         const url = '/dish/getAllAvailable';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     create: (params) => {
         const url = '/dish/post';
-        return axiosAdmin.post(url, params, {
+        return axiosInstance.post(url, params, {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
     },
     update: (params) => {
         const url = `/dish/put/${params.id}`;
-        return axiosAdmin.put(url, params);
+        return axiosInstance.put(url, params);
     },
     delete: (params) => {
         const url = `/dish/delete/${params}`;
-        return axiosAdmin.delete(url);
+        return axiosInstance.delete(url);
     },
 };
 

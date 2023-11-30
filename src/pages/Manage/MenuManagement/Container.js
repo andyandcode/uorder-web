@@ -17,29 +17,24 @@ function Conainer(props) {
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
-    const [loadingTable, setLoadingTable] = useState(false);
+    const [loadingTable, setLoadingTable] = useState(true);
     const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
 
-    useEffect(() => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListMenuAdmin()).then((result) => {
+    const fetchData = async () => {
+        try {
+            await dispatch(getListMenuAdmin()).then((result) => {
                 setTableData(Utils.getValues(result, 'payload', []));
             });
+        } catch (error) {
+            console.error(error);
+        } finally {
             setLoadingTable(false);
-        }, 500);
-    }, [dispatch]);
-
-    const getNewTableData = () => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListMenuAdmin())
-                .then((result) => {
-                    setTableData(Utils.getValues(result, 'payload', []));
-                })
-                .then(setLoadingTable(false));
-        }, 500);
+        }
     };
+
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
 
     const handleEditCancelClick = () => {
         setOpenEditModel(false);
@@ -56,8 +51,7 @@ function Conainer(props) {
 
     const handleActionButtonDeleteClick = (data) => {
         function onOk() {
-            dispatch(deleteMenuAdmin(data.id));
-            getNewTableData();
+            dispatch(deleteMenuAdmin(data.id)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Menu, onOk));
     };
@@ -69,8 +63,7 @@ function Conainer(props) {
                 isActive: false,
                 dishes: data.dishes.map((item) => item.id),
             };
-            dispatch(updateMenuAdmin(modifiedItem));
-            getNewTableData();
+            dispatch(updateMenuAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Menu, onOk));
     };
@@ -82,15 +75,13 @@ function Conainer(props) {
                 isActive: true,
                 dishes: data.dishes.map((item) => item.id),
             };
-            dispatch(updateMenuAdmin(modifiedItem));
-            getNewTableData();
+            dispatch(updateMenuAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Menu, onOk));
     };
 
     const handleQuickDeleteConfirm = (data) => {
-        dispatch(deleteDishAdmin(data.id));
-        getNewTableData();
+        dispatch(deleteDishAdmin(data.id)).then(fetchData());
     };
 
     const handleQuickTurnOffConfirm = (data) => {
@@ -98,8 +89,7 @@ function Conainer(props) {
             ...data,
             isActive: false,
         };
-        dispatch(updateDishAdmin(modifiedItem));
-        getNewTableData();
+        dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
     };
 
     const handleQuickActionButtonTurnOnClick = (data) => {
@@ -107,8 +97,7 @@ function Conainer(props) {
             ...data,
             isActive: true,
         };
-        dispatch(updateDishAdmin(modifiedItem));
-        getNewTableData();
+        dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
     };
 
     const handleCreateSubmitClick = (values) => {
@@ -121,7 +110,7 @@ function Conainer(props) {
                         dispatch(createMenuAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
-                        getNewTableData();
+                        fetchData();
                     })
                     .then(() => createForm.resetFields());
             })
@@ -148,7 +137,7 @@ function Conainer(props) {
                         } else {
                             UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                             setOpenEditModel(false);
-                            getNewTableData();
+                            fetchData();
                         }
                     })
                     .then(() => editForm.resetFields());
@@ -163,7 +152,7 @@ function Conainer(props) {
     };
 
     const handleRefreshClick = (index) => {
-        getNewTableData();
+        fetchData();
     };
 
     const containerProps = {

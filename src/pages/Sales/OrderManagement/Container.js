@@ -35,27 +35,21 @@ function Conainer(props) {
     const orderStatusSelect = EnumKey.OrderStatusKey(t);
     const paymentStatusSelect = EnumKey.PaymentStatusKey(t);
 
-    useEffect(() => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListOrderAdmin())
-                .then((result) => {
-                    setTableData({ dataSource: Utils.getValues(result, 'payload', []) });
-                })
-                .then(setRootTableData(tableData.dataSource));
-            setLoadingTable(false);
-        }, 500);
-    }, [dispatch]);
-
-    const getNewTableData = () => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListOrderAdmin()).then((result) => {
-                setTableData({ dataSource: Utils.getValues(result, 'payload', []) });
+    const fetchData = async () => {
+        try {
+            await dispatch(getListOrderAdmin()).then((result) => {
+                setTableData(Utils.getValues(result, 'payload', []));
             });
+        } catch (error) {
+            console.error(error);
+        } finally {
             setLoadingTable(false);
-        }, 500);
+        }
     };
+
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
 
     const onChangeOrderStatusSelect = (e) => {
         setFilterOrderStatus(e);
@@ -108,7 +102,7 @@ function Conainer(props) {
                         dispatch(createOrderAdmin(modifiedItem));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
-                        getNewTableData();
+                        fetchData();
                     })
                     .then(() => createForm.resetFields());
             })
@@ -133,7 +127,7 @@ function Conainer(props) {
             ]),
         )
             .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
-            .then(getNewTableData());
+            .then(fetchData());
     };
     const componentRef = useRef();
     const handlePrintClick = () => {

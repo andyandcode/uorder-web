@@ -1,6 +1,7 @@
 import { Form, Modal, message } from 'antd';
 import { useEffect, useState } from 'react';
 import TableColumns from '../../components/CustomTable/columnConfigs';
+import { hideLoading, showLoading } from '../../components/FullPageLoading/LoadingSlice';
 import { NotificationTarget, UseNotification, UserAction } from '../../components/UseNotification';
 import Utils from '../../utilities';
 import propsProvider from './PropsProvider';
@@ -25,24 +26,22 @@ function Conainer(props) {
     const [loadingTable, setLoadingTable] = useState(false);
     const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
 
-    useEffect(() => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListAccountAdmin()).then((result) => {
+    const fetchData = async () => {
+        dispatch(showLoading());
+        try {
+            await dispatch(getListAccountAdmin()).then((result) => {
                 setTableData(Utils.getValues(result, 'payload', []));
             });
-            setLoadingTable(false);
-        }, 500);
-    }, [dispatch]);
-
-    const getNewTableData = () => {
-        setLoadingTable(true);
-        dispatch(getListAccountAdmin())
-            .then((result) => {
-                setTableData(Utils.getValues(result, 'payload', []));
-            })
-            .then(setLoadingTable(false));
+        } catch (error) {
+            console.error(error);
+        } finally {
+            dispatch(hideLoading());
+        }
     };
+
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
 
     const handleEditCancelClick = () => {
         setOpenEditModel(false);
@@ -59,8 +58,7 @@ function Conainer(props) {
 
     const handleActionButtonDeleteClick = (data) => {
         function onOk() {
-            dispatch(deleteAccountAdmin(data.id));
-            getNewTableData();
+            dispatch(deleteAccountAdmin(data.id)).then(fetchData());
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Account, onOk));
     };
@@ -76,7 +74,7 @@ function Conainer(props) {
                         id: data.id,
                     },
                 ]),
-            ).then(getNewTableData());
+            ).then(fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Account, onOk));
     };
@@ -92,7 +90,7 @@ function Conainer(props) {
                         id: data.id,
                     },
                 ]),
-            ).then(getNewTableData());
+            ).then(fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Account, onOk));
     };
@@ -108,7 +106,7 @@ function Conainer(props) {
                         dispatch(createAccountAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                         setOpenCreateModel(false);
-                        getNewTableData();
+                        fetchData();
                     })
                     .then(() => createForm.resetFields());
             })
@@ -128,7 +126,7 @@ function Conainer(props) {
                         const result = dispatch(updateAccountAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                         setOpenEditModel(false);
-                        getNewTableData();
+                        fetchData();
                     })
                     .then(() => editForm.resetFields());
             })

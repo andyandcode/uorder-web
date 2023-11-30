@@ -6,7 +6,7 @@ import { UseNotification, UserAction } from '../../../components/UseNotification
 import Utils from '../../../utilities';
 import { updateOrderStatusAdmin } from '../OrderManagement/Slice';
 import propsProvider from './PropsProvider';
-import { getListBookingAdmin, getListCurrentBookingAdmin } from './Slice';
+import { getListBookingAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -34,11 +34,11 @@ function Conainer(props) {
 
         connection.on('ReceiveMessage', (message) => {
             console.log(message);
-            getNewTableData();
+            fetchData();
         });
         connection.on('ReceiveOrderNotification', (bookingId) => {
             console.log(bookingId);
-            getNewTableData();
+            fetchData();
         });
 
         return () => {
@@ -46,32 +46,21 @@ function Conainer(props) {
         };
     }, []);
 
-    useEffect(() => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListBookingAdmin()).then((result) => {
+    const fetchData = async () => {
+        try {
+            await dispatch(getListBookingAdmin()).then((result) => {
                 setTableData(Utils.getValues(result, 'payload', []));
             });
-            dispatch(getListCurrentBookingAdmin()).then((result) => {
-                setCurrentBookingData(Utils.getValues(result, 'payload', []));
-            });
+        } catch (error) {
+            console.error(error);
+        } finally {
             setLoadingTable(false);
-            setCardLoading(false);
-        }, 500);
-    }, [dispatch]);
-
-    const getNewTableData = () => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListBookingAdmin()).then((result) => {
-                setTableData(Utils.getValues(result, 'payload', []));
-            });
-            dispatch(getListCurrentBookingAdmin()).then((result) => {
-                setCurrentBookingData(Utils.getValues(result, 'payload', []));
-            });
-            setLoadingTable(false);
-        }, 500);
+        }
     };
+
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
 
     const handlePrintBillClick = (data) => {
         setOpenBillQuickViewModal(true);
@@ -100,7 +89,7 @@ function Conainer(props) {
             ]),
         )
             .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
-            .then(getNewTableData());
+            .then(fetchData());
     };
 
     const handleViewCancelClick = () => {
@@ -125,7 +114,7 @@ function Conainer(props) {
             ]),
         )
             .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
-            .then(getNewTableData());
+            .then(fetchData());
     };
     const componentRef = useRef();
     const handlePrintClick = () => {
