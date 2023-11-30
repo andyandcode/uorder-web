@@ -58,7 +58,7 @@ function Conainer(props) {
 
     const handleActionButtonDeleteClick = (data) => {
         function onOk() {
-            dispatch(deleteAccountAdmin(data.id)).then(fetchData());
+            dispatch(deleteAccountAdmin(data.id)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Account, onOk));
     };
@@ -74,7 +74,7 @@ function Conainer(props) {
                         id: data.id,
                     },
                 ]),
-            ).then(fetchData());
+            ).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Account, onOk));
     };
@@ -90,7 +90,7 @@ function Conainer(props) {
                         id: data.id,
                     },
                 ]),
-            ).then(fetchData());
+            ).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Account, onOk));
     };

@@ -87,8 +87,7 @@ function Conainer(props) {
 
     const handleActionButtonDeleteClick = (data) => {
         function onOk() {
-            dispatch(deleteTableAdmin(data.id));
-            fetchData();
+            dispatch(deleteTableAdmin(data.id)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Table, onOk));
     };
@@ -99,8 +98,7 @@ function Conainer(props) {
                 ...data,
                 isActive: false,
             };
-            dispatch(updateTableAdmin(modifiedItem));
-            fetchData();
+            dispatch(updateTableAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Table, onOk));
     };
@@ -111,8 +109,7 @@ function Conainer(props) {
                 ...data,
                 isActive: true,
             };
-            dispatch(updateTableAdmin(modifiedItem));
-            fetchData();
+            dispatch(updateTableAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Table, onOk));
     };

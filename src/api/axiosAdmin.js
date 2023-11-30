@@ -86,7 +86,7 @@ const CreateAxiosInstance = () => {
     const instance = axios.create({
         baseURL: Config.endPointAdmin,
         headers: {
-            'content-type': 'application/json-patch+json',
+            'content-type': 'multipart/form-data',
         },
         timeout: 10000,
         paramsSerializer: (params) => queryString.stringify(params),
@@ -110,9 +110,7 @@ const CreateAxiosInstance = () => {
         },
         (error) => {
             if (error.code === 'ERR_NETWORK') {
-                try {
-                } catch (error) {}
-                return;
+                return 'ERR_NETWORK';
             }
 
             if (error.response && error.response.status === 401) {

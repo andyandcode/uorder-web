@@ -147,7 +147,6 @@ const NetworkError = (code, radom) => {
     const selector = useSelector(notificationSelector).content;
     const { t } = useTranslation();
 
-    console.log(selector);
     switch (selector) {
         case 123:
             AntdModal.confirm({

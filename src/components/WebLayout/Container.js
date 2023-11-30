@@ -29,17 +29,17 @@ export default function Conainer(props) {
         { label: 'English', value: 'en' },
     ];
     const access = cookies.get(Config.storageKey.tokenKey);
-    // useEffect(() => {
-    //     if (!access) {
-    //         Modal.error({
-    //             title: t('main.notification.login_expired.title'),
-    //             content: t('main.notification.login_expired.content'),
-    //             onOk() {
-    //                 history(rootKeys.loginUrl);
-    //             },
-    //         });
-    //     }
-    // }, [cookies]);
+    useEffect(() => {
+        if (!access) {
+            Modal.error({
+                title: t('main.notification.login_expired.title'),
+                content: t('main.notification.login_expired.content'),
+                onOk() {
+                    history(rootKeys.loginUrl);
+                },
+            });
+        }
+    }, [cookies]);
 
     const showLogOutConfirm = () => {
         confirm({

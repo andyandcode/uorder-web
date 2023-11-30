@@ -66,12 +66,12 @@ function Conainer(props) {
                         if (status === 562) {
                             messageApi.open(UseNotification.Message.AccountLockedMessage(t));
                         }
-                        console.log(result);
                         if (result.payload === 'ResetSuccessfully') {
                             messageApi
                                 .open(
                                     UseNotification.Message.ChangePasswordSuccessful(t),
                                     setOenChangePasswordModal(false),
+                                    fetchData(),
                                 )
                                 .then(() => changePasswordForm.resetFields());
                         }

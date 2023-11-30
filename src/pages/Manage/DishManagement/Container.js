@@ -59,8 +59,7 @@ function Conainer(props) {
 
     const handleActionButtonDeleteClick = (data) => {
         function onOk() {
-            dispatch(deleteDishAdmin(data.id));
-            fetchData();
+            dispatch(deleteDishAdmin(data.id)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Dish, onOk));
     };
@@ -71,8 +70,7 @@ function Conainer(props) {
                 ...data,
                 isActive: false,
             };
-            dispatch(updateDishAdmin(modifiedItem));
-            fetchData();
+            dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Dish, onOk));
     };
@@ -83,8 +81,7 @@ function Conainer(props) {
                 ...data,
                 isActive: true,
             };
-            dispatch(updateDishAdmin(modifiedItem));
-            fetchData();
+            dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Dish, onOk));
     };

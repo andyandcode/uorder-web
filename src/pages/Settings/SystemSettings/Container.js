@@ -1,5 +1,6 @@
 import { Form, message } from 'antd';
 import { useEffect, useState } from 'react';
+import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { UseNotification, UserAction } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
@@ -12,21 +13,23 @@ function Conainer(props) {
     const [settingsData, setSettingsData] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
 
-    useEffect(() => {
-        dispatch(getSystemSettingsAdmin())
-            .then((result) => {
+    const fetchData = async () => {
+        dispatch(showLoading());
+        try {
+            await dispatch(getSystemSettingsAdmin()).then((result) => {
                 editForm.setFieldsValue({ ...Utils.getValues(result, 'payload', []) });
                 setSettingsData(Utils.getValues(result, 'payload', []));
-            })
-            .then();
-    }, [dispatch, editForm]);
-
-    const getNewData = () => {
-        dispatch(getSystemSettingsAdmin()).then((result) => {
-            editForm.setFieldsValue({ ...Utils.getValues(result, 'payload', []) });
-            setSettingsData(Utils.getValues(result, 'payload', []));
-        });
+            });
+        } catch (error) {
+            console.error(error);
+        } finally {
+            dispatch(hideLoading());
+        }
     };
+
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
 
     const handleDomainSubmitClick = (values) => {
         editForm
@@ -38,7 +41,7 @@ function Conainer(props) {
                         dispatch(updateSystemSettingsAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                     })
-                    .then();
+                    .then(() => fetchData());
             })
             .catch(() => {
                 UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
@@ -54,7 +57,7 @@ function Conainer(props) {
                         dispatch(updateSystemSettingsAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                     })
-                    .then();
+                    .then(() => fetchData());
             })
             .catch(() => {
                 UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);

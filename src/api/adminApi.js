@@ -1,4 +1,4 @@
-import { axiosAdmin, axiosAdminJson, axiosInstance } from './axiosAdmin';
+import { axiosInstance } from './axiosAdmin';
 
 const DishAdmin = {
     getList: (params) => {
@@ -12,7 +12,7 @@ const DishAdmin = {
     create: (params) => {
         const url = '/dish/post';
         return axiosInstance.post(url, params, {
-            headers: { 'Content-Type': 'multipart/form-data' },
+            headers: { 'content-type': 'application/json-patch+json' },
         });
     },
     update: (params) => {
@@ -28,70 +28,64 @@ const DishAdmin = {
 const TableAdmin = {
     getList: (params) => {
         const url = '/table/getAll';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     create: (params) => {
         const url = '/table/post';
-        return axiosAdmin.post(url, params, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        return axiosInstance.post(url, params);
     },
     update: (params) => {
         const url = `/table/put/${params.id}`;
-        return axiosAdmin.put(url, params);
+        return axiosInstance.put(url, params);
     },
     delete: (params) => {
         const url = `/table/delete/${params}`;
-        return axiosAdmin.delete(url);
+        return axiosInstance.delete(url);
     },
 };
 
 const MenuAdmin = {
     getList: (params) => {
         const url = '/menu/getAll';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     create: (params) => {
         const url = '/menu/post';
-        return axiosAdmin.post(url, params, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        return axiosInstance.post(url, params);
     },
     update: (params) => {
         const url = `/menu/put/${params.id}`;
-        return axiosAdmin.put(url, params);
+        return axiosInstance.put(url, params);
     },
     delete: (params) => {
         const url = `/menu/delete/${params}`;
-        return axiosAdmin.delete(url);
+        return axiosInstance.delete(url);
     },
 };
 
 const SystemSettingsAdmin = {
     getSettings: (params) => {
         const url = '/systemSettings/getSettings';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     update: (params) => {
         const url = `/systemSettings/put/${params.id}`;
-        return axiosAdmin.put(url, params);
+        return axiosInstance.put(url, params);
     },
 };
 
 const OrderAdmin = {
     getAll: (params) => {
         const url = '/order/getAll';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     create: (params) => {
         const url = '/order/post';
-        return axiosAdmin.post(url, params, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        return axiosInstance.post(url, params);
     },
     update: (params) => {
         const url = `/order/put/${params.id}`;
-        return axiosAdmin.put(url, params);
+        return axiosInstance.put(url, params);
     },
     updateOrderStatus: (params) => {
         const modifiedArray = [];
@@ -102,18 +96,20 @@ const OrderAdmin = {
             modifiedArray.push(modifiedItem);
         }
         const url = `/order/patch/${params[0].id}`;
-        return axiosAdminJson.patch(url, modifiedArray);
+        return axiosInstance.patch(url, modifiedArray, {
+            headers: { 'content-type': 'application/json-patch+json' },
+        });
     },
 };
 
 const BookingAdmin = {
     getAll: (params) => {
         const url = '/booking/getAll';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     getCurrentBooking: (params) => {
         const url = '/booking/getCurrentBooking';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     updateBookingStatus: (params) => {
         const modifiedArray = [];
@@ -124,62 +120,66 @@ const BookingAdmin = {
             modifiedArray.push(modifiedItem);
         }
         const url = `/booking/patch/${params[0].id}`;
-        return axiosAdminJson.patch(url, modifiedArray);
+        return axiosInstance.patch(url, modifiedArray, {
+            headers: { 'content-type': 'application/json-patch+json' },
+        });
     },
 };
 
 const AnalyticsAdmin = {
     getRevenue: (params) => {
         const url = '/analytics/getRevenue';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     getTopSellers: (params) => {
         const url = '/analytics/getTopSellers';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     getCountManagement: (params) => {
         const url = '/analytics/countManagement';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
 };
 
 const AuthAdmin = {
     login: (params) => {
         const url = '/auth/login';
-        return axiosAdminJson.post(url, params);
+        return axiosInstance.post(url, params, {
+            headers: { 'content-type': 'application/json-patch+json' },
+        });
     },
     resetPassword: (params) => {
         const url = `/auth/resetPassword/${params.id}`;
-        return axiosAdmin.put(url, params);
+        return axiosInstance.put(url, params, {
+            headers: { 'content-type': 'application/json-patch+json' },
+        });
     },
 };
 
 const AccountAdmin = {
     getAll: (params) => {
         const url = '/account/getAll';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     getById: (params) => {
         const url = `/account/getById/${params}`;
-        return axiosAdminJson.get(url);
+        return axiosInstance.get(url);
     },
     getAllRoles: (params) => {
         const url = '/account/getAllRoles';
-        return axiosAdmin.get(url, { params });
+        return axiosInstance.get(url, { params });
     },
     create: (params) => {
         const url = '/account/post';
-        return axiosAdmin.post(url, params, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        return axiosInstance.post(url, params);
     },
     update: (params) => {
         const url = `/account/put/${params.id}`;
-        return axiosAdmin.put(url, params);
+        return axiosInstance.put(url, params);
     },
     delete: (params) => {
         const url = `/account/delete/${params}`;
-        return axiosAdmin.delete(url);
+        return axiosInstance.delete(url);
     },
     updateStatus: (params) => {
         console.log(params);
@@ -191,7 +191,9 @@ const AccountAdmin = {
             modifiedArray.push(modifiedItem);
         }
         const url = `/account/patch/${params[0].id}`;
-        return axiosAdminJson.patch(url, modifiedArray);
+        return axiosInstance.patch(url, modifiedArray, {
+            headers: { 'content-type': 'application/json-patch+json' },
+        });
     },
 };
 
