@@ -88,6 +88,10 @@
                 "completed": "Completed",
                 "cancelled": "Cancelled"
             },
+            "order_type": {
+                "take_away": "Take away",
+                "booking": "Booking"
+            },
             "payment_status": {
                 "label": "Payment status",
                 "all": "All",
@@ -108,7 +112,10 @@
             "order_subtotal": "Subtotal",
             "order_total": "Total",
             "dish_note_placeholder": "Dish note",
-            "order_note_placeholder": "Order note"
+            "order_note_placeholder": "Order note",
+            "money_change": "Change",
+            "money_receive": "Receive",
+            "staff": "Staff"
         },
         "pages": {
             "analytics": {

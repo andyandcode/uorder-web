@@ -74,11 +74,16 @@ const CancelButton = ({ handleButton, disabled }) => {
     );
 };
 
-const CreateButton = ({ form, handleButton }) => {
+const CreateButton = ({ form, handleButton, disabledBtn }) => {
     const { t } = useTranslation();
     return (
         <>
-            <Button onClick={() => handleButton(form.getFieldsValue())} form={form} type='primary'>
+            <Button
+                onClick={() => handleButton(form.getFieldsValue())}
+                form={form}
+                type='primary'
+                disabled={disabledBtn}
+            >
                 {t('main.components.button.create')}
             </Button>
         </>

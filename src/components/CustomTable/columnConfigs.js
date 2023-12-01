@@ -46,7 +46,7 @@ const DishColumns = (t) => {
                 multiple: 5,
             },
             render: (data) => {
-                return <CurrencyFormat.Minimal value={data} />;
+                return <NumericFormat value={data} thousandSeparator=',' displayType='text' suffix=' VNĐ' />;
             },
         },
         {

@@ -13,12 +13,25 @@ const OrderBill = React.forwardRef(({ data, componentRef }) => {
                 <Typography.Title level={3} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     RECEIPT
                 </Typography.Title>
+
                 <Row style={{ marginTop: 8 }}>
-                    <Col flex='auto'>
-                        <Typography.Text>{data.id}</Typography.Text>
-                    </Col>
+                    <Col flex='auto'>{data.id}</Col>
                     <Col flex='auto' style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-                        <Typography.Text>{moment(data.createdAt).format('hh:mm:ss DD/MM/YYYY')}</Typography.Text>
+                        {moment(data.createdAt).format('hh:mm:ss DD/MM/YYYY')}
+                    </Col>
+                </Row>
+
+                <Row style={{ marginTop: 8 }}>
+                    <Col flex='auto'>{t('main.entities.table')}</Col>
+                    <Col flex='auto' style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+                        {data.tableName != null ? data.tableName : t('main.entities.order_type.take_away')}
+                    </Col>
+                </Row>
+
+                <Row style={{ marginTop: 8 }}>
+                    <Col flex='auto'>{t('main.entities.staff')}</Col>
+                    <Col flex='auto' style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+                        {data.staff != null ? data.staff : t('main.entities.order_type.booking')}
                     </Col>
                 </Row>
                 <Divider style={{ margin: '4px 0px' }} />
@@ -87,6 +100,32 @@ const OrderBill = React.forwardRef(({ data, componentRef }) => {
                         </Typography.Title>
                     </Col>
                 </Row>
+                <Divider style={{ margin: '8px 0px' }} />
+                <Row style={{ width: '100%', marginBottom: 4 }}>
+                    <Col flex={6}>{t('main.entities.money_receive')}</Col>
+                    <Col
+                        flex={6}
+                        style={{
+                            display: 'inline-flex',
+                            justifyContent: 'end',
+                        }}
+                    >
+                        <CurrencyFormat.Minimal value={data.moneyReceive} />
+                    </Col>
+                </Row>
+                <Row style={{ width: '100%', marginBottom: 4 }}>
+                    <Col flex={6}>{t('main.entities.money_change')}</Col>
+                    <Col
+                        flex={6}
+                        style={{
+                            display: 'inline-flex',
+                            justifyContent: 'end',
+                        }}
+                    >
+                        <CurrencyFormat.Minimal value={data.moneyChange} />
+                    </Col>
+                </Row>
+                <Divider style={{ margin: '8px 0px' }} />
                 <Typography.Title level={3} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     THANK YOU!
                 </Typography.Title>

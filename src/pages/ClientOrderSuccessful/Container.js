@@ -8,6 +8,7 @@ function Conainer(props) {
     const { history, t, location, dispatch } = props;
     const params = useParams();
     const [orderData, setOrderData] = useState(location.state != null ? location.state.data : []);
+    console.log('in');
     useEffect(() => {
         dispatch(
             updateBookingStatusClient([
@@ -18,7 +19,9 @@ function Conainer(props) {
                     id: params.orderId,
                 },
             ]),
-        );
+        ).then(() => {
+            console.log('ininin');
+        });
     }, [dispatch]);
 
     const containerProps = {

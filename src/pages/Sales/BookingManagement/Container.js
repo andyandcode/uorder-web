@@ -6,7 +6,7 @@ import { UseNotification, UserAction } from '../../../components/UseNotification
 import Utils from '../../../utilities';
 import { updateOrderStatusAdmin } from '../OrderManagement/Slice';
 import propsProvider from './PropsProvider';
-import { getListBookingAdmin } from './Slice';
+import { getListBookingAdmin, getListCurrentBookingAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -49,8 +49,10 @@ function Conainer(props) {
     const fetchData = async () => {
         try {
             await dispatch(getListBookingAdmin()).then((result) => {
-                console.log(result);
                 setTableData(Utils.getValues(result, 'payload', []));
+            });
+            await dispatch(getListCurrentBookingAdmin()).then((result) => {
+                setCurrentBookingData(Utils.getValues(result, 'payload', []));
             });
         } catch (error) {
             console.error(error);

@@ -35,7 +35,7 @@ const CreateAxiosInstance = () => {
         },
         (error) => {
             if (error.code === 'ERR_NETWORK') {
-                return 'ERR_NETWORK';
+                return;
             }
 
             if (error.response && error.response.status === 401) {

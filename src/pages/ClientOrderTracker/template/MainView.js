@@ -1,5 +1,5 @@
 import { CaretRightOutlined } from '@ant-design/icons';
-import { Button, Col, Collapse, Divider, Result, Row, Space, Timeline, Typography, theme } from 'antd';
+import { Button, Col, Collapse, Divider, Result, Row, Space, Typography, theme } from 'antd';
 import moment from 'moment';
 import Countdown, { zeroPad } from 'react-countdown';
 import { CurrencyFormat } from '../../../components/CurrencyFormat';
@@ -50,35 +50,6 @@ export default function MainView({ t, orderData }) {
                             {EnumRender.PaymentStatusMinimal(t, orderData.paymentStatus)}
                         </Typography.Text>
                     </Row>
-                </>
-            ),
-            style: panelStyle,
-        },
-        {
-            key: '2',
-            label: t('main.pages.tracker.timeline'),
-            children: (
-                <>
-                    <Timeline
-                        mode={'left'}
-                        items={[
-                            {
-                                label: '2015-09-01',
-                                children: 'Create a services',
-                            },
-                            {
-                                label: '2015-09-01 09:12:11',
-                                children: 'Solve initial network problems',
-                            },
-                            {
-                                children: 'Technical testing',
-                            },
-                            {
-                                label: '2015-09-01 09:12:11',
-                                children: 'Network problems being solved',
-                            },
-                        ]}
-                    />
                 </>
             ),
             style: panelStyle,

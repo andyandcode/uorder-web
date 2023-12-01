@@ -1,10 +1,12 @@
 import { Form, message } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
+import Cookies from 'universal-cookie';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { EnumKey } from '../../../components/EnumRender';
 import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { UseNotification, UserAction } from '../../../components/UseNotification';
+import Config from '../../../configuration';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
 import { createOrderAdmin, getListOrderAdmin, updateOrderStatusAdmin } from './Slice';
@@ -28,6 +30,7 @@ function Conainer(props) {
     const [openBillQuickViewModal, setOpenBillQuickViewModal] = useState(false);
     const [openViewModel, setOpenViewModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
+    const cookies = new Cookies();
 
     const [viewData, setViewData] = useState();
     const [dishData, setDishData] = useState();
@@ -39,7 +42,8 @@ function Conainer(props) {
         dispatch(showLoading());
         try {
             await dispatch(getListOrderAdmin()).then((result) => {
-                setTableData(Utils.getValues(result, 'payload', []));
+                setTableData({ dataSource: Utils.getValues(result, 'payload', []) });
+                setRootTableData(Utils.getValues(result, 'payload', []));
             });
         } catch (error) {
             console.error(error);
@@ -87,7 +91,6 @@ function Conainer(props) {
         // viewForm.setFieldsValue({ ...data });
         setOpenViewModel(true);
     };
-
     const handleCreateSubmitClick = (values) => {
         createForm
             .validateFields()
@@ -95,10 +98,13 @@ function Conainer(props) {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {
+                        const cookieData = cookies.get(Config.storageKey.tokenKey);
                         const modifiedItem = {
                             ...values,
                             orderType: 1,
                             tableId: '',
+                            moneyReceive: parseInt(values.moneyReceive.toString().replace(/[^0-9]/g, '')),
+                            staff: cookieData && cookieData.data.username,
                         };
                         await dispatch(createOrderAdmin(modifiedItem)).then((result) => {
                             UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);

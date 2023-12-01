@@ -99,7 +99,7 @@ function Conainer(props) {
                             price: priceParse,
                             completionTime: completionTimeParse,
                             qtyPerDay: qtyPerDayParse,
-                            cover: values.cover.file.originFileObj,
+                            cover: values.cover !== undefined ? values.cover.file.originFileObj : null,
                         };
                         await dispatch(createDishAdmin(modifiedItem)).then((result) => {
                             UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
@@ -147,18 +147,13 @@ function Conainer(props) {
                             price: priceParse,
                             completionTime: completionTimeParse,
                             qtyPerDay: qtyPerDayParse,
+                            cover: values.cover !== undefined ? values.cover.file.originFileObj : null,
                         };
-                        const result = await dispatch(updateDishAdmin(modifiedItem));
-                        const status = Utils.getValues(result, 'error.code', []);
-
-                        if (status === 'ERR_BAD_REQUEST') {
-                            UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
-                            setOpenEditModel(false);
-                        } else {
+                        await dispatch(updateDishAdmin(modifiedItem)).then((result) => {
                             UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                             setOpenEditModel(false);
                             fetchData();
-                        }
+                        });
                     })
                     .then(() => editForm.resetFields());
             })

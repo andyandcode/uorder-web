@@ -734,7 +734,7 @@ const MoneyChange = ({ hidden }) => {
     return (
         <>
             <Form.Item name='moneyChange' label={t('main.entities.money_change')} hidden={hidden && hidden}>
-                <Input />
+                <Input bordered={false} />
             </Form.Item>
         </>
     );

@@ -127,7 +127,17 @@ function Conainer(props) {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {
-                        const result = await dispatch(updateMenuAdmin(values));
+                        let modifiedItem = {
+                            ...values,
+                        };
+                        if (values.dishes && values.dishes[0].hasOwnProperty('key')) {
+                            modifiedItem = {
+                                ...values,
+                                dishes: values.dishes.map((item) => item.id),
+                            };
+                        }
+                        console.log(modifiedItem);
+                        const result = await dispatch(updateMenuAdmin(modifiedItem));
                         const status = Utils.getValues(result, 'error.code', []);
 
                         if (status === 'ERR_BAD_REQUEST') {
