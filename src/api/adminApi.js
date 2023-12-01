@@ -11,9 +11,7 @@ const DishAdmin = {
     },
     create: (params) => {
         const url = '/dish/post';
-        return axiosInstance.post(url, params, {
-            headers: { 'content-type': 'application/json-patch+json' },
-        });
+        return axiosInstance.post(url, params);
     },
     update: (params) => {
         const url = `/dish/put/${params.id}`;
@@ -150,9 +148,7 @@ const AuthAdmin = {
     },
     resetPassword: (params) => {
         const url = `/auth/resetPassword/${params.id}`;
-        return axiosInstance.put(url, params, {
-            headers: { 'content-type': 'application/json-patch+json' },
-        });
+        return axiosInstance.put(url, params);
     },
 };
 
