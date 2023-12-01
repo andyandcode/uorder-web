@@ -23,8 +23,6 @@ function Conainer(props) {
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
-    const [loadingTable, setLoadingTable] = useState(false);
-    const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
 
     const fetchData = async () => {
         dispatch(showLoading());
@@ -57,15 +55,15 @@ function Conainer(props) {
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        function onOk() {
-            dispatch(deleteAccountAdmin(data.id)).then(() => fetchData());
+        async function onOk() {
+            await dispatch(deleteAccountAdmin(data.id)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Account, onOk));
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        function onOk() {
-            dispatch(
+        async function onOk() {
+            await dispatch(
                 updateAccountStatusAdmin([
                     {
                         path: '/IsActive',
@@ -80,8 +78,8 @@ function Conainer(props) {
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        function onOk() {
-            dispatch(
+        async function onOk() {
+            await dispatch(
                 updateAccountStatusAdmin([
                     {
                         path: '/IsActive',
@@ -102,11 +100,12 @@ function Conainer(props) {
                 console.log('Created: ', values);
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
-                        dispatch(createAccountAdmin(values));
-                        UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
-                        setOpenCreateModel(false);
-                        fetchData();
+                    .then(async () => {
+                        await dispatch(createAccountAdmin(values)).then(() => {
+                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            setOpenCreateModel(false);
+                            fetchData();
+                        });
                     })
                     .then(() => createForm.resetFields());
             })
@@ -122,11 +121,12 @@ function Conainer(props) {
                 console.log('Edited: ', values);
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
-                        const result = dispatch(updateAccountAdmin(values));
-                        UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
-                        setOpenEditModel(false);
-                        fetchData();
+                    .then(async () => {
+                        await dispatch(updateAccountAdmin(values)).then(() => {
+                            UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
+                            setOpenEditModel(false);
+                            fetchData();
+                        });
                     })
                     .then(() => editForm.resetFields());
             })
@@ -140,20 +140,7 @@ function Conainer(props) {
     };
 
     const handleRefreshClick = (index) => {
-        setLoadingsRefreshButton((prevLoadings) => {
-            const newLoadings = [...prevLoadings];
-            newLoadings[index] = true;
-            setLoadingTable(true);
-            return newLoadings;
-        });
-        setTimeout(() => {
-            setLoadingsRefreshButton((prevLoadings) => {
-                const newLoadings = [...prevLoadings];
-                newLoadings[index] = false;
-                setLoadingTable(false);
-                return newLoadings;
-            });
-        }, 1000);
+        fetchData();
     };
 
     const containerProps = {
@@ -175,8 +162,6 @@ function Conainer(props) {
         handleEditSubmitClick,
         handleEditCancelClick,
         handleCreateCancelClick,
-        loadingTable,
-        loadingsRefreshButton,
         handleCreateNewClick,
         handleRefreshClick,
     };

@@ -49,12 +49,14 @@ function Conainer(props) {
     const fetchData = async () => {
         try {
             await dispatch(getListBookingAdmin()).then((result) => {
+                console.log(result);
                 setTableData(Utils.getValues(result, 'payload', []));
             });
         } catch (error) {
             console.error(error);
         } finally {
             setLoadingTable(false);
+            setCardLoading(false);
         }
     };
 
@@ -77,8 +79,8 @@ function Conainer(props) {
 
     const handlePayBillClick = (data) => {};
 
-    const handleCompleteOrderClick = (data) => {
-        dispatch(
+    const handleCompleteOrderClick = async (data) => {
+        await dispatch(
             updateOrderStatusAdmin([
                 {
                     path: '/OrderStatus',
@@ -89,7 +91,7 @@ function Conainer(props) {
             ]),
         )
             .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
-            .then(fetchData());
+            .then(() => fetchData());
     };
 
     const handleViewCancelClick = () => {
@@ -102,8 +104,8 @@ function Conainer(props) {
         setOpenViewModel(true);
     };
 
-    const handleChangeOrderStatus = (status, id) => {
-        dispatch(
+    const handleChangeOrderStatus = async (status, id) => {
+        await dispatch(
             updateOrderStatusAdmin([
                 {
                     path: '/OrderStatus',
@@ -114,7 +116,7 @@ function Conainer(props) {
             ]),
         )
             .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
-            .then(fetchData());
+            .then(() => fetchData());
     };
     const componentRef = useRef();
     const handlePrintClick = () => {

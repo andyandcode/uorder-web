@@ -17,7 +17,6 @@ function Conainer(props) {
     const [editForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
-    const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
     const [defaultFile, setDefaultFile] = useState([]);
 
@@ -25,7 +24,6 @@ function Conainer(props) {
         dispatch(showLoading());
         try {
             await dispatch(getListDishAdmin()).then((result) => {
-                console.log(result);
                 setTableData(Utils.getValues(result, 'payload', []));
             });
         } catch (error) {
@@ -58,30 +56,30 @@ function Conainer(props) {
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        function onOk() {
-            dispatch(deleteDishAdmin(data.id)).then(() => fetchData());
+        async function onOk() {
+            await dispatch(deleteDishAdmin(data.id)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Dish, onOk));
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        function onOk() {
+        async function onOk() {
             const modifiedItem = {
                 ...data,
                 isActive: false,
             };
-            dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
+            await dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Dish, onOk));
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        function onOk() {
+        async function onOk() {
             const modifiedItem = {
                 ...data,
                 isActive: true,
             };
-            dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
+            await dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Dish, onOk));
     };
@@ -92,7 +90,7 @@ function Conainer(props) {
             .then(() => {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
+                    .then(async () => {
                         const priceParse = parseInt(values.price.replace(/[^0-9]/g, ''));
                         const completionTimeParse = parseInt(values.completionTime.replace(/[^0-9]/g, ''));
                         const qtyPerDayParse = parseInt(values.qtyPerDay.replace(/[^0-9]/g, ''));
@@ -103,11 +101,11 @@ function Conainer(props) {
                             qtyPerDay: qtyPerDayParse,
                             cover: values.cover.file.originFileObj,
                         };
-                        console.log(modifiedItem);
-                        dispatch(createDishAdmin(modifiedItem));
-                        UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
-                        setOpenCreateModel(false);
-                        fetchData();
+                        await dispatch(createDishAdmin(modifiedItem)).then((result) => {
+                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            setOpenCreateModel(false);
+                            fetchData();
+                        });
                     })
                     .then(() => createForm.resetFields());
             })
@@ -150,8 +148,7 @@ function Conainer(props) {
                             completionTime: completionTimeParse,
                             qtyPerDay: qtyPerDayParse,
                         };
-                        console.log(modifiedItem);
-                        const result = dispatch(updateDishAdmin(modifiedItem));
+                        const result = await dispatch(updateDishAdmin(modifiedItem));
                         const status = Utils.getValues(result, 'error.code', []);
 
                         if (status === 'ERR_BAD_REQUEST') {
@@ -185,7 +182,6 @@ function Conainer(props) {
         createForm,
         editForm,
         messageContextHolder,
-        loadingsRefreshButton,
         defaultFile,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,

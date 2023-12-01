@@ -16,14 +16,14 @@ function Conainer(props) {
     const topSellersChartConfig = AnalyticsConfig.TopSellersChart(topSellersData);
 
     useEffect(() => {
-        setTimeout(() => {
-            dispatch(getRevenue()).then((result) => {
+        setTimeout(async () => {
+            await dispatch(getRevenue()).then((result) => {
                 setRevenueData(Utils.getValues(result, 'payload', []));
             });
-            dispatch(getTopSellers()).then((result) => {
+            await dispatch(getTopSellers()).then((result) => {
                 setTopSellersData(Utils.getValues(result, 'payload', []));
             });
-            dispatch(getCountManagement()).then((result) => {
+            await dispatch(getCountManagement()).then((result) => {
                 setCountManagementData(Utils.getValues(result, 'payload', []));
             });
         }, 500);

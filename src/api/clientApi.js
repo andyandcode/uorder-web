@@ -1,4 +1,4 @@
-import { axiosAdminJson } from './axiosAdmin';
+import { axiosInstance } from './axiosAdmin';
 import axiosClient from './axiosClient';
 
 const MenuClient = {
@@ -31,7 +31,9 @@ const BookingClient = {
             modifiedArray.push(modifiedItem);
         }
         const url = `/booking/patch/${params[0].id}`;
-        return axiosAdminJson.patch(url, modifiedArray);
+        return axiosInstance.patch(url, modifiedArray, {
+            headers: { 'Content-Type': 'application/json-patch+json' },
+        });
     },
 };
 

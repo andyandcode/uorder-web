@@ -52,9 +52,9 @@ function Conainer(props) {
         console.log(data);
         changePasswordForm
             .validateFields()
-            .then(async () => {
-                messageApi.open(UseNotification.Message.InProgressMessage(t)).then(() => {
-                    dispatch(resetPasswordAdmin(data)).then((result) => {
+            .then(() => {
+                messageApi.open(UseNotification.Message.InProgressMessage(t)).then(async () => {
+                    await dispatch(resetPasswordAdmin(data)).then((result) => {
                         const status = Utils.getValues(result, 'payload.response.status', null);
 
                         if (status === 542) {

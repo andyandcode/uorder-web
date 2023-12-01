@@ -37,8 +37,8 @@ function Conainer(props) {
             .then(() => {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
-                        dispatch(updateSystemSettingsAdmin(values));
+                    .then(async () => {
+                        await dispatch(updateSystemSettingsAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                     })
                     .then(() => fetchData());
@@ -53,8 +53,8 @@ function Conainer(props) {
             .then(() => {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
-                        dispatch(updateSystemSettingsAdmin(values));
+                    .then(async () => {
+                        await dispatch(updateSystemSettingsAdmin(values));
                         UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                     })
                     .then(() => fetchData());

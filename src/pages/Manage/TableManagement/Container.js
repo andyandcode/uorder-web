@@ -1,6 +1,7 @@
 import { Form, message, Modal, QRCode } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
+import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
@@ -16,10 +17,9 @@ function Conainer(props) {
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
-    const [loadingTable, setLoadingTable] = useState(false);
-    const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
 
     const fetchData = async () => {
+        dispatch(showLoading());
         try {
             await dispatch(getListTableAdmin()).then((result) => {
                 setTableData(Utils.getValues(result, 'payload', []));
@@ -27,7 +27,7 @@ function Conainer(props) {
         } catch (error) {
             console.error(error);
         } finally {
-            setLoadingTable(false);
+            dispatch(hideLoading());
         }
     };
 
@@ -86,30 +86,30 @@ function Conainer(props) {
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        function onOk() {
-            dispatch(deleteTableAdmin(data.id)).then(() => fetchData());
+        async function onOk() {
+            await dispatch(deleteTableAdmin(data.id)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Table, onOk));
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        function onOk() {
+        async function onOk() {
             const modifiedItem = {
                 ...data,
                 isActive: false,
             };
-            dispatch(updateTableAdmin(modifiedItem)).then(() => fetchData());
+            await dispatch(updateTableAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Table, onOk));
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        function onOk() {
+        async function onOk() {
             const modifiedItem = {
                 ...data,
                 isActive: true,
             };
-            dispatch(updateTableAdmin(modifiedItem)).then(() => fetchData());
+            await dispatch(updateTableAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Table, onOk));
     };
@@ -126,11 +126,12 @@ function Conainer(props) {
             .then(() => {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
-                        dispatch(createTableAdmin(values));
-                        UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
-                        setOpenCreateModel(false);
-                        fetchData();
+                    .then(async () => {
+                        await dispatch(createTableAdmin(values)).then(() => {
+                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            setOpenCreateModel(false);
+                            fetchData();
+                        });
                     })
                     .then(() => createForm.resetFields());
             })
@@ -195,8 +196,6 @@ function Conainer(props) {
         handleQuickTurnOffConfirm,
         handleQuickDeleteConfirm,
         handleQuickActionButtonTurnOnClick,
-        loadingTable,
-        loadingsRefreshButton,
         handleShowQrCodeClick,
         handleCreateNewClick,
         handleRefreshClick,

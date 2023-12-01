@@ -182,7 +182,6 @@ const AccountAdmin = {
         return axiosInstance.delete(url);
     },
     updateStatus: (params) => {
-        console.log(params);
         const modifiedArray = [];
 
         for (const item of params) {

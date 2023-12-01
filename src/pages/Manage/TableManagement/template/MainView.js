@@ -22,7 +22,6 @@ export default function MainView(props) {
         handleQuickTurnOffConfirm,
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
-        loadingTable,
         handleShowQrCodeClick,
         handleCreateNewClick,
         handleRefreshClick,
@@ -48,7 +47,6 @@ export default function MainView(props) {
                     <ButtonLocated.RefreshButton handleRefreshClick={handleRefreshClick} />
                 </Space>
                 <CustomTable
-                    loadingTable={loadingTable}
                     columns={columns}
                     dataSource={tableData}
                     handleActionButtonEditClick={(data) => handleActionButtonEditClick(data)}

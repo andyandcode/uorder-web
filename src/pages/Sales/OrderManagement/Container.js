@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { EnumKey } from '../../../components/EnumRender';
+import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { UseNotification, UserAction } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
@@ -27,7 +28,6 @@ function Conainer(props) {
     const [openBillQuickViewModal, setOpenBillQuickViewModal] = useState(false);
     const [openViewModel, setOpenViewModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
-    const [loadingTable, setLoadingTable] = useState(false);
 
     const [viewData, setViewData] = useState();
     const [dishData, setDishData] = useState();
@@ -36,6 +36,7 @@ function Conainer(props) {
     const paymentStatusSelect = EnumKey.PaymentStatusKey(t);
 
     const fetchData = async () => {
+        dispatch(showLoading());
         try {
             await dispatch(getListOrderAdmin()).then((result) => {
                 setTableData(Utils.getValues(result, 'payload', []));
@@ -43,7 +44,7 @@ function Conainer(props) {
         } catch (error) {
             console.error(error);
         } finally {
-            setLoadingTable(false);
+            dispatch(hideLoading());
         }
     };
 
@@ -93,16 +94,17 @@ function Conainer(props) {
             .then(() => {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
+                    .then(async () => {
                         const modifiedItem = {
                             ...values,
                             orderType: 1,
                             tableId: '',
                         };
-                        dispatch(createOrderAdmin(modifiedItem));
-                        UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
-                        setOpenCreateModel(false);
-                        fetchData();
+                        await dispatch(createOrderAdmin(modifiedItem)).then((result) => {
+                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            setOpenCreateModel(false);
+                            fetchData();
+                        });
                     })
                     .then(() => createForm.resetFields());
             })
@@ -115,8 +117,8 @@ function Conainer(props) {
         setOpenCreateModel(true);
     };
 
-    const handleChangeOrderStatus = (status, id) => {
-        dispatch(
+    const handleChangeOrderStatus = async (status, id) => {
+        await dispatch(
             updateOrderStatusAdmin([
                 {
                     path: '/OrderStatus',
@@ -127,7 +129,7 @@ function Conainer(props) {
             ]),
         )
             .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
-            .then(fetchData());
+            .then(() => fetchData());
     };
     const componentRef = useRef();
     const handlePrintClick = () => {
@@ -152,7 +154,6 @@ function Conainer(props) {
         createForm,
         viewForm,
         messageContextHolder,
-        loadingTable,
         tableData,
         orderStatusSelect,
         paymentStatusSelect,
