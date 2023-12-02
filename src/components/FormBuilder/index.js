@@ -24,7 +24,7 @@ const CreateNewDishForm = ({ form, handleButtonCancel, handleButtonSubmit }) => 
             >
                 <Row gutter={[52]}>
                     <Col>
-                        <FormEntities.UploadMedias />
+                        <FormEntities.CoverPhoto form={form} />
                     </Col>
                     <Col>
                         <FormEntities.Name />
@@ -47,13 +47,13 @@ const CreateNewDishForm = ({ form, handleButtonCancel, handleButtonSubmit }) => 
     );
 };
 
-const EditDishForm = ({ form, handleButtonCancel, handleButtonSubmit, defaultFileList }) => {
+const EditDishForm = ({ form, handleButtonCancel, handleButtonSubmit, defaultFile }) => {
     return (
         <>
             <Form form={form} align='end' layout='horizontal' name='form_edit_in_modal'>
                 <Row gutter={[52]}>
                     <Col>
-                        <FormEntities.UploadMedias defaultFileList={defaultFileList} />
+                        <FormEntities.CoverPhoto defaultFile={defaultFile} form={form} />
                     </Col>
                     <Col>
                         <FormEntities.Id data={form} />
@@ -188,6 +188,7 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const [dishData, setDishData] = useState([]);
+    const [disabledBtn, setDisableBtn] = useState(true);
 
     useEffect(() => {
         dispatch(getListDishAdmin()).then((result) => {
@@ -199,8 +200,8 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
     let fieldQty;
     let fieldPrice;
     let fieldNote;
-    let fieldOrderStatus;
-    let fieldPaymentStatus;
+    let paymentMethod;
+    let moneyReceive;
     let arr;
     let total;
 
@@ -209,8 +210,8 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
         fieldQty = form.getFieldValue([data.name[0], data.name[1], 'qty']);
         fieldPrice = form.getFieldValue([data.name[0], data.name[1], 'unitPrice']);
         fieldNote = form.getFieldValue('note');
-        fieldOrderStatus = form.getFieldValue('orderStatus');
-        fieldPaymentStatus = form.getFieldValue('paymentStatus');
+        paymentMethod = form.getFieldValue('paymentMethod');
+        moneyReceive = form.getFieldValue('moneyReceive');
         arr = form.getFieldsValue();
         total = 0;
         arr.orderDetails.map((e) => (e !== undefined ? (total += e.amount) : total));
@@ -233,14 +234,24 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
                 value: fieldNote,
             },
             {
-                name: 'orderStatus',
-                value: fieldOrderStatus,
+                name: 'paymentMethod',
+                value: paymentMethod,
             },
             {
-                name: 'paymentStatus',
-                value: fieldPaymentStatus,
+                name: 'moneyChange',
+                value:
+                    moneyReceive !== undefined
+                        ? parseInt(moneyReceive.toString().replace(/[^0-9]/g, '')) - total < 0
+                            ? -1
+                            : parseInt(moneyReceive.toString().replace(/[^0-9]/g, '')) - total
+                        : -1,
+            },
+            {
+                name: 'moneyReceive',
+                value: moneyReceive,
             },
         ]);
+        setDisableBtn(form.getFieldsValue().moneyChange < 0);
     };
     return (
         <>
@@ -279,11 +290,11 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
                 </Row>
                 <FormEntities.OrderDishItem dishData={dishData} />
                 <FormEntities.OrderStatus hidden />
-                <FormEntities.PaymentStatus />
+                {/* <FormEntities.PaymentStatus /> */}
 
-                {/* <FormEntities.PaymentMethod />
-                <FormEntities.MoneyReceive />
-                <FormEntities.MoneyChange /> */}
+                <Form.Item name='paymentMethod' initialValue={1} style={{ display: 'none' }}>
+                    <Input />
+                </Form.Item>
 
                 <FormEntities.OrderType />
                 <Form.Item name='note'>
@@ -292,10 +303,32 @@ const CreateNewOrderForm = ({ form, handleButtonCancel, handleButtonSubmit }) =>
                 <Form.Item name='total' initialValue={0} label={t('main.entities.total')}>
                     <NumericFormat thousandSeparator=',' displayType='text' defaultValue={0} suffix=' VND' />
                 </Form.Item>
+                <Form.Item name='moneyReceive' label={t('main.entities.money_receive')}>
+                    <NumericFormat
+                        suffix=' VND'
+                        thousandSeparator=','
+                        customInput={Input}
+                        allowLeadingZeros={false}
+                        isAllowed={(values) => {
+                            const { formattedValue, floatValue } = values;
+                            return formattedValue === '' || floatValue <= 1000000000;
+                        }}
+                        style={{
+                            width: 250,
+                        }}
+                    />
+                </Form.Item>
+                <Form.Item name='moneyChange' label={t('main.entities.money_change')}>
+                    <NumericFormat thousandSeparator=',' displayType='text' suffix=' VND' />
+                </Form.Item>
                 <Space>
                     <ButtonLocated.ResetButton />
                     <ButtonLocated.CancelButton handleButton={handleButtonCancel} />
-                    <ButtonLocated.CreateButton form={form} handleButton={handleButtonSubmit} />
+                    <ButtonLocated.CreateButton
+                        form={form}
+                        handleButton={handleButtonSubmit}
+                        disabledBtn={disabledBtn}
+                    />
                 </Space>
             </Form>
         </>
@@ -522,6 +555,50 @@ const ViewOrderForm = ({
                             <Typography.Title level={4}>
                                 <CurrencyFormat.Minimal value={viewData.total} />
                             </Typography.Title>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+            <Row style={{ width: '100%' }}>
+                <Col flex={'auto'} style={{ marginBottom: 14 }}></Col>
+                <Col span={8} style={{}}>
+                    <Row>
+                        <Col flex={6} style={{ marginBottom: 14 }}>
+                            <Typography.Text type='secondary'>{t('main.entities.money_receive')}</Typography.Text>
+                        </Col>
+                        <Col
+                            flex={6}
+                            style={{
+                                marginBottom: 14,
+                                display: 'inline-flex',
+                                justifyContent: 'end',
+                            }}
+                        >
+                            <Typography.Text type='secondary'>
+                                <CurrencyFormat.Minimal value={viewData.moneyReceive} />
+                            </Typography.Text>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+            <Row style={{ width: '100%' }}>
+                <Col flex={'auto'} style={{ marginBottom: 14 }}></Col>
+                <Col span={8} style={{}}>
+                    <Row>
+                        <Col flex={6} style={{ marginBottom: 14 }}>
+                            <Typography.Text type='secondary'>{t('main.entities.money_change')}</Typography.Text>
+                        </Col>
+                        <Col
+                            flex={6}
+                            style={{
+                                marginBottom: 14,
+                                display: 'inline-flex',
+                                justifyContent: 'end',
+                            }}
+                        >
+                            <Typography.Text type='secondary'>
+                                <CurrencyFormat.Minimal value={viewData.moneyChange} />
+                            </Typography.Text>
                         </Col>
                     </Row>
                 </Col>

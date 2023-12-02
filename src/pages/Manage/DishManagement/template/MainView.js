@@ -19,7 +19,6 @@ export default function MainView(props) {
         handleActionButtonTurnOffClick,
         handleActionButtonTurnOnClick,
         expandedRowRenderSelection,
-        loadingTable,
         handleCreateNewClick,
         handleRefreshClick,
         createForm,
@@ -31,7 +30,7 @@ export default function MainView(props) {
         openEditModel,
         handleEditSubmitClick,
         handleEditCancelClick,
-        defaultFileList,
+        defaultFile,
     } = props;
 
     return (
@@ -52,10 +51,8 @@ export default function MainView(props) {
                 >
                     <ButtonLocated.AddButton handleCreateNewClick={handleCreateNewClick} />
                     <ButtonLocated.RefreshButton handleRefreshClick={handleRefreshClick} />
-                    <ButtonLocated.ActiveLogButton />
                 </Space>
                 <CustomTable
-                    loadingTable={loadingTable}
                     columns={columns}
                     dataSource={tableData}
                     handleActionButtonEditClick={(data) => handleActionButtonEditClick(data)}
@@ -80,7 +77,7 @@ export default function MainView(props) {
                     handleEditSubmitClick={handleEditSubmitClick}
                     handleEditCancelClick={handleEditCancelClick}
                     messageContextHolder={messageContextHolder}
-                    defaultFileList={defaultFileList}
+                    defaultFile={defaultFile}
                 />
             </Content>
         </>

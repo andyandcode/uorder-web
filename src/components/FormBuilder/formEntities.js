@@ -285,10 +285,15 @@ const CompletionTime = () => {
         </>
     );
 };
-const UploadMedias = ({ defaultFileList }) => {
+const CoverPhoto = ({ form, defaultFile }) => {
     const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState();
+
+    useEffect(() => {
+        setImageUrl(defaultFile);
+    }, [defaultFile]);
+
     const getBase64 = (img, callback) => {
         const reader = new FileReader();
         reader.addEventListener('load', () => callback(reader.result));
@@ -306,17 +311,18 @@ const UploadMedias = ({ defaultFileList }) => {
         return isJpgOrPng && isLt2M;
     };
     const handleChange = (info) => {
+        const formDataImage = new FormData();
+        formDataImage.append('image', info.file.originFileObj);
+
         if (info.file.status === 'uploading') {
             setLoading(true);
             return;
         }
-        if (info.file.status === 'done') {
-            // Get this url from response in real world.
-            getBase64(info.file.originFileObj, (url) => {
-                setLoading(false);
-                setImageUrl(url);
-            });
-        }
+        getBase64(info.file.originFileObj, (url) => {
+            setLoading(false);
+            setImageUrl(url);
+        });
+        setLoading(false);
     };
     const uploadButton = (
         <div>
@@ -333,13 +339,12 @@ const UploadMedias = ({ defaultFileList }) => {
     return (
         <>
             <ConfigProvider direction='ltr'>
-                <Form.Item name='medias' label={t('main.entities.upload_medias')} className={'custom_input'}>
+                <Form.Item name='cover' label={t('main.entities.upload_medias')} className={'custom_input'}>
                     <Upload
-                        name='medias'
+                        name='image'
                         listType='picture-card'
                         className='avatar-uploader'
                         showUploadList={false}
-                        action='https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188'
                         beforeUpload={beforeUpload}
                         onChange={handleChange}
                     >
@@ -729,7 +734,7 @@ const MoneyChange = ({ hidden }) => {
     return (
         <>
             <Form.Item name='moneyChange' label={t('main.entities.money_change')} hidden={hidden && hidden}>
-                <Input />
+                <Input bordered={false} />
             </Form.Item>
         </>
     );
@@ -1252,7 +1257,7 @@ export const FormEntities = {
     Desc,
     Price,
     CompletionTime,
-    UploadMedias,
+    CoverPhoto,
     QtyPerDay,
     Table,
     Dishes,

@@ -15,7 +15,7 @@ export default function MainView({ t, menuData, cartItems, setCartItems }) {
                         <>
                             <Row key={['main', index]} gutter={[12, 0]}>
                                 <Col span={6}>
-                                    <Image style={{ borderRadius: 8 }} src='' fallback={FallBack} />
+                                    <Image style={{ borderRadius: 8 }} src={e.coverLink} fallback={FallBack} />
                                 </Col>
                                 <Col span={18}>
                                     <Row>

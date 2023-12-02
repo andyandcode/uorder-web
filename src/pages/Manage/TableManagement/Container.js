@@ -1,6 +1,7 @@
 import { Form, message, Modal, QRCode } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
+import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
@@ -16,28 +17,23 @@ function Conainer(props) {
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
-    const [loadingTable, setLoadingTable] = useState(false);
-    const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
+
+    const fetchData = async () => {
+        dispatch(showLoading());
+        try {
+            await dispatch(getListTableAdmin()).then((result) => {
+                setTableData(Utils.getValues(result, 'payload', []));
+            });
+        } catch (error) {
+            console.error(error);
+        } finally {
+            dispatch(hideLoading());
+        }
+    };
 
     useEffect(() => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListTableAdmin()).then((result) => {
-                setTableData(Utils.getValues(result, 'payload', []));
-            });
-            setLoadingTable(false);
-        }, 500);
+        fetchData();
     }, [dispatch]);
-
-    const getNewTableData = () => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListTableAdmin()).then((result) => {
-                setTableData(Utils.getValues(result, 'payload', []));
-            });
-            setLoadingTable(false);
-        }, 500);
-    };
 
     const handleEditCancelClick = () => {
         setOpenEditModel(false);
@@ -90,33 +86,30 @@ function Conainer(props) {
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        function onOk() {
-            dispatch(deleteTableAdmin(data.id));
-            getNewTableData();
+        async function onOk() {
+            await dispatch(deleteTableAdmin(data.id)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Table, onOk));
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        function onOk() {
+        async function onOk() {
             const modifiedItem = {
                 ...data,
                 isActive: false,
             };
-            dispatch(updateTableAdmin(modifiedItem));
-            getNewTableData();
+            await dispatch(updateTableAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Table, onOk));
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        function onOk() {
+        async function onOk() {
             const modifiedItem = {
                 ...data,
                 isActive: true,
             };
-            dispatch(updateTableAdmin(modifiedItem));
-            getNewTableData();
+            await dispatch(updateTableAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Table, onOk));
     };
@@ -133,11 +126,12 @@ function Conainer(props) {
             .then(() => {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
-                        dispatch(createTableAdmin(values));
-                        UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
-                        setOpenCreateModel(false);
-                        getNewTableData();
+                    .then(async () => {
+                        await dispatch(createTableAdmin(values)).then(() => {
+                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            setOpenCreateModel(false);
+                            fetchData();
+                        });
                     })
                     .then(() => createForm.resetFields());
             })
@@ -162,7 +156,7 @@ function Conainer(props) {
                         } else {
                             UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                             setOpenEditModel(false);
-                            getNewTableData();
+                            fetchData();
                         }
                     })
                     .then(() => editForm.resetFields());
@@ -177,23 +171,7 @@ function Conainer(props) {
     };
 
     const handleRefreshClick = (index) => {
-        setLoadingsRefreshButton((prevLoadings) => {
-            const newLoadings = [...prevLoadings];
-            newLoadings[index] = true;
-            setLoadingTable(true);
-            return newLoadings;
-        });
-        setTimeout(() => {
-            setLoadingsRefreshButton((prevLoadings) => {
-                const newLoadings = [...prevLoadings];
-                newLoadings[index] = false;
-                dispatch(getListTableAdmin()).then((result) => {
-                    setTableData(Utils.getValues(result, 'payload', []));
-                });
-                setLoadingTable(false);
-                return newLoadings;
-            });
-        }, 1000);
+        fetchData();
     };
 
     const containerProps = {
@@ -218,8 +196,6 @@ function Conainer(props) {
         handleQuickTurnOffConfirm,
         handleQuickDeleteConfirm,
         handleQuickActionButtonTurnOnClick,
-        loadingTable,
-        loadingsRefreshButton,
         handleShowQrCodeClick,
         handleCreateNewClick,
         handleRefreshClick,

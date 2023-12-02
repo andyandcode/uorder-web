@@ -1,5 +1,6 @@
 import {
     DesktopOutlined,
+    HistoryOutlined,
     PieChartOutlined,
     SettingOutlined,
     ShoppingCartOutlined,
@@ -76,6 +77,13 @@ export const MenuList = (roleName) => {
             key: rootKeys.accountManagementUrl,
             path: rootKeys.accountManagementUrl,
             icon: <UserOutlined />,
+            role: 'admin',
+        },
+        {
+            label: t('main.navigation.active_log'),
+            key: rootKeys.activeLogManagementUrl,
+            path: rootKeys.activeLogManagementUrl,
+            icon: <HistoryOutlined />,
             role: 'admin',
         },
         {

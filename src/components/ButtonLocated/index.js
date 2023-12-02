@@ -45,7 +45,7 @@ const ActiveLogButton = ({ handleActiveLogClick }) => {
     const { t } = useTranslation();
     return (
         <>
-            <Button icon={<HourglassOutlined />} onClick={() => {}}>
+            <Button icon={<HourglassOutlined />} onClick={() => handleActiveLogClick()}>
                 {t('main.components.button.active_log')}
             </Button>
         </>
@@ -74,11 +74,16 @@ const CancelButton = ({ handleButton, disabled }) => {
     );
 };
 
-const CreateButton = ({ form, handleButton }) => {
+const CreateButton = ({ form, handleButton, disabledBtn }) => {
     const { t } = useTranslation();
     return (
         <>
-            <Button onClick={() => handleButton(form.getFieldsValue())} form={form} type='primary'>
+            <Button
+                onClick={() => handleButton(form.getFieldsValue())}
+                form={form}
+                type='primary'
+                disabled={disabledBtn}
+            >
                 {t('main.components.button.create')}
             </Button>
         </>
@@ -165,7 +170,13 @@ const OrderButton = ({ handleOrderClick }) => {
     };
     return (
         <>
-            <Button type='primary' loading={loadings[0]} onClick={() => enterLoading(0)} block>
+            <Button
+                type='primary'
+                style={{ backgroundColor: '#03b239' }}
+                loading={loadings[0]}
+                onClick={() => enterLoading(0)}
+                block
+            >
                 {t('main.components.button.order')}
             </Button>
         </>

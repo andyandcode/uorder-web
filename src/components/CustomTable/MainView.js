@@ -11,7 +11,6 @@ export default function MainView(props) {
         t,
         columns,
         dataSource,
-        loadingTable,
         extraColumns,
         switchActionColumn,
         handleQuickActionButtonTurnOnClick,
@@ -28,7 +27,6 @@ export default function MainView(props) {
                     triggerAsc: t('main.components.table.trigger_asc'),
                     cancelSort: t('main.components.button.cancel'),
                 }}
-                loading={loadingTable}
                 expandable={{
                     expandedRowRender: (record) =>
                         TableColumns.ExpandedRowRenderSelection(

@@ -1,4 +1,7 @@
-import { message } from 'antd';
+import { Modal as AntdModal, message } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { notificationSelector } from '../../app/selector';
 
 const DeleteModal = (t, target, onOk) => {
     return {
@@ -139,3 +142,28 @@ export const NotificationTarget = { Dish, Menu, Table, Account };
 export const UserAction = { CreateFinish, UpdateFinish, CreateFinishFail, UpdateFinishFail };
 
 export const UseNotification = { Modal, Message };
+
+const NetworkError = (code, radom) => {
+    const selector = useSelector(notificationSelector).content;
+    const { t } = useTranslation();
+
+    switch (selector) {
+        case 123:
+            AntdModal.confirm({
+                title: 'This is a notification message',
+                content: (
+                    <div>
+                        <p>some messages...some messages...</p>
+                        <p>some messages...some messages...</p>
+                    </div>
+                ),
+                onOk() {},
+            });
+            break;
+
+        default:
+            break;
+    }
+};
+
+export const UseNotificationForAxios = { NetworkError };

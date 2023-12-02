@@ -8,7 +8,7 @@ export default function FullPageLoading() {
         return (
             <>
                 <div className='content'>
-                    <Spin tip='Loading'></Spin>
+                    <Spin />
                 </div>
             </>
         );

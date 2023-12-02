@@ -1,9 +1,12 @@
 import { Form, message } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
+import Cookies from 'universal-cookie';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { EnumKey } from '../../../components/EnumRender';
+import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { UseNotification, UserAction } from '../../../components/UseNotification';
+import Config from '../../../configuration';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
 import { createOrderAdmin, getListOrderAdmin, updateOrderStatusAdmin } from './Slice';
@@ -27,7 +30,7 @@ function Conainer(props) {
     const [openBillQuickViewModal, setOpenBillQuickViewModal] = useState(false);
     const [openViewModel, setOpenViewModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
-    const [loadingTable, setLoadingTable] = useState(false);
+    const cookies = new Cookies();
 
     const [viewData, setViewData] = useState();
     const [dishData, setDishData] = useState();
@@ -35,27 +38,23 @@ function Conainer(props) {
     const orderStatusSelect = EnumKey.OrderStatusKey(t);
     const paymentStatusSelect = EnumKey.PaymentStatusKey(t);
 
-    useEffect(() => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListOrderAdmin())
-                .then((result) => {
-                    setTableData({ dataSource: Utils.getValues(result, 'payload', []) });
-                })
-                .then(setRootTableData(tableData.dataSource));
-            setLoadingTable(false);
-        }, 500);
-    }, [dispatch]);
-
-    const getNewTableData = () => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListOrderAdmin()).then((result) => {
+    const fetchData = async () => {
+        dispatch(showLoading());
+        try {
+            await dispatch(getListOrderAdmin()).then((result) => {
                 setTableData({ dataSource: Utils.getValues(result, 'payload', []) });
+                setRootTableData(Utils.getValues(result, 'payload', []));
             });
-            setLoadingTable(false);
-        }, 500);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            dispatch(hideLoading());
+        }
     };
+
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
 
     const onChangeOrderStatusSelect = (e) => {
         setFilterOrderStatus(e);
@@ -92,23 +91,26 @@ function Conainer(props) {
         // viewForm.setFieldsValue({ ...data });
         setOpenViewModel(true);
     };
-
     const handleCreateSubmitClick = (values) => {
         createForm
             .validateFields()
             .then(() => {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
+                    .then(async () => {
+                        const cookieData = cookies.get(Config.storageKey.tokenKey);
                         const modifiedItem = {
                             ...values,
                             orderType: 1,
                             tableId: '',
+                            moneyReceive: parseInt(values.moneyReceive.toString().replace(/[^0-9]/g, '')),
+                            staff: cookieData && cookieData.data.username,
                         };
-                        dispatch(createOrderAdmin(modifiedItem));
-                        UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
-                        setOpenCreateModel(false);
-                        getNewTableData();
+                        await dispatch(createOrderAdmin(modifiedItem)).then((result) => {
+                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            setOpenCreateModel(false);
+                            fetchData();
+                        });
                     })
                     .then(() => createForm.resetFields());
             })
@@ -121,8 +123,8 @@ function Conainer(props) {
         setOpenCreateModel(true);
     };
 
-    const handleChangeOrderStatus = (status, id) => {
-        dispatch(
+    const handleChangeOrderStatus = async (status, id) => {
+        await dispatch(
             updateOrderStatusAdmin([
                 {
                     path: '/OrderStatus',
@@ -133,7 +135,7 @@ function Conainer(props) {
             ]),
         )
             .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
-            .then(getNewTableData());
+            .then(() => fetchData());
     };
     const componentRef = useRef();
     const handlePrintClick = () => {
@@ -158,7 +160,6 @@ function Conainer(props) {
         createForm,
         viewForm,
         messageContextHolder,
-        loadingTable,
         tableData,
         orderStatusSelect,
         paymentStatusSelect,

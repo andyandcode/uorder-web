@@ -1,6 +1,7 @@
 import { Form, message, Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
+import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
@@ -16,31 +17,25 @@ function Conainer(props) {
     const [editForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
-    const [loadingsRefreshButton, setLoadingsRefreshButton] = useState([]);
     const [messageApi, messageContextHolder] = message.useMessage();
-    const [loadingTable, setLoadingTable] = useState(false);
+    const [defaultFile, setDefaultFile] = useState([]);
 
-    useEffect(() => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListDishAdmin()).then((result) => {
+    const fetchData = async () => {
+        dispatch(showLoading());
+        try {
+            await dispatch(getListDishAdmin()).then((result) => {
                 setTableData(Utils.getValues(result, 'payload', []));
             });
-            setLoadingTable(false);
-        }, 500);
-    }, [dispatch]);
-
-    const getNewTableData = () => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListDishAdmin()).then((result) => {
-                setTableData(Utils.getValues(result, 'payload', []));
-            });
-            setLoadingTable(false);
-        }, 500);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            dispatch(hideLoading());
+        }
     };
 
-    const [defaultFileList, setDefaultFileList] = useState([]);
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
 
     const handleCreateNewClick = () => {
         setOpenCreateModel(true);
@@ -55,39 +50,36 @@ function Conainer(props) {
     };
 
     const handleActionButtonEditClick = (data) => {
-        setDefaultFileList(data.medias != null ? data.medias : []);
+        setDefaultFile(data.coverLink != null ? data.coverLink : '');
         editForm.setFieldsValue({ ...data });
         setOpenEditModel(true);
     };
 
     const handleActionButtonDeleteClick = (data) => {
-        function onOk() {
-            dispatch(deleteDishAdmin(data.id));
-            getNewTableData();
+        async function onOk() {
+            await dispatch(deleteDishAdmin(data.id)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Dish, onOk));
     };
 
     const handleActionButtonTurnOffClick = (data) => {
-        function onOk() {
+        async function onOk() {
             const modifiedItem = {
                 ...data,
                 isActive: false,
             };
-            dispatch(updateDishAdmin(modifiedItem));
-            getNewTableData();
+            await dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Dish, onOk));
     };
 
     const handleActionButtonTurnOnClick = (data) => {
-        function onOk() {
+        async function onOk() {
             const modifiedItem = {
                 ...data,
                 isActive: true,
             };
-            dispatch(updateDishAdmin(modifiedItem));
-            getNewTableData();
+            await dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Dish, onOk));
     };
@@ -98,7 +90,7 @@ function Conainer(props) {
             .then(() => {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
-                    .then(() => {
+                    .then(async () => {
                         const priceParse = parseInt(values.price.replace(/[^0-9]/g, ''));
                         const completionTimeParse = parseInt(values.completionTime.replace(/[^0-9]/g, ''));
                         const qtyPerDayParse = parseInt(values.qtyPerDay.replace(/[^0-9]/g, ''));
@@ -107,11 +99,13 @@ function Conainer(props) {
                             price: priceParse,
                             completionTime: completionTimeParse,
                             qtyPerDay: qtyPerDayParse,
+                            cover: values.cover !== undefined ? values.cover.file.originFileObj : null,
                         };
-                        dispatch(createDishAdmin(modifiedItem));
-                        UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
-                        setOpenCreateModel(false);
-                        getNewTableData();
+                        await dispatch(createDishAdmin(modifiedItem)).then((result) => {
+                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            setOpenCreateModel(false);
+                            fetchData();
+                        });
                     })
                     .then(() => createForm.resetFields());
             })
@@ -153,18 +147,13 @@ function Conainer(props) {
                             price: priceParse,
                             completionTime: completionTimeParse,
                             qtyPerDay: qtyPerDayParse,
+                            cover: values.cover !== undefined ? values.cover.file.originFileObj : null,
                         };
-                        const result = dispatch(updateDishAdmin(modifiedItem));
-                        const status = Utils.getValues(result, 'error.code', []);
-
-                        if (status === 'ERR_BAD_REQUEST') {
-                            UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
-                            setOpenEditModel(false);
-                        } else {
+                        await dispatch(updateDishAdmin(modifiedItem)).then((result) => {
                             UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
                             setOpenEditModel(false);
-                            getNewTableData();
-                        }
+                            fetchData();
+                        });
                     })
                     .then(() => editForm.resetFields());
             })
@@ -174,25 +163,7 @@ function Conainer(props) {
     };
 
     const handleRefreshClick = (index) => {
-        setLoadingsRefreshButton((prevLoadings) => {
-            const newLoadings = [...prevLoadings];
-            newLoadings[index] = true;
-            setLoadingTable(true);
-            return newLoadings;
-        });
-        setTimeout(() => {
-            setLoadingsRefreshButton((prevLoadings) => {
-                const newLoadings = [...prevLoadings];
-                newLoadings[index] = false;
-
-                dispatch(getListDishAdmin()).then((result) => {
-                    setTableData(Utils.getValues(result, 'payload', []));
-                });
-
-                setLoadingTable(false);
-                return newLoadings;
-            });
-        }, 1000);
+        fetchData();
     };
 
     const containerProps = {
@@ -206,9 +177,7 @@ function Conainer(props) {
         createForm,
         editForm,
         messageContextHolder,
-        loadingTable,
-        loadingsRefreshButton,
-        defaultFileList,
+        defaultFile,
         handleActionButtonEditClick,
         handleActionButtonDeleteClick,
         handleActionButtonTurnOffClick,

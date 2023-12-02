@@ -2,6 +2,7 @@ import * as signalR from '@microsoft/signalr';
 import { useEffect, useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
+import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { UseNotification, UserAction } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import { updateOrderStatusAdmin } from '../OrderManagement/Slice';
@@ -27,11 +28,18 @@ function Conainer(props) {
             .withUrl('https://localhost:7297/bookingHub')
             .configureLogging(signalR.LogLevel.Information)
             .build();
+        connection
+            .start()
+            .then(() => console.log('Connection established'))
+            .catch((err) => console.error('SignalR Connection Error: ', err));
 
-        connection.start().catch((err) => console.error('SignalR Connection Error: ', err));
-
-        connection.on('ReceiveOrderNotification', (message) => {
-            getNewTableData();
+        connection.on('ReceiveMessage', (message) => {
+            console.log(message);
+            fetchData();
+        });
+        connection.on('ReceiveOrderNotification', (bookingId) => {
+            console.log(bookingId);
+            fetchData();
         });
 
         return () => {
@@ -39,32 +47,27 @@ function Conainer(props) {
         };
     }, []);
 
-    useEffect(() => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListBookingAdmin()).then((result) => {
+    const fetchData = async () => {
+        dispatch(showLoading());
+        try {
+            await dispatch(getListBookingAdmin()).then((result) => {
                 setTableData(Utils.getValues(result, 'payload', []));
             });
-            dispatch(getListCurrentBookingAdmin()).then((result) => {
+            await dispatch(getListCurrentBookingAdmin()).then((result) => {
                 setCurrentBookingData(Utils.getValues(result, 'payload', []));
             });
+        } catch (error) {
+            console.error(error);
+        } finally {
             setLoadingTable(false);
             setCardLoading(false);
-        }, 500);
-    }, [dispatch]);
-
-    const getNewTableData = () => {
-        setLoadingTable(true);
-        setTimeout(() => {
-            dispatch(getListBookingAdmin()).then((result) => {
-                setTableData(Utils.getValues(result, 'payload', []));
-            });
-            dispatch(getListCurrentBookingAdmin()).then((result) => {
-                setCurrentBookingData(Utils.getValues(result, 'payload', []));
-            });
-            setLoadingTable(false);
-        }, 500);
+            dispatch(hideLoading());
+        }
     };
+
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
 
     const handlePrintBillClick = (data) => {
         setOpenBillQuickViewModal(true);
@@ -81,8 +84,8 @@ function Conainer(props) {
 
     const handlePayBillClick = (data) => {};
 
-    const handleCompleteOrderClick = (data) => {
-        dispatch(
+    const handleCompleteOrderClick = async (data) => {
+        await dispatch(
             updateOrderStatusAdmin([
                 {
                     path: '/OrderStatus',
@@ -93,7 +96,7 @@ function Conainer(props) {
             ]),
         )
             .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
-            .then(getNewTableData());
+            .then(() => fetchData());
     };
 
     const handleViewCancelClick = () => {
@@ -106,8 +109,8 @@ function Conainer(props) {
         setOpenViewModel(true);
     };
 
-    const handleChangeOrderStatus = (status, id) => {
-        dispatch(
+    const handleChangeOrderStatus = async (status, id) => {
+        await dispatch(
             updateOrderStatusAdmin([
                 {
                     path: '/OrderStatus',
@@ -118,7 +121,7 @@ function Conainer(props) {
             ]),
         )
             .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
-            .then(getNewTableData());
+            .then(() => fetchData());
     };
     const componentRef = useRef();
     const handlePrintClick = () => {

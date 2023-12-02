@@ -1,4 +1,5 @@
 import AccountManagement from '../pages/AccountManagement';
+import ActiveLogManagement from '../pages/ActiveLog';
 import Login from '../pages/Authentication/Login';
 import Home from '../pages/Home';
 import DishManagement from '../pages/Manage/DishManagement';
@@ -31,6 +32,8 @@ const analyticsUrl = `${salesUrl}/analytics`;
 
 const accountManagementUrl = `${adminUrl}/account-management`;
 
+const activeLogManagementUrl = `${adminUrl}/active-log`;
+
 const settingUrl = `${adminUrl}/settings`;
 const accountSettingUrl = `${settingUrl}/account-settings`;
 const systemSettingUrl = `${settingUrl}/system-settings`;
@@ -40,7 +43,7 @@ const loginUrl = `${adminUrl}/login`;
 const clientHomeRoorUrl = '/booking';
 const clientHomeUrl = `${clientHomeRoorUrl}/:tableId`;
 const clientOrederUrl = `${clientHomeRoorUrl}/order`;
-const clientOrderSuccessfulUrl = `${clientHomeRoorUrl}/successfully/:tableId`;
+const clientOrderSuccessfulUrl = `${clientHomeRoorUrl}/:orderId/successfully`;
 const clientOrderTrackerUrl = `${clientHomeRoorUrl}/tracker/:tableId`;
 
 const notFoundUrl = '/*';
@@ -54,6 +57,7 @@ export const routeList = [
     { path: orderManagementUrl, name: orderManagementUrl, component: OrderManagement },
     { path: analyticsUrl, name: analyticsUrl, component: Analytics },
     { path: accountManagementUrl, name: accountManagementUrl, component: AccountManagement },
+    { path: activeLogManagementUrl, name: activeLogManagementUrl, component: ActiveLogManagement },
     { path: accountSettingUrl, name: accountSettingUrl, component: AccountSettings },
     { path: systemSettingUrl, name: systemSettingUrl, component: SystemSettings },
 ];
@@ -93,4 +97,5 @@ export const rootKeys = {
     clientOrderTrackerUrl,
     clientHomeRoorUrl,
     clientOrderSuccessfulUrl,
+    activeLogManagementUrl,
 };

@@ -14,7 +14,6 @@ export default function MainView(props) {
         t,
         columns,
         dishData,
-        loadingTable,
         handleActionButtonViewClick,
         expandedRowRenderSelection,
         orderStatusSelect,
@@ -68,7 +67,6 @@ export default function MainView(props) {
                     </Col>
                 </Row>
                 <CustomTable
-                    loadingTable={loadingTable}
                     columns={columns}
                     dataSource={tableData.dataSource}
                     handleActionButtonViewClick={(data) => handleActionButtonViewClick(data)}

@@ -33,6 +33,7 @@ export default function propsProvider(props) {
         handleCreateNewClick,
         handleRefreshClick,
         switchActionColumn,
+        defaultFile,
     } = props;
     return {
         history,
@@ -68,5 +69,6 @@ export default function propsProvider(props) {
         handleCreateNewClick,
         handleRefreshClick,
         switchActionColumn,
+        defaultFile,
     };
 }

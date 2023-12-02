@@ -1,3 +1,4 @@
+import { axiosInstance } from './axiosAdmin';
 import axiosClient from './axiosClient';
 
 const MenuClient = {
@@ -20,6 +21,18 @@ const BookingClient = {
         const url = '/booking/post';
         return axiosClient.post(url, params, {
             headers: { 'Content-Type': 'multipart/form-data' },
+        });
+    },
+    updateBookingStatus: (params) => {
+        const modifiedArray = [];
+        for (const item of params) {
+            const { path, op, value } = item;
+            const modifiedItem = { path, op, value };
+            modifiedArray.push(modifiedItem);
+        }
+        const url = `/booking/patch/${params[0].id}`;
+        return axiosInstance.patch(url, modifiedArray, {
+            headers: { 'Content-Type': 'application/json-patch+json' },
         });
     },
 };
