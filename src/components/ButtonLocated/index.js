@@ -170,7 +170,13 @@ const OrderButton = ({ handleOrderClick }) => {
     };
     return (
         <>
-            <Button type='primary' loading={loadings[0]} onClick={() => enterLoading(0)} block>
+            <Button
+                type='primary'
+                style={{ backgroundColor: '#03b239' }}
+                loading={loadings[0]}
+                onClick={() => enterLoading(0)}
+                block
+            >
                 {t('main.components.button.order')}
             </Button>
         </>

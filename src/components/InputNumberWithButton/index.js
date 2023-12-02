@@ -76,7 +76,12 @@ class IncrementDecrement extends React.Component {
             );
         } else {
             return (
-                <Button icon={<PlusOutlined />} onClick={this.handleIncrement}>
+                <Button
+                    type='primary'
+                    style={{ background: '#03b239' }}
+                    icon={<PlusOutlined />}
+                    onClick={this.handleIncrement}
+                >
                     {this.props.t('main.components.button.add_to_card')}
                 </Button>
             );

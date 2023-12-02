@@ -14,9 +14,9 @@ function Conainer(props) {
     const [openDiscountDrawer, setOpenDiscountDrawer] = useState(false);
     const [paymentSelectTarget, setPaymentSelectTarget] = useState({
         id: 1,
-        label: 'Momo',
+        label: 'VnPay',
         value: 0,
-        icon: 'https://s3.ap-southeast-1.amazonaws.com/images-storage.jobstack.vn/0b20e86c-69c3-4a5c-b145-55ef95bc5c3f.png',
+        icon: 'https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-VNPAY-QR-1.png',
     });
 
     const onClosePaymentDrawer = () => {
