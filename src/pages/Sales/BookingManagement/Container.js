@@ -2,6 +2,7 @@ import * as signalR from '@microsoft/signalr';
 import { useEffect, useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
+import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { UseNotification, UserAction } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import { updateOrderStatusAdmin } from '../OrderManagement/Slice';
@@ -47,6 +48,7 @@ function Conainer(props) {
     }, []);
 
     const fetchData = async () => {
+        dispatch(showLoading());
         try {
             await dispatch(getListBookingAdmin()).then((result) => {
                 setTableData(Utils.getValues(result, 'payload', []));
@@ -59,6 +61,7 @@ function Conainer(props) {
         } finally {
             setLoadingTable(false);
             setCardLoading(false);
+            dispatch(hideLoading());
         }
     };
 
