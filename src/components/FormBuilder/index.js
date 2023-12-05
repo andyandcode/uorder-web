@@ -10,6 +10,7 @@ import Utils from '../../utilities';
 import { ButtonLocated } from '../ButtonLocated';
 import { CurrencyFormat } from '../CurrencyFormat';
 import { EnumRender } from '../EnumRender';
+import { SelectLanguage } from '../UseLanguages';
 import { FormEntities } from './formEntities';
 
 const CreateNewDishForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
@@ -862,6 +863,9 @@ const EditAccountForm = ({ form, handleButtonCancel, handleButtonSubmit }) => {
 const LoginForm = ({ form, t, handleButtonSubmit, loginBtnLoading }) => {
     return (
         <>
+            <div style={{ width: '100%', position: 'fixed', padding: 10, display: 'flex', justifyContent: 'flex-end' }}>
+                <SelectLanguage />
+            </div>
             <div className='loginPage'>
                 <Form form={form} layout='vertical' name='form_create_in_modal'>
                     <div style={{ display: 'flex', marginBottom: 40, flexDirection: 'column', alignItems: 'center' }}>
@@ -971,7 +975,7 @@ const OrderForm = ({
                 <Divider />
                 <>
                     <Typography.Title level={5} style={{ textAlign: 'left' }}>
-                        {t('main.pages.order.payment_details')}
+                        {t('main.pages.booking.payment_details')}
                     </Typography.Title>
                     <FormEntities.OrderPaymentMethodSelect
                         t={t}

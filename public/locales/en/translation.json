@@ -57,10 +57,13 @@
             "form_change_password_title": "Change password",
             "form_pay_bill_title": "Pay bill",
             "active_log_title": "Active log",
+            "upload_image": "Image of dish",
             "subtotal": "Subtotal",
             "discount": "Discount",
             "username": "Username",
+            "username_placeholder": "Enter username here",
             "pwd": "Password",
+            "pwd_placeholder": "Enter password here",
             "old_password": "Old password",
             "new_password": "New password",
             "re_new_password": "Comform new password",
@@ -136,14 +139,17 @@
                     "total_order_completed": "Orders Completed"
                 }
             },
-            "login": { "title": "Admin Panel", "sub_title": "Online ordering management platform" },
-            "order": {
-                "titel": "Booking Information",
+            "booking": {
+                "current_booking": "Current booking",
+                "title": "Booking Information",
                 "payment_details": "Payment Details",
                 "no_code": "No codes available",
                 "discount_title": "Discount",
-                "payment_method_title": "Select payment method"
+                "payment_method_title": "Select payment method",
+                "select_menu": "Select menu",
+                "select_code": "Save using codes"
             },
+            "login": { "title": "Admin Panel", "sub_title": "Online ordering management platform" },
             "tracker": {
                 "title": "Tracking",
                 "booking_overview": "Booking Overview",
@@ -159,6 +165,10 @@
             }
         },
         "notification": {
+            "upload": {
+                "must_be_image": "You can only upload JPG/PNG file!",
+                "must_smaller_than": "Image must smaller than 2MB!"
+            },
             "account_quick_access": {
                 "title": "Do you wish to end the current session?",
                 "message": "The current login details on this device will be deleted after this operation. The next time, you may still log in."
@@ -266,7 +276,8 @@
                 "add_to_card": "Add",
                 "order": "Order",
                 "call_staff": "Call Staff",
-                "change_pasword": "Change Password"
+                "change_pasword": "Change Password",
+                "upload": "Upload"
             },
             "cart_navbar": { "items": "items" }
         }

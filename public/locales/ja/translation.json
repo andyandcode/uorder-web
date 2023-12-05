@@ -1,0 +1,294 @@
+{
+    "main": {
+        "navigation": {
+            "home": {
+                "label": "家"
+            },
+            "manage": {
+                "label": "管理",
+                "dish": "食器管理",
+                "menu": "メニュー管理",
+                "table": "テーブル管理"
+            },
+            "sales": {
+                "label": "販売",
+                "booking": "予約管理",
+                "order": "注文管理",
+                "analytics": "分析"
+            },
+            "account": "アカウント管理",
+            "settings": {
+                "label": "設定",
+                "system": "システム設定",
+                "account": "アカウント設定"
+            },
+            "account_quick_access": {
+                "label": "アカウント",
+                "infomation": "アカウント設定"
+            },
+            "active_log": "アクティブログ"
+        },
+        "entities": {
+            "id": "ID",
+            "id_tooltip": "の識別子 {{target}}",
+            "created_at": "で作成されました",
+            "created_at_tooltip": ".新しい時間 {{target}} 創造された",
+            "name": "名前",
+            "name_tooltip": "の名前 {{target}}。",
+            "desc": "説明",
+            "desc_tooltip": "の簡単な説明 {{target}}。",
+            "price": "価格",
+            "price_tooltip": "料理の価格。",
+            "qr_code": "QRコード",
+            "table": "テーブル",
+            "table_tooltip": "",
+            "total": "合計",
+            "total_tooltip": "",
+            "qty": "量",
+            "unitPrice": "単価",
+            "amount": "額",
+            "dishNote": "お皿メモ…",
+            "note": "注文メモ...",
+            "dishes": "料理",
+            "is_required": "このフィールドは必須です。",
+            "form_create_title": "新しく作る {{target}}",
+            "form_edit_title": "編集 {{target}}",
+            "form_view_title": "ビュー {{target}}",
+            "form_change_password_title": "パスワードを変更する",
+            "form_pay_bill_title": "請求書の支払い",
+            "active_log_title": "アクティブログ",
+            "upload_image": "料理のイメージ",
+            "subtotal": "小計",
+            "discount": "割引",
+            "username": "ユーザー名",
+            "username_placeholder": "ここにユーザー名を入力してください",
+            "pwd": "パスワード",
+            "pwd_placeholder": "ここにパスワードを入力してください",
+            "old_password": "以前のパスワード",
+            "new_password": "新しいパスワード",
+            "re_new_password": "新しいパスワードを入力してください",
+            "pwd_tooltip": "アカウントに初めてログインした後、パスワードを変更する必要があります。",
+            "active_status": {
+                "label": "アクティブステータス",
+                "active": "アクティブ",
+                "off": "オフ"
+            },
+            "dish_type": {
+                "label": "タイプ",
+                "food": "食べ物",
+                "drink": "飲む"
+            },
+            "order_status": {
+                "label": "注文の状況",
+                "all": "全て",
+                "ordered": "順序付けられました",
+                "to_receive": "受け取る",
+                "completed": "完了",
+                "cancelled": "キャンセル"
+            },
+            "order_type": {
+                "take_away": "取り除く",
+                "booking": "予約"
+            },
+            "payment_status": {
+                "label": "支払い状況",
+                "all": "全て",
+                "paid": "有料",
+                "unpaid": "未払い"
+            },
+            "roles": {
+                "label": "役割",
+                "admin": "管理者",
+                "creator": "クリエイター",
+                "staff": "スタッフ"
+            },
+            "chef_count": "シェフ",
+            "chef_count_tooltip": "シェフの数",
+            "domain": "ドメイン名",
+            "domain_tooltip": "注文する Web サイトのスキャンのドメイン名。 ",
+            "order_discount": "割引",
+            "order_subtotal": "小計",
+            "order_total": "合計",
+            "dish_note_placeholder": "皿メモ",
+            "order_note_placeholder": "注文メモ",
+            "money_change": "変化",
+            "money_receive": "受け取る",
+            "staff": "スタッフ"
+        },
+        "pages": {
+            "analytics": {
+                "label": "分析",
+                "orders_today": {
+                    "title": "本日のご注文",
+                    "count_all": "全て",
+                    "count_ordered": "順序付けられました",
+                    "count_to_receive": "受け取るには",
+                    "count_completed": "完了",
+                    "count_cancelled": "缶詰"
+                },
+                "revenue": "収益",
+                "top_sellers": {
+                    "title": "トップセラー",
+                    "select_range": "時間を選択してください"
+                },
+                "count_management": {
+                    "dishes": "料理",
+                    "menus": "メニュー",
+                    "tables": "テーブル",
+                    "total_revenue": "収益",
+                    "total_order_completed": "注文完了"
+                }
+            },
+            "booking": {
+                "current_booking": "現在の予約状況",
+                "title": "予約情報",
+                "payment_details": "支払詳細",
+                "no_code": "利用可能なコードがありません",
+                "discount_title": "割引",
+                "payment_method_title": "支払い方法を選択してください",
+                "select_menu": "メニューを選択",
+                "select_code": "コードを使用して保存する"
+            },
+            "login": {
+                "title": "管理パネル",
+                "sub_title": "オンライン注文管理プラットフォーム"
+            },
+            "tracker": {
+                "title": "追跡",
+                "booking_overview": "予約の概要",
+                "booking_details": "予約明細",
+                "booking_summary": "予約概要",
+                "booking": "予約：",
+                "booking_successfully_title": "予約が完了しました",
+                "booking_successfully_subtitle": "このコードを再スキャンして予約情報を確認できます。",
+                "booking_at": "予約した場所:",
+                "booking_status": "予約状況：",
+                "404_title": "無効なリクエスト！",
+                "404_subtitle": "申し訳ありませんが、問題が発生しました。"
+            }
+        },
+        "notification": {
+            "upload": {
+                "must_be_image": "アップロードできるのは JPG/PNG ファイルのみです。",
+                "must_smaller_than": "画像は 2MB 未満である必要があります。"
+            },
+            "account_quick_access": {
+                "title": "現在のセッションを終了しますか?",
+                "message": "この操作の後、このデバイスの現在のログイン詳細は削除されます。"
+            },
+            "form": {
+                "create_finish": "新たな成功を創造しましょう！",
+                "create_finish_fail": "新規作成に失敗しました!",
+                "edit_finish": "アップデート成功！",
+                "edit_finish_fail": "アップデートに失敗しました！",
+                "action_in_progress": "アクションが進行中です..."
+            },
+            "auth": {
+                "account_locked": "アカウントがロックされました!",
+                "not_found_account": "アカウントが存在しません!",
+                "wrong_password": "間違ったパスワード！",
+                "login_success": "ログインに成功しました！",
+                "cannnot_connect_to_server": "サーバーに接続できません！",
+                "new_re_password_not_match": "新しいパスワードと確認用のパスワードが一致しません。",
+                "password_least": "パスワードの長さは 8 文字以上である必要があります。",
+                "password_not_match": "古いパスワードが間違っています。",
+                "change_password_successful": "パスワードが正常にリセットされました。"
+            },
+            "table": {
+                "delete_action": {
+                    "title": "本気ですか？",
+                    "content": "このアクションにより、このすべての情報が削除されます {{target}}。\n "
+                },
+                "turn_off_active_action": {
+                    "title": "アクティブステータスをオフに変更しますか?",
+                    "content": "こちらの活動状況は {{target}} オフに変わります。 {{target}} 次回。"
+                },
+                "turn_on_active_action": {
+                    "title": "アクティブステータスをアクティブに変更しますか?",
+                    "content": "こちらの活動状況は {{target}} アクティブに変わります。 {{target}} 次回。"
+                },
+                "pop_confirm": {
+                    "quick_turn_off": {
+                        "title": "オフに変更します",
+                        "content": "このアクティブステータスをオフにしますか? {{target}}?"
+                    },
+                    "quick_delete": {
+                        "title": "これを削除します {{target}}",
+                        "content": "これを削除してもよろしいですか {{target}}?"
+                    }
+                }
+            },
+            "qr_code": {
+                "title": "のQRコードです {{table}}"
+            },
+            "login_expired": {
+                "title": "ログインセッションの有効期限が切れました",
+                "content": "現在のログイン セッションの有効期限が切れました。再度ログインしてください。"
+            }
+        },
+        "common": {
+            "footer": "UOrder - スキャンして予約する",
+            "system_key": {
+                "dish": "皿",
+                "menu": "メニュー",
+                "table": "テーブル",
+                "order": "注文",
+                "booking": "予約",
+                "account": "アカウント"
+            }
+        },
+        "utilities": {},
+        "components": {
+            "alert": {
+                "not_have_domain_warning": "警告: スキャンして注文するための QR コードを表示するには、ドメインを追加してください。",
+                "not_have_domain_alert": "このテーブルにはスキャンするための QR コードがありません。"
+            },
+            "table": {
+                "empty_data": "データなし",
+                "trigger_desc": "クリックして降順に並べ替えます",
+                "trigger_asc": "クリックして昇順に並べ替えます",
+                "cancel_sort": "クリックして並べ替えをキャンセルします",
+                "search_keyword": "検索",
+                "no_column": "いいえ",
+                "action_column": "アクション"
+            },
+            "button": {
+                "active_log": "アクティブログ",
+                "add": "新しく作る",
+                "refresh": "リフレッシュ",
+                "cancel": "キャンセル",
+                "edit": "編集",
+                "delete": "消去",
+                "turn_on": "オンにする",
+                "turn_off": "消す",
+                "reset": "リセット",
+                "create": "作成する",
+                "update": "アップデート",
+                "download": "ダウンロード",
+                "logout": "ログアウト",
+                "search": "検索",
+                "new_order": "新規注文",
+                "submit": "提出する",
+                "close": "近い",
+                "add_order_item": "アイテムの追加",
+                "remove_order_item": "取り除く",
+                "view_order": "表示の順序",
+                "remember_login": "ログインを記憶する",
+                "forgot_pwd": "パスワードをお忘れですか",
+                "login": "ログイン",
+                "add_to_card": "追加",
+                "order": "注文",
+                "call_staff": "コールスタッフ",
+                "change_pasword": "パスワードを変更する",
+                "upload": "アップロード"
+            },
+            "cart_navbar": {
+                "items": "アイテム"
+            }
+        }
+    },
+    "system": {
+        "lang_label": "日本語",
+        "lang_key": "jp"
+    }
+}

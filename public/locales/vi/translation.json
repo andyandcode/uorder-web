@@ -57,10 +57,13 @@
             "form_change_password_title": "Đổi mật khẩu",
             "form_pay_bill_title": "Thanh toán hóa đơn",
             "active_log_title": "Lịch sử hoạt động",
+            "upload_image": "Ảnh món ăn",
             "subtotal": "Tổng phụ",
             "discount": "Giảm giá",
-            "username": "Tên người dùng",
+            "username": "Tên đăng nhập",
+            "username_placeholder": "Nhập tên đăng nhập tại đây",
             "pwd": "Mật khẩu",
+            "pwd_placeholder": "Nhập mật khẩu tại đây",
             "old_password": "Mật khẩu cũ",
             "new_password": "Mật khẩu mới",
             "re_new_password": "Nhập lại mật khẩu mới",
@@ -136,14 +139,17 @@
                     "total_order_completed": "Đơn hàng đã hoàn thành"
                 }
             },
-            "login": { "title": "Đăng nhập", "sub_title": "Nền tảng quản lý đặt hàng trực tuyến" },
-            "order": {
-                "titel": "Thông tin đặt hàng",
+            "booking": {
+                "current_booking": "Đặt bàn hiện tại",
+                "title": "Thông tin đặt hàng",
                 "payment_details": "Chi tiết thanh toán",
                 "no_code": "Không có mã khả dụng",
                 "discount_title": "Giảm giá",
-                "payment_method_title": "Chọn phương thức thanh toán"
+                "payment_method_title": "Chọn phương thức thanh toán",
+                "select_menu": "Chọn thực đơn",
+                "select_code": "Tiết kiệm bằng cách sử dụng mã"
             },
+            "login": { "title": "Đăng nhập", "sub_title": "Nền tảng quản lý đặt hàng trực tuyến" },
             "tracker": {
                 "title": "Kiểm tra đặt bàn",
                 "booking_overview": "Tổng quan",
@@ -159,6 +165,10 @@
             }
         },
         "notification": {
+            "upload": {
+                "must_be_image": "Bạn phải tải lên tệp với đuôi JPG/PNG!",
+                "must_smaller_than": "Dung lượng ảnh phải nhỏ hơn 2MB!"
+            },
             "account_quick_access": {
                 "title": "Bạn chắc chắn muốn thoát phiên làm việc hiện tại?",
                 "message": "Trạng thái đăng nhập sẽ bị xóa khỏi thiết bị hiện tại. Tuy nhiên bạn vẫn có thể đăng nhập lại vào lần sau."
@@ -266,7 +276,8 @@
                 "add_to_card": "Thêm",
                 "order": "Đặt bàn",
                 "call_staff": "Gọi nhân viên",
-                "change_pasword": "Đổi mật khẩu"
+                "change_pasword": "Đổi mật khẩu",
+                "upload": "Tải lên"
             },
             "cart_navbar": { "items": "món" }
         }

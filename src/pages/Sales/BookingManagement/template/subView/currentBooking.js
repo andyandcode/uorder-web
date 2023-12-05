@@ -16,7 +16,7 @@ export default function CurrentBooking({
                 items={[
                     {
                         key: '1',
-                        label: 'Current Booking',
+                        label: t('main.pages.booking.current_booking'),
                         children: (
                             <BookingCard
                                 t={t}

@@ -16,7 +16,7 @@ export default function MainView({
 }) {
     return (
         <>
-            <TopMenu data={availableMenuData} menuData={tableData} />
+            <TopMenu t={t} data={availableMenuData} menuData={tableData} />
             <MenuDetail
                 t={t}
                 menuData={menuData}

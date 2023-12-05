@@ -1,0 +1,294 @@
+{
+    "main": {
+        "navigation": {
+            "home": {
+                "label": "家"
+            },
+            "manage": {
+                "label": "管理",
+                "dish": "菜品管理",
+                "menu": "菜单管理",
+                "table": "表管理"
+            },
+            "sales": {
+                "label": "销售量",
+                "booking": "预订管理",
+                "order": "订单管理",
+                "analytics": "分析"
+            },
+            "account": "帐户管理",
+            "settings": {
+                "label": "设置",
+                "system": "系统设置",
+                "account": "帐号设定"
+            },
+            "account_quick_access": {
+                "label": "帐户",
+                "infomation": "帐号设定"
+            },
+            "active_log": "活动日志"
+        },
+        "entities": {
+            "id": "ID",
+            "id_tooltip": ".标识符 {{target}}",
+            "created_at": "创建于",
+            "created_at_tooltip": ".新的时间 {{target}} 被建造",
+            "name": "姓名",
+            "name_tooltip": "的名字 {{target}}。",
+            "desc": "描述",
+            "desc_tooltip": "简短描述 {{target}}。",
+            "price": "价格",
+            "price_tooltip": "菜品的价格。",
+            "qr_code": "二维码",
+            "table": "桌子",
+            "table_tooltip": "",
+            "total": "全部的",
+            "total_tooltip": "",
+            "qty": "数量",
+            "unitPrice": "单价",
+            "amount": "数量",
+            "dishNote": "菜品备注...",
+            "note": "订单备注...",
+            "dishes": "菜肴",
+            "is_required": "此备案为必填项！",
+            "form_create_title": "创建新的 {{target}}",
+            "form_edit_title": "编辑 {{target}}",
+            "form_view_title": "看法 {{target}}",
+            "form_change_password_title": "更改密码",
+            "form_pay_bill_title": "工资单",
+            "active_log_title": "活动日志",
+            "upload_image": "菜品图片",
+            "subtotal": "小计",
+            "discount": "折扣",
+            "username": "用户名",
+            "username_placeholder": "在此输入用户名",
+            "pwd": "密码",
+            "pwd_placeholder": "在此输入密码",
+            "old_password": "旧密码",
+            "new_password": "新密码",
+            "re_new_password": "确认新密码",
+            "pwd_tooltip": "首次登录帐户后必须更改密码。",
+            "active_status": {
+                "label": "活跃状态",
+                "active": "积极的",
+                "off": "离开"
+            },
+            "dish_type": {
+                "label": "类型",
+                "food": "食物",
+                "drink": "喝"
+            },
+            "order_status": {
+                "label": "订单状态",
+                "all": "全部",
+                "ordered": "已订购",
+                "to_receive": "接收",
+                "completed": "完全的",
+                "cancelled": "取消"
+            },
+            "order_type": {
+                "take_away": "带走",
+                "booking": "预订"
+            },
+            "payment_status": {
+                "label": "支付状态",
+                "all": "全部",
+                "paid": "有薪酬的",
+                "unpaid": "未付"
+            },
+            "roles": {
+                "label": "角色",
+                "admin": "行政",
+                "creator": "创作者",
+                "staff": "职员"
+            },
+            "chef_count": "厨师",
+            "chef_count_tooltip": "厨师人数",
+            "domain": "域名",
+            "domain_tooltip": "网站域名扫描订购。 ",
+            "order_discount": "折扣",
+            "order_subtotal": "小计",
+            "order_total": "全部的",
+            "dish_note_placeholder": "菜品备注",
+            "order_note_placeholder": "订单备注",
+            "money_change": "改变",
+            "money_receive": "收到",
+            "staff": "职员"
+        },
+        "pages": {
+            "analytics": {
+                "label": "分析",
+                "orders_today": {
+                    "title": "今天的订单",
+                    "count_all": "全部",
+                    "count_ordered": "已订购",
+                    "count_to_receive": "受到",
+                    "count_completed": "完全的",
+                    "count_cancelled": "罐装"
+                },
+                "revenue": "收入",
+                "top_sellers": {
+                    "title": "畅销品",
+                    "select_range": "选择时间"
+                },
+                "count_management": {
+                    "dishes": "菜肴",
+                    "menus": "菜单",
+                    "tables": "表格",
+                    "total_revenue": "收入",
+                    "total_order_completed": "订单已完成"
+                }
+            },
+            "booking": {
+                "current_booking": "当前预订",
+                "title": "预订信息",
+                "payment_details": "付款详情",
+                "no_code": "没有可用的代码",
+                "discount_title": "折扣",
+                "payment_method_title": "选择付款方式",
+                "select_menu": "选择菜单",
+                "select_code": "使用代码保存"
+            },
+            "login": {
+                "title": "管理面板",
+                "sub_title": "网上订购管理平台"
+            },
+            "tracker": {
+                "title": "追踪",
+                "booking_overview": "预订概览",
+                "booking_details": "预订详情",
+                "booking_summary": "预订摘要",
+                "booking": "预订：",
+                "booking_successfully_title": "预订成功",
+                "booking_successfully_subtitle": "您可以重新扫描此码查看预订信息。",
+                "booking_at": "预订于：",
+                "booking_status": "预订状态：",
+                "404_title": "无效的请求！",
+                "404_subtitle": "抱歉，出了一些问题！"
+            }
+        },
+        "notification": {
+            "upload": {
+                "must_be_image": "您只能上传JPG/PNG文件！",
+                "must_smaller_than": "图片必须小于2MB！"
+            },
+            "account_quick_access": {
+                "title": "您想结束当前会话吗？",
+                "message": "执行此操作后，该设备上的当前登录详细信息将被删除。"
+            },
+            "form": {
+                "create_finish": "创造新的成功！",
+                "create_finish_fail": "新建失败！",
+                "edit_finish": "更新成功！",
+                "edit_finish_fail": "更新失败！",
+                "action_in_progress": "行动正在进行中..."
+            },
+            "auth": {
+                "account_locked": "账户已被锁定！",
+                "not_found_account": "帐号不存在！",
+                "wrong_password": "密码错误！",
+                "login_success": "登录成功！",
+                "cannnot_connect_to_server": "无法连接到服务器！",
+                "new_re_password_not_match": "新密码和确认密码不匹配。",
+                "password_least": "密码长度必须至少为 8 个字符。",
+                "password_not_match": "旧密码不正确。",
+                "change_password_successful": "重置密码成功。"
+            },
+            "table": {
+                "delete_action": {
+                    "title": "你确定吗？",
+                    "content": "此操作将删除此信息的所有信息 {{target}}。\n "
+                },
+                "turn_off_active_action": {
+                    "title": "将活动状态更改为关闭？",
+                    "content": "本次活动状态 {{target}} 将更改为关闭。 {{target}} 下次。"
+                },
+                "turn_on_active_action": {
+                    "title": "将活动状态更改为活动？",
+                    "content": "本次活动状态 {{target}} 将变为活动状态。 {{target}} 下次。"
+                },
+                "pop_confirm": {
+                    "quick_turn_off": {
+                        "title": "更改为关闭",
+                        "content": "您确定要关闭此活动的状态吗 {{target}}？"
+                    },
+                    "quick_delete": {
+                        "title": "删除这个 {{target}}",
+                        "content": "您确定要删除此内容吗 {{target}}？"
+                    }
+                }
+            },
+            "qr_code": {
+                "title": "这是二维码 {{table}}"
+            },
+            "login_expired": {
+                "title": "登录会话已过期",
+                "content": "当前登录会话已过期，请重新登录。"
+            }
+        },
+        "common": {
+            "footer": "UOrder-扫描并预订",
+            "system_key": {
+                "dish": "盘子",
+                "menu": "菜单",
+                "table": "桌子",
+                "order": "命令",
+                "booking": "预订",
+                "account": "帐户"
+            }
+        },
+        "utilities": {},
+        "components": {
+            "alert": {
+                "not_have_domain_warning": "警告：添加域以显示要扫描和订购的二维码。",
+                "not_have_domain_alert": "此表没有可扫描的二维码。"
+            },
+            "table": {
+                "empty_data": "没有数据",
+                "trigger_desc": "点击降序排序",
+                "trigger_asc": "点击升序排序",
+                "cancel_sort": "单击取消排序",
+                "search_keyword": "搜索",
+                "no_column": "不",
+                "action_column": "行动"
+            },
+            "button": {
+                "active_log": "活动日志",
+                "add": "创建新的",
+                "refresh": "刷新",
+                "cancel": "取消",
+                "edit": "编辑",
+                "delete": "删除",
+                "turn_on": "打开",
+                "turn_off": "关",
+                "reset": "重置",
+                "create": "创造",
+                "update": "更新",
+                "download": "下载",
+                "logout": "登出",
+                "search": "搜索",
+                "new_order": "新命令",
+                "submit": "提交",
+                "close": "关闭",
+                "add_order_item": "新增项目",
+                "remove_order_item": "消除",
+                "view_order": "查看订单",
+                "remember_login": "记住登录",
+                "forgot_pwd": "忘记密码",
+                "login": "登录",
+                "add_to_card": "添加",
+                "order": "命令",
+                "call_staff": "致电工作人员",
+                "change_pasword": "更改密码",
+                "upload": "上传"
+            },
+            "cart_navbar": {
+                "items": "项目"
+            }
+        }
+    },
+    "system": {
+        "lang_label": "中文 (简体)",
+        "lang_key": "zh-CH"
+    }
+}

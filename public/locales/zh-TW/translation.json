@@ -1,0 +1,294 @@
+{
+    "main": {
+        "navigation": {
+            "home": {
+                "label": "家"
+            },
+            "manage": {
+                "label": "管理",
+                "dish": "菜色管理",
+                "menu": "選單管理",
+                "table": "表格管理"
+            },
+            "sales": {
+                "label": "銷售量",
+                "booking": "預約管理",
+                "order": "訂單管理",
+                "analytics": "分析"
+            },
+            "account": "帳號管理",
+            "settings": {
+                "label": "設定",
+                "system": "系統設定",
+                "account": "帳號設定"
+            },
+            "account_quick_access": {
+                "label": "帳戶",
+                "infomation": "帳號設定"
+            },
+            "active_log": "活動日誌"
+        },
+        "entities": {
+            "id": "ID",
+            "id_tooltip": ".標識符 {{target}}",
+            "created_at": "創建於",
+            "created_at_tooltip": ".新的時間 {{target}} 被建造",
+            "name": "姓名",
+            "name_tooltip": "的名字 {{target}}。",
+            "desc": "描述",
+            "desc_tooltip": "簡短描述 {{target}}。",
+            "price": "價格",
+            "price_tooltip": "菜的價格。",
+            "qr_code": "QR 圖碼",
+            "table": "桌子",
+            "table_tooltip": "",
+            "total": "全部的",
+            "total_tooltip": "",
+            "qty": "數量",
+            "unitPrice": "單價",
+            "amount": "數量",
+            "dishNote": "菜色備註...",
+            "note": "訂單備註...",
+            "dishes": "菜餚",
+            "is_required": "此備案為必填項！",
+            "form_create_title": "創建新的 {{target}}",
+            "form_edit_title": "編輯 {{target}}",
+            "form_view_title": "看法 {{target}}",
+            "form_change_password_title": "更改密碼",
+            "form_pay_bill_title": "薪資單",
+            "active_log_title": "活動日誌",
+            "upload_image": "菜色圖片",
+            "subtotal": "小計",
+            "discount": "折扣",
+            "username": "使用者名稱",
+            "username_placeholder": "在此輸入使用者名稱",
+            "pwd": "密碼",
+            "pwd_placeholder": "在此輸入密碼",
+            "old_password": "舊密碼",
+            "new_password": "新密碼",
+            "re_new_password": "確認新密碼",
+            "pwd_tooltip": "首次登入帳戶後必須更改密碼。",
+            "active_status": {
+                "label": "活躍狀態",
+                "active": "積極的",
+                "off": "離開"
+            },
+            "dish_type": {
+                "label": "類型",
+                "food": "食物",
+                "drink": "喝"
+            },
+            "order_status": {
+                "label": "訂單狀態",
+                "all": "全部",
+                "ordered": "已訂購",
+                "to_receive": "接收",
+                "completed": "完全的",
+                "cancelled": "取消"
+            },
+            "order_type": {
+                "take_away": "帶走",
+                "booking": "預訂"
+            },
+            "payment_status": {
+                "label": "支付狀態",
+                "all": "全部",
+                "paid": "有薪資的",
+                "unpaid": "未付"
+            },
+            "roles": {
+                "label": "角色",
+                "admin": "行政",
+                "creator": "創作者",
+                "staff": "職員"
+            },
+            "chef_count": "廚師",
+            "chef_count_tooltip": "廚師人數",
+            "domain": "網域",
+            "domain_tooltip": "網站網域掃描訂購。 ",
+            "order_discount": "折扣",
+            "order_subtotal": "小計",
+            "order_total": "全部的",
+            "dish_note_placeholder": "菜品備註",
+            "order_note_placeholder": "訂單備註",
+            "money_change": "改變",
+            "money_receive": "收到",
+            "staff": "職員"
+        },
+        "pages": {
+            "analytics": {
+                "label": "分析",
+                "orders_today": {
+                    "title": "今天的訂單",
+                    "count_all": "全部",
+                    "count_ordered": "已訂購",
+                    "count_to_receive": "受到",
+                    "count_completed": "完全的",
+                    "count_cancelled": "罐裝"
+                },
+                "revenue": "收入",
+                "top_sellers": {
+                    "title": "暢銷品",
+                    "select_range": "選擇時間"
+                },
+                "count_management": {
+                    "dishes": "菜餚",
+                    "menus": "選單",
+                    "tables": "表格",
+                    "total_revenue": "收入",
+                    "total_order_completed": "訂單已完成"
+                }
+            },
+            "booking": {
+                "current_booking": "目前預訂",
+                "title": "預訂資訊",
+                "payment_details": "付款詳情",
+                "no_code": "沒有可用的程式碼",
+                "discount_title": "折扣",
+                "payment_method_title": "選擇付款方式",
+                "select_menu": "選擇選單",
+                "select_code": "使用代碼儲存"
+            },
+            "login": {
+                "title": "管理面板",
+                "sub_title": "網上訂購管理平台"
+            },
+            "tracker": {
+                "title": "追蹤",
+                "booking_overview": "預訂概覽",
+                "booking_details": "預訂詳情",
+                "booking_summary": "預訂摘要",
+                "booking": "預訂：",
+                "booking_successfully_title": "預訂成功",
+                "booking_successfully_subtitle": "您可以重新掃描此碼以查看預訂資訊。",
+                "booking_at": "預訂於：",
+                "booking_status": "預訂狀態：",
+                "404_title": "無效的請求！",
+                "404_subtitle": "抱歉，出了點問題！"
+            }
+        },
+        "notification": {
+            "upload": {
+                "must_be_image": "您只能上傳JPG/PNG檔案！",
+                "must_smaller_than": "圖片必須小於2MB！"
+            },
+            "account_quick_access": {
+                "title": "您想結束目前會話嗎？",
+                "message": "執行此操作後，該裝置上的目前登入詳細資料將被刪除。"
+            },
+            "form": {
+                "create_finish": "創造新的成功！",
+                "create_finish_fail": "新建失敗！",
+                "edit_finish": "更新成功！",
+                "edit_finish_fail": "更新失敗！",
+                "action_in_progress": "行動正在進行中..."
+            },
+            "auth": {
+                "account_locked": "帳號已被鎖定！",
+                "not_found_account": "帳號不存在！",
+                "wrong_password": "密碼錯誤！",
+                "login_success": "登入成功！",
+                "cannnot_connect_to_server": "無法連接到伺服器！",
+                "new_re_password_not_match": "新密碼和確認密碼不符。",
+                "password_least": "密碼長度必須至少為 8 個字元。",
+                "password_not_match": "舊密碼不正確。",
+                "change_password_successful": "重置密碼成功。"
+            },
+            "table": {
+                "delete_action": {
+                    "title": "你確定嗎？",
+                    "content": "此操作將刪除此資訊的所有訊息 {{target}}。\n "
+                },
+                "turn_off_active_action": {
+                    "title": "將活動狀態變更為關閉？",
+                    "content": "本次活動狀態 {{target}} 將更改為關閉。 {{target}} 下次。"
+                },
+                "turn_on_active_action": {
+                    "title": "將活動狀態改為活動？",
+                    "content": "本次活動狀態 {{target}} 將變為活動狀態。 {{target}} 下次。"
+                },
+                "pop_confirm": {
+                    "quick_turn_off": {
+                        "title": "更改為關閉",
+                        "content": "您確定要關閉此活動的狀態嗎 {{target}}？"
+                    },
+                    "quick_delete": {
+                        "title": "刪除這個 {{target}}",
+                        "content": "您確定要刪除此內容嗎 {{target}}？"
+                    }
+                }
+            },
+            "qr_code": {
+                "title": "這是二維碼 {{table}}"
+            },
+            "login_expired": {
+                "title": "登入會話已過期",
+                "content": "目前登入工作階段已過期，請重新登入。"
+            }
+        },
+        "common": {
+            "footer": "UOrder-掃描並預訂",
+            "system_key": {
+                "dish": "盤子",
+                "menu": "選單",
+                "table": "桌子",
+                "order": "命令",
+                "booking": "預訂",
+                "account": "帳戶"
+            }
+        },
+        "utilities": {},
+        "components": {
+            "alert": {
+                "not_have_domain_warning": "警告：新增網域以顯示要掃描和訂購的二維碼。",
+                "not_have_domain_alert": "此表沒有可掃描的二維碼。"
+            },
+            "table": {
+                "empty_data": "沒有數據",
+                "trigger_desc": "點擊降序排序",
+                "trigger_asc": "點擊升序排序",
+                "cancel_sort": "按一下取消排序",
+                "search_keyword": "搜尋",
+                "no_column": "不",
+                "action_column": "行動"
+            },
+            "button": {
+                "active_log": "活動日誌",
+                "add": "創建新的",
+                "refresh": "重新整理",
+                "cancel": "取消",
+                "edit": "編輯",
+                "delete": "刪除",
+                "turn_on": "打開",
+                "turn_off": "關",
+                "reset": "重置",
+                "create": "創造",
+                "update": "更新",
+                "download": "下載",
+                "logout": "登出",
+                "search": "搜尋",
+                "new_order": "新指令",
+                "submit": "提交",
+                "close": "關閉",
+                "add_order_item": "新增項目",
+                "remove_order_item": "消除",
+                "view_order": "查看訂單",
+                "remember_login": "記得登入",
+                "forgot_pwd": "忘記密碼",
+                "login": "登入",
+                "add_to_card": "添加",
+                "order": "命令",
+                "call_staff": "致電工作人員",
+                "change_pasword": "更改密碼",
+                "upload": "上傳"
+            },
+            "cart_navbar": {
+                "items": "專案"
+            }
+        }
+    },
+    "system": {
+        "lang_label": "中文 (簡體)",
+        "lang_key": "zh"
+    }
+}

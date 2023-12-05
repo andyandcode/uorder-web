@@ -1,0 +1,294 @@
+{
+    "main": {
+        "navigation": {
+            "home": {
+                "label": "집"
+            },
+            "manage": {
+                "label": "관리하다",
+                "dish": "접시 관리",
+                "menu": "메뉴 관리",
+                "table": "테이블 관리"
+            },
+            "sales": {
+                "label": "매상",
+                "booking": "예약 관리",
+                "order": "주문 관리",
+                "analytics": "해석학"
+            },
+            "account": "계정 관리",
+            "settings": {
+                "label": "설정",
+                "system": "환경 설정",
+                "account": "계정 설정"
+            },
+            "account_quick_access": {
+                "label": "계정",
+                "infomation": "계정 설정"
+            },
+            "active_log": "활성 로그"
+        },
+        "entities": {
+            "id": "ID",
+            "id_tooltip": ".식별자 {{target}}",
+            "created_at": "생성 날짜",
+            "created_at_tooltip": ".새로운 시간 {{target}} 생성됩니다",
+            "name": "이름",
+            "name_tooltip": "이름 {{target}}.",
+            "desc": "설명",
+            "desc_tooltip": "에 대한 간단한 설명 {{target}}.",
+            "price": "가격",
+            "price_tooltip": "요리의 가격.",
+            "qr_code": "QR 코드",
+            "table": "테이블",
+            "table_tooltip": "",
+            "total": "총",
+            "total_tooltip": "",
+            "qty": "수량",
+            "unitPrice": "단가",
+            "amount": "양",
+            "dishNote": "요리노트...",
+            "note": "주문서...",
+            "dishes": "그릇",
+            "is_required": "이 파일은 필수입니다!",
+            "form_create_title": "새로 만들기 {{target}}",
+            "form_edit_title": "편집하다 {{target}}",
+            "form_view_title": "보다 {{target}}",
+            "form_change_password_title": "비밀번호 변경",
+            "form_pay_bill_title": "청구서 지불",
+            "active_log_title": "활성 로그",
+            "upload_image": "요리 이미지",
+            "subtotal": "소계",
+            "discount": "할인",
+            "username": "사용자 이름",
+            "username_placeholder": "여기에 사용자 이름을 입력하세요",
+            "pwd": "비밀번호",
+            "pwd_placeholder": "여기에 비밀번호를 입력하세요",
+            "old_password": "기존 비밀번호",
+            "new_password": "새 비밀번호",
+            "re_new_password": "새 비밀번호를 확인하세요",
+            "pwd_tooltip": "비밀번호는 처음 계정에 로그인한 후 변경해야 합니다.",
+            "active_status": {
+                "label": "활성 상태",
+                "active": "활동적인",
+                "off": "끄다"
+            },
+            "dish_type": {
+                "label": "유형",
+                "food": "음식",
+                "drink": "마시다"
+            },
+            "order_status": {
+                "label": "주문 상태",
+                "all": "모두",
+                "ordered": "주문하다",
+                "to_receive": "받으려면",
+                "completed": "완전한",
+                "cancelled": "취소 된"
+            },
+            "order_type": {
+                "take_away": "테이크아웃",
+                "booking": "예약"
+            },
+            "payment_status": {
+                "label": "지불 상태",
+                "all": "모두",
+                "paid": "유급의",
+                "unpaid": "미지급"
+            },
+            "roles": {
+                "label": "역할",
+                "admin": "관리자",
+                "creator": "창조자",
+                "staff": "직원"
+            },
+            "chef_count": "요리사",
+            "chef_count_tooltip": "요리사의 수",
+            "domain": "도메인 이름",
+            "domain_tooltip": "주문할 웹사이트 스캔의 도메인 이름입니다. ",
+            "order_discount": "할인",
+            "order_subtotal": "소계",
+            "order_total": "총",
+            "dish_note_placeholder": "접시 노트",
+            "order_note_placeholder": "주문 메모",
+            "money_change": "변화",
+            "money_receive": "받다",
+            "staff": "직원"
+        },
+        "pages": {
+            "analytics": {
+                "label": "해석학",
+                "orders_today": {
+                    "title": "오늘 주문",
+                    "count_all": "모두",
+                    "count_ordered": "주문하다",
+                    "count_to_receive": "받다",
+                    "count_completed": "완전한",
+                    "count_cancelled": "취소됨"
+                },
+                "revenue": "수익",
+                "top_sellers": {
+                    "title": "제일 잘 팔리는 물품들",
+                    "select_range": "시간 선택"
+                },
+                "count_management": {
+                    "dishes": "그릇",
+                    "menus": "메뉴",
+                    "tables": "테이블",
+                    "total_revenue": "수익",
+                    "total_order_completed": "주문 완료"
+                }
+            },
+            "booking": {
+                "current_booking": "현재 예약",
+                "title": "예약정보",
+                "payment_details": "지불 세부 사항",
+                "no_code": "사용 가능한 코드가 없습니다.",
+                "discount_title": "할인",
+                "payment_method_title": "결제 수단 선택",
+                "select_menu": "메뉴 선택",
+                "select_code": "코드를 사용하여 저장"
+            },
+            "login": {
+                "title": "관리자 패널",
+                "sub_title": "온라인 주문 관리 플랫폼"
+            },
+            "tracker": {
+                "title": "추적",
+                "booking_overview": "예약 개요",
+                "booking_details": "예약 세부정보",
+                "booking_summary": "예약 요약",
+                "booking": "예약:",
+                "booking_successfully_title": "예약이 성공적으로 완료되었습니다",
+                "booking_successfully_subtitle": "이 코드를 다시 스캔하여 예약 정보를 확인할 수 있습니다.",
+                "booking_at": "예약 장소:",
+                "booking_status": "예약 상태:",
+                "404_title": "잘못된 요청!",
+                "404_subtitle": "죄송합니다. 문제가 발생했습니다."
+            }
+        },
+        "notification": {
+            "upload": {
+                "must_be_image": "JPG/PNG 파일만 업로드할 수 있습니다!",
+                "must_smaller_than": "이미지는 2MB보다 작아야 합니다!"
+            },
+            "account_quick_access": {
+                "title": "현재 세션을 종료하시겠습니까?",
+                "message": "이 작업 후에는 이 장치의 현재 로그인 세부 정보가 삭제됩니다. "
+            },
+            "form": {
+                "create_finish": "새로운 성공을 창조하세요!",
+                "create_finish_fail": "새로 작성하지 못했습니다.",
+                "edit_finish": "업데이트 성공!",
+                "edit_finish_fail": "업데이트가 실패!",
+                "action_in_progress": "작업 진행 중..."
+            },
+            "auth": {
+                "account_locked": "계정이 잠겼습니다!",
+                "not_found_account": "계정이 존재하지 않습니다!",
+                "wrong_password": "잘못된 비밀번호!",
+                "login_success": "성공적으로 로그인되었습니다!",
+                "cannnot_connect_to_server": "서버에 연결할 수 없습니다!",
+                "new_re_password_not_match": "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.",
+                "password_least": "비밀번호 길이는 8자 이상이어야 합니다.",
+                "password_not_match": "이전 비밀번호가 올바르지 않습니다.",
+                "change_password_successful": "비밀번호를 재설정했습니다."
+            },
+            "table": {
+                "delete_action": {
+                    "title": "확실합니까?",
+                    "content": "이 작업을 수행하면 이 정보가 모두 삭제됩니다. {{target}}.\n "
+                },
+                "turn_off_active_action": {
+                    "title": "활성 상태를 꺼짐으로 변경하시겠습니까?",
+                    "content": "이 활동 상황 {{target}} 꺼짐으로 변경됩니다.  {{target}} 다음번."
+                },
+                "turn_on_active_action": {
+                    "title": "활성 상태를 활성으로 변경하시겠습니까?",
+                    "content": "이 활동 상황 {{target}} 활성으로 변경됩니다.  {{target}} 다음번."
+                },
+                "pop_confirm": {
+                    "quick_turn_off": {
+                        "title": "끄기로 변경",
+                        "content": "이 활성 상태를 끄시겠습니까? {{target}}?"
+                    },
+                    "quick_delete": {
+                        "title": "삭제 {{target}}",
+                        "content": "이 항목을 삭제하시겠습니까? {{target}}?"
+                    }
+                }
+            },
+            "qr_code": {
+                "title": "의 QR코드입니다 {{table}}"
+            },
+            "login_expired": {
+                "title": "로그인 세션이 만료되었습니다",
+                "content": "현재 로그인 세션이 만료되었습니다. 다시 로그인해 주세요."
+            }
+        },
+        "common": {
+            "footer": "UOrder - 스캔하고 예약하기",
+            "system_key": {
+                "dish": "접시",
+                "menu": "메뉴",
+                "table": "테이블",
+                "order": "주문하다",
+                "booking": "예약",
+                "account": "계정"
+            }
+        },
+        "utilities": {},
+        "components": {
+            "alert": {
+                "not_have_domain_warning": "경고: 스캔하고 주문할 QR 코드를 표시하려면 도메인을 추가하세요.",
+                "not_have_domain_alert": "이 테이블에는 스캔할 QR 코드가 없습니다. "
+            },
+            "table": {
+                "empty_data": "데이터 없음",
+                "trigger_desc": "내림차순으로 정렬하려면 클릭하세요.",
+                "trigger_asc": "오름차순으로 정렬하려면 클릭하세요.",
+                "cancel_sort": "정렬을 취소하려면 클릭하세요.",
+                "search_keyword": "찾다",
+                "no_column": "아니요",
+                "action_column": "행동"
+            },
+            "button": {
+                "active_log": "활성 로그",
+                "add": "새로 만들기",
+                "refresh": "새로 고치다",
+                "cancel": "취소",
+                "edit": "편집하다",
+                "delete": "삭제",
+                "turn_on": "켜다",
+                "turn_off": "끄다",
+                "reset": "초기화",
+                "create": "만들다",
+                "update": "업데이트",
+                "download": "다운로드",
+                "logout": "로그 아웃",
+                "search": "찾다",
+                "new_order": "새로운 주문",
+                "submit": "제출하다",
+                "close": "닫다",
+                "add_order_item": "아이템 추가",
+                "remove_order_item": "제거하다",
+                "view_order": "주문보기",
+                "remember_login": "로그인 기억하기",
+                "forgot_pwd": "비밀번호를 잊으 셨나요",
+                "login": "로그인",
+                "add_to_card": "추가하다",
+                "order": "주문하다",
+                "call_staff": "직원에게 전화하기",
+                "change_pasword": "비밀번호 변경",
+                "upload": "업로드"
+            },
+            "cart_navbar": {
+                "items": "아이템"
+            }
+        }
+    },
+    "system": {
+        "lang_label": "한국어",
+        "lang_key": "ko"
+    }
+}

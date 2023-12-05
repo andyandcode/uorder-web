@@ -14,7 +14,7 @@ export default function SelectPaymentDrawer({ t, onClosePaymentDrawer, openPayme
     return (
         <>
             <Drawer
-                title={t('main.pages.order.payment_method_title')}
+                title={t('main.pages.booking.payment_method_title')}
                 placement={'bottom'}
                 closable={false}
                 onClose={onClosePaymentDrawer}

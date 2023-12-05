@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import Config from '../../configuration';
 import { rootKeys } from '../../configuration/routesConfig';
+import useLanguages from '../UseLanguages';
 import MainView from './MainView';
 import { MenuList } from './MenuList';
 import propsProvider from './PropsProvider';
@@ -19,15 +20,12 @@ export default function Conainer(props) {
     const [notificationCount, setNotificationCount] = useState(5);
     const [collapsed, setCollapsed] = useState(false);
     const cookies = new Cookies();
+    const languages = useLanguages();
     const {
         token: { colorBgContainer },
     } = theme.useToken();
     const [openSiderKeys, setOpenSiderKeys] = useState([rootKeys.homeUrl]);
 
-    const locales = [
-        { label: 'Tiếng Việt', value: 'vi' },
-        { label: 'English', value: 'en' },
-    ];
     const access = cookies.get(Config.storageKey.tokenKey);
     useEffect(() => {
         if (!access) {
@@ -104,23 +102,18 @@ export default function Conainer(props) {
         }
     }, [location, current]);
 
-    const handleChangeLocales = (value) => {
-        i18n.changeLanguage(value);
-    };
-
     const containerProps = {
         ...props,
         collapsed,
         current,
         openSiderKeys,
         colorBgContainer,
-        locales,
+        languages,
         items,
         notificationCount,
         setCollapsed,
         onOpenChange,
         handleMenuClick,
-        handleChangeLocales,
         MenuList,
         access,
     };

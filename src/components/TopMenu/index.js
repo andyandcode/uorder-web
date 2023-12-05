@@ -1,6 +1,7 @@
-import { Layout, Select, Typography } from 'antd';
+import { Select, Typography } from 'antd';
+import { SelectLanguage } from '../UseLanguages';
 
-export default function TopMenu({ data, menuData }) {
+export default function TopMenu({ t, data, menuData }) {
     const options = data.map((e, index) => ({ label: e.name, value: e.id, href: e.id, key: index }));
     const handleChange = (value) => {
         const elementToScroll = document.getElementById(value);
@@ -11,12 +12,18 @@ export default function TopMenu({ data, menuData }) {
     return (
         <>
             <div className='top_menu'>
-                <Layout.Content>
+                <div style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Typography.Title level={3} style={{ margin: 4 }}>
                         {menuData.name}
                     </Typography.Title>
-                </Layout.Content>
-                <Select options={options} style={{ width: '100%' }} onChange={handleChange} placeholder='Select menu' />
+                    <SelectLanguage />
+                </div>
+                <Select
+                    options={options}
+                    style={{ width: '100%' }}
+                    onChange={handleChange}
+                    placeholder={t('main.pages.booking.select_menu')}
+                />
             </div>
         </>
     );
