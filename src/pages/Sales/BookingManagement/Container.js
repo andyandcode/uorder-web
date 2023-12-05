@@ -37,11 +37,9 @@ function Conainer(props) {
             .catch((err) => console.error('SignalR Connection Error: ', err));
 
         connection.on('ReceiveMessage', (message) => {
-            console.log(message);
             fetchData();
         });
         connection.on('ReceiveOrderNotification', (bookingId) => {
-            console.log(bookingId);
             fetchData();
         });
 
@@ -73,6 +71,7 @@ function Conainer(props) {
     }, [dispatch]);
 
     const handlePrintBillClick = (data) => {
+        setViewData(data);
         setOpenBillQuickViewModal(true);
         setTimeout(() => {
             setOpenBillQuickViewModal(false);
@@ -131,7 +130,7 @@ function Conainer(props) {
             .then(() => fetchData());
     };
     const componentRef = useRef();
-    const handlePrintClick = () => {
+    const handlePrintClick = (data) => {
         setOpenViewModel(false);
         setOpenBillQuickViewModal(true);
         setTimeout(() => {

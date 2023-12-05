@@ -136,7 +136,6 @@ function Conainer(props) {
                                 dishes: values.dishes.map((item) => item.id),
                             };
                         }
-                        console.log(modifiedItem);
                         const result = await dispatch(updateMenuAdmin(modifiedItem));
                         const status = Utils.getValues(result, 'error.code', []);
 

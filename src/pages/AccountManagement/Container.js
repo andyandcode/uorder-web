@@ -97,7 +97,6 @@ function Conainer(props) {
         createForm
             .validateFields()
             .then(() => {
-                console.log('Created: ', values);
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {
@@ -118,7 +117,6 @@ function Conainer(props) {
         editForm
             .validateFields()
             .then(() => {
-                console.log('Edited: ', values);
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {

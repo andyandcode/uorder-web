@@ -7,7 +7,6 @@ export const notificationSlice = createSlice({
     },
     reducers: {
         showModal: (state, action) => {
-            console.log(action);
             state.content = action.payload;
         },
     },
