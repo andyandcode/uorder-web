@@ -4,14 +4,7 @@ import { FormBuilder } from '../../../../components/FormBuilder';
 const { Content } = Layout;
 const { Title } = Typography;
 
-export default function MainView({
-    t,
-    editForm,
-    settingsData,
-    handleDomainSubmitClick,
-    handleChefCountSubmitClick,
-    messageContextHolder,
-}) {
+export default function MainView({ t, editForm, settingsData, handleDomainSubmitClick, messageContextHolder }) {
     return (
         <>
             <Content>
@@ -24,7 +17,6 @@ export default function MainView({
                     form={editForm}
                     data={settingsData}
                     handleDomainSubmitClick={handleDomainSubmitClick}
-                    handleChefCountSubmitClick={handleChefCountSubmitClick}
                 />
             </Content>
         </>

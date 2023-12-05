@@ -900,11 +900,6 @@ const SystemSettingsForm = ({ t, form, data, handleDomainSubmitClick, handleChef
         <>
             <Form form={form} layout='horizontal' name='form_create_in_modal' align='end'>
                 <FormEntities.HiddenId />
-                <FormEntities.ChefCount
-                    data={data}
-                    form={form}
-                    handleChefCountSubmitClick={handleChefCountSubmitClick}
-                />
                 <FormEntities.Domain data={data} form={form} handleDomainSubmitClick={handleDomainSubmitClick} />
             </Form>
         </>
