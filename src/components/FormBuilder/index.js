@@ -1,4 +1,4 @@
-import { PrinterOutlined } from '@ant-design/icons';
+import { CreditCardOutlined, PrinterOutlined } from '@ant-design/icons';
 import { Button, Col, Divider, Form, Input, Row, Select, Space, Typography } from 'antd';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
@@ -30,8 +30,6 @@ const CreateNewDishForm = ({ form, handleButtonCancel, handleButtonSubmit }) => 
                         <FormEntities.Name />
                         <FormEntities.Desc />
                         <FormEntities.Price />
-                        <FormEntities.CompletionTime />
-                        <FormEntities.QtyPerDay />
                         <FormEntities.DishType />
                         <FormEntities.ActiveStatus />
                     </Col>
@@ -61,8 +59,6 @@ const EditDishForm = ({ form, handleButtonCancel, handleButtonSubmit, defaultFil
                         <FormEntities.Name />
                         <FormEntities.Desc />
                         <FormEntities.Price />
-                        <FormEntities.CompletionTime />
-                        <FormEntities.QtyPerDay />
                         <FormEntities.DishType />
                         <FormEntities.ActiveStatus />
                     </Col>
@@ -354,6 +350,7 @@ const ViewOrderForm = ({
     handleButtonSubmit,
     handleChangeOrderStatus,
     handlePrintClick,
+    handlePayBillClick,
 }) => {
     const { t } = useTranslation();
     return (
@@ -406,8 +403,12 @@ const ViewOrderForm = ({
                         ) : (
                             ''
                         )}
-
                         <Button icon={<PrinterOutlined />} onClick={handlePrintClick} />
+                        <Button
+                            icon={<CreditCardOutlined key='pay' />}
+                            disabled={viewData.paymentStatus === 0}
+                            onClick={() => handlePayBillClick(viewData)}
+                        />
                     </Space>
                 </Col>
             </Row>
@@ -991,6 +992,100 @@ const OrderForm = ({
         </>
     );
 };
+
+const PayBillForm = ({ viewData, form, handleButtonCancel, handleButtonSubmit }) => {
+    const { t } = useTranslation();
+    const [disabledBtn, setDisableBtn] = useState(true);
+
+    let paymentMethod;
+    let moneyReceive;
+    const onFormChange = (data) => {
+        moneyReceive = form.getFieldValue('moneyReceive');
+        paymentMethod = form.getFieldValue('paymentMethod');
+        form.setFields([
+            {
+                name: 'paymentMethod',
+                value: paymentMethod,
+            },
+            {
+                name: 'moneyChange',
+                value:
+                    moneyReceive !== undefined
+                        ? parseInt(moneyReceive.toString().replace(/[^0-9]/g, '')) - viewData.total < 0
+                            ? -1
+                            : parseInt(moneyReceive.toString().replace(/[^0-9]/g, '')) - viewData.total
+                        : -1,
+            },
+            {
+                name: 'moneyReceive',
+                value: moneyReceive,
+            },
+        ]);
+        setDisableBtn(form.getFieldsValue().moneyChange < 0);
+    };
+    return (
+        <>
+            <Form
+                form={form}
+                layout='horizontal'
+                name='form_create_in_modal'
+                align='end'
+                initialValues={{
+                    orderStatus: 0,
+                    paymentStatus: 0,
+                }}
+                onFieldsChange={(data) => onFormChange(data[0])}
+            >
+                <Form.Item name='paymentStatus' initialValue={0} style={{ display: 'none' }}>
+                    <Input />
+                </Form.Item>
+                <Form.Item name='paymentMethod' initialValue={1} style={{ display: 'none' }}>
+                    <Input />
+                </Form.Item>
+                <Form.Item name='id' initialValue={viewData.id} label={t('main.entities.id')}>
+                    <Input disabled bordered={false} style={{ display: 'none' }} />
+                    {viewData.id}
+                </Form.Item>
+
+                <Form.Item name='total' initialValue={viewData.total} label={t('main.entities.total')}>
+                    <NumericFormat
+                        thousandSeparator=','
+                        displayType='text'
+                        defaultValue={viewData.total}
+                        suffix=' VND'
+                    />
+                </Form.Item>
+                <Form.Item name='moneyReceive' label={t('main.entities.money_receive')}>
+                    <NumericFormat
+                        suffix=' VND'
+                        thousandSeparator=','
+                        customInput={Input}
+                        allowLeadingZeros={false}
+                        isAllowed={(values) => {
+                            const { formattedValue, floatValue } = values;
+                            return formattedValue === '' || floatValue <= 1000000000;
+                        }}
+                        style={{
+                            width: 250,
+                        }}
+                    />
+                </Form.Item>
+                <Form.Item name='moneyChange' label={t('main.entities.money_change')}>
+                    <NumericFormat thousandSeparator=',' displayType='text' suffix=' VND' />
+                </Form.Item>
+                <Space>
+                    <ButtonLocated.ResetButton />
+                    <ButtonLocated.CancelButton handleButton={handleButtonCancel} />
+                    <ButtonLocated.SubmitButtom
+                        form={form}
+                        handleButton={handleButtonSubmit}
+                        disabledBtn={disabledBtn}
+                    />
+                </Space>
+            </Form>
+        </>
+    );
+};
 export const FormBuilder = {
     CreateNewDishForm,
     EditDishForm,
@@ -1009,4 +1104,5 @@ export const FormBuilder = {
     OrderForm,
     AccountSettingsForm,
     ChangePasswordForm,
+    PayBillForm,
 };

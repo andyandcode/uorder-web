@@ -1,7 +1,6 @@
 import { CaretRightOutlined } from '@ant-design/icons';
 import { Button, Col, Collapse, Divider, Result, Row, Space, Typography, theme } from 'antd';
 import moment from 'moment';
-import Countdown, { zeroPad } from 'react-countdown';
 import { CurrencyFormat } from '../../../components/CurrencyFormat';
 import { EnumRender } from '../../../components/EnumRender';
 
@@ -12,20 +11,6 @@ export default function MainView({ t, orderData }) {
         background: token.colorFillAlter,
         borderRadius: token.borderRadiusLG,
         border: 'none',
-    };
-    const Completionist = () => <Typography.Text>{t('main.pages.tracker.completed_note')}</Typography.Text>;
-    const renderer = ({ hours, minutes, seconds, completed }) => {
-        if (completed) {
-            return <Completionist />;
-        } else {
-            return (
-                <span>
-                    <Typography.Text strong>
-                        {t('main.pages.tracker.in_progess_note')} {zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}{' '}
-                    </Typography.Text>
-                </span>
-            );
-        }
     };
     const getItems = (panelStyle) => [
         {
@@ -153,7 +138,6 @@ export default function MainView({ t, orderData }) {
             ) : (
                 <div style={{ padding: 8 }}>
                     <Typography.Title level={4}>{t('main.pages.tracker.title')}</Typography.Title>
-                    <Countdown date={Date.now() + orderData.timeToReceive} renderer={renderer} />
                     <Collapse
                         bordered={false}
                         defaultActiveKey={['1']}

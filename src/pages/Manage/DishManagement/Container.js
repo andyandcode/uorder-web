@@ -92,13 +92,9 @@ function Conainer(props) {
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {
                         const priceParse = parseInt(values.price.replace(/[^0-9]/g, ''));
-                        const completionTimeParse = parseInt(values.completionTime.replace(/[^0-9]/g, ''));
-                        const qtyPerDayParse = parseInt(values.qtyPerDay.replace(/[^0-9]/g, ''));
                         const modifiedItem = {
                             ...values,
                             price: priceParse,
-                            completionTime: completionTimeParse,
-                            qtyPerDay: qtyPerDayParse,
                             cover: values.cover !== undefined ? values.cover.file.originFileObj : null,
                         };
                         await dispatch(createDishAdmin(modifiedItem)).then((result) => {
@@ -122,31 +118,15 @@ function Conainer(props) {
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {
                         let priceParse = 0;
-                        let completionTimeParse = 0;
-                        let qtyPerDayParse = 0;
                         if (!Number.isInteger(values.price)) {
                             priceParse = parseInt(values.price.replace(/[^0-9]/g, ''));
                         } else {
                             priceParse = values.price;
                         }
 
-                        if (!Number.isInteger(values.completionTime)) {
-                            completionTimeParse = parseInt(values.completionTime.replace(/[^0-9]/g, ''));
-                        } else {
-                            completionTimeParse = values.completionTime;
-                        }
-
-                        if (!Number.isInteger(values.qtyPerDay)) {
-                            qtyPerDayParse = parseInt(values.qtyPerDay.replace(/[^0-9]/g, ''));
-                        } else {
-                            qtyPerDayParse = values.qtyPerDay;
-                        }
-
                         const modifiedItem = {
                             ...values,
                             price: priceParse,
-                            completionTime: completionTimeParse,
-                            qtyPerDay: qtyPerDayParse,
                             cover: values.cover !== undefined ? values.cover.file.originFileObj : null,
                         };
                         await dispatch(updateDishAdmin(modifiedItem)).then((result) => {

@@ -10,6 +10,7 @@ export default function ViewModal({
     messageContextHolder,
     handleChangeOrderStatus,
     handlePrintClick,
+    handlePayBillClick,
 }) {
     const target = t('main.common.system_key.booking');
     return (
@@ -32,6 +33,7 @@ export default function ViewModal({
                     handleButtonCancel={handleViewCancelClick}
                     handleChangeOrderStatus={handleChangeOrderStatus}
                     handlePrintClick={handlePrintClick}
+                    handlePayBillClick={handlePayBillClick}
                 />
             </Modal>
         </>

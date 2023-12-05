@@ -27,7 +27,7 @@ function Conainer(props) {
             .validateFields()
             .then(async () => {
                 await dispatch(login(data)).then((result) => {
-                    if (result.payload === 'ERR_NETWORK') {
+                    if (result.payload === undefined) {
                         messageApi.open(UseNotification.Message.CannotConnectToServer(t));
                     }
 
@@ -66,6 +66,13 @@ function Conainer(props) {
                         newLoadings[0] = false;
                         return newLoadings;
                     });
+                });
+            })
+            .finally(() => {
+                setLoginBtnLoading((prevLoadings) => {
+                    const newLoadings = [...prevLoadings];
+                    newLoadings[0] = false;
+                    return newLoadings;
                 });
             })
             .catch(() => {});

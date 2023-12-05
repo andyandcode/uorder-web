@@ -27,6 +27,7 @@ export default function MainView(props) {
             <Layout
                 style={{
                     minHeight: '100vh',
+                    height: '100%',
                 }}
             >
                 <Sider

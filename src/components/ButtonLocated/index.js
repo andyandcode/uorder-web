@@ -139,12 +139,17 @@ const SubmitSystemSettingsButtom = ({ form, handleButton, disabled }) => {
         </>
     );
 };
-const SubmitButtom = ({ form, handleButton }) => {
+const SubmitButtom = ({ form, handleButton, disabledBtn }) => {
     const { t } = useTranslation();
 
     return (
         <>
-            <Button type='primary' onClick={() => handleButton(form.getFieldsValue())} form={form}>
+            <Button
+                type='primary'
+                onClick={() => handleButton(form.getFieldsValue())}
+                form={form}
+                disabled={disabledBtn}
+            >
                 {t('main.components.button.submit')}
             </Button>
         </>

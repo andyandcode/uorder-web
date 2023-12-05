@@ -50,17 +50,6 @@ const DishColumns = (t) => {
             },
         },
         {
-            key: 'completionTime',
-            dataIndex: 'completionTime',
-            title: t('main.entities.completion_time'),
-            align: 'center',
-            sorter: {
-                compare: (a, b) => a.completionTime - b.completionTime,
-                multiple: 4,
-            },
-            render: (data) => data,
-        },
-        {
             key: 'isActive',
             dataIndex: 'isActive',
             title: t('main.entities.active_status.label'),
@@ -70,19 +59,6 @@ const DishColumns = (t) => {
                 multiple: 3,
             },
             render: (data) => EnumRender.ActiveStatus(t, data),
-        },
-        {
-            key: 'qtyPerDay',
-            dataIndex: 'qtyPerDay',
-            title: t('main.entities.qty_per_day'),
-            align: 'center',
-            sorter: {
-                compare: (a, b) => a.qtyPerDay - b.qtyPerDay,
-                multiple: 2,
-            },
-            render: (data) => {
-                return <NumericFormat value={data} thousandSeparator=',' displayType='text' />;
-            },
         },
         {
             key: 'type',
