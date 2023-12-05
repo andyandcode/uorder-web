@@ -25,7 +25,8 @@
             "account_quick_access": {
                 "label": "Tài khoản",
                 "infomation": "Cài đặt tài khoản"
-            }
+            },
+            "active_log": "Lịch sử hoạt động"
         },
         "entities": {
             "id": "Mã",
@@ -38,12 +39,6 @@
             "desc_tooltip": "Đoạn mô tả ngắn của {{target}}.",
             "price": "Giá bán",
             "price_tooltip": "Giá bán của món ăn.",
-            "completion_time": "Thời gian hoàn thành (phút)",
-            "completion_time_tooltip": "Thời gian dự kiến hoàn thành món ăn.",
-            "qty_per_day": "Số lượng/ngày",
-            "qty_per_day_tooltip": "Số lượng món ăn dự tính phục vụ trong một ngày.",
-            "upload_medias": "Ảnh món ăn",
-            "upload_medias_is_required": "Vui lòng tải lên ít nhất 1 ảnh!",
             "qr_code": "Mã QR",
             "table": "Bàn",
             "table_tooltip": "",
@@ -59,10 +54,16 @@
             "form_create_title": "Tạo mới {{target}}",
             "form_edit_title": "Chỉnh sửa {{target}}",
             "form_view_title": "Xem {{target}}",
+            "form_change_password_title": "Đổi mật khẩu",
+            "form_pay_bill_title": "Thanh toán hóa đơn",
+            "active_log_title": "Lịch sử hoạt động",
             "subtotal": "Tổng phụ",
             "discount": "Giảm giá",
             "username": "Tên người dùng",
             "pwd": "Mật khẩu",
+            "old_password": "Mật khẩu cũ",
+            "new_password": "Mật khẩu mới",
+            "re_new_password": "Nhập lại mật khẩu mới",
             "pwd_tooltip": "Mật khẩu sẽ bắt buộc phải đổi sau khi đăng nhập tài khoản lần đầu.",
             "active_status": {
                 "label": "Trạng thái hoạt động",
@@ -82,12 +83,34 @@
                 "completed": "Đã hoàn thành",
                 "cancelled": "Đã hủy"
             },
+            "order_type": {
+                "take_away": "Mang đi",
+                "booking": "Đặt bàn"
+            },
             "payment_status": {
                 "label": "Trạng thái thanh toán",
                 "all": "Tất cả",
                 "paid": "Đã thanh toán",
                 "unpaid": "Chưa thanh toán"
-            }
+            },
+            "roles": {
+                "label": "Chức vụ",
+                "admin": "Quản trị viên",
+                "creator": "Quản lý nội dung",
+                "staff": "Nhân viên"
+            },
+            "chef_count": "Đầu bếp",
+            "chef_count_tooltip": "Số lượng đầu bếp",
+            "domain": "Tên miền",
+            "domain_tooltip": "Tên miền của website để scan mã. (ví dụ: example.com)",
+            "order_discount": "Giảm giá",
+            "order_subtotal": "Tổng phụ",
+            "order_total": "Tổng",
+            "dish_note_placeholder": "Ghi chú món ăn",
+            "order_note_placeholder": "Ghi chú đơn hàng",
+            "money_change": "Tiền thối",
+            "money_receive": "TIền nhận",
+            "staff": "Nhân viên"
         },
         "pages": {
             "analytics": {
@@ -113,7 +136,27 @@
                     "total_order_completed": "Đơn hàng đã hoàn thành"
                 }
             },
-            "login": { "title": "Đăng nhập", "sub_title": "Nền tảng quản lý đặt hàng trực tuyến" }
+            "login": { "title": "Đăng nhập", "sub_title": "Nền tảng quản lý đặt hàng trực tuyến" },
+            "order": {
+                "titel": "Thông tin đặt hàng",
+                "payment_details": "Chi tiết thanh toán",
+                "no_code": "Không có mã khả dụng",
+                "discount_title": "Giảm giá",
+                "payment_method_title": "Chọn phương thức thanh toán"
+            },
+            "tracker": {
+                "title": "Kiểm tra đặt bàn",
+                "booking_overview": "Tổng quan",
+                "booking_details": "Chi tiết",
+                "booking_summary": "Tóm tắt",
+                "booking": "Đặt bàn:",
+                "booking_successfully_title": "Đã đặt bàn thành công",
+                "booking_successfully_subtitle": "Bạn có thể scan lại mã để kiểm tra thông tin đặt bàn.",
+                "booking_at": "Đặt vào lúc:",
+                "booking_status": "Trạng thái:",
+                "404_title": "Yêu cầu không hợp lệ!",
+                "404_subtitle": "Xin lỗi, đã có điều gì đó sai!"
+            }
         },
         "notification": {
             "account_quick_access": {
@@ -126,6 +169,17 @@
                 "edit_finish": "Cập nhật thành công!",
                 "edit_finish_fail": "Cập nhật thất bại!",
                 "action_in_progress": "Đang xử lý..."
+            },
+            "auth": {
+                "account_locked": "Tài khoản đã bị khóa!",
+                "not_found_account": "Tài khoản không tồn tại!",
+                "wrong_password": "Sai mật khẩu!",
+                "login_success": "Đăng nhập thành công!",
+                "cannnot_connect_to_server": "Không thể kết nối với máy chủ!",
+                "new_re_password_not_match": "Mật khẩu mới và mật khẩu nhập lại không giống nhau.",
+                "password_least": "Mật khẩu phải có ít nhất 8 ký tự.",
+                "password_not_match": "Mật khẩu cũ không đúng.",
+                "change_password_successful": "Đặt lại mật khẩu thành công."
             },
             "table": {
                 "delete_action": {
@@ -153,6 +207,10 @@
             },
             "qr_code": {
                 "title": "Mã QR của {{table}}"
+            },
+            "login_expired": {
+                "title": "Phiên đăng nhập đã hết hạn",
+                "content": "Phiên đăng nhập hiện tại đã hết hạn, vui lòng đăng nhập lại."
             }
         },
         "common": {
@@ -168,9 +226,9 @@
         },
         "utilities": {},
         "components": {
-            "antd_dragger": {
-                "text": "Nhấn hoặc kéo tệp vào vùng để tải ảnh lên",
-                "hint": "Hỗ trợ tải lên một lần hoặc hàng loạt. Nghiêm cấm tải lên các tập tin bị cấm. (Tối đa: 8)"
+            "alert": {
+                "not_have_domain_warning": "Cảnh báo: Thêm tên miền để hiển thị mã QR đặt bàn.",
+                "not_have_domain_alert": "Bàn này không có mã QR để scan. Vui lòng thêm tên miền ở cài đặt hệ thống."
             },
             "table": {
                 "empty_data": "Không có dữ liệu",
@@ -204,8 +262,13 @@
                 "view_order": "Xem",
                 "remember_login": "Nhớ đăng nhập",
                 "forgot_pwd": "Quên mật khẩu",
-                "login": "Đăng nhập"
-            }
+                "login": "Đăng nhập",
+                "add_to_card": "Thêm",
+                "order": "Đặt bàn",
+                "call_staff": "Gọi nhân viên",
+                "change_pasword": "Đổi mật khẩu"
+            },
+            "cart_navbar": { "items": "món" }
         }
     },
     "system": {

@@ -155,6 +155,17 @@ const SubmitButtom = ({ form, handleButton, disabledBtn }) => {
         </>
     );
 };
+const ChangePasswordButton = ({ form, handleButton, disabledBtn }) => {
+    const { t } = useTranslation();
+
+    return (
+        <>
+            <Button onClick={handleButton} form={form} disabled={disabledBtn}>
+                {t('main.components.button.change_pasword')}
+            </Button>
+        </>
+    );
+};
 const OrderButton = ({ handleOrderClick }) => {
     const { t } = useTranslation();
     const [loadings, setLoadings] = useState([]);
@@ -200,4 +211,5 @@ export const ButtonLocated = {
     SubmitSystemSettingsButtom,
     OrderButton,
     SubmitButtom,
+    ChangePasswordButton,
 };

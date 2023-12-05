@@ -1,4 +1,5 @@
-import { Button, Divider, Layout, Typography } from 'antd';
+import { Divider, Layout, Typography } from 'antd';
+import { ButtonLocated } from '../../../../components/ButtonLocated';
 import { FormBuilder } from '../../../../components/FormBuilder';
 import ChangePasswordModal from './subViews/changePasswordModal';
 
@@ -37,7 +38,7 @@ export default function MainView({
                             handleChangeCancelClick={handleChangeCancelClick}
                             handleChangePasswordCancelClick={handleChangePasswordCancelClick}
                         />
-                        <Button onClick={handleChangePasswordClick}>Change Password</Button>
+                        <ButtonLocated.ChangePasswordButton handleButton={handleChangePasswordClick} />
                     </Content>
                 ))}
         </>
