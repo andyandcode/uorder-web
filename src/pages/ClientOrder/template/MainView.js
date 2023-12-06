@@ -24,7 +24,7 @@ export default function MainView({
             <Layout.Content>
                 <Button type='text' onClick={handleBackToHomeClick} icon={<LeftOutlined />} />
                 <Layout.Content style={{ padding: 8 }}>
-                    <Typography.Title level={4}>Order Information</Typography.Title>
+                    <Typography.Title level={4}>{t('main.pages.booking.title')}</Typography.Title>
                     <FormBuilder.OrderForm
                         t={t}
                         form={orderForm}

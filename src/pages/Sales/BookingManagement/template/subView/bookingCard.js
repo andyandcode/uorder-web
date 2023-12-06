@@ -1,6 +1,5 @@
 import { CheckCircleOutlined, CreditCardOutlined, PrinterOutlined, ReconciliationOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Flex, Row, Skeleton, Typography } from 'antd';
-import Countdown, { zeroPad } from 'react-countdown';
 import { CurrencyFormat } from '../../../../../components/CurrencyFormat';
 import { EnumRender } from '../../../../../components/EnumRender';
 
@@ -13,19 +12,6 @@ export default function BookingCard({
     handlePayBillClick,
     handleCompleteOrderClick,
 }) {
-    const Completionist = () => <Typography.Text type='danger'>Done!!!</Typography.Text>;
-    const renderer = ({ hours, minutes, seconds, completed }) => {
-        if (completed) {
-            return <Completionist />;
-        } else {
-            return (
-                <span>
-                    {zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}
-                </span>
-            );
-        }
-    };
-
     return (
         <>
             <Flex wrap='wrap' gap='small'>
@@ -58,7 +44,7 @@ export default function BookingCard({
                             <Button
                                 icon={<CheckCircleOutlined key='completeOrder' />}
                                 type='text'
-                                disabled={!e.timeToReceive > 0}
+                                disabled={!e.paymentStatus === 0}
                                 size='small'
                                 onClick={() => handleCompleteOrderClick(e)}
                             />,
@@ -66,14 +52,7 @@ export default function BookingCard({
                     >
                         <Skeleton loading={cardLoading} active>
                             <Card.Meta
-                                title={
-                                    <Row>
-                                        <Col flex='auto'>{e.tableName}</Col>
-                                        <Col spae={4}>
-                                            <Countdown date={Date.now() + e.timeToReceive} renderer={renderer} />
-                                        </Col>
-                                    </Row>
-                                }
+                                title={e.tableName}
                                 description={[
                                     <Row>
                                         <Col flex='auto'>

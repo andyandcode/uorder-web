@@ -1,5 +1,6 @@
 import { BellFilled, UserOutlined } from '@ant-design/icons';
-import { Badge, Button, Dropdown, Layout, Menu, Select, Space } from 'antd';
+import { Badge, Button, Dropdown, Layout, Menu, Space } from 'antd';
+import { SelectLanguage } from '../UseLanguages';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -15,7 +16,7 @@ export default function MainView(props) {
         handleMenuClick,
         colorBgContainer,
         handleChangeLocales,
-        locales,
+        languages,
         items,
         notificationCount,
         MenuList,
@@ -27,6 +28,7 @@ export default function MainView(props) {
             <Layout
                 style={{
                     minHeight: '100vh',
+                    height: '100%',
                 }}
             >
                 <Sider
@@ -76,14 +78,7 @@ export default function MainView(props) {
                         }}
                     >
                         <Space size='middle'>
-                            <Select
-                                defaultValue={i18n.language}
-                                onChange={handleChangeLocales}
-                                options={locales}
-                                style={{
-                                    width: 120,
-                                }}
-                            />
+                            <SelectLanguage />
                             <Badge count={notificationCount} overflowCount={10}>
                                 <Button shape='circle' icon={<BellFilled />} />
                             </Badge>

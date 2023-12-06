@@ -3,6 +3,7 @@ import CustomTable from '../../../../components/CustomTable';
 import TableColumns from '../../../../components/CustomTable/columnConfigs';
 import BillQuickViewModal from './subView/billQuickViewModal';
 import CurrentBooking from './subView/currentBooking';
+import PayBillModal from './subView/payBillModal';
 import ViewModal from './subView/viewModal';
 
 const { Content } = Layout;
@@ -29,6 +30,10 @@ export default function MainView({
     handlePrintClick,
     messageContextHolder,
     handleChangeOrderStatus,
+    handlePayBillSubmitClick,
+    handlePayBillCancelClick,
+    openPayBillModal,
+    payBillForm,
 }) {
     return (
         <>
@@ -65,11 +70,21 @@ export default function MainView({
                 handlePrintClick={handlePrintClick}
                 messageContextHolder={messageContextHolder}
                 handleChangeOrderStatus={handleChangeOrderStatus}
+                handlePayBillClick={handlePayBillClick}
             />
             <BillQuickViewModal
                 viewData={viewData}
                 componentRef={componentRef}
                 openBillQuickViewModal={openBillQuickViewModal}
+            />
+            <PayBillModal
+                t={t}
+                openPayBillModal={openPayBillModal}
+                handlePayBillCancelClick={handlePayBillCancelClick}
+                messageContextHolder={messageContextHolder}
+                viewData={viewData}
+                payBillForm={payBillForm}
+                handlePayBillSubmitClick={handlePayBillSubmitClick}
             />
         </>
     );

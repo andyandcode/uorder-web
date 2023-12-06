@@ -47,22 +47,6 @@ function Conainer(props) {
                 UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
             });
     };
-    const handleChefCountSubmitClick = (values) => {
-        editForm
-            .validateFields()
-            .then(() => {
-                messageApi
-                    .open(UseNotification.Message.InProgressMessage(t))
-                    .then(async () => {
-                        await dispatch(updateSystemSettingsAdmin(values));
-                        UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
-                    })
-                    .then(() => fetchData());
-            })
-            .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
-            });
-    };
 
     const containerProps = {
         ...props,
@@ -71,7 +55,6 @@ function Conainer(props) {
         editForm,
         settingsData,
         handleDomainSubmitClick,
-        handleChefCountSubmitClick,
         messageContextHolder,
     };
     return <MainView {...propsProvider(containerProps)} />;

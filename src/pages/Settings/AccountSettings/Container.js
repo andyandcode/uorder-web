@@ -49,7 +49,6 @@ function Conainer(props) {
         setOenChangePasswordModal(false);
     };
     const handleChangeSubmitClick = (data) => {
-        console.log(data);
         changePasswordForm
             .validateFields()
             .then(() => {

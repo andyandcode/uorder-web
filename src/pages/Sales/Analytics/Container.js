@@ -34,7 +34,6 @@ function Conainer(props) {
         const values = {
             'range-picker': [rangeValue[0].format('DD/MM/YYYY'), rangeValue[1].format('DD/MM/YYYY')],
         };
-        console.log('Received values of form: ', values);
     };
 
     const containerProps = {

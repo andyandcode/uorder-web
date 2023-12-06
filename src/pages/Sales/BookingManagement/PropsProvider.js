@@ -21,6 +21,11 @@ export default function propsProvider(props) {
         handlePrintClick,
         openBillQuickViewModal,
         componentRef,
+        openPayBillModal,
+        handlePayBillCancelClick,
+        messageContextHolder,
+        handlePayBillSubmitClick,
+        payBillForm,
     } = props;
     return {
         history,
@@ -44,5 +49,10 @@ export default function propsProvider(props) {
         handlePrintClick,
         openBillQuickViewModal,
         componentRef,
+        openPayBillModal,
+        handlePayBillCancelClick,
+        messageContextHolder,
+        handlePayBillSubmitClick,
+        payBillForm,
     };
 }

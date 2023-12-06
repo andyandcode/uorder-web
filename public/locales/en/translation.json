@@ -39,12 +39,6 @@
             "desc_tooltip": "Short description of the {{target}}.",
             "price": "Price",
             "price_tooltip": "Price of the dish.",
-            "completion_time": "Completion time (minutes)",
-            "completion_time_tooltip": "Estimated dish completion time is calculated in minutes.",
-            "qty_per_day": "Quantity/day",
-            "qty_per_day_tooltip": "Estimated number of dishes produced per day.",
-            "upload_medias": "Image of the dish",
-            "upload_medias_is_required": "Please upload at least 1 image!",
             "qr_code": "QR code",
             "table": "Table",
             "table_tooltip": "",
@@ -61,11 +55,15 @@
             "form_edit_title": "Edit {{target}}",
             "form_view_title": "View {{target}}",
             "form_change_password_title": "Change password",
+            "form_pay_bill_title": "Pay bill",
             "active_log_title": "Active log",
+            "upload_image": "Image of dish",
             "subtotal": "Subtotal",
             "discount": "Discount",
             "username": "Username",
+            "username_placeholder": "Enter username here",
             "pwd": "Password",
+            "pwd_placeholder": "Enter password here",
             "old_password": "Old password",
             "new_password": "New password",
             "re_new_password": "Comform new password",
@@ -141,18 +139,19 @@
                     "total_order_completed": "Orders Completed"
                 }
             },
-            "login": { "title": "Admin Panel", "sub_title": "Online ordering management platform" },
-            "order": {
-                "titel": "Order Information",
+            "booking": {
+                "current_booking": "Current booking",
+                "title": "Booking Information",
                 "payment_details": "Payment Details",
                 "no_code": "No codes available",
                 "discount_title": "Discount",
-                "payment_method_title": "Select payment method"
+                "payment_method_title": "Select payment method",
+                "select_menu": "Select menu",
+                "select_code": "Save using codes"
             },
+            "login": { "title": "Admin Panel", "sub_title": "Online ordering management platform" },
             "tracker": {
                 "title": "Tracking",
-                "completed_note": "Booking has been completed. (If you have not received your booking, please contact staff)",
-                "in_progess_note": "Expected completion later:",
                 "booking_overview": "Booking Overview",
                 "booking_details": "Booking Details",
                 "booking_summary": "Booking Summary",
@@ -161,12 +160,15 @@
                 "booking_successfully_subtitle": "You can re-scan this code to check booking information.",
                 "booking_at": "Booked at:",
                 "booking_status": "Booking status:",
-                "timeline": "Timeline",
                 "404_title": "Invalid request!",
                 "404_subtitle": "Sorry, something went wrong!"
             }
         },
         "notification": {
+            "upload": {
+                "must_be_image": "You can only upload JPG/PNG file!",
+                "must_smaller_than": "Image must smaller than 2MB!"
+            },
             "account_quick_access": {
                 "title": "Do you wish to end the current session?",
                 "message": "The current login details on this device will be deleted after this operation. The next time, you may still log in."
@@ -238,10 +240,6 @@
                 "not_have_domain_warning": "Warning: Add a domain to display the qr code to scan and order.",
                 "not_have_domain_alert": "This table does not have a qr code to scan. Please add domain in system settings."
             },
-            "antd_dragger": {
-                "text": "Click or drag file to this area to upload",
-                "hint": "Support for a single or bulk upload. Strictly prohibited from uploading banned files. (Max: 8)"
-            },
             "table": {
                 "empty_data": "No Data",
                 "trigger_desc": "Click to sort descending",
@@ -277,7 +275,9 @@
                 "login": "Login",
                 "add_to_card": "Add",
                 "order": "Order",
-                "call_staff": "Call Staff"
+                "call_staff": "Call Staff",
+                "change_pasword": "Change Password",
+                "upload": "Upload"
             },
             "cart_navbar": { "items": "items" }
         }

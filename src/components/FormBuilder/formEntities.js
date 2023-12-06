@@ -302,11 +302,11 @@ const CoverPhoto = ({ form, defaultFile }) => {
     const beforeUpload = (file) => {
         const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
         if (!isJpgOrPng) {
-            message.error('You can only upload JPG/PNG file!');
+            message.error(t('main.notification.upload.must_be_image'));
         }
         const isLt2M = file.size / 1024 / 1024 < 2;
         if (!isLt2M) {
-            message.error('Image must smaller than 2MB!');
+            message.error(t('main.notification.upload.must_smaller_than'));
         }
         return isJpgOrPng && isLt2M;
     };
@@ -332,14 +332,14 @@ const CoverPhoto = ({ form, defaultFile }) => {
                     marginTop: 8,
                 }}
             >
-                Upload
+                {t('main.components.button.upload')}
             </div>
         </div>
     );
     return (
         <>
             <ConfigProvider direction='ltr'>
-                <Form.Item name='cover' label={t('main.entities.upload_medias')} className={'custom_input'}>
+                <Form.Item name='cover' label={t('main.entities.upload_image')} className={'custom_input'}>
                     <Upload
                         name='image'
                         listType='picture-card'
@@ -773,7 +773,7 @@ const Username = () => {
             >
                 <Input
                     allowClear
-                    placeholder='Enter your username'
+                    placeholder={t('main.entities.username_placeholder')}
                     prefix={<UserOutlined className='site-form-item-icon' />}
                 />
             </Form.Item>
@@ -818,7 +818,7 @@ const Password = () => {
                     },
                 ]}
             >
-                <Input.Password allowClear prefix={<LockOutlined />} />
+                <Input.Password allowClear prefix={<LockOutlined />} placeholder={t('main.entities.pwd_placeholder')} />
             </Form.Item>
         </>
     );
@@ -1074,7 +1074,7 @@ const OrderDiscountSelect = ({ t, handleSelectDiscountClick }) => {
                 <Col>
                     <TagFilled style={{ width: 24, marginRight: 8, marginLeft: 6, color: '#f25022' }} />
                 </Col>
-                <Col>{'Save using codes'}</Col>
+                <Col>{t('main.pages.booking.select_code')}</Col>
                 <Col>
                     <Form.Item
                         name={'discount'}

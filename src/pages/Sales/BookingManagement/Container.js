@@ -1,4 +1,5 @@
 import * as signalR from '@microsoft/signalr';
+import { Form, message } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
@@ -17,11 +18,13 @@ function Conainer(props) {
     const [cardLoading, setCardLoading] = useState(true);
     const [loadingTable, setLoadingTable] = useState(true);
     const [openViewModel, setOpenViewModel] = useState(false);
+    const [openPayBillModal, setOpenPayBillModal] = useState(false);
     const [viewData, setViewData] = useState();
     const columns = TableColumns.OrderColumns(t);
     const [openBillQuickViewModal, setOpenBillQuickViewModal] = useState(false);
-
+    const [payBillForm] = Form.useForm();
     const [orderNotification, setOrderNotification] = useState('');
+    const [messageApi, messageContextHolder] = message.useMessage();
 
     useEffect(() => {
         const connection = new signalR.HubConnectionBuilder()
@@ -34,11 +37,9 @@ function Conainer(props) {
             .catch((err) => console.error('SignalR Connection Error: ', err));
 
         connection.on('ReceiveMessage', (message) => {
-            console.log(message);
             fetchData();
         });
         connection.on('ReceiveOrderNotification', (bookingId) => {
-            console.log(bookingId);
             fetchData();
         });
 
@@ -70,6 +71,7 @@ function Conainer(props) {
     }, [dispatch]);
 
     const handlePrintBillClick = (data) => {
+        setViewData(data);
         setOpenBillQuickViewModal(true);
         setTimeout(() => {
             setOpenBillQuickViewModal(false);
@@ -82,7 +84,11 @@ function Conainer(props) {
         setOpenViewModel(true);
     };
 
-    const handlePayBillClick = (data) => {};
+    const handlePayBillClick = (data) => {
+        setOpenViewModel(false);
+        setViewData(data);
+        setOpenPayBillModal(true);
+    };
 
     const handleCompleteOrderClick = async (data) => {
         await dispatch(
@@ -124,7 +130,7 @@ function Conainer(props) {
             .then(() => fetchData());
     };
     const componentRef = useRef();
-    const handlePrintClick = () => {
+    const handlePrintClick = (data) => {
         setOpenViewModel(false);
         setOpenBillQuickViewModal(true);
         setTimeout(() => {
@@ -136,6 +142,56 @@ function Conainer(props) {
         content: () => componentRef.current,
         documentTitle: viewData && viewData.id,
     });
+
+    const handlePayBillSubmitClick = (data) => {
+        payBillForm
+            .validateFields()
+            .then(() => {
+                messageApi
+                    .open(UseNotification.Message.InProgressMessage(t))
+                    .then(async () => {
+                        await dispatch(
+                            updateOrderStatusAdmin([
+                                {
+                                    path: '/MoneyChange',
+                                    op: 'replace',
+                                    value: data.moneyChange,
+                                    id: data.id,
+                                },
+                                {
+                                    path: '/MoneyReceive',
+                                    op: 'replace',
+                                    value: parseInt(data.moneyReceive.toString().replace(/[^0-9]/g, '')),
+                                    id: data.id,
+                                },
+                                {
+                                    path: '/PaymentMethod',
+                                    op: 'replace',
+                                    value: data.paymentMethod,
+                                    id: data.id,
+                                },
+                                {
+                                    path: '/PaymentStatus',
+                                    op: 'replace',
+                                    value: data.paymentStatus,
+                                    id: data.id,
+                                },
+                            ]),
+                        ).then((result) => {
+                            UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
+                            setOpenPayBillModal(false);
+                            fetchData();
+                        });
+                    })
+                    .then(() => payBillForm.resetFields());
+            })
+            .catch(() => {
+                UseNotification.Message.FinishFailMessage(t, UserAction.CreateFinishFail);
+            });
+    };
+    const handlePayBillCancelClick = (data) => {
+        setOpenPayBillModal(false);
+    };
 
     const containerProps = {
         ...props,
@@ -158,6 +214,11 @@ function Conainer(props) {
         handleChangeOrderStatus,
         openBillQuickViewModal,
         componentRef,
+        openPayBillModal,
+        handlePayBillCancelClick,
+        handlePayBillSubmitClick,
+        payBillForm,
+        messageContextHolder,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }
