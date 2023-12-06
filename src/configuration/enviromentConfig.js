@@ -1,9 +1,9 @@
 const enviromentConfig = {
     development: {
-        endPoint: '',
+        endPoint: 'https://localhost:7297/',
     },
     production: {
-        endPoint: '',
+        endPoint: 'https://uorder-web-admin.vercel.app/',
     },
 };
 
