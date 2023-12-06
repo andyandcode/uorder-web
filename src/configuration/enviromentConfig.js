@@ -3,7 +3,7 @@ const enviromentConfig = {
         endPoint: 'https://localhost:7297/',
     },
     production: {
-        endPoint: 'https://uorder-web-admin.vercel.app/',
+        endPoint: 'http://oilliever-001-site1.atempurl.com/',
     },
 };
 
