@@ -75,7 +75,36 @@ const ActionColumn = ({
                     />
                 </>
             );
-
+        case TableColumns.TableSwitch.DiscountCodeTable:
+            return (
+                <>
+                    <Column
+                        title={t('main.components.table.action_column')}
+                        key='action'
+                        align='center'
+                        render={(record) => (
+                            <Space>
+                                <Dropdown.Button
+                                    type='text'
+                                    dropdownRender={() =>
+                                        menuSelection({
+                                            t,
+                                            record,
+                                            handleActionButtonDeleteClick,
+                                            handleActionButtonTurnOffClick,
+                                            handleActionButtonTurnOnClick,
+                                        })
+                                    }
+                                    trigger={['click']}
+                                    onClick={() => handleActionButtonViewClick(record)}
+                                >
+                                    {t('main.components.button.view')}
+                                </Dropdown.Button>
+                            </Space>
+                        )}
+                    />
+                </>
+            );
         default:
             return (
                 <>

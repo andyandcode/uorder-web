@@ -1,6 +1,6 @@
 import AccountManagement from '../pages/AccountManagement';
-import ActiveLogManagement from '../pages/ActiveLog';
 import Login from '../pages/Authentication/Login';
+import DiscountCodeManagement from '../pages/DiscountCodeManagement';
 import Home from '../pages/Home';
 import DishManagement from '../pages/Manage/DishManagement';
 import MenuManagement from '../pages/Manage/MenuManagement';
@@ -31,8 +31,7 @@ const orderManagementUrl = `${salesUrl}/order-management`;
 const analyticsUrl = `${salesUrl}/analytics`;
 
 const accountManagementUrl = `${adminUrl}/account-management`;
-
-const activeLogManagementUrl = `${adminUrl}/active-log`;
+const discountCodeManagementUrl = `${adminUrl}/discount-code-management`;
 
 const settingUrl = `${adminUrl}/settings`;
 const accountSettingUrl = `${settingUrl}/account-settings`;
@@ -57,7 +56,7 @@ export const routeList = [
     { path: orderManagementUrl, name: orderManagementUrl, component: OrderManagement },
     { path: analyticsUrl, name: analyticsUrl, component: Analytics },
     { path: accountManagementUrl, name: accountManagementUrl, component: AccountManagement },
-    { path: activeLogManagementUrl, name: activeLogManagementUrl, component: ActiveLogManagement },
+    { path: discountCodeManagementUrl, name: discountCodeManagementUrl, component: DiscountCodeManagement },
     { path: accountSettingUrl, name: accountSettingUrl, component: AccountSettings },
     { path: systemSettingUrl, name: systemSettingUrl, component: SystemSettings },
 ];
@@ -97,5 +96,5 @@ export const rootKeys = {
     clientOrderTrackerUrl,
     clientHomeRoorUrl,
     clientOrderSuccessfulUrl,
-    activeLogManagementUrl,
+    discountCodeManagementUrl,
 };

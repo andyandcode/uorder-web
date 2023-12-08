@@ -17,6 +17,7 @@
                 "analytics": "分析"
             },
             "account": "帐户管理",
+            "discount_code": "折扣",
             "settings": {
                 "label": "设置",
                 "system": "系统设置",
@@ -60,6 +61,7 @@
             "upload_image": "菜品图片",
             "subtotal": "小计",
             "discount": "折扣",
+            "discount_tooltip": "将订单价格降低特定金额。",
             "username": "用户名",
             "username_placeholder": "在此输入用户名",
             "pwd": "密码",
@@ -102,10 +104,8 @@
                 "creator": "创作者",
                 "staff": "职员"
             },
-            "chef_count": "厨师",
-            "chef_count_tooltip": "厨师人数",
             "domain": "域名",
-            "domain_tooltip": "网站域名扫描订购。 ",
+            "domain_tooltip": "扫描订购网站域名。 ",
             "order_discount": "折扣",
             "order_subtotal": "小计",
             "order_total": "全部的",
@@ -113,7 +113,32 @@
             "order_note_placeholder": "订单备注",
             "money_change": "改变",
             "money_receive": "收到",
-            "staff": "职员"
+            "staff": "职员",
+            "code": "代码",
+            "start_date": "开始日期",
+            "end_date": "结束日期",
+            "code_tooltip": "可选折扣代码。",
+            "percentage": "百分比",
+            "percentage_mess": "{{percentage}} 折扣{{order}}, 最大折扣 {{maximum}}, 最低折扣 {{minimum}}。",
+            "percentage_mess_for_order": " 订单来自 {{amount}}",
+            "percentage_tooltip": "将订单价格降低可选百分比。",
+            "max_discount_amount": "最大折扣金额",
+            "max_discount_amount_tooltip": "此代码可以降低的最高价格。",
+            "min_discount_amount": "最低折扣金额",
+            "min_discount_amount_tooltip": "此代码可以降低的最低价格。",
+            "min_order_amount_required": "最小订单量",
+            "min_order_amount_required_tooltip": "使用此折扣代码的最低订单价值。",
+            "expiry_date": "到期日",
+            "expiry_date_expired": "已到期",
+            "expiry_date_has_not_happened_yet": "开始于 {{date}} {{plural}}",
+            "expiry_date_remaining": "{{date}} {{plural}} 其余的",
+            "expiry_date_tooltip": "可以使用该折扣代码的期限。",
+            "applies_to_all_products": "适用于所有产品",
+            "applies_to_products": "适用于菜肴",
+            "do_not_apply": "请勿应用",
+            "applies_to_all_products_tooltip": "适用于所有产品或可选产品。",
+            "use_percentage": "使用百分比",
+            "use_percentage_tooltip": "使用按特定值折扣或按百分比值折扣的方法。"
         },
         "pages": {
             "analytics": {
@@ -234,7 +259,14 @@
                 "table": "桌子",
                 "order": "命令",
                 "booking": "预订",
-                "account": "帐户"
+                "account": "帐户",
+                "discount_code": "优惠码"
+            },
+            "plural": {
+                "day": "天",
+                "days": "天",
+                "item": "物品",
+                "items": "项目"
             }
         },
         "utilities": {},
@@ -280,7 +312,8 @@
                 "order": "命令",
                 "call_staff": "致电工作人员",
                 "change_pasword": "更改密码",
-                "upload": "上传"
+                "upload": "上传",
+                "view": "看法"
             },
             "cart_navbar": {
                 "items": "项目"

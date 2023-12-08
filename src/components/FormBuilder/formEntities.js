@@ -14,6 +14,7 @@ import {
     Button,
     Col,
     ConfigProvider,
+    DatePicker,
     Form,
     Input,
     InputNumber,
@@ -1249,6 +1250,271 @@ const OrderTable = ({ data }) => {
         </>
     );
 };
+
+const DiscountCode = ({ t }) => {
+    return (
+        <>
+            <Form.Item
+                name='code'
+                label={t('main.entities.code')}
+                tooltip={t('main.entities.code_tooltip')}
+                rules={[
+                    {
+                        required: true,
+                        message: t('main.entities.is_required'),
+                    },
+                ]}
+            >
+                <Input allowClear />
+            </Form.Item>
+        </>
+    );
+};
+
+const Discount = ({ t, required }) => {
+    return (
+        <>
+            <Form.Item
+                name='discount'
+                label={t('main.entities.discount')}
+                tooltip={t('main.entities.discount_tooltip')}
+                rules={[
+                    {
+                        required: !required,
+                        message: t('main.entities.is_required'),
+                    },
+                ]}
+                style={{ display: required ? 'none' : '' }}
+            >
+                <NumericFormat
+                    allowClear
+                    suffix=' VND'
+                    thousandSeparator=','
+                    customInput={Input}
+                    allowLeadingZeros={false}
+                    isAllowed={(values) => {
+                        const { formattedValue, floatValue } = values;
+                        return formattedValue === '' || floatValue <= 1000000000;
+                    }}
+                    style={{
+                        width: 250,
+                    }}
+                />
+            </Form.Item>
+        </>
+    );
+};
+
+const DiscountPercentage = ({ t, required }) => {
+    return (
+        <>
+            <Form.Item
+                name='percentage'
+                label={t('main.entities.percentage')}
+                tooltip={t('main.entities.percentage_tooltip')}
+                rules={[
+                    {
+                        required: required,
+                        message: t('main.entities.is_required'),
+                    },
+                ]}
+                style={{ display: !required ? 'none' : '' }}
+            >
+                <NumericFormat
+                    allowClear
+                    suffix=' %'
+                    thousandSeparator=','
+                    customInput={Input}
+                    allowLeadingZeros={false}
+                    isAllowed={(values) => {
+                        const { formattedValue, floatValue } = values;
+                        return formattedValue === '' || floatValue <= 100;
+                    }}
+                    style={{
+                        width: 100,
+                    }}
+                />
+            </Form.Item>
+        </>
+    );
+};
+
+const DiscountMaxDiscountAmount = ({ t, required }) => {
+    return (
+        <>
+            <Form.Item
+                name='maxDiscountAmount'
+                label={t('main.entities.max_discount_amount')}
+                tooltip={t('main.entities.max_discount_amount_tooltip')}
+                rules={[
+                    {
+                        required: required,
+                        message: t('main.entities.is_required'),
+                    },
+                ]}
+                style={{ display: !required ? 'none' : '' }}
+            >
+                <NumericFormat
+                    allowClear
+                    suffix=' VND'
+                    thousandSeparator=','
+                    customInput={Input}
+                    allowLeadingZeros={false}
+                    isAllowed={(values) => {
+                        const { formattedValue, floatValue } = values;
+                        return formattedValue === '' || floatValue <= 1000000000;
+                    }}
+                    style={{
+                        width: 250,
+                    }}
+                />
+            </Form.Item>
+        </>
+    );
+};
+
+const DiscountMinDiscountAmount = ({ t, required }) => {
+    return (
+        <>
+            <Form.Item
+                name='minDiscountAmount'
+                label={t('main.entities.min_discount_amount')}
+                tooltip={t('main.entities.min_discount_amount_tooltip')}
+                rules={[
+                    {
+                        required: required,
+                        message: t('main.entities.is_required'),
+                    },
+                ]}
+                style={{ display: !required ? 'none' : '' }}
+            >
+                <NumericFormat
+                    allowClear
+                    suffix=' VND'
+                    thousandSeparator=','
+                    customInput={Input}
+                    allowLeadingZeros={false}
+                    isAllowed={(values) => {
+                        const { formattedValue, floatValue } = values;
+                        return formattedValue === '' || floatValue <= 1000000000;
+                    }}
+                    style={{
+                        width: 250,
+                    }}
+                />
+            </Form.Item>
+        </>
+    );
+};
+
+const DiscountMinOrderAmountRequired = ({ t }) => {
+    return (
+        <>
+            <Form.Item
+                name='minOrderAmountRequired'
+                label={t('main.entities.min_order_amount_required')}
+                tooltip={t('main.entities.min_order_amount_required_tooltip')}
+            >
+                <NumericFormat
+                    allowClear
+                    suffix=' VND'
+                    thousandSeparator=','
+                    customInput={Input}
+                    allowLeadingZeros={false}
+                    isAllowed={(values) => {
+                        const { formattedValue, floatValue } = values;
+                        return formattedValue === '' || floatValue <= 1000000000;
+                    }}
+                    style={{
+                        width: 250,
+                    }}
+                />
+            </Form.Item>
+        </>
+    );
+};
+
+const DiscountExpiryDate = ({ t }) => {
+    return (
+        <>
+            <Form.Item
+                name='expiryDate'
+                label={t('main.entities.expiry_date')}
+                tooltip={t('main.entities.expiry_date_tooltip')}
+                rules={[
+                    {
+                        type: 'array',
+                    },
+                ]}
+            >
+                <DatePicker.RangePicker />
+            </Form.Item>
+        </>
+    );
+};
+
+const DiscountAppliesToAllProducts = ({ t }) => {
+    return (
+        <>
+            <Form.Item
+                name='appliesToAllProducts'
+                label={t('main.entities.applies_to_all_products')}
+                valuePropName='checked'
+            >
+                <Switch checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} />
+            </Form.Item>
+        </>
+    );
+};
+
+const DiscountApplicableProductIds = ({ required }) => {
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const [dishData, setDishData] = useState([]);
+    useEffect(() => {
+        dispatch(getListDishAdmin()).then((result) => {
+            setDishData(Utils.getValues(result, 'payload', []));
+        });
+    }, [dispatch]);
+
+    return (
+        <>
+            <ConfigProvider direction='ltr'>
+                <Form.Item
+                    name='applicableProductIds'
+                    label={t('main.entities.dishes')}
+                    className={'custom_select_in_menu'}
+                    rules={[
+                        {
+                            required: !required,
+                            message: t('main.entities.is_required'),
+                        },
+                    ]}
+                    style={{ display: required ? 'none' : '' }}
+                >
+                    <Select
+                        mode='multiple'
+                        style={{
+                            width: '100%',
+                        }}
+                        onChange={() => {}}
+                        optionLabelProp='label'
+                    >
+                        {dishData.map((item) => (
+                            <Select.Option value={item.id} label={item.name} key={item.key}>
+                                <Space>
+                                    {EnumRender.DishTypeWithActievStatus(t, item.type, item.isActive)}
+                                    {item.name}
+                                </Space>
+                            </Select.Option>
+                        ))}
+                    </Select>
+                </Form.Item>
+            </ConfigProvider>
+        </>
+    );
+};
+
 export const FormEntities = {
     Id,
     HiddenId,
@@ -1296,4 +1562,13 @@ export const FormEntities = {
     NewPassword,
     ReNewPassword,
     HiddenIdHaveInput,
+    DiscountCode,
+    Discount,
+    DiscountPercentage,
+    DiscountMaxDiscountAmount,
+    DiscountMinOrderAmountRequired,
+    DiscountExpiryDate,
+    DiscountAppliesToAllProducts,
+    DiscountMinDiscountAmount,
+    DiscountApplicableProductIds,
 };

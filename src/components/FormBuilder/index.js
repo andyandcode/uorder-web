@@ -1,5 +1,5 @@
-import { CreditCardOutlined, PrinterOutlined } from '@ant-design/icons';
-import { Button, Col, Divider, Form, Input, Row, Select, Space, Typography } from 'antd';
+import { CheckOutlined, CloseOutlined, CreditCardOutlined, PrinterOutlined } from '@ant-design/icons';
+import { Button, Col, Descriptions, Divider, Form, Input, Row, Select, Space, Switch, Typography } from 'antd';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +9,7 @@ import { getListDishAdmin } from '../../pages/Manage/DishManagement/Slice';
 import Utils from '../../utilities';
 import { ButtonLocated } from '../ButtonLocated';
 import { CurrencyFormat } from '../CurrencyFormat';
-import { EnumRender } from '../EnumRender';
+import { DateType, EnumRender } from '../EnumRender';
 import { SelectLanguage } from '../UseLanguages';
 import { FormEntities } from './formEntities';
 
@@ -1085,6 +1085,259 @@ const PayBillForm = ({ viewData, form, handleButtonCancel, handleButtonSubmit })
         </>
     );
 };
+
+const CreateNewDiscountCodeForm = ({ t, form, handleButtonCancel, handleButtonSubmit }) => {
+    const [usePercentage, setUsePercentage] = useState(false);
+    const [appliesToAll, setAppliesToAll] = useState(true);
+    return (
+        <>
+            <Form
+                form={form}
+                layout='horizontal'
+                name='form_create_in_modal'
+                align='end'
+                initialValues={{ isActive: true, appliesToAllProducts: appliesToAll }}
+            >
+                <Row gutter={[52]}>
+                    <Col span={12}>
+                        <FormEntities.DiscountCode t={t} />
+                        <FormEntities.DiscountMinOrderAmountRequired t={t} />
+                        <FormEntities.DiscountExpiryDate t={t} />
+                        <FormEntities.Discount t={t} required={usePercentage} />
+
+                        <Form.Item
+                            name='usePercentage'
+                            valuePropName='checked'
+                            label={t('main.entities.use_percentage')}
+                            tooltip={t('main.entities.use_percentage_tooltip')}
+                        >
+                            <Switch
+                                defaultChecked={usePercentage}
+                                checkedChildren={<CheckOutlined />}
+                                unCheckedChildren={<CloseOutlined />}
+                                onChange={(e) => setUsePercentage(e)}
+                            />
+                        </Form.Item>
+                        <FormEntities.DiscountPercentage t={t} required={usePercentage} />
+                        <FormEntities.DiscountMinDiscountAmount t={t} required={usePercentage} />
+                        <FormEntities.DiscountMaxDiscountAmount t={t} required={usePercentage} />
+                    </Col>
+                    <Col span={12}>
+                        <FormEntities.ActiveStatus />
+                        <Form.Item
+                            name='appliesToAllProducts'
+                            valuePropName='checked'
+                            label={t('main.entities.applies_to_all_products')}
+                            tooltip={t('main.entities.applies_to_all_products_tooltip')}
+                        >
+                            <Switch
+                                defaultChecked={appliesToAll}
+                                checkedChildren={<CheckOutlined />}
+                                unCheckedChildren={<CloseOutlined />}
+                                onChange={(e) => setAppliesToAll(e)}
+                            />
+                        </Form.Item>
+
+                        <FormEntities.DiscountApplicableProductIds required={appliesToAll} />
+                    </Col>
+                </Row>
+
+                <Space>
+                    <ButtonLocated.ResetButton />
+                    <ButtonLocated.CancelButton handleButton={handleButtonCancel} />
+                    <ButtonLocated.CreateButton form={form} handleButton={handleButtonSubmit} />
+                </Space>
+            </Form>
+        </>
+    );
+};
+const ViewDiscountCodeForm = ({ viewData, t }) => {
+    const applyToAllSwitch = (appliesToAll) => {
+        if (appliesToAll) {
+            return [
+                {
+                    key: '10',
+                    label: t('main.entities.applies_to_products'),
+                    children: t('main.entities.applies_to_all_products'),
+                },
+            ];
+        }
+        return [
+            {
+                key: '10',
+                label: t('main.entities.applies_to_products'),
+                children:
+                    viewData.applicableProductIds != null &&
+                    viewData.applicableProductIds.map((i) => (
+                        <>
+                            {i.name}
+                            <br />
+                        </>
+                    )),
+            },
+        ];
+    };
+    const items = [
+        {
+            key: '1',
+            label: t('main.entities.id'),
+            children: viewData.id,
+            span: 1,
+        },
+        {
+            key: '2',
+            label: t('main.entities.created_at'),
+            children: moment(viewData.createdAt).format('hh:mm:ss DD/MM/YYYY'),
+            span: 2,
+        },
+        {
+            key: '3',
+            label: t('main.entities.code'),
+            children: viewData.code,
+        },
+        {
+            key: '4',
+            label: t('main.entities.start_date'),
+            children: EnumRender.CalculatorTime(t, viewData.startDate, DateType.StartDateKey),
+        },
+        {
+            key: '5',
+            label: t('main.entities.end_date'),
+            children: EnumRender.CalculatorTime(t, viewData.endDate, DateType.EndDateKey),
+        },
+        {
+            key: '6',
+            label: t('main.entities.active_status.label'),
+            children: EnumRender.ActiveStatus(t, viewData.isActive),
+            span: 3,
+        },
+        {
+            key: '7',
+            label: t('main.entities.discount'),
+            children:
+                viewData.discount > 0 ? (
+                    <CurrencyFormat.Minimal value={viewData.discount} />
+                ) : (
+                    <Typography.Text type='secondary'>{t('main.entities.do_not_apply')}</Typography.Text>
+                ),
+        },
+        {
+            key: '8',
+            label: t('main.entities.min_order_amount_required'),
+            children:
+                viewData.minOrderAmountRequired > 0 ? (
+                    <CurrencyFormat.Minimal value={viewData.minOrderAmountRequired} />
+                ) : (
+                    <Typography.Text type='secondary'>{t('main.entities.do_not_apply')}</Typography.Text>
+                ),
+            span: 2,
+        },
+        {
+            key: '9',
+            label: t('main.entities.percentage'),
+            children:
+                viewData.percentage > 0 ? (
+                    `${viewData.percentage}%`
+                ) : (
+                    <Typography.Text type='secondary'>{t('main.entities.do_not_apply')}</Typography.Text>
+                ),
+        },
+        {
+            key: '10',
+            label: t('main.entities.min_discount_amount'),
+            children:
+                viewData.minDiscountAmount > 0 ? (
+                    <CurrencyFormat.Minimal value={viewData.minDiscountAmount} />
+                ) : (
+                    <Typography.Text type='secondary'>{t('main.entities.do_not_apply')}</Typography.Text>
+                ),
+        },
+        {
+            key: '11',
+            label: t('main.entities.max_discount_amount'),
+            children:
+                viewData.maxDiscountAmount > 0 ? (
+                    <CurrencyFormat.Minimal value={viewData.maxDiscountAmount} />
+                ) : (
+                    <Typography.Text type='secondary'>{t('main.entities.do_not_apply')}</Typography.Text>
+                ),
+        },
+        {
+            key: '12',
+            label: t('main.entities.applies_to_products'),
+            children: viewData.appliesToAllProducts
+                ? t('main.entities.applies_to_all_products')
+                : viewData.applicableProductIds.map((i) => (
+                      <>
+                          {i.name}
+                          <br />
+                      </>
+                  )),
+        },
+    ];
+    return (
+        <>
+            <Descriptions title='' bordered items={items} />
+            {/* <Row style={{ marginTop: 20 }}>
+                <Col flex='auto'>
+                    <Typography.Title level={4}>
+                        {moment(viewData.createdAt).format('hh:mm:ss DD/MM/YYYY')}
+                    </Typography.Title>
+                    <Typography.Text type='secondary'>
+                        {t('main.entities.id')}: {viewData.id}
+                    </Typography.Text>
+                </Col>
+                <Col flex='auto' style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                    <Typography.Title level={4}>{viewData.code}</Typography.Title>
+                    <Typography.Text type='secondary'>{EnumRender.ActiveStatus(t, viewData.isActive)}</Typography.Text>
+                </Col>
+            </Row>
+            {viewData.startDate && (
+                <Typography.Title level={5}>
+                    {moment(viewData.startDate).format('DD/MM/YYYY')} - {moment(viewData.enđate).format('DD/MM/YYYY')}
+                </Typography.Title>
+            )}
+
+            {viewData.discount > 0 && (
+                <Typography.Text type='' style={{ width: '100%' }}>
+                    {t('main.entities.discount')}: {<CurrencyFormat.Minimal value={viewData.discount} />}
+                </Typography.Text>
+            )}
+            {viewData.percentage > 0 && (
+                <>
+                    <Space direction='vertical' style={{ width: '100%' }}>
+                        <Typography.Text type=''>
+                            {t('main.entities.percentage')}: {viewData.percentage}%
+                        </Typography.Text>
+                        <Typography.Text type=''>
+                            {t('main.entities.min_discount_amount')}:{' '}
+                            {<CurrencyFormat.Minimal value={viewData.minDiscountAmount} />}
+                        </Typography.Text>
+                        <Typography.Text type=''>
+                            {t('main.entities.max_discount_amount')}:{' '}
+                            {<CurrencyFormat.Minimal value={viewData.maxDiscountAmount} />}
+                        </Typography.Text>
+                    </Space>
+                </>
+            )}
+            {viewData.appliesToAllProducts && (
+                <>
+                    <Typography.Text type=''>{t('main.entities.applies_to_all_products')}</Typography.Text>
+                </>
+            )}
+            {viewData.applicableProductIds !== null && (
+                <>
+                    <Typography.Text type=''>
+                        {t('main.entities.applies_to_products')}:{' '}
+                        {viewData.applicableProductIds.map((i) => (
+                            <span>{i.name},</span>
+                        ))}
+                    </Typography.Text>
+                </>
+            )} */}
+        </>
+    );
+};
 export const FormBuilder = {
     CreateNewDishForm,
     EditDishForm,
@@ -1104,4 +1357,6 @@ export const FormBuilder = {
     AccountSettingsForm,
     ChangePasswordForm,
     PayBillForm,
+    CreateNewDiscountCodeForm,
+    ViewDiscountCodeForm,
 };

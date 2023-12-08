@@ -17,6 +17,7 @@
                 "analytics": "해석학"
             },
             "account": "계정 관리",
+            "discount_code": "할인",
             "settings": {
                 "label": "설정",
                 "system": "환경 설정",
@@ -60,6 +61,7 @@
             "upload_image": "요리 이미지",
             "subtotal": "소계",
             "discount": "할인",
+            "discount_tooltip": "특정 금액만큼 주문 가격을 인하합니다.",
             "username": "사용자 이름",
             "username_placeholder": "여기에 사용자 이름을 입력하세요",
             "pwd": "비밀번호",
@@ -102,8 +104,6 @@
                 "creator": "창조자",
                 "staff": "직원"
             },
-            "chef_count": "요리사",
-            "chef_count_tooltip": "요리사의 수",
             "domain": "도메인 이름",
             "domain_tooltip": "주문할 웹사이트 스캔의 도메인 이름입니다. ",
             "order_discount": "할인",
@@ -113,7 +113,32 @@
             "order_note_placeholder": "주문 메모",
             "money_change": "변화",
             "money_receive": "받다",
-            "staff": "직원"
+            "staff": "직원",
+            "code": "암호",
+            "start_date": "시작일",
+            "end_date": "종료일",
+            "code_tooltip": "선택적 할인 코드. ",
+            "percentage": "백분율",
+            "percentage_mess": "{{percentage}} 할인{{order}}, 최대 할인 {{maximum}}, 최소 할인 {{minimum}}.",
+            "percentage_mess_for_order": " 주문에 대한 {{amount}}",
+            "percentage_tooltip": "선택적 비율만큼 주문 가격을 낮추십시오.",
+            "max_discount_amount": "최대 할인 금액",
+            "max_discount_amount_tooltip": "이 코드가 줄일 수 있는 최대 가격입니다.",
+            "min_discount_amount": "최소 할인 금액",
+            "min_discount_amount_tooltip": "이 코드로 줄일 수 있는 최소 가격입니다.",
+            "min_order_amount_required": "최소 주문 금액",
+            "min_order_amount_required_tooltip": "이 할인 코드를 사용하기 위한 최소 주문 금액입니다.",
+            "expiry_date": "만료일",
+            "expiry_date_expired": "만료됨",
+            "expiry_date_has_not_happened_yet": "에서 시작 {{date}} {{plural}}",
+            "expiry_date_remaining": "{{date}} {{plural}} 남은",
+            "expiry_date_tooltip": "해당 할인코드를 사용할 수 있는 기간입니다.",
+            "applies_to_all_products": "모든 제품에 적용됩니다",
+            "applies_to_products": "요리에 적용",
+            "do_not_apply": "신청하지 않음",
+            "applies_to_all_products_tooltip": "모든 제품 또는 옵션 제품에 적용됩니다.",
+            "use_percentage": "사용 비율",
+            "use_percentage_tooltip": "특정 값에 의한 할인 방법이나 백분율 값에 의한 할인 방법을 사용하십시오."
         },
         "pages": {
             "analytics": {
@@ -234,7 +259,14 @@
                 "table": "테이블",
                 "order": "주문하다",
                 "booking": "예약",
-                "account": "계정"
+                "account": "계정",
+                "discount_code": "할인 코드"
+            },
+            "plural": {
+                "day": "낮",
+                "days": "날",
+                "item": "안건",
+                "items": "아이템"
             }
         },
         "utilities": {},
@@ -280,7 +312,8 @@
                 "order": "주문하다",
                 "call_staff": "직원에게 전화하기",
                 "change_pasword": "비밀번호 변경",
-                "upload": "업로드"
+                "upload": "업로드",
+                "view": "보다"
             },
             "cart_navbar": {
                 "items": "아이템"

@@ -8,6 +8,21 @@ const MenuClient = {
     },
 };
 
+const DiscountCodeClient = {
+    getAvailableCodes: (params) => {
+        const url = '/discount/getAvailableCodes';
+        return axiosInstance.get(url, params, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+    },
+    applyDiscountCode: (params) => {
+        const url = '/discount/applyDiscountCode';
+        return axiosInstance.get(url, params, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+    },
+};
+
 const BookingClient = {
     getBooking: (params) => {
         const url = `/booking/${params}`;
@@ -37,4 +52,4 @@ const BookingClient = {
     },
 };
 
-export { BookingClient, MenuClient };
+export { BookingClient, DiscountCodeClient, MenuClient };

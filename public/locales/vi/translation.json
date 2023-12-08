@@ -17,6 +17,7 @@
                 "analytics": "Phân tích&Thống kê"
             },
             "account": "Quản lý tài khoản",
+            "discount_code": "Giảm giá",
             "settings": {
                 "label": "Cài đặt",
                 "system": "Cài đặt hệ thống",
@@ -60,6 +61,7 @@
             "upload_image": "Ảnh món ăn",
             "subtotal": "Tổng phụ",
             "discount": "Giảm giá",
+            "discount_tooltip": "Giảm giá của đơn hàng theo mức giá chỉ định.",
             "username": "Tên đăng nhập",
             "username_placeholder": "Nhập tên đăng nhập tại đây",
             "pwd": "Mật khẩu",
@@ -102,8 +104,6 @@
                 "creator": "Quản lý nội dung",
                 "staff": "Nhân viên"
             },
-            "chef_count": "Đầu bếp",
-            "chef_count_tooltip": "Số lượng đầu bếp",
             "domain": "Tên miền",
             "domain_tooltip": "Tên miền của website để scan mã. (ví dụ: example.com)",
             "order_discount": "Giảm giá",
@@ -113,7 +113,32 @@
             "order_note_placeholder": "Ghi chú đơn hàng",
             "money_change": "Tiền thối",
             "money_receive": "TIền nhận",
-            "staff": "Nhân viên"
+            "staff": "Nhân viên",
+            "code": "Mã",
+            "start_date": "Ngày bắt đầu",
+            "end_date": "Ngày kết thúc",
+            "code_tooltip": "Mã tùy chọn. Ví dụ: Example",
+            "percentage": "Phần trăm giảm giá",
+            "percentage_mess": "Giảm {{percentage}}% {{order}}, giảm tối thiểu {{maximum}}, giảm tối đa {{minimum}}.",
+            "percentage_mess_for_order": " cho đơn hàng từ {{amount}}",
+            "percentage_tooltip": "Giảm giá cho đơn hàng theo phần trăm chỉ định.",
+            "max_discount_amount": "Giảm tối đa",
+            "max_discount_amount_tooltip": "Số tiền tối đa có thể giảm.",
+            "min_discount_amount": "Giảm tối thiểu",
+            "min_discount_amount_tooltip": "Số tiền tối thiểu có thể giảm.",
+            "min_order_amount_required": "Giá trị tối thiểu",
+            "min_order_amount_required_tooltip": "Giá trị đơn hàng tối thiếu cần đạt để áp dụng mã giảm giá.",
+            "expiry_date": "Thời gian hết hạn",
+            "expiry_date_expired": "Đã hết hạn",
+            "expiry_date_has_not_happened_yet": "Bắt đầu sau {{date}} {{plural}}",
+            "expiry_date_remaining": "Còn lại {{date}} {{plural}}",
+            "expiry_date_tooltip": "Khoảng thời gian có thể sử dụng được mã giảm giá này.",
+            "applies_to_all_products": "Áp dụng cho toàn bộ sản phẩm",
+            "applies_to_products": "Áp dụng cho món ăn",
+            "do_not_apply": "Không áp dụng",
+            "applies_to_all_products_tooltip": "Áp dụng cho toàn bộ sản phẩm hoặc sản phẩm chỉ định.",
+            "use_percentage": "Dùng phần trăm giảm giá",
+            "use_percentage_tooltip": "Dùng phương thức giảm giá theo tỉ lệ phần trăm."
         },
         "pages": {
             "analytics": {
@@ -231,7 +256,14 @@
                 "table": "bàn",
                 "order": "đơn hàng",
                 "booking": "đặt bàn",
-                "account": "tài khoản"
+                "account": "tài khoản",
+                "discount_code": "mã giảm giá"
+            },
+            "plural": {
+                "day": "ngày",
+                "days": "ngày",
+                "item": "món",
+                "items": "món"
             }
         },
         "utilities": {},
@@ -277,7 +309,8 @@
                 "order": "Đặt bàn",
                 "call_staff": "Gọi nhân viên",
                 "change_pasword": "Đổi mật khẩu",
-                "upload": "Tải lên"
+                "upload": "Tải lên",
+                "view": "Xem"
             },
             "cart_navbar": { "items": "món" }
         }
