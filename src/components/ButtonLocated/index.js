@@ -89,6 +89,22 @@ const CreateButton = ({ form, handleButton, disabledBtn }) => {
         </>
     );
 };
+const UseDiscountButton = ({ data, handleButton, disabledBtn }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Button
+                type='primary'
+                style={{ backgroundColor: !disabledBtn && '#03b239' }}
+                onClick={() => handleButton(data)}
+                form={data}
+                disabled={disabledBtn}
+            >
+                {t('main.components.button.use')}
+            </Button>
+        </>
+    );
+};
 
 const UpdateButton = ({ form, handleButton }) => {
     const { t } = useTranslation();
@@ -212,4 +228,5 @@ export const ButtonLocated = {
     OrderButton,
     SubmitButtom,
     ChangePasswordButton,
+    UseDiscountButton,
 };

@@ -11,8 +11,8 @@ const MenuClient = {
 const DiscountCodeClient = {
     getAvailableCodes: (params) => {
         const url = '/discount/getAvailableCodes';
-        return axiosInstance.get(url, params, {
-            headers: { 'Content-Type': 'multipart/form-data' },
+        return axiosInstance.post(url, params, {
+            headers: { 'Content-Type': 'application/json-patch+json' },
         });
     },
     applyDiscountCode: (params) => {

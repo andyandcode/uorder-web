@@ -119,7 +119,6 @@
             "end_date": "結束日期",
             "code_tooltip": "可選折扣代碼。",
             "percentage": "百分比",
-            "percentage_mess": "{{percentage}} 折扣{{order}}, 最大折扣 {{maximum}}, 最低折扣 {{minimum}}。",
             "percentage_mess_for_order": " 訂單來自 {{amount}}",
             "percentage_tooltip": "將訂單價格降低可選百分比。",
             "max_discount_amount": "最大折扣金額",
@@ -133,12 +132,21 @@
             "expiry_date_has_not_happened_yet": "開始於 {{date}} {{plural}}",
             "expiry_date_remaining": "{{date}} {{plural}} 其餘的",
             "expiry_date_tooltip": "可以使用該折扣代碼的期限。",
-            "applies_to_all_products": "適用於所有產品",
+            "applies_to_all_products": "適用於所有項目",
             "applies_to_products": "適用於菜餚",
             "do_not_apply": "請勿應用",
             "applies_to_all_products_tooltip": "適用於所有產品或選購產品。",
             "use_percentage": "使用百分比",
             "use_percentage_tooltip": "使用以特定值折扣或按百分比值折扣的方法。"
+        },
+        "message": {
+            "discount": "折扣 ",
+            "not_available": "無法使用",
+            "available": "可用的",
+            "valid_till": "有效期限至 ",
+            "apply_order_from": "適用於預訂 ",
+            "apply_when_purchase": "購買物品時適用： ",
+            "percentage_mess": "{{percentage}}% 折扣、最低折扣 {{minimum}} 越南盾，最大折扣 {{maximum}} 越南盾。"
         },
         "pages": {
             "analytics": {
@@ -271,6 +279,7 @@
         },
         "utilities": {},
         "components": {
+            "print": { "receipt": "收據", "thanks": "謝謝你！" },
             "alert": {
                 "not_have_domain_warning": "警告：新增網域以顯示要掃描和訂購的二維碼。",
                 "not_have_domain_alert": "此表沒有可掃描的二維碼。"
@@ -313,7 +322,8 @@
                 "call_staff": "致電工作人員",
                 "change_pasword": "更改密碼",
                 "upload": "上傳",
-                "view": "看法"
+                "view": "看法",
+                "use": "使用"
             },
             "cart_navbar": {
                 "items": "專案"

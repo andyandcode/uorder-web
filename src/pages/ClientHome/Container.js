@@ -38,24 +38,28 @@ function Conainer(props) {
 
     useEffect(() => {
         const combineArr = (array) => {
-            const results = [];
+            const dishes = [];
             const uniqueIds = new Set();
             let totalItems = 0;
-            let total = 0;
+            let subTotal = 0;
+            let discount = 0;
 
             for (let i = array.length - 1; i >= 0; i--) {
                 const item = array[i];
                 const id = item.dishId;
 
                 if (!uniqueIds.has(id)) {
-                    results.push(item);
+                    dishes.push(item);
                     uniqueIds.add(id);
                     totalItems += item.qty;
-                    total += item.amount;
+                    subTotal += item.amount;
                 }
             }
+            let total = subTotal;
+            let originalDiscount = discount;
+            let originalTotal = total;
 
-            return { results, totalItems, total };
+            return { dishes, totalItems, subTotal, discount, total, originalDiscount, originalTotal };
         };
 
         if (combineArr(cartItems).totalItems > 0) {

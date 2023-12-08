@@ -3,6 +3,7 @@ import { Button, Col, Collapse, Divider, Result, Row, Space, Typography, theme }
 import moment from 'moment';
 import { CurrencyFormat } from '../../../components/CurrencyFormat';
 import { EnumRender } from '../../../components/EnumRender';
+import { SelectLanguage } from '../../../components/UseLanguages';
 
 export default function MainView({ t, orderData }) {
     const { token } = theme.useToken();
@@ -137,7 +138,10 @@ export default function MainView({ t, orderData }) {
                 />
             ) : (
                 <div style={{ padding: 8 }}>
-                    <Typography.Title level={4}>{t('main.pages.tracker.title')}</Typography.Title>
+                    <Space style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography.Title level={4}>{t('main.pages.tracker.title')}</Typography.Title>
+                        <SelectLanguage />
+                    </Space>
                     <Collapse
                         bordered={false}
                         defaultActiveKey={['1']}

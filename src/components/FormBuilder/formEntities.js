@@ -1059,7 +1059,7 @@ const OrderDiscount = ({ t, data }) => {
                     <Typography.Text>{t('main.entities.order_discount')}</Typography.Text>
                 </Col>
                 <Col flex={'auto'}>
-                    <Form.Item initialValue={data} style={{ margin: 0 }}>
+                    <Form.Item name='discount' initialValue={data} style={{ margin: 0 }}>
                         <NumericFormat thousandSeparator=',' displayType='text' value={data} suffix=' VND' />
                     </Form.Item>
                 </Col>

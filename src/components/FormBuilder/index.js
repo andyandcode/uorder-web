@@ -514,7 +514,7 @@ const ViewOrderForm = ({
                             {t('main.entities.subtotal')}
                         </Col>
                         <Col flex={6} style={{ marginBottom: 14, display: 'inline-flex', justifyContent: 'end' }}>
-                            <CurrencyFormat.Minimal value={viewData.total} />
+                            <CurrencyFormat.Minimal value={viewData.subtotal} />
                         </Col>
                     </Row>
                 </Col>
@@ -534,7 +534,7 @@ const ViewOrderForm = ({
                                 justifyContent: 'end',
                             }}
                         >
-                            <NumericFormat thousandSeparator=',' displayType='text' defaultValue={0} suffix=' VND' />
+                            <CurrencyFormat.Minimal value={viewData.discount} />
                         </Col>
                     </Row>
                 </Col>
@@ -964,10 +964,10 @@ const OrderForm = ({
                 }}
                 initialValues={{ note: '', discount: 0, paymentMethod: 0, orderType: 0 }}
             >
-                <FormEntities.OrderItems t={t} data={orderData.results} />
+                <FormEntities.OrderItems t={t} data={orderData.dishes} />
                 <FormEntities.OrderNote t={t} />
-                <FormEntities.OrderSubTotal t={t} data={orderData.total} />
-                <FormEntities.OrderDiscount t={t} data={0} />
+                <FormEntities.OrderSubTotal t={t} data={orderData.subTotal} />
+                <FormEntities.OrderDiscount t={t} data={orderData.discount} />
                 <div className='order_bottom_nav'>
                     <FormEntities.OrderTotal t={t} data={orderData.total} />
                     <ButtonLocated.OrderButton handleOrderClick={handleOrderClick} />
@@ -1152,31 +1152,6 @@ const CreateNewDiscountCodeForm = ({ t, form, handleButtonCancel, handleButtonSu
     );
 };
 const ViewDiscountCodeForm = ({ viewData, t }) => {
-    const applyToAllSwitch = (appliesToAll) => {
-        if (appliesToAll) {
-            return [
-                {
-                    key: '10',
-                    label: t('main.entities.applies_to_products'),
-                    children: t('main.entities.applies_to_all_products'),
-                },
-            ];
-        }
-        return [
-            {
-                key: '10',
-                label: t('main.entities.applies_to_products'),
-                children:
-                    viewData.applicableProductIds != null &&
-                    viewData.applicableProductIds.map((i) => (
-                        <>
-                            {i.name}
-                            <br />
-                        </>
-                    )),
-            },
-        ];
-    };
     const items = [
         {
             key: '1',

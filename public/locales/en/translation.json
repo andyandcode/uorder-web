@@ -119,7 +119,6 @@
             "end_date": "End date",
             "code_tooltip": "Optional discount code. Example: Example",
             "percentage": "Percentage",
-            "percentage_mess": "{{percentage}} discount{{order}}, maximum discount {{maximum}}, minimum discount {{minimum}}.",
             "percentage_mess_for_order": " for orders from {{amount}}",
             "percentage_tooltip": "Reduce the price of the order by an optional percentage.",
             "max_discount_amount": "Max discount amount",
@@ -133,12 +132,21 @@
             "expiry_date_has_not_happened_yet": "Starting in {{date}} {{plural}}",
             "expiry_date_remaining": "{{date}} {{plural}} remaining",
             "expiry_date_tooltip": "The period during which this discount code can be used.",
-            "applies_to_all_products": "Applies to all products",
+            "applies_to_all_products": "Applies to all items",
             "applies_to_products": "Applies to dishes",
             "do_not_apply": "Do not apply",
             "applies_to_all_products_tooltip": "Applies to all products or to optional products.",
             "use_percentage": "Use percentage",
             "use_percentage_tooltip": "Use the discount method by specific value or discount by percentage value."
+        },
+        "message": {
+            "discount": "Discount ",
+            "not_available": "Not available",
+            "available": "Available",
+            "valid_till": "Valid till ",
+            "apply_order_from": "Applies to booking from ",
+            "apply_when_purchase": "Applicable when purchasing items: ",
+            "percentage_mess": "{{percentage}}% off, minimum discount {{minimum}} VND, maximum discount {{maximum}} VND."
         },
         "pages": {
             "analytics": {
@@ -268,6 +276,7 @@
         },
         "utilities": {},
         "components": {
+            "print": { "receipt": "RECEIPT", "thanks": "THANK YOU!" },
             "alert": {
                 "not_have_domain_warning": "Warning: Add a domain to display the qr code to scan and order.",
                 "not_have_domain_alert": "This table does not have a qr code to scan. Please add domain in system settings."
@@ -310,7 +319,8 @@
                 "call_staff": "Call Staff",
                 "change_pasword": "Change Password",
                 "upload": "Upload",
-                "view": "View"
+                "view": "View",
+                "use": "Use"
             },
             "cart_navbar": { "items": "items" }
         }

@@ -96,6 +96,8 @@ function Conainer(props) {
         const rangeValue = values['expiryDate'];
         delete values.usePercentage;
         delete values.expiryDate;
+        const minDate = new Date('0001-01-01T00:00:00.000Z');
+        const maxDate = new Date('9999-12-31T23:59:59.999Z');
         createForm
             .validateFields()
             .then(() => {
@@ -104,8 +106,8 @@ function Conainer(props) {
                     .then(async () => {
                         const modifiedValues = {
                             ...values,
-                            startDate: rangeValue ? rangeValue[0].format('MM/DD/YYYY') : null,
-                            endDate: rangeValue ? rangeValue[1].format('MM/DD/YYYY') : null,
+                            startDate: rangeValue ? rangeValue[0].format('MM/DD/YYYY') : minDate.toISOString(),
+                            endDate: rangeValue ? rangeValue[1].format('MM/DD/YYYY') : maxDate.toISOString(),
                             discount: values.discount !== undefined ? Utils.convertToNumber(values.discount) : 0,
                             maxDiscountAmount:
                                 values.maxDiscountAmount !== undefined

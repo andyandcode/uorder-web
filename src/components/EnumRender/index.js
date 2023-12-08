@@ -110,7 +110,7 @@ const CalculatorTime = (t, data, dateType) => {
                     </>
                 );
             }
-            if (moment(data).format('MM/DD/YYYY') < moment().format('MM/DD/YYYY')) {
+            if (moment(data).format('MM/DD/YYYY') <= moment().format('MM/DD/YYYY')) {
                 return <Typography.Text type='danger'>{t('main.entities.expiry_date_expired')}</Typography.Text>;
             }
             break;

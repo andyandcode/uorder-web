@@ -18,6 +18,12 @@ export default function MainView({
     openDiscountDrawer,
     handleSelectDiscountClick,
     handleOrderClick,
+    listDiscountData,
+    childrenDrawer,
+    handleDiscountCardClick,
+    onChildrenDrawerClose,
+    discountData,
+    handleUseDiscountClick,
 }) {
     return (
         <>
@@ -42,6 +48,12 @@ export default function MainView({
                     handleSelectPayment={handleSelectPayment}
                 />
                 <SelectDiscountDrawer
+                    handleUseDiscountClick={handleUseDiscountClick}
+                    discountData={discountData}
+                    childrenDrawer={childrenDrawer}
+                    handleDiscountCardClick={handleDiscountCardClick}
+                    onChildrenDrawerClose={onChildrenDrawerClose}
+                    listDiscountData={listDiscountData}
                     t={t}
                     onCloseDiscountDrawer={onCloseDiscountDrawer}
                     openDiscountDrawer={openDiscountDrawer}

@@ -119,7 +119,6 @@
             "end_date": "종료일",
             "code_tooltip": "선택적 할인 코드. ",
             "percentage": "백분율",
-            "percentage_mess": "{{percentage}} 할인{{order}}, 최대 할인 {{maximum}}, 최소 할인 {{minimum}}.",
             "percentage_mess_for_order": " 주문에 대한 {{amount}}",
             "percentage_tooltip": "선택적 비율만큼 주문 가격을 낮추십시오.",
             "max_discount_amount": "최대 할인 금액",
@@ -133,12 +132,21 @@
             "expiry_date_has_not_happened_yet": "에서 시작 {{date}} {{plural}}",
             "expiry_date_remaining": "{{date}} {{plural}} 남은",
             "expiry_date_tooltip": "해당 할인코드를 사용할 수 있는 기간입니다.",
-            "applies_to_all_products": "모든 제품에 적용됩니다",
+            "applies_to_all_products": "모든 항목에 적용됩니다.",
             "applies_to_products": "요리에 적용",
             "do_not_apply": "신청하지 않음",
             "applies_to_all_products_tooltip": "모든 제품 또는 옵션 제품에 적용됩니다.",
             "use_percentage": "사용 비율",
             "use_percentage_tooltip": "특정 값에 의한 할인 방법이나 백분율 값에 의한 할인 방법을 사용하십시오."
+        },
+        "message": {
+            "discount": "할인 ",
+            "not_available": "사용 불가",
+            "available": "사용 가능",
+            "valid_till": "까지 유효 ",
+            "apply_order_from": "예약부터 적용 ",
+            "apply_when_purchase": "아이템 구매 시 적용 가능: ",
+            "percentage_mess": "{{percentage}}% 할인, 최소 할인 {{minimum}} VND, 최대 할인 {{maximum}} VND."
         },
         "pages": {
             "analytics": {
@@ -271,6 +279,7 @@
         },
         "utilities": {},
         "components": {
+            "print": { "receipt": "영수증", "thanks": "감사합니다!" },
             "alert": {
                 "not_have_domain_warning": "경고: 스캔하고 주문할 QR 코드를 표시하려면 도메인을 추가하세요.",
                 "not_have_domain_alert": "이 테이블에는 스캔할 QR 코드가 없습니다. "
@@ -313,7 +322,8 @@
                 "call_staff": "직원에게 전화하기",
                 "change_pasword": "비밀번호 변경",
                 "upload": "업로드",
-                "view": "보다"
+                "view": "보다",
+                "use": "사용"
             },
             "cart_navbar": {
                 "items": "아이템"
@@ -322,6 +332,6 @@
     },
     "system": {
         "lang_label": "한국어",
-        "lang_key": "ko"
+        "lang_key": "ko-KR"
     }
 }

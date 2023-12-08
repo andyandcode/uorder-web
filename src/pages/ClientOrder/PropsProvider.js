@@ -24,6 +24,13 @@ export default function propsProvider(props) {
         openDiscountDrawer,
         handleSelectDiscountClick,
         handleOrderClick,
+        listDiscountData,
+        childrenDrawer,
+        handleDiscountCardClick,
+        onChildrenDrawerClose,
+        discountData,
+        onCardClick,
+        handleUseDiscountClick,
     } = props;
     return {
         history,
@@ -50,5 +57,12 @@ export default function propsProvider(props) {
         openDiscountDrawer,
         handleSelectDiscountClick,
         handleOrderClick,
+        listDiscountData,
+        childrenDrawer,
+        handleDiscountCardClick,
+        onChildrenDrawerClose,
+        discountData,
+        onCardClick,
+        handleUseDiscountClick,
     };
 }

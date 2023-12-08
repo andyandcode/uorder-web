@@ -43,7 +43,7 @@
             "qr_code": "Mã QR",
             "table": "Bàn",
             "table_tooltip": "",
-            "total": "Tổng",
+            "total": "Thành tiền",
             "total_tooltip": "",
             "qty": "Số lượng",
             "unitPrice": "Đơn giá",
@@ -59,7 +59,7 @@
             "form_pay_bill_title": "Thanh toán hóa đơn",
             "active_log_title": "Lịch sử hoạt động",
             "upload_image": "Ảnh món ăn",
-            "subtotal": "Tổng phụ",
+            "subtotal": "Tạm tính",
             "discount": "Giảm giá",
             "discount_tooltip": "Giảm giá của đơn hàng theo mức giá chỉ định.",
             "username": "Tên đăng nhập",
@@ -107,8 +107,8 @@
             "domain": "Tên miền",
             "domain_tooltip": "Tên miền của website để scan mã. (ví dụ: example.com)",
             "order_discount": "Giảm giá",
-            "order_subtotal": "Tổng phụ",
-            "order_total": "Tổng",
+            "order_subtotal": "Tạm tính",
+            "order_total": "Thành tiền",
             "dish_note_placeholder": "Ghi chú món ăn",
             "order_note_placeholder": "Ghi chú đơn hàng",
             "money_change": "Tiền thối",
@@ -139,6 +139,15 @@
             "applies_to_all_products_tooltip": "Áp dụng cho toàn bộ sản phẩm hoặc sản phẩm chỉ định.",
             "use_percentage": "Dùng phần trăm giảm giá",
             "use_percentage_tooltip": "Dùng phương thức giảm giá theo tỉ lệ phần trăm."
+        },
+        "message": {
+            "discount": "Giảm ",
+            "not_available": "Không khả dụng",
+            "available": "Khả dụng",
+            "valid_till": "Hợp lệ cho đến ",
+            "apply_order_from": "Áp dụng cho đơn đặt bàn từ ",
+            "apply_when_purchase": "Áp dụng khi mua các món: ",
+            "percentage_mess": "Giảm {{percentage}}%, tối thiểu {{minimum}} VND, tối đa {{maximum}} VND."
         },
         "pages": {
             "analytics": {
@@ -268,6 +277,7 @@
         },
         "utilities": {},
         "components": {
+            "print": { "receipt": "BIÊN LAI", "thanks": "CẢM ƠN QUÝ KHÁCH!" },
             "alert": {
                 "not_have_domain_warning": "Cảnh báo: Thêm tên miền để hiển thị mã QR đặt bàn.",
                 "not_have_domain_alert": "Bàn này không có mã QR để scan. Vui lòng thêm tên miền ở cài đặt hệ thống."
@@ -310,7 +320,8 @@
                 "call_staff": "Gọi nhân viên",
                 "change_pasword": "Đổi mật khẩu",
                 "upload": "Tải lên",
-                "view": "Xem"
+                "view": "Xem",
+                "use": "Sử dụng"
             },
             "cart_navbar": { "items": "món" }
         }
