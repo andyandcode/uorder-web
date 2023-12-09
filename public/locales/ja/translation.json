@@ -146,7 +146,13 @@
             "valid_till": "まで有効 ",
             "apply_order_from": "からの予約に適用されます ",
             "apply_when_purchase": "アイテム購入時に適用されます: ",
-            "percentage_mess": "{{percentage}}% オフ、最低割引 {{minimum}} VND、最大割引 {{maximum}} VND。"
+            "percentage_mess": "{{percentage}}% オフ、最低割引 {{minimum}} VND、最大割引 {{maximum}} VND。",
+            "not_support_mobile_title": "この画面サイズはまだサポートされていません。",
+            "not_support_mobile_description": "続行するには、より大きな画面サイズのデバイスに変更してください。",
+            "not_support_laptop_title": "この画面サイズはまだサポートされていません。",
+            "not_support_laptop_description": "続行するにはモバイル デバイスに切り替えてください。",
+            "not_found_page_title": "おっと...",
+            "not_found_page_description": "うわー! ページが見つかりません...."
         },
         "pages": {
             "analytics": {

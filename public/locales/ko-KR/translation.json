@@ -146,7 +146,13 @@
             "valid_till": "까지 유효 ",
             "apply_order_from": "예약부터 적용 ",
             "apply_when_purchase": "아이템 구매 시 적용 가능: ",
-            "percentage_mess": "{{percentage}}% 할인, 최소 할인 {{minimum}} VND, 최대 할인 {{maximum}} VND."
+            "percentage_mess": "{{percentage}}% 할인, 최소 할인 {{minimum}} VND, 최대 할인 {{maximum}} VND.",
+            "not_support_mobile_title": "이 화면 크기는 아직 지원되지 않습니다.",
+            "not_support_mobile_description": "계속하려면 화면 크기가 더 큰 기기로 변경하세요.",
+            "not_support_laptop_title": "이 화면 크기는 아직 지원되지 않습니다.",
+            "not_support_laptop_description": "계속하려면 모바일 기기로 전환하세요.",
+            "not_found_page_title": "앗....",
+            "not_found_page_description": "아, 아! 페이지를 찾을 수 없습니다...."
         },
         "pages": {
             "analytics": {

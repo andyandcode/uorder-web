@@ -146,7 +146,13 @@
             "valid_till": "有效期至 ",
             "apply_order_from": "适用于预订 ",
             "apply_when_purchase": "购买物品时适用： ",
-            "percentage_mess": "{{percentage}}% 折扣、最低折扣 {{minimum}} 越南盾，最大折扣 {{maximum}} 越南盾。"
+            "percentage_mess": "{{percentage}}% 折扣、最低折扣 {{minimum}} 越南盾，最大折扣 {{maximum}} 越南盾。",
+            "not_support_mobile_title": "尚不支持此屏幕尺寸。",
+            "not_support_mobile_description": "请更换为更大屏幕尺寸的设备才能继续。",
+            "not_support_laptop_title": "尚不支持此屏幕尺寸。",
+            "not_support_laptop_description": "请切换到移动设备以继续。",
+            "not_found_page_title": "哎呀......",
+            "not_found_page_description": "哦！页面未找到......"
         },
         "pages": {
             "analytics": {

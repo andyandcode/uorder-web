@@ -147,7 +147,13 @@
             "valid_till": "Hợp lệ cho đến ",
             "apply_order_from": "Áp dụng cho đơn đặt bàn từ ",
             "apply_when_purchase": "Áp dụng khi mua các món: ",
-            "percentage_mess": "Giảm {{percentage}}%, tối thiểu {{minimum}} VND, tối đa {{maximum}} VND."
+            "percentage_mess": "Giảm {{percentage}}%, tối thiểu {{minimum}} VND, tối đa {{maximum}} VND.",
+            "not_support_mobile_title": "Kích thước màn hình hiện tại không hỗ trợ.",
+            "not_support_mobile_description": "Vui lòng đổi qua các thiết bị có kích thước màn hình lớn hơn để tiếp tục.",
+            "not_support_laptop_title": "Kích thước màn hình hiện tại không hỗ trợ.",
+            "not_support_laptop_description": "Vui lòng đổi qua các thiết bị di động để tiếp tục.",
+            "not_found_page_title": "Ôiii....",
+            "not_found_page_description": "un-oh! Không tìm thấy trang...."
         },
         "pages": {
             "analytics": {

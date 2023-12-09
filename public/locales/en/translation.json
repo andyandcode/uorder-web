@@ -146,7 +146,13 @@
             "valid_till": "Valid till ",
             "apply_order_from": "Applies to booking from ",
             "apply_when_purchase": "Applicable when purchasing items: ",
-            "percentage_mess": "{{percentage}}% off, minimum discount {{minimum}} VND, maximum discount {{maximum}} VND."
+            "percentage_mess": "{{percentage}}% off, minimum discount {{minimum}} VND, maximum discount {{maximum}} VND.",
+            "not_support_mobile_title": "This screen size is not supported yet.",
+            "not_support_mobile_description": "Please change to devices with larger screen sizes to continue.",
+            "not_support_laptop_title": "This screen size is not supported yet.",
+            "not_support_laptop_description": "Please switch to mobile devices to continue.",
+            "not_found_page_title": "Ooops....",
+            "not_found_page_description": "un-oh! Page not found...."
         },
         "pages": {
             "analytics": {

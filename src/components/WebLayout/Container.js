@@ -1,10 +1,12 @@
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import { Modal, theme } from 'antd';
 import { useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import Config from '../../configuration';
 import { rootKeys } from '../../configuration/routesConfig';
+import NotSupportMobile from '../../pages/Redirect/NotSupportMobile';
 import useLanguages from '../UseLanguages';
 import MainView from './MainView';
 import { MenuList } from './MenuList';
@@ -117,6 +119,10 @@ export default function Conainer(props) {
         MenuList,
         access,
     };
+
+    if (isMobile) {
+        return <NotSupportMobile />;
+    }
 
     return <MainView {...propsProvider(containerProps)} />;
 }
