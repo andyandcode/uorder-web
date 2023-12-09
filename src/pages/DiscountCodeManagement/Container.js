@@ -125,7 +125,6 @@ function Conainer(props) {
                             applicableProductIds:
                                 values.applicableProductIds !== undefined ? values.applicableProductIds : null,
                         };
-                        console.log(modifiedValues);
                         await dispatch(createDiscountCodeAdmin(modifiedValues)).then(() => {
                             UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
                             setOpenCreateModel(false);

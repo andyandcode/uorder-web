@@ -44,7 +44,6 @@ function Conainer(props) {
     }, [dispatch]);
 
     useEffect(() => {
-        console.log(cartItems);
         const combineArr = (array) => {
             const dishes = [];
             const uniqueIds = new Set();

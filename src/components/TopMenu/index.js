@@ -9,7 +9,6 @@ export default function TopMenu({ t, data, menuData }) {
             elementToScroll.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     };
-    console.log(data[0]);
     return (
         <>
             <div className='top_menu'>
