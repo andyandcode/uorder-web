@@ -207,6 +207,10 @@
             }
         },
         "notification": {
+            "action": {
+                "call_staff_title": "有顾客打来电话！",
+                "call_staff_description": "第 {{table}} 桌有顾客来电！请快点到 {{table}} 桌。"
+            },
             "upload": {
                 "must_be_image": "您只能上传JPG/PNG文件！",
                 "must_smaller_than": "图片必须小于2MB！"

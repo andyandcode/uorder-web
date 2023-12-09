@@ -3,13 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Utils from '../../utilities';
 import propsProvider from './PropsProvider';
-import { getTracking, payBookingClient } from './Slice';
+import { callStaffClient, getTracking, payBookingClient } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
     const { history, t, location, dispatch } = props;
     const [orderData, setOrderData] = useState([]);
     const params = useParams();
+    const [callStaffLoading, setCallStaffLoading] = useState(false);
+    const [callStaffDisabled, setCallStaffDisabled] = useState(false);
 
     useEffect(() => {
         const connection = new signalR.HubConnectionBuilder()
@@ -41,7 +43,15 @@ function Conainer(props) {
             window.location.replace(Utils.getValues(result, 'payload', []));
         });
     };
-    const handleCallStaffClick = () => {};
+
+    const handleCallStaffClick = async (data) => {
+        await dispatch(callStaffClient(orderData.tableId)).then((result) => {});
+        setCallStaffLoading(true);
+        setTimeout(() => {
+            setCallStaffLoading(false);
+            setCallStaffDisabled(true);
+        }, 3000);
+    };
 
     const containerProps = {
         ...props,
@@ -51,6 +61,8 @@ function Conainer(props) {
         orderData,
         handlePayBookingClick,
         handleCallStaffClick,
+        callStaffLoading,
+        callStaffDisabled,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

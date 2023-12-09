@@ -8,7 +8,14 @@ import { CurrencyFormat } from '../../../components/CurrencyFormat';
 import { EnumRender } from '../../../components/EnumRender';
 import { SelectLanguageMobile } from '../../../components/UseLanguages';
 
-export default function MainView({ t, orderData, handlePayBookingClick, handleCallStaffClick }) {
+export default function MainView({
+    t,
+    orderData,
+    handlePayBookingClick,
+    handleCallStaffClick,
+    callStaffLoading,
+    callStaffDisabled,
+}) {
     return (
         <>
             {orderData.length === 0 ? (
@@ -182,7 +189,11 @@ export default function MainView({ t, orderData, handlePayBookingClick, handleCa
                         {orderData.paymentStatus !== 0 && (
                             <ButtonLocated.PayButton handleButton={handlePayBookingClick} />
                         )}
-                        <ButtonLocated.CallStaffButton handleButton={handleCallStaffClick} />
+                        <ButtonLocated.CallStaffButton
+                            handleButton={handleCallStaffClick}
+                            callStaffLoading={callStaffLoading}
+                            callStaffDisabled={callStaffDisabled}
+                        />
                     </Space>
                 </div>
             )}

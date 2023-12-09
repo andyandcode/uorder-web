@@ -56,4 +56,11 @@ const BookingClient = {
     },
 };
 
-export { BookingClient, DiscountCodeClient, MenuClient };
+const ActionClient = {
+    callStaff: (params) => {
+        const url = `/action/callStaff/${params}`;
+        return axiosClient.get(url, params);
+    },
+};
+
+export { ActionClient, BookingClient, DiscountCodeClient, MenuClient };

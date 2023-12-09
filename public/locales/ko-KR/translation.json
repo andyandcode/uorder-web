@@ -207,6 +207,10 @@
             }
         },
         "notification": {
+            "action": {
+                "call_staff_title": "고객이 전화를 왔어요!",
+                "call_staff_description": "{{table}} 테이블에 고객이 전화하고 있습니다! 빨리 {{table}} 테이블로 와주세요."
+            },
             "upload": {
                 "must_be_image": "JPG/PNG 파일만 업로드할 수 있습니다!",
                 "must_smaller_than": "이미지는 2MB보다 작아야 합니다!"

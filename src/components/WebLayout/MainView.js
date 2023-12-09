@@ -4,27 +4,28 @@ import { SelectLanguage } from '../UseLanguages';
 
 const { Header, Content, Footer, Sider } = Layout;
 
-export default function MainView(props) {
-    const {
-        t,
-        i18n,
-        collapsed,
-        setCollapsed,
-        current,
-        onOpenChange,
-        openSiderKeys,
-        handleMenuClick,
-        colorBgContainer,
-        handleChangeLocales,
-        languages,
-        items,
-        notificationCount,
-        MenuList,
-        children,
-        access,
-    } = props;
+export default function MainView({
+    t,
+    i18n,
+    collapsed,
+    setCollapsed,
+    current,
+    onOpenChange,
+    openSiderKeys,
+    handleMenuClick,
+    colorBgContainer,
+    handleChangeLocales,
+    languages,
+    items,
+    notificationCount,
+    MenuList,
+    children,
+    access,
+    contextHolder,
+}) {
     return (
         <>
+            {contextHolder}
             <Layout
                 style={{
                     minHeight: '100vh',

@@ -205,6 +205,10 @@
             }
         },
         "notification": {
+            "action": {
+                "call_staff_title": "Có khách đang gọi!",
+                "call_staff_description": "Có khách đang gọi tại bàn {{table}}! Vui lòng đến bàn {{table}} nhanh chóng."
+            },
             "upload": {
                 "must_be_image": "Bạn phải tải lên tệp với đuôi JPG/PNG!",
                 "must_smaller_than": "Dung lượng ảnh phải nhỏ hơn 2MB!"

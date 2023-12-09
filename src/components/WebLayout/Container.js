@@ -1,5 +1,6 @@
 import { ExclamationCircleFilled } from '@ant-design/icons';
-import { Modal, theme } from 'antd';
+import * as signalR from '@microsoft/signalr';
+import { Modal, notification, theme } from 'antd';
 import { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -27,6 +28,7 @@ export default function Conainer(props) {
         token: { colorBgContainer },
     } = theme.useToken();
     const [openSiderKeys, setOpenSiderKeys] = useState([rootKeys.homeUrl]);
+    const [api, contextHolder] = notification.useNotification();
 
     const access = cookies.get(Config.storageKey.tokenKey);
     useEffect(() => {
@@ -104,6 +106,29 @@ export default function Conainer(props) {
         }
     }, [location, current]);
 
+    useEffect(() => {
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl('https://localhost:7297/actionHub')
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+        connection
+            .start()
+            .then(() => console.log('Connection established action'))
+            .catch((err) => console.error('SignalR Connection Error: ', err));
+
+        connection.on('SendCallStaffNotification', (data) => {
+            api.warning({
+                message: t('main.notification.action.call_staff_title'),
+                description: t('main.notification.action.call_staff_description', { table: data.name }),
+                duration: null,
+            });
+        });
+
+        return () => {
+            connection.stop();
+        };
+    }, []);
+
     const containerProps = {
         ...props,
         collapsed,
@@ -118,6 +143,7 @@ export default function Conainer(props) {
         handleMenuClick,
         MenuList,
         access,
+        contextHolder,
     };
 
     if (isMobile) {

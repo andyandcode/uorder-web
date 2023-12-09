@@ -113,11 +113,17 @@ const PayButton = ({ data, handleButton }) => {
     );
 };
 
-const CallStaffButton = ({ data, handleButton }) => {
+const CallStaffButton = ({ data, handleButton, callStaffLoading, callStaffDisabled }) => {
     const { t } = useTranslation();
     return (
         <>
-            <MobileButton onClick={handleButton} fill='solid' block>
+            <MobileButton
+                onClick={handleButton}
+                fill='solid'
+                block
+                loading={callStaffLoading}
+                disabled={callStaffDisabled}
+            >
                 {t('main.components.button.call_staff')}
             </MobileButton>
         </>

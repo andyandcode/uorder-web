@@ -204,6 +204,10 @@
             }
         },
         "notification": {
+            "action": {
+                "call_staff_title": "There's a customer calling!",
+                "call_staff_description": "There's a customer calling at table {{table}}! Please come to table {{table}} quickly."
+            },
             "upload": {
                 "must_be_image": "You can only upload JPG/PNG file!",
                 "must_smaller_than": "Image must smaller than 2MB!"
