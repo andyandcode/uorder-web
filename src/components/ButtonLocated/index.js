@@ -1,5 +1,6 @@
 import { CloudDownloadOutlined, HourglassOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import { Button as MobileButton } from 'antd-mobile';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -89,19 +90,52 @@ const CreateButton = ({ form, handleButton, disabledBtn }) => {
         </>
     );
 };
+
+const AddToCartButton = ({ data, handleButton, disabledBtn }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <MobileButton onClick={handleButton} fill='solid' style={{ backgroundColor: '#5097fc', color: 'white' }}>
+                {t('main.components.button.add_to_card')}
+            </MobileButton>
+        </>
+    );
+};
+
+const PayButton = ({ data, handleButton }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <MobileButton onClick={handleButton} fill='solid' block color='primary'>
+                {t('main.components.button.pay')}
+            </MobileButton>
+        </>
+    );
+};
+
+const CallStaffButton = ({ data, handleButton }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <MobileButton onClick={handleButton} fill='solid' block>
+                {t('main.components.button.call_staff')}
+            </MobileButton>
+        </>
+    );
+};
 const UseDiscountButton = ({ data, handleButton, disabledBtn }) => {
     const { t } = useTranslation();
     return (
         <>
-            <Button
-                type='primary'
-                style={{ backgroundColor: !disabledBtn && '#03b239' }}
+            <MobileButton
+                fill='solid'
+                style={{ backgroundColor: !disabledBtn && '#5097fc', color: !disabledBtn && 'white' }}
                 onClick={() => handleButton(data)}
                 form={data}
                 disabled={disabledBtn}
             >
                 {t('main.components.button.use')}
-            </Button>
+            </MobileButton>
         </>
     );
 };
@@ -204,7 +238,7 @@ const OrderButton = ({ handleOrderClick }) => {
         <>
             <Button
                 type='primary'
-                style={{ backgroundColor: '#03b239' }}
+                style={{ backgroundColor: '#5097fc' }}
                 loading={loadings[0]}
                 onClick={() => enterLoading(0)}
                 block
@@ -229,4 +263,7 @@ export const ButtonLocated = {
     SubmitButtom,
     ChangePasswordButton,
     UseDiscountButton,
+    AddToCartButton,
+    PayButton,
+    CallStaffButton,
 };

@@ -1,5 +1,5 @@
-import { LeftOutlined } from '@ant-design/icons';
-import { Button, Layout, Typography } from 'antd';
+import { Layout } from 'antd';
+import { NavBar } from 'antd-mobile';
 import { FormBuilder } from '../../../components/FormBuilder';
 import SelectDiscountDrawer from './subViews/selectDiscountDrawer';
 import SelectPaymentDrawer from './subViews/selectPaymentDrawer';
@@ -28,9 +28,8 @@ export default function MainView({
     return (
         <>
             <Layout.Content>
-                <Button type='text' onClick={handleBackToHomeClick} icon={<LeftOutlined />} />
+                <NavBar onBack={handleBackToHomeClick}>{t('main.pages.booking.title')}</NavBar>
                 <Layout.Content style={{ padding: 8 }}>
-                    <Typography.Title level={4}>{t('main.pages.booking.title')}</Typography.Title>
                     <FormBuilder.OrderForm
                         t={t}
                         form={orderForm}

@@ -38,6 +38,10 @@ const BookingClient = {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
     },
+    payBooking: (params) => {
+        const url = `/booking/payOrder/${params}`;
+        return axiosClient.get(url, params);
+    },
     updateBookingStatus: (params) => {
         const modifiedArray = [];
         for (const item of params) {

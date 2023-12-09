@@ -1,4 +1,5 @@
-import { Col, Row, Space, Tag, Typography } from 'antd';
+import { Col, Row, Typography } from 'antd';
+import { Space, Tag } from 'antd-mobile';
 import moment from 'moment';
 import { ButtonLocated } from '../ButtonLocated';
 import { CurrencyFormat } from '../CurrencyFormat';
@@ -17,7 +18,7 @@ export default function DiscountCard({ t, onCardClick, discountData, handleUseDi
                                         {t('main.message.available')}
                                     </Tag>
                                 ) : (
-                                    <Tag bordered={false} color='error'>
+                                    <Tag bordered={false} color='default'>
                                         {t('main.message.not_available')}
                                     </Tag>
                                 )}

@@ -281,6 +281,12 @@
                 "days": "天",
                 "item": "物品",
                 "items": "项目"
+            },
+            "order_process": {
+                "ordered": "已订购",
+                "confirmed": "已确认",
+                "preparing": "准备",
+                "complete": "完成"
             }
         },
         "utilities": {},
@@ -329,7 +335,8 @@
                 "change_pasword": "更改密码",
                 "upload": "上传",
                 "view": "看法",
-                "use": "使用"
+                "use": "使用",
+                "pay": "支付"
             },
             "cart_navbar": {
                 "items": "项目"

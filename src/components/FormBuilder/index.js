@@ -1,5 +1,6 @@
 import { CheckOutlined, CloseOutlined, CreditCardOutlined, PrinterOutlined } from '@ant-design/icons';
 import { Button, Col, Descriptions, Divider, Form, Input, Row, Select, Space, Switch, Typography } from 'antd';
+import { Divider as MobileDivider } from 'antd-mobile';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -972,7 +973,7 @@ const OrderForm = ({
                     <FormEntities.OrderTotal t={t} data={orderData.total} />
                     <ButtonLocated.OrderButton handleOrderClick={handleOrderClick} />
                 </div>
-                <Divider />
+                <MobileDivider />
                 <>
                     <Typography.Title level={5} style={{ textAlign: 'left' }}>
                         {t('main.pages.booking.payment_details')}
@@ -984,7 +985,7 @@ const OrderForm = ({
                     />
                     <FormEntities.OrderTypeInClient />
                     <FormEntities.OrderStatusInClient />
-                    <Divider style={{ margin: '1px 0' }} />
+                    <MobileDivider />
                     <FormEntities.OrderDiscountSelect t={t} handleSelectDiscountClick={handleSelectDiscountClick} />
                 </>
             </Form>

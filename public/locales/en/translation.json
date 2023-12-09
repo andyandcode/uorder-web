@@ -278,6 +278,12 @@
                 "days": "days",
                 "item": "item",
                 "items": "items"
+            },
+            "order_process": {
+                "ordered": "Ordered",
+                "confirmed": "Confirmed",
+                "preparing": "Preparing",
+                "complete": "Complete"
             }
         },
         "utilities": {},
@@ -326,7 +332,8 @@
                 "change_pasword": "Change Password",
                 "upload": "Upload",
                 "view": "View",
-                "use": "Use"
+                "use": "Use",
+                "pay": "Pay"
             },
             "cart_navbar": { "items": "items" }
         }

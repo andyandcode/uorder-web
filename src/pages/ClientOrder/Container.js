@@ -77,6 +77,7 @@ function Conainer(props) {
     };
 
     const handleSelectPayment = (e) => {
+        console.log(e);
         setPaymentSelectTarget(e);
     };
 

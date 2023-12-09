@@ -281,6 +281,12 @@
                 "days": "日々",
                 "item": "アイテム",
                 "items": "アイテム"
+            },
+            "order_process": {
+                "ordered": "注文済み",
+                "confirmed": "確認済み",
+                "preparing": "準備中",
+                "complete": "完了"
             }
         },
         "utilities": {},
@@ -329,7 +335,8 @@
                 "change_pasword": "パスワードを変更する",
                 "upload": "アップロード",
                 "view": "ビュー",
-                "use": "使用"
+                "use": "使用",
+                "pay": "支払う"
             },
             "cart_navbar": {
                 "items": "アイテム"

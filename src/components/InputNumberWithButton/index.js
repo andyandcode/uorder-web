@@ -1,6 +1,6 @@
-import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, InputNumber } from 'antd';
+import { Stepper } from 'antd-mobile';
 import React from 'react';
+import { ButtonLocated } from '../ButtonLocated';
 
 export default function InputNumberWithButton({ t, dataProvider, cartItems, setCartItems }) {
     return (
@@ -24,8 +24,8 @@ class IncrementDecrement extends React.Component {
         qty: 0,
         amount: 0,
     };
-    handleDecrement = () => {
-        let value = this.state.qty - 1;
+    handleIncrement = () => {
+        let value = this.state.qty + 1;
         this.setState({ qty: value, amount: value * this.props.dataProvider.price });
 
         this.props.setCartItems((current) => [
@@ -39,10 +39,8 @@ class IncrementDecrement extends React.Component {
             },
         ]);
     };
-    handleIncrement = () => {
-        let value = this.state.qty + 1;
+    handleChange = (value) => {
         this.setState({ qty: value, amount: value * this.props.dataProvider.price });
-
         this.props.setCartItems((current) => [
             ...current,
             {
@@ -59,32 +57,27 @@ class IncrementDecrement extends React.Component {
         if (this.state.qty > 0) {
             return (
                 <div style={{ display: 'flex', gap: 8, height: 'auto' }}>
-                    <Button icon={<MinusOutlined />} onClick={this.handleDecrement}></Button>
-                    <InputNumber
-                        min={1}
-                        style={{ width: '40px', height: '100%' }}
-                        name='qty'
+                    <Stepper
+                        min={0}
+                        max={10}
                         value={this.state.qty}
                         key={this.props.dataProvider.id}
+                        name='qty'
+                        onChange={(value) => {
+                            this.handleChange(value);
+                        }}
+                        style={{
+                            '--border': '1px solid #f5f5f5',
+                            '--border-inner': 'none',
+                            '--height': '36px',
+                            '--input-background-color': 'var(--adm-color-background)',
+                            '--active-border': '1px solid #1677ff',
+                        }}
                     />
-                    <Button
-                        icon={<PlusOutlined />}
-                        onClick={this.handleIncrement}
-                        disabled={this.state.qty === 10 ? true : false}
-                    ></Button>
                 </div>
             );
         } else {
-            return (
-                <Button
-                    type='primary'
-                    style={{ background: '#03b239' }}
-                    icon={<PlusOutlined />}
-                    onClick={this.handleIncrement}
-                >
-                    {this.props.t('main.components.button.add_to_card')}
-                </Button>
-            );
+            return <ButtonLocated.AddToCartButton handleButton={this.handleIncrement} />;
         }
     }
 }

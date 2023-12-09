@@ -279,6 +279,12 @@
                 "days": "ngày",
                 "item": "món",
                 "items": "món"
+            },
+            "order_process": {
+                "ordered": "Đã đặt",
+                "confirmed": "Đã xác nhận",
+                "preparing": "Đang chuẩn bị",
+                "complete": "Hoàn thành"
             }
         },
         "utilities": {},
@@ -327,7 +333,8 @@
                 "change_pasword": "Đổi mật khẩu",
                 "upload": "Tải lên",
                 "view": "Xem",
-                "use": "Sử dụng"
+                "use": "Sử dụng",
+                "pay": "Thanh toán"
             },
             "cart_navbar": { "items": "món" }
         }

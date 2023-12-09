@@ -281,6 +281,12 @@
                 "days": "날",
                 "item": "안건",
                 "items": "아이템"
+            },
+            "order_process": {
+                "ordered": "주문됨",
+                "confirmed": "확인됨",
+                "preparing": "준비 중",
+                "complete": "완료"
             }
         },
         "utilities": {},
@@ -329,7 +335,8 @@
                 "change_pasword": "비밀번호 변경",
                 "upload": "업로드",
                 "view": "보다",
-                "use": "사용"
+                "use": "사용",
+                "pay": "지불하다"
             },
             "cart_navbar": {
                 "items": "아이템"

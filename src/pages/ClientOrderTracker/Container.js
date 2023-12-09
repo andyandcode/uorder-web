@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Utils from '../../utilities';
 import propsProvider from './PropsProvider';
-import { getTracking } from './Slice';
+import { getTracking, payBookingClient } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -36,12 +36,21 @@ function Conainer(props) {
         });
     }, [dispatch]);
 
+    const handlePayBookingClick = async () => {
+        await dispatch(payBookingClient(orderData.id)).then((result) => {
+            window.location.replace(Utils.getValues(result, 'payload', []));
+        });
+    };
+    const handleCallStaffClick = () => {};
+
     const containerProps = {
         ...props,
         history,
         t,
         location,
         orderData,
+        handlePayBookingClick,
+        handleCallStaffClick,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }
