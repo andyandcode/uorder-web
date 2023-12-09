@@ -340,7 +340,8 @@
                 "upload": "업로드",
                 "view": "보다",
                 "use": "사용",
-                "pay": "지불하다"
+                "pay": "지불하다",
+                "track_booking": "트랙 예약"
             },
             "cart_navbar": {
                 "items": "아이템"

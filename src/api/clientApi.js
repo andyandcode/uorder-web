@@ -42,6 +42,10 @@ const BookingClient = {
         const url = `/booking/payOrder/${params}`;
         return axiosClient.get(url, params);
     },
+    getById: (params) => {
+        const url = `/booking/getById/${params}`;
+        return axiosClient.get(url, params);
+    },
     updateBookingStatus: (params) => {
         const modifiedArray = [];
         for (const item of params) {

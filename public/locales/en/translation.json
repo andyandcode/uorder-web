@@ -337,7 +337,8 @@
                 "upload": "Upload",
                 "view": "View",
                 "use": "Use",
-                "pay": "Pay"
+                "pay": "Pay",
+                "track_booking": "Track booking"
             },
             "cart_navbar": { "items": "items" }
         }

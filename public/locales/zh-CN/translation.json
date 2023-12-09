@@ -340,7 +340,8 @@
                 "upload": "上传",
                 "view": "看法",
                 "use": "使用",
-                "pay": "支付"
+                "pay": "支付",
+                "track_booking": "跟踪预订"
             },
             "cart_navbar": {
                 "items": "项目"

@@ -338,7 +338,8 @@
                 "upload": "Tải lên",
                 "view": "Xem",
                 "use": "Sử dụng",
-                "pay": "Thanh toán"
+                "pay": "Thanh toán",
+                "track_booking": "Kiểm tra đặt bàn"
             },
             "cart_navbar": { "items": "món" }
         }

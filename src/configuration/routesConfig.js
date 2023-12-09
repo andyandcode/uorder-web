@@ -44,6 +44,7 @@ const clientHomeUrl = `${clientHomeRoorUrl}/:tableId`;
 const clientOrederUrl = `${clientHomeRoorUrl}/order`;
 const clientOrderSuccessfulUrl = `${clientHomeRoorUrl}/:orderId/successfully`;
 const clientOrderTrackerUrl = `${clientHomeRoorUrl}/tracker/:tableId`;
+const clientOrderTrackerRootUrl = `${clientHomeRoorUrl}/tracker/`;
 
 const notFoundUrl = '/*';
 
@@ -97,4 +98,5 @@ export const rootKeys = {
     clientHomeRoorUrl,
     clientOrderSuccessfulUrl,
     discountCodeManagementUrl,
+    clientOrderTrackerRootUrl,
 };

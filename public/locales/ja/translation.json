@@ -340,7 +340,8 @@
                 "upload": "アップロード",
                 "view": "ビュー",
                 "use": "使用",
-                "pay": "支払う"
+                "pay": "支払う",
+                "track_booking": "予約を追跡する"
             },
             "cart_navbar": {
                 "items": "アイテム"
