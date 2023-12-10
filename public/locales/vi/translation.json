@@ -17,6 +17,7 @@
                 "analytics": "Phân tích&Thống kê"
             },
             "account": "Quản lý tài khoản",
+            "discount_code": "Giảm giá",
             "settings": {
                 "label": "Cài đặt",
                 "system": "Cài đặt hệ thống",
@@ -42,7 +43,7 @@
             "qr_code": "Mã QR",
             "table": "Bàn",
             "table_tooltip": "",
-            "total": "Tổng",
+            "total": "Thành tiền",
             "total_tooltip": "",
             "qty": "Số lượng",
             "unitPrice": "Đơn giá",
@@ -58,8 +59,9 @@
             "form_pay_bill_title": "Thanh toán hóa đơn",
             "active_log_title": "Lịch sử hoạt động",
             "upload_image": "Ảnh món ăn",
-            "subtotal": "Tổng phụ",
+            "subtotal": "Tạm tính",
             "discount": "Giảm giá",
+            "discount_tooltip": "Giảm giá của đơn hàng theo mức giá chỉ định.",
             "username": "Tên đăng nhập",
             "username_placeholder": "Nhập tên đăng nhập tại đây",
             "pwd": "Mật khẩu",
@@ -102,18 +104,56 @@
                 "creator": "Quản lý nội dung",
                 "staff": "Nhân viên"
             },
-            "chef_count": "Đầu bếp",
-            "chef_count_tooltip": "Số lượng đầu bếp",
             "domain": "Tên miền",
             "domain_tooltip": "Tên miền của website để scan mã. (ví dụ: example.com)",
             "order_discount": "Giảm giá",
-            "order_subtotal": "Tổng phụ",
-            "order_total": "Tổng",
+            "order_subtotal": "Tạm tính",
+            "order_total": "Thành tiền",
             "dish_note_placeholder": "Ghi chú món ăn",
             "order_note_placeholder": "Ghi chú đơn hàng",
             "money_change": "Tiền thối",
             "money_receive": "TIền nhận",
-            "staff": "Nhân viên"
+            "staff": "Nhân viên",
+            "code": "Mã",
+            "start_date": "Ngày bắt đầu",
+            "end_date": "Ngày kết thúc",
+            "code_tooltip": "Mã tùy chọn. Ví dụ: Example",
+            "percentage": "Phần trăm giảm giá",
+            "percentage_mess": "Giảm {{percentage}}% {{order}}, giảm tối thiểu {{maximum}}, giảm tối đa {{minimum}}.",
+            "percentage_mess_for_order": " cho đơn hàng từ {{amount}}",
+            "percentage_tooltip": "Giảm giá cho đơn hàng theo phần trăm chỉ định.",
+            "max_discount_amount": "Giảm tối đa",
+            "max_discount_amount_tooltip": "Số tiền tối đa có thể giảm.",
+            "min_discount_amount": "Giảm tối thiểu",
+            "min_discount_amount_tooltip": "Số tiền tối thiểu có thể giảm.",
+            "min_order_amount_required": "Giá trị tối thiểu",
+            "min_order_amount_required_tooltip": "Giá trị đơn hàng tối thiếu cần đạt để áp dụng mã giảm giá.",
+            "expiry_date": "Thời gian hết hạn",
+            "expiry_date_expired": "Đã hết hạn",
+            "expiry_date_has_not_happened_yet": "Bắt đầu sau {{date}} {{plural}}",
+            "expiry_date_remaining": "Còn lại {{date}} {{plural}}",
+            "expiry_date_tooltip": "Khoảng thời gian có thể sử dụng được mã giảm giá này.",
+            "applies_to_all_products": "Áp dụng cho toàn bộ sản phẩm",
+            "applies_to_products": "Áp dụng cho món ăn",
+            "do_not_apply": "Không áp dụng",
+            "applies_to_all_products_tooltip": "Áp dụng cho toàn bộ sản phẩm hoặc sản phẩm chỉ định.",
+            "use_percentage": "Dùng phần trăm giảm giá",
+            "use_percentage_tooltip": "Dùng phương thức giảm giá theo tỉ lệ phần trăm."
+        },
+        "message": {
+            "discount": "Giảm ",
+            "not_available": "Không khả dụng",
+            "available": "Khả dụng",
+            "valid_till": "Hợp lệ cho đến ",
+            "apply_order_from": "Áp dụng cho đơn đặt bàn từ ",
+            "apply_when_purchase": "Áp dụng khi mua các món: ",
+            "percentage_mess": "Giảm {{percentage}}%, tối thiểu {{minimum}} VND, tối đa {{maximum}} VND.",
+            "not_support_mobile_title": "Kích thước màn hình hiện tại không hỗ trợ.",
+            "not_support_mobile_description": "Vui lòng đổi qua các thiết bị có kích thước màn hình lớn hơn để tiếp tục.",
+            "not_support_laptop_title": "Kích thước màn hình hiện tại không hỗ trợ.",
+            "not_support_laptop_description": "Vui lòng đổi qua các thiết bị di động để tiếp tục.",
+            "not_found_page_title": "Ôiii....",
+            "not_found_page_description": "un-oh! Không tìm thấy trang...."
         },
         "pages": {
             "analytics": {
@@ -165,6 +205,10 @@
             }
         },
         "notification": {
+            "action": {
+                "call_staff_title": "Có khách đang gọi!",
+                "call_staff_description": "Có khách đang gọi tại bàn {{table}}! Vui lòng đến bàn {{table}} nhanh chóng."
+            },
             "upload": {
                 "must_be_image": "Bạn phải tải lên tệp với đuôi JPG/PNG!",
                 "must_smaller_than": "Dung lượng ảnh phải nhỏ hơn 2MB!"
@@ -231,11 +275,25 @@
                 "table": "bàn",
                 "order": "đơn hàng",
                 "booking": "đặt bàn",
-                "account": "tài khoản"
+                "account": "tài khoản",
+                "discount_code": "mã giảm giá"
+            },
+            "plural": {
+                "day": "ngày",
+                "days": "ngày",
+                "item": "món",
+                "items": "món"
+            },
+            "order_process": {
+                "ordered": "Đã đặt",
+                "confirmed": "Đã xác nhận",
+                "preparing": "Đang chuẩn bị",
+                "complete": "Hoàn thành"
             }
         },
         "utilities": {},
         "components": {
+            "print": { "receipt": "BIÊN LAI", "thanks": "CẢM ƠN QUÝ KHÁCH!" },
             "alert": {
                 "not_have_domain_warning": "Cảnh báo: Thêm tên miền để hiển thị mã QR đặt bàn.",
                 "not_have_domain_alert": "Bàn này không có mã QR để scan. Vui lòng thêm tên miền ở cài đặt hệ thống."
@@ -277,7 +335,11 @@
                 "order": "Đặt bàn",
                 "call_staff": "Gọi nhân viên",
                 "change_pasword": "Đổi mật khẩu",
-                "upload": "Tải lên"
+                "upload": "Tải lên",
+                "view": "Xem",
+                "use": "Sử dụng",
+                "pay": "Thanh toán",
+                "track_booking": "Kiểm tra đặt bàn"
             },
             "cart_navbar": { "items": "món" }
         }

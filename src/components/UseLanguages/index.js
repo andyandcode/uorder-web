@@ -1,4 +1,6 @@
 import { Select } from 'antd';
+import { Button, Picker } from 'antd-mobile';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function useLanguages() {
@@ -27,6 +29,40 @@ export function SelectLanguage() {
                 options={languages}
                 style={{
                     width: 120,
+                }}
+            />
+        </>
+    );
+}
+
+export function SelectLanguageMobile() {
+    const { i18n, t } = useTranslation();
+    const languages = useLanguages();
+    const [visible, setVisible] = useState(false);
+    const [value, setValue] = useState(i18n.language);
+
+    const handleChangeLocales = (value) => {
+        i18n.changeLanguage(value);
+        setValue(value);
+    };
+    return (
+        <>
+            <Button
+                onClick={() => {
+                    setVisible(true);
+                }}
+            >
+                {t('system.lang_label')}
+            </Button>
+            <Picker
+                cancelText={t('main.components.button.cancel')}
+                confirmText={t('main.components.button.submit')}
+                visible={visible}
+                value={value}
+                onConfirm={handleChangeLocales}
+                columns={[languages]}
+                onClose={() => {
+                    setVisible(false);
                 }}
             />
         </>

@@ -17,6 +17,7 @@
                 "analytics": "分析"
             },
             "account": "アカウント管理",
+            "discount_code": "割引",
             "settings": {
                 "label": "設定",
                 "system": "システム設定",
@@ -60,6 +61,7 @@
             "upload_image": "料理のイメージ",
             "subtotal": "小計",
             "discount": "割引",
+            "discount_tooltip": "注文の価格を特定の金額だけ値下げします。",
             "username": "ユーザー名",
             "username_placeholder": "ここにユーザー名を入力してください",
             "pwd": "パスワード",
@@ -102,8 +104,6 @@
                 "creator": "クリエイター",
                 "staff": "スタッフ"
             },
-            "chef_count": "シェフ",
-            "chef_count_tooltip": "シェフの数",
             "domain": "ドメイン名",
             "domain_tooltip": "注文する Web サイトのスキャンのドメイン名。 ",
             "order_discount": "割引",
@@ -113,7 +113,46 @@
             "order_note_placeholder": "注文メモ",
             "money_change": "変化",
             "money_receive": "受け取る",
-            "staff": "スタッフ"
+            "staff": "スタッフ",
+            "code": "コード",
+            "start_date": "開始日",
+            "end_date": "終了日",
+            "code_tooltip": "オプションの割引コード。",
+            "percentage": "パーセンテージ",
+            "percentage_mess_for_order": " からの注文に対して {{amount}}",
+            "percentage_tooltip": "オプションの割合で注文の価格を引き下げます。",
+            "max_discount_amount": "最大割引額",
+            "max_discount_amount_tooltip": "このコードで削減できる最大価格。",
+            "min_discount_amount": "最低割引額",
+            "min_discount_amount_tooltip": "このコードで削減できる最小価格。",
+            "min_order_amount_required": "最低注文金額",
+            "min_order_amount_required_tooltip": "この割引コードを使用するための最小注文金額。",
+            "expiry_date": "有効期限",
+            "expiry_date_expired": "期限切れ",
+            "expiry_date_has_not_happened_yet": "から始まる {{date}} {{plural}}",
+            "expiry_date_remaining": "{{date}} {{plural}} 残り",
+            "expiry_date_tooltip": "この割引コードが使用できる期間。",
+            "applies_to_all_products": "すべての項目に適用されます",
+            "applies_to_products": "食器に適用",
+            "do_not_apply": "申請しないでください",
+            "applies_to_all_products_tooltip": "全製品またはオプション製品に適用されます。",
+            "use_percentage": "使用率",
+            "use_percentage_tooltip": "特定の値による割引方法またはパーセント値による割引方法を使用します。"
+        },
+        "message": {
+            "discount": "割引 ",
+            "not_available": "利用不可",
+            "available": "利用可能",
+            "valid_till": "まで有効 ",
+            "apply_order_from": "からの予約に適用されます ",
+            "apply_when_purchase": "アイテム購入時に適用されます: ",
+            "percentage_mess": "{{percentage}}% オフ、最低割引 {{minimum}} VND、最大割引 {{maximum}} VND。",
+            "not_support_mobile_title": "この画面サイズはまだサポートされていません。",
+            "not_support_mobile_description": "続行するには、より大きな画面サイズのデバイスに変更してください。",
+            "not_support_laptop_title": "この画面サイズはまだサポートされていません。",
+            "not_support_laptop_description": "続行するにはモバイル デバイスに切り替えてください。",
+            "not_found_page_title": "おっと...",
+            "not_found_page_description": "うわー! ページが見つかりません...."
         },
         "pages": {
             "analytics": {
@@ -168,6 +207,10 @@
             }
         },
         "notification": {
+            "action": {
+                "call_staff_title": "お客様から電話がありました!",
+                "call_staff_description": "テーブル {{table}} で電話をかけているお客様がいます! 急いでテーブル {{table}} に来てください。"
+            },
             "upload": {
                 "must_be_image": "アップロードできるのは JPG/PNG ファイルのみです。",
                 "must_smaller_than": "画像は 2MB 未満である必要があります。"
@@ -234,11 +277,25 @@
                 "table": "テーブル",
                 "order": "注文",
                 "booking": "予約",
-                "account": "アカウント"
+                "account": "アカウント",
+                "discount_code": "ディスカウントコード"
+            },
+            "plural": {
+                "day": "日",
+                "days": "日々",
+                "item": "アイテム",
+                "items": "アイテム"
+            },
+            "order_process": {
+                "ordered": "注文済み",
+                "confirmed": "確認済み",
+                "preparing": "準備中",
+                "complete": "完了"
             }
         },
         "utilities": {},
         "components": {
+            "print": { "receipt": "レシート", "thanks": "ありがとう!" },
             "alert": {
                 "not_have_domain_warning": "警告: スキャンして注文するための QR コードを表示するには、ドメインを追加してください。",
                 "not_have_domain_alert": "このテーブルにはスキャンするための QR コードがありません。"
@@ -280,7 +337,11 @@
                 "order": "注文",
                 "call_staff": "コールスタッフ",
                 "change_pasword": "パスワードを変更する",
-                "upload": "アップロード"
+                "upload": "アップロード",
+                "view": "ビュー",
+                "use": "使用",
+                "pay": "支払う",
+                "track_booking": "予約を追跡する"
             },
             "cart_navbar": {
                 "items": "アイテム"
@@ -289,6 +350,6 @@
     },
     "system": {
         "lang_label": "日本語",
-        "lang_key": "jp"
+        "lang_key": "ja"
     }
 }

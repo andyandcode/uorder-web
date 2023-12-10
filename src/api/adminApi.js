@@ -61,6 +61,34 @@ const MenuAdmin = {
     },
 };
 
+const DiscountCodeAdmin = {
+    getList: (params) => {
+        const url = '/discount/getAll';
+        return axiosInstance.get(url, { params });
+    },
+    create: (params) => {
+        const url = '/discount/post';
+        return axiosInstance.post(url, params);
+    },
+    delete: (params) => {
+        const url = `/discount/delete/${params}`;
+        return axiosInstance.delete(url);
+    },
+    updateDiscountCode: (params) => {
+        const modifiedArray = [];
+
+        for (const item of params) {
+            const { path, op, value } = item;
+            const modifiedItem = { path, op, value };
+            modifiedArray.push(modifiedItem);
+        }
+        const url = `/discount/patch/${params[0].id}`;
+        return axiosInstance.patch(url, modifiedArray, {
+            headers: { 'content-type': 'application/json-patch+json' },
+        });
+    },
+};
+
 const SystemSettingsAdmin = {
     getSettings: (params) => {
         const url = '/systemSettings/getSettings';
@@ -197,6 +225,7 @@ export {
     AnalyticsAdmin,
     AuthAdmin,
     BookingAdmin,
+    DiscountCodeAdmin,
     DishAdmin,
     MenuAdmin,
     OrderAdmin,

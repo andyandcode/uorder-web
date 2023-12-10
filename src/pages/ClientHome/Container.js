@@ -12,6 +12,7 @@ function Conainer(props) {
     const [tableData, setTableData] = useState([]);
     const [availableMenuData, setAvailableMenuData] = useState([]);
     const [cartItems, setCartItems] = useState([]);
+    const [dishes, setDishes] = useState([]);
     const [orderResult, setOrderResult] = useState([]);
     const [isShowNavbar, setIsShowNavbar] = useState(false);
     const params = useParams();
@@ -23,8 +24,14 @@ function Conainer(props) {
                     state: { data: Utils.getValues(result, 'payload', []) },
                 });
             }
-
             setMenuData(Utils.getValues(result, 'payload.menus', []));
+
+            setDishes(
+                Utils.getValues(result, 'payload.menus', []).reduce((acc, category) => {
+                    return acc.concat(category.dishes);
+                }, []),
+            );
+
             setAvailableMenuData(
                 Utils.getValues(result, 'payload.menus', []).map((item) => ({
                     name: item.name,
@@ -38,24 +45,29 @@ function Conainer(props) {
 
     useEffect(() => {
         const combineArr = (array) => {
-            const results = [];
+            const dishes = [];
             const uniqueIds = new Set();
             let totalItems = 0;
-            let total = 0;
+            let subTotal = 0;
+            let discount = 0;
+            let tableId = params.tableId;
 
             for (let i = array.length - 1; i >= 0; i--) {
                 const item = array[i];
                 const id = item.dishId;
 
                 if (!uniqueIds.has(id)) {
-                    results.push(item);
+                    dishes.push(item);
                     uniqueIds.add(id);
                     totalItems += item.qty;
-                    total += item.amount;
+                    subTotal += item.amount;
                 }
             }
+            let total = subTotal;
+            let originalDiscount = discount;
+            let originalTotal = total;
 
-            return { results, totalItems, total };
+            return { dishes, totalItems, subTotal, discount, total, originalDiscount, originalTotal, tableId };
         };
 
         if (combineArr(cartItems).totalItems > 0) {

@@ -1,11 +1,13 @@
 import { Form, message } from 'antd';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
 import React, { useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import Cookies from 'universal-cookie';
 import { UseNotification } from '../../../components/UseNotification';
 import Config from '../../../configuration';
 import { rootKeys } from '../../../configuration/routesConfig';
 import Utils from '../../../utilities';
+import NotSupportMobile from '../../Redirect/NotSupportMobile';
 import propsProvider from './PropsProvider';
 import { login } from './Slice';
 import MainView from './template/MainView';
@@ -87,6 +89,11 @@ function Conainer(props) {
         contextHolder,
         loginBtnLoading,
     };
+
+    if (isMobile) {
+        return <NotSupportMobile />;
+    }
+
     return <MainView {...propsProvider(containerProps)} />;
 }
 

@@ -18,6 +18,7 @@ export default function propsProvider(props) {
         dispatch,
         history,
         access,
+        contextHolder,
     } = props;
     return {
         t,
@@ -38,5 +39,6 @@ export default function propsProvider(props) {
         dispatch,
         history,
         access,
+        contextHolder,
     };
 }

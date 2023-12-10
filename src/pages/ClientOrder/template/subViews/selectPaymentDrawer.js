@@ -1,5 +1,5 @@
 import { Drawer } from 'antd';
-import { CustomElement } from '../../../../components/CustomElement';
+import { Selector } from 'antd-mobile';
 
 export default function SelectPaymentDrawer({ t, onClosePaymentDrawer, openPaymentDrawer, handleSelectPayment }) {
     const data = [
@@ -9,7 +9,13 @@ export default function SelectPaymentDrawer({ t, onClosePaymentDrawer, openPayme
             value: 0,
             icon: 'https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-VNPAY-QR-1.png',
         },
-        { id: 1, label: 'Cash', value: 1, icon: 'https://cdn.icon-icons.com/icons2/2427/PNG/512/cash_icon_147027.png' },
+        {
+            id: 1,
+            label: 'Cash',
+            value: 1,
+            icon: 'https://cdn.icon-icons.com/icons2/2427/PNG/512/cash_icon_147027.png',
+            disabled: true,
+        },
     ];
     return (
         <>
@@ -21,15 +27,12 @@ export default function SelectPaymentDrawer({ t, onClosePaymentDrawer, openPayme
                 open={openPaymentDrawer}
                 key={'Drawer'}
             >
-                {data.map((e, index) => (
-                    <CustomElement.CustomRadio
-                        name={'paymentMethod'}
-                        id={index}
-                        key={index}
-                        data={e}
-                        handleSelectPayment={handleSelectPayment}
-                    />
-                ))}
+                <Selector
+                    columns={1}
+                    options={data}
+                    defaultValue={[0]}
+                    onChange={(arr, extend) => handleSelectPayment(extend.items[0])}
+                />
             </Drawer>
         </>
     );

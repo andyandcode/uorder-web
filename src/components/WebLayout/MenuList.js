@@ -1,9 +1,9 @@
 import {
     DesktopOutlined,
-    HistoryOutlined,
     PieChartOutlined,
     SettingOutlined,
     ShoppingCartOutlined,
+    TagsOutlined,
     UserOutlined,
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
@@ -80,11 +80,11 @@ export const MenuList = (roleName) => {
             role: 'admin',
         },
         {
-            label: t('main.navigation.active_log'),
-            key: rootKeys.activeLogManagementUrl,
-            path: rootKeys.activeLogManagementUrl,
-            icon: <HistoryOutlined />,
-            role: 'admin',
+            label: t('main.navigation.discount_code'),
+            key: rootKeys.discountCodeManagementUrl,
+            path: rootKeys.discountCodeManagementUrl,
+            icon: <TagsOutlined />,
+            role: 'admin,staff',
         },
         {
             label: t('main.navigation.settings.label'),

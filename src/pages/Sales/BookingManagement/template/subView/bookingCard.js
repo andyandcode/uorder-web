@@ -44,7 +44,7 @@ export default function BookingCard({
                             <Button
                                 icon={<CheckCircleOutlined key='completeOrder' />}
                                 type='text'
-                                disabled={!e.paymentStatus === 0}
+                                disabled={e.paymentStatus !== 0}
                                 size='small'
                                 onClick={() => handleCompleteOrderClick(e)}
                             />,

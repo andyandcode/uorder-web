@@ -17,6 +17,7 @@
                 "analytics": "해석학"
             },
             "account": "계정 관리",
+            "discount_code": "할인",
             "settings": {
                 "label": "설정",
                 "system": "환경 설정",
@@ -60,6 +61,7 @@
             "upload_image": "요리 이미지",
             "subtotal": "소계",
             "discount": "할인",
+            "discount_tooltip": "특정 금액만큼 주문 가격을 인하합니다.",
             "username": "사용자 이름",
             "username_placeholder": "여기에 사용자 이름을 입력하세요",
             "pwd": "비밀번호",
@@ -102,8 +104,6 @@
                 "creator": "창조자",
                 "staff": "직원"
             },
-            "chef_count": "요리사",
-            "chef_count_tooltip": "요리사의 수",
             "domain": "도메인 이름",
             "domain_tooltip": "주문할 웹사이트 스캔의 도메인 이름입니다. ",
             "order_discount": "할인",
@@ -113,7 +113,46 @@
             "order_note_placeholder": "주문 메모",
             "money_change": "변화",
             "money_receive": "받다",
-            "staff": "직원"
+            "staff": "직원",
+            "code": "암호",
+            "start_date": "시작일",
+            "end_date": "종료일",
+            "code_tooltip": "선택적 할인 코드. ",
+            "percentage": "백분율",
+            "percentage_mess_for_order": " 주문에 대한 {{amount}}",
+            "percentage_tooltip": "선택적 비율만큼 주문 가격을 낮추십시오.",
+            "max_discount_amount": "최대 할인 금액",
+            "max_discount_amount_tooltip": "이 코드가 줄일 수 있는 최대 가격입니다.",
+            "min_discount_amount": "최소 할인 금액",
+            "min_discount_amount_tooltip": "이 코드로 줄일 수 있는 최소 가격입니다.",
+            "min_order_amount_required": "최소 주문 금액",
+            "min_order_amount_required_tooltip": "이 할인 코드를 사용하기 위한 최소 주문 금액입니다.",
+            "expiry_date": "만료일",
+            "expiry_date_expired": "만료됨",
+            "expiry_date_has_not_happened_yet": "에서 시작 {{date}} {{plural}}",
+            "expiry_date_remaining": "{{date}} {{plural}} 남은",
+            "expiry_date_tooltip": "해당 할인코드를 사용할 수 있는 기간입니다.",
+            "applies_to_all_products": "모든 항목에 적용됩니다.",
+            "applies_to_products": "요리에 적용",
+            "do_not_apply": "신청하지 않음",
+            "applies_to_all_products_tooltip": "모든 제품 또는 옵션 제품에 적용됩니다.",
+            "use_percentage": "사용 비율",
+            "use_percentage_tooltip": "특정 값에 의한 할인 방법이나 백분율 값에 의한 할인 방법을 사용하십시오."
+        },
+        "message": {
+            "discount": "할인 ",
+            "not_available": "사용 불가",
+            "available": "사용 가능",
+            "valid_till": "까지 유효 ",
+            "apply_order_from": "예약부터 적용 ",
+            "apply_when_purchase": "아이템 구매 시 적용 가능: ",
+            "percentage_mess": "{{percentage}}% 할인, 최소 할인 {{minimum}} VND, 최대 할인 {{maximum}} VND.",
+            "not_support_mobile_title": "이 화면 크기는 아직 지원되지 않습니다.",
+            "not_support_mobile_description": "계속하려면 화면 크기가 더 큰 기기로 변경하세요.",
+            "not_support_laptop_title": "이 화면 크기는 아직 지원되지 않습니다.",
+            "not_support_laptop_description": "계속하려면 모바일 기기로 전환하세요.",
+            "not_found_page_title": "앗....",
+            "not_found_page_description": "아, 아! 페이지를 찾을 수 없습니다...."
         },
         "pages": {
             "analytics": {
@@ -168,6 +207,10 @@
             }
         },
         "notification": {
+            "action": {
+                "call_staff_title": "고객이 전화를 왔어요!",
+                "call_staff_description": "{{table}} 테이블에 고객이 전화하고 있습니다! 빨리 {{table}} 테이블로 와주세요."
+            },
             "upload": {
                 "must_be_image": "JPG/PNG 파일만 업로드할 수 있습니다!",
                 "must_smaller_than": "이미지는 2MB보다 작아야 합니다!"
@@ -234,11 +277,25 @@
                 "table": "테이블",
                 "order": "주문하다",
                 "booking": "예약",
-                "account": "계정"
+                "account": "계정",
+                "discount_code": "할인 코드"
+            },
+            "plural": {
+                "day": "낮",
+                "days": "날",
+                "item": "안건",
+                "items": "아이템"
+            },
+            "order_process": {
+                "ordered": "주문됨",
+                "confirmed": "확인됨",
+                "preparing": "준비 중",
+                "complete": "완료"
             }
         },
         "utilities": {},
         "components": {
+            "print": { "receipt": "영수증", "thanks": "감사합니다!" },
             "alert": {
                 "not_have_domain_warning": "경고: 스캔하고 주문할 QR 코드를 표시하려면 도메인을 추가하세요.",
                 "not_have_domain_alert": "이 테이블에는 스캔할 QR 코드가 없습니다. "
@@ -280,7 +337,11 @@
                 "order": "주문하다",
                 "call_staff": "직원에게 전화하기",
                 "change_pasword": "비밀번호 변경",
-                "upload": "업로드"
+                "upload": "업로드",
+                "view": "보다",
+                "use": "사용",
+                "pay": "지불하다",
+                "track_booking": "트랙 예약"
             },
             "cart_navbar": {
                 "items": "아이템"
@@ -289,6 +350,6 @@
     },
     "system": {
         "lang_label": "한국어",
-        "lang_key": "ko"
+        "lang_key": "ko-KR"
     }
 }

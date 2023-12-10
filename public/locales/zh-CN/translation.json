@@ -17,6 +17,7 @@
                 "analytics": "分析"
             },
             "account": "帐户管理",
+            "discount_code": "折扣",
             "settings": {
                 "label": "设置",
                 "system": "系统设置",
@@ -60,6 +61,7 @@
             "upload_image": "菜品图片",
             "subtotal": "小计",
             "discount": "折扣",
+            "discount_tooltip": "将订单价格降低特定金额。",
             "username": "用户名",
             "username_placeholder": "在此输入用户名",
             "pwd": "密码",
@@ -102,10 +104,8 @@
                 "creator": "创作者",
                 "staff": "职员"
             },
-            "chef_count": "厨师",
-            "chef_count_tooltip": "厨师人数",
             "domain": "域名",
-            "domain_tooltip": "网站域名扫描订购。 ",
+            "domain_tooltip": "扫描订购网站域名。 ",
             "order_discount": "折扣",
             "order_subtotal": "小计",
             "order_total": "全部的",
@@ -113,7 +113,46 @@
             "order_note_placeholder": "订单备注",
             "money_change": "改变",
             "money_receive": "收到",
-            "staff": "职员"
+            "staff": "职员",
+            "code": "代码",
+            "start_date": "开始日期",
+            "end_date": "结束日期",
+            "code_tooltip": "可选折扣代码。",
+            "percentage": "百分比",
+            "percentage_mess_for_order": " 订单来自 {{amount}}",
+            "percentage_tooltip": "将订单价格降低可选百分比。",
+            "max_discount_amount": "最大折扣金额",
+            "max_discount_amount_tooltip": "此代码可以降低的最高价格。",
+            "min_discount_amount": "最低折扣金额",
+            "min_discount_amount_tooltip": "此代码可以降低的最低价格。",
+            "min_order_amount_required": "最小订单量",
+            "min_order_amount_required_tooltip": "使用此折扣代码的最低订单价值。",
+            "expiry_date": "到期日",
+            "expiry_date_expired": "已到期",
+            "expiry_date_has_not_happened_yet": "开始于 {{date}} {{plural}}",
+            "expiry_date_remaining": "{{date}} {{plural}} 其余的",
+            "expiry_date_tooltip": "可以使用该折扣代码的期限。",
+            "applies_to_all_products": "适用于所有项目",
+            "applies_to_products": "适用于菜肴",
+            "do_not_apply": "请勿应用",
+            "applies_to_all_products_tooltip": "适用于所有产品或可选产品。",
+            "use_percentage": "使用百分比",
+            "use_percentage_tooltip": "使用按特定值折扣或按百分比值折扣的方法。"
+        },
+        "message": {
+            "discount": "折扣 ",
+            "not_available": "无法使用",
+            "available": "可用的",
+            "valid_till": "有效期至 ",
+            "apply_order_from": "适用于预订 ",
+            "apply_when_purchase": "购买物品时适用： ",
+            "percentage_mess": "{{percentage}}% 折扣、最低折扣 {{minimum}} 越南盾，最大折扣 {{maximum}} 越南盾。",
+            "not_support_mobile_title": "尚不支持此屏幕尺寸。",
+            "not_support_mobile_description": "请更换为更大屏幕尺寸的设备才能继续。",
+            "not_support_laptop_title": "尚不支持此屏幕尺寸。",
+            "not_support_laptop_description": "请切换到移动设备以继续。",
+            "not_found_page_title": "哎呀......",
+            "not_found_page_description": "哦！页面未找到......"
         },
         "pages": {
             "analytics": {
@@ -168,6 +207,10 @@
             }
         },
         "notification": {
+            "action": {
+                "call_staff_title": "有顾客打来电话！",
+                "call_staff_description": "第 {{table}} 桌有顾客来电！请快点到 {{table}} 桌。"
+            },
             "upload": {
                 "must_be_image": "您只能上传JPG/PNG文件！",
                 "must_smaller_than": "图片必须小于2MB！"
@@ -234,11 +277,25 @@
                 "table": "桌子",
                 "order": "命令",
                 "booking": "预订",
-                "account": "帐户"
+                "account": "帐户",
+                "discount_code": "优惠码"
+            },
+            "plural": {
+                "day": "天",
+                "days": "天",
+                "item": "物品",
+                "items": "项目"
+            },
+            "order_process": {
+                "ordered": "已订购",
+                "confirmed": "已确认",
+                "preparing": "准备",
+                "complete": "完成"
             }
         },
         "utilities": {},
         "components": {
+            "print": { "receipt": "收据", "thanks": "谢谢你！" },
             "alert": {
                 "not_have_domain_warning": "警告：添加域以显示要扫描和订购的二维码。",
                 "not_have_domain_alert": "此表没有可扫描的二维码。"
@@ -280,7 +337,11 @@
                 "order": "命令",
                 "call_staff": "致电工作人员",
                 "change_pasword": "更改密码",
-                "upload": "上传"
+                "upload": "上传",
+                "view": "看法",
+                "use": "使用",
+                "pay": "支付",
+                "track_booking": "跟踪预订"
             },
             "cart_navbar": {
                 "items": "项目"

@@ -50,6 +50,10 @@ const getAccessToken = () => {
     return false;
 };
 
-const Utils = { getValues, getAccessToken };
+const convertToNumber = (value) => {
+    return parseInt(value.toString().replace(/[^0-9]/g, ''));
+};
+
+const Utils = { getValues, getAccessToken, convertToNumber };
 
 export default Utils;

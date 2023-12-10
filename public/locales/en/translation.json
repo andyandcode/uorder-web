@@ -17,6 +17,7 @@
                 "analytics": "Analytics"
             },
             "account": "Account management",
+            "discount_code": "Discount",
             "settings": {
                 "label": "Settings",
                 "system": "System settings",
@@ -60,6 +61,7 @@
             "upload_image": "Image of dish",
             "subtotal": "Subtotal",
             "discount": "Discount",
+            "discount_tooltip": "Reduce the price of the order by a specific amount.",
             "username": "Username",
             "username_placeholder": "Enter username here",
             "pwd": "Password",
@@ -102,8 +104,6 @@
                 "creator": "Creator",
                 "staff": "Staff"
             },
-            "chef_count": "Chef",
-            "chef_count_tooltip": "Number of chefs",
             "domain": "Domain name",
             "domain_tooltip": "Domain name of website scan to order. (example: example.com)",
             "order_discount": "Discount",
@@ -113,7 +113,46 @@
             "order_note_placeholder": "Order note",
             "money_change": "Change",
             "money_receive": "Receive",
-            "staff": "Staff"
+            "staff": "Staff",
+            "code": "Code",
+            "start_date": "Start date",
+            "end_date": "End date",
+            "code_tooltip": "Optional discount code. Example: Example",
+            "percentage": "Percentage",
+            "percentage_mess_for_order": " for orders from {{amount}}",
+            "percentage_tooltip": "Reduce the price of the order by an optional percentage.",
+            "max_discount_amount": "Max discount amount",
+            "max_discount_amount_tooltip": "The maximum price this code can reduce.",
+            "min_discount_amount": "Min discount amount",
+            "min_discount_amount_tooltip": "Minimum price that this code can reduce.",
+            "min_order_amount_required": "Min order amount",
+            "min_order_amount_required_tooltip": "Minimum order value to use this discount code.",
+            "expiry_date": "Expiry date",
+            "expiry_date_expired": "Expired",
+            "expiry_date_has_not_happened_yet": "Starting in {{date}} {{plural}}",
+            "expiry_date_remaining": "{{date}} {{plural}} remaining",
+            "expiry_date_tooltip": "The period during which this discount code can be used.",
+            "applies_to_all_products": "Applies to all items",
+            "applies_to_products": "Applies to dishes",
+            "do_not_apply": "Do not apply",
+            "applies_to_all_products_tooltip": "Applies to all products or to optional products.",
+            "use_percentage": "Use percentage",
+            "use_percentage_tooltip": "Use the discount method by specific value or discount by percentage value."
+        },
+        "message": {
+            "discount": "Discount ",
+            "not_available": "Not available",
+            "available": "Available",
+            "valid_till": "Valid till ",
+            "apply_order_from": "Applies to booking from ",
+            "apply_when_purchase": "Applicable when purchasing items: ",
+            "percentage_mess": "{{percentage}}% off, minimum discount {{minimum}} VND, maximum discount {{maximum}} VND.",
+            "not_support_mobile_title": "This screen size is not supported yet.",
+            "not_support_mobile_description": "Please change to devices with larger screen sizes to continue.",
+            "not_support_laptop_title": "This screen size is not supported yet.",
+            "not_support_laptop_description": "Please switch to mobile devices to continue.",
+            "not_found_page_title": "Ooops....",
+            "not_found_page_description": "un-oh! Page not found...."
         },
         "pages": {
             "analytics": {
@@ -165,6 +204,10 @@
             }
         },
         "notification": {
+            "action": {
+                "call_staff_title": "There's a customer calling!",
+                "call_staff_description": "There's a customer calling at table {{table}}! Please come to table {{table}} quickly."
+            },
             "upload": {
                 "must_be_image": "You can only upload JPG/PNG file!",
                 "must_smaller_than": "Image must smaller than 2MB!"
@@ -231,11 +274,25 @@
                 "table": "table",
                 "order": "order",
                 "booking": "booking",
-                "account": "account"
+                "account": "account",
+                "discount_code": "discount code"
+            },
+            "plural": {
+                "day": "day",
+                "days": "days",
+                "item": "item",
+                "items": "items"
+            },
+            "order_process": {
+                "ordered": "Ordered",
+                "confirmed": "Confirmed",
+                "preparing": "Preparing",
+                "complete": "Complete"
             }
         },
         "utilities": {},
         "components": {
+            "print": { "receipt": "RECEIPT", "thanks": "THANK YOU!" },
             "alert": {
                 "not_have_domain_warning": "Warning: Add a domain to display the qr code to scan and order.",
                 "not_have_domain_alert": "This table does not have a qr code to scan. Please add domain in system settings."
@@ -277,7 +334,11 @@
                 "order": "Order",
                 "call_staff": "Call Staff",
                 "change_pasword": "Change Password",
-                "upload": "Upload"
+                "upload": "Upload",
+                "view": "View",
+                "use": "Use",
+                "pay": "Pay",
+                "track_booking": "Track booking"
             },
             "cart_navbar": { "items": "items" }
         }

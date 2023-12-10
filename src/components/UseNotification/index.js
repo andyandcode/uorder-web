@@ -93,7 +93,7 @@ const LoginSuccessMessage = (t) => {
     return {
         type: 'success',
         content: t('main.notification.auth.login_success'),
-        duration: 3,
+        duration: 2,
     };
 };
 
@@ -101,7 +101,7 @@ const PasswordNotMatch = (t) => {
     return {
         type: 'error',
         content: t('main.notification.auth.password_not_match'),
-        duration: 3,
+        duration: 2,
     };
 };
 
@@ -109,7 +109,7 @@ const ChangePasswordSuccessful = (t) => {
     return {
         type: 'success',
         content: t('main.notification.auth.change_password_successful'),
-        duration: 3,
+        duration: 2,
     };
 };
 

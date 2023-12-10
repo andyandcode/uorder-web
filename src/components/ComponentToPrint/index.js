@@ -2,7 +2,6 @@ import { Col, Divider, Row, Typography } from 'antd';
 import moment from 'moment';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { NumericFormat } from 'react-number-format';
 import { CurrencyFormat } from '../CurrencyFormat';
 
 const OrderBill = React.forwardRef(({ data, componentRef }) => {
@@ -11,7 +10,7 @@ const OrderBill = React.forwardRef(({ data, componentRef }) => {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div ref={componentRef} style={{ width: 300 }}>
                 <Typography.Title level={3} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    RECEIPT
+                    {t('main.components.print.receipt')}
                 </Typography.Title>
 
                 <Row style={{ marginTop: 8 }}>
@@ -69,7 +68,7 @@ const OrderBill = React.forwardRef(({ data, componentRef }) => {
                 <Row style={{ width: '100%', marginBottom: 4 }}>
                     <Col flex={6}>{t('main.entities.subtotal')}</Col>
                     <Col flex={6} style={{ display: 'inline-flex', justifyContent: 'end' }}>
-                        <CurrencyFormat.Minimal value={data.total} />
+                        <CurrencyFormat.Minimal value={data.subtotal} />
                     </Col>
                 </Row>
                 <Row style={{ width: '100%', marginBottom: 4 }}>
@@ -81,7 +80,7 @@ const OrderBill = React.forwardRef(({ data, componentRef }) => {
                             justifyContent: 'end',
                         }}
                     >
-                        <NumericFormat thousandSeparator=',' displayType='text' defaultValue={0} suffix=' VND' />
+                        <CurrencyFormat.Minimal value={data.discount} />
                     </Col>
                 </Row>
                 <Row style={{ width: '100%', marginBottom: 4 }}>
@@ -127,7 +126,7 @@ const OrderBill = React.forwardRef(({ data, componentRef }) => {
                 </Row>
                 <Divider style={{ margin: '8px 0px' }} />
                 <Typography.Title level={3} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    THANK YOU!
+                    {t('main.components.print.thanks')}
                 </Typography.Title>
             </div>
         </div>

@@ -13,7 +13,7 @@ export default function MainView({ t, isShowNavbar, orderResult, handleViewOrder
                             </Typography.Text>{' '}
                             <br />
                             <Typography.Text>
-                                {orderResult.total?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+                                {orderResult.subTotal?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                             </Typography.Text>
                         </Col>
                         <Col>

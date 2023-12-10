@@ -3,7 +3,7 @@ import moment from 'moment/moment';
 import { useTranslation } from 'react-i18next';
 import { NumericFormat } from 'react-number-format';
 import { CurrencyFormat } from '../CurrencyFormat';
-import { EnumRender } from '../EnumRender';
+import { DateType, EnumRender } from '../EnumRender';
 import NestedTable from '../NestedTable';
 import TableFilter from '../TableFilter';
 
@@ -13,8 +13,9 @@ const OrderTable = 'OrderTable';
 const BookingTable = 'BookingTable';
 const TableTable = 'TableTable';
 const AccountTable = 'AccountColumns';
+const DiscountCodeTable = 'DiscountCodeTable';
 
-const TableSwitch = { DishTable, MenuTable, OrderTable, BookingTable, TableTable, AccountTable };
+const TableSwitch = { DishTable, MenuTable, OrderTable, BookingTable, TableTable, AccountTable, DiscountCodeTable };
 
 const DishColumns = (t) => {
     return [
@@ -46,7 +47,7 @@ const DishColumns = (t) => {
                 multiple: 5,
             },
             render: (data) => {
-                return <NumericFormat value={data} thousandSeparator=',' displayType='text' suffix=' VNĐ' />;
+                return <CurrencyFormat.Minimal value={data} />;
             },
         },
         {
@@ -275,7 +276,57 @@ const OrderColumns = () => {
         },
     ].filter((item) => !item.hidden);
 };
-
+const DiscountCodeColumns = (t) => {
+    return [
+        {
+            key: 'code',
+            dataIndex: 'code',
+            title: t('main.entities.code'),
+            ...TableFilter('code', t('main.entities.code')),
+            ellipsis: {
+                showTitle: false,
+            },
+            render: (data) => (
+                <Tooltip placement='topLeft' title={data}>
+                    {data}
+                </Tooltip>
+            ),
+        },
+        {
+            key: 'startDate',
+            dataIndex: 'startDate',
+            title: t('main.entities.start_date'),
+            align: 'center',
+            sorter: {
+                compare: (a, b) => moment(a.startDate).unix() - moment(b.startDate).unix(),
+                multiple: 1,
+            },
+            render: (data) => EnumRender.CalculatorTime(t, data, DateType.StartDateKey),
+        },
+        {
+            key: 'endDate',
+            dataIndex: 'endDate',
+            title: t('main.entities.end_date'),
+            align: 'center',
+            sorter: {
+                compare: (a, b) => moment(a.endDate).unix() - moment(b.endDate).unix(),
+                multiple: 1,
+            },
+            render: (data) => EnumRender.CalculatorTime(t, data, DateType.EndDateKey),
+        },
+        {
+            key: 'isActive',
+            dataIndex: 'isActive',
+            title: t('main.entities.active_status.label'),
+            align: 'center',
+            sorter: {
+                compare: (a, b) => a.isActive - b.isActive,
+                multiple: 3,
+            },
+            render: (data) => EnumRender.ActiveStatus(t, data),
+        },
+    ].filter((item) => !item.hidden);
+};
 const ExpandedRowRenderSelection = (
     data,
     t,
@@ -494,5 +545,6 @@ const TableColumns = {
     TablesColumns,
     OrderColumns,
     AccountColumns,
+    DiscountCodeColumns,
 };
 export default TableColumns;

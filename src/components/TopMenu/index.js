@@ -1,5 +1,5 @@
 import { Select, Typography } from 'antd';
-import { SelectLanguage } from '../UseLanguages';
+import { SelectLanguageMobile } from '../UseLanguages';
 
 export default function TopMenu({ t, data, menuData }) {
     const options = data.map((e, index) => ({ label: e.name, value: e.id, href: e.id, key: index }));
@@ -16,7 +16,7 @@ export default function TopMenu({ t, data, menuData }) {
                     <Typography.Title level={3} style={{ margin: 4 }}>
                         {menuData.name}
                     </Typography.Title>
-                    <SelectLanguage />
+                    <SelectLanguageMobile />
                 </div>
                 <Select
                     options={options}

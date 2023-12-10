@@ -1,0 +1,78 @@
+import { Divider, Layout, Space, Typography } from 'antd';
+import { ButtonLocated } from '../../../components/ButtonLocated';
+import CustomTable from '../../../components/CustomTable';
+import TableColumns from '../../../components/CustomTable/columnConfigs';
+import CreateModal from './subviews/createModal';
+import ViewModal from './subviews/viewModal';
+
+const { Content } = Layout;
+const { Title } = Typography;
+
+export default function MainView(props) {
+    const {
+        t,
+        columns,
+        tableData,
+        handleActionButtonViewClick,
+        handleActionButtonDeleteClick,
+        handleActionButtonTurnOffClick,
+        handleActionButtonTurnOnClick,
+        handleCreateNewClick,
+        handleRefreshClick,
+        createForm,
+        openCreateModel,
+        handleCreateCancelClick,
+        messageContextHolder,
+        handleCreateSubmitClick,
+        viewData,
+        openViewModel,
+        handleViewCancelClick,
+    } = props;
+
+    return (
+        <>
+            <Content>
+                <Title style={{ marginBottom: 32 }} level={3}>
+                    {t('main.navigation.discount_code')}
+                </Title>
+                <Divider />
+
+                <Space
+                    direction='horizontal'
+                    align='end'
+                    style={{
+                        width: '100%',
+                        paddingBottom: '24px',
+                    }}
+                >
+                    <ButtonLocated.AddButton handleCreateNewClick={handleCreateNewClick} />
+                    <ButtonLocated.RefreshButton handleRefreshClick={handleRefreshClick} />
+                </Space>
+                <CustomTable
+                    columns={columns}
+                    dataSource={tableData}
+                    handleActionButtonEditClick={(data) => handleActionButtonViewClick(data)}
+                    handleActionButtonDeleteClick={(data) => handleActionButtonDeleteClick(data)}
+                    handleActionButtonTurnOffClick={(data) => handleActionButtonTurnOffClick(data)}
+                    handleActionButtonTurnOnClick={(data) => handleActionButtonTurnOnClick(data)}
+                    switchActionColumn={TableColumns.TableSwitch.DiscountCodeTable}
+                    handleActionButtonViewClick={handleActionButtonViewClick}
+                />
+                <CreateModal
+                    t={t}
+                    createForm={createForm}
+                    openCreateModel={openCreateModel}
+                    handleCreateCancelClick={handleCreateCancelClick}
+                    messageContextHolder={messageContextHolder}
+                    handleCreateSubmitClick={handleCreateSubmitClick}
+                />
+                <ViewModal
+                    t={t}
+                    viewData={viewData}
+                    openViewModel={openViewModel}
+                    handleViewCancelClick={handleViewCancelClick}
+                />
+            </Content>
+        </>
+    );
+}

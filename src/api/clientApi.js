@@ -8,6 +8,21 @@ const MenuClient = {
     },
 };
 
+const DiscountCodeClient = {
+    getAvailableCodes: (params) => {
+        const url = '/discount/getAvailableCodes';
+        return axiosInstance.post(url, params, {
+            headers: { 'Content-Type': 'application/json-patch+json' },
+        });
+    },
+    applyDiscountCode: (params) => {
+        const url = '/discount/applyDiscountCode';
+        return axiosInstance.get(url, params, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+    },
+};
+
 const BookingClient = {
     getBooking: (params) => {
         const url = `/booking/${params}`;
@@ -23,6 +38,14 @@ const BookingClient = {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
     },
+    payBooking: (params) => {
+        const url = `/booking/payOrder/${params}`;
+        return axiosClient.get(url, params);
+    },
+    getById: (params) => {
+        const url = `/booking/getById/${params}`;
+        return axiosClient.get(url, params);
+    },
     updateBookingStatus: (params) => {
         const modifiedArray = [];
         for (const item of params) {
@@ -37,4 +60,11 @@ const BookingClient = {
     },
 };
 
-export { BookingClient, MenuClient };
+const ActionClient = {
+    callStaff: (params) => {
+        const url = `/action/callStaff/${params}`;
+        return axiosClient.get(url, params);
+    },
+};
+
+export { ActionClient, BookingClient, DiscountCodeClient, MenuClient };

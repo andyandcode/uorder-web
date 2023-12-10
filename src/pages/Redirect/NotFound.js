@@ -1,17 +1,18 @@
-import { Typography } from 'antd';
+import { ErrorBlock } from 'antd-mobile';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function NotFound() {
+    const { t } = useTranslation();
     return (
-        <Typography.Title
-            level={4}
+        <ErrorBlock
+            image='https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg'
             style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
+                '--image-height': '150px',
             }}
-        >
-            Not Found
-        </Typography.Title>
+            fullPage
+            title={t('main.message.not_found_page_title')}
+            description={t('main.message.not_found_page_description')}
+        />
     );
 }

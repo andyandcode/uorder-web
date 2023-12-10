@@ -1,23 +1,60 @@
 import { Form } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { hideLoading, showLoading } from '../../components/FullPageLoading/LoadingSlice';
 import { rootKeys } from '../../configuration/routesConfig';
 import Utils from '../../utilities';
 import propsProvider from './PropsProvider';
-import { bookingClient } from './Slice';
+import { bookingClient, getAvailableCodesClient } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
     const { history, t, location, dispatch } = props;
     const [orderForm] = Form.useForm();
-    const [orderData, setOrderData] = useState(location.state.data);
+    const [orderData, setOrderData] = useState(JSON.parse(localStorage.getItem('cartItems')));
+    const [listDiscountData, setListDiscountData] = useState([]);
+    const [discountData, setDiscountData] = useState(null);
     const [openPaymentDrawer, setOpenPaymentDrawer] = useState(false);
     const [openDiscountDrawer, setOpenDiscountDrawer] = useState(false);
+    const [childrenDrawer, setChildrenDrawer] = useState(false);
     const [paymentSelectTarget, setPaymentSelectTarget] = useState({
         id: 1,
         label: 'VnPay',
         value: 0,
         icon: 'https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-VNPAY-QR-1.png',
     });
+
+    const fetchData = async () => {
+        dispatch(showLoading());
+        try {
+            await dispatch(getAvailableCodesClient(orderData)).then((result) => {
+                setListDiscountData(Utils.getValues(result, 'payload', []));
+            });
+        } catch (error) {
+            console.error(error);
+        } finally {
+            dispatch(hideLoading());
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [dispatch]);
+
+    const handleDiscountCardClick = (data) => {
+        setDiscountData(data);
+        setChildrenDrawer(true);
+    };
+    const onChildrenDrawerClose = () => {
+        setChildrenDrawer(false);
+    };
+    useEffect(() => {
+        orderForm.setFieldsValue({ ...orderData });
+    }, [orderData]);
+
+    const handleUseDiscountClick = (data) => {
+        setOrderData({ ...orderData, discount: data, total: orderData.subTotal - data });
+        setOpenDiscountDrawer(false);
+    };
 
     const onClosePaymentDrawer = () => {
         setOpenPaymentDrawer(false);
@@ -70,6 +107,12 @@ function Conainer(props) {
         openDiscountDrawer,
         onCloseDiscountDrawer,
         handleOrderClick,
+        listDiscountData,
+        childrenDrawer,
+        handleDiscountCardClick,
+        onChildrenDrawerClose,
+        discountData,
+        handleUseDiscountClick,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

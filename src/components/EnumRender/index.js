@@ -1,4 +1,5 @@
-import { Badge, Tag, Typography } from 'antd';
+import { Badge, Row, Tag, Typography } from 'antd';
+import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 
 const OrderStatus = (t, data) => {
@@ -68,6 +69,56 @@ const OrderStatusMinimal = (t, data) => {
         default:
             break;
     }
+};
+
+const CalculatorTime = (t, data, dateType) => {
+    const current = moment();
+    const inData = moment(data);
+    const count = inData.diff(current, 'days');
+    switch (dateType) {
+        case StartDateKey:
+            if (moment(data).format('MM/DD/YYYY') > moment().format('MM/DD/YYYY')) {
+                return (
+                    <>
+                        <Row style={{ flexDirection: 'column' }}>
+                            <p>{moment(data).format('DD/MM/YYYY')}</p>
+                            <Typography.Text type='secondary'>
+                                {t('main.entities.expiry_date_has_not_happened_yet', {
+                                    date: count,
+                                    plural: count > 1 ? t('main.common.plural.days') : t('main.common.plural.day'),
+                                })}
+                            </Typography.Text>
+                        </Row>
+                    </>
+                );
+            }
+            break;
+
+        case EndDateKey:
+            if (moment(data).format('MM/DD/YYYY') > moment().format('MM/DD/YYYY')) {
+                return (
+                    <>
+                        <Row style={{ flexDirection: 'column' }}>
+                            <p>{moment(data).format('DD/MM/YYYY')}</p>
+                            <Typography.Text type='warning'>
+                                {t('main.entities.expiry_date_remaining', {
+                                    date: count,
+                                    plural: count > 1 ? t('main.common.plural.days') : t('main.common.plural.day'),
+                                })}
+                            </Typography.Text>
+                        </Row>
+                    </>
+                );
+            }
+            if (moment(data).format('MM/DD/YYYY') <= moment().format('MM/DD/YYYY')) {
+                return <Typography.Text type='danger'>{t('main.entities.expiry_date_expired')}</Typography.Text>;
+            }
+            break;
+
+        default:
+            break;
+    }
+    return <p>{moment(data).format('DD/MM/YYYY')}</p>;
 };
 
 const PaymentStatus = (t, data) => {
@@ -239,6 +290,11 @@ const Roles = (t, data) => {
     }
 };
 
+const StartDateKey = 'StartDateKey';
+const EndDateKey = 'EndDateKey';
+
+export const DateType = { StartDateKey, EndDateKey };
+
 export const EnumKey = { OrderStatusKey, PaymentStatusKey };
 
 export const EnumRender = {
@@ -250,4 +306,5 @@ export const EnumRender = {
     PaymentStatusMinimal,
     OrderStatusMinimal,
     Roles,
+    CalculatorTime,
 };
