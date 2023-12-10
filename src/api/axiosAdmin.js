@@ -41,7 +41,7 @@ const CreateAxiosInstance = () => {
                 redirect(rootKeys.loginUrl);
                 return;
             }
-            return error;
+            return;
         },
     );
 

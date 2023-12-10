@@ -1,8 +1,11 @@
 import {
-    DesktopOutlined,
-    PieChartOutlined,
-    SettingOutlined,
-    ShoppingCartOutlined,
+    AppstoreOutlined,
+    CloudServerOutlined,
+    FundProjectionScreenOutlined,
+    ProfileOutlined,
+    QrcodeOutlined,
+    ScanOutlined,
+    SolutionOutlined,
     TagsOutlined,
     UserOutlined,
 } from '@ant-design/icons';
@@ -13,64 +16,60 @@ export const MenuList = (roleName) => {
     const { t } = useTranslation();
 
     const originalMenu = [
+        // {
+        //     label: t('main.navigation.home.label'),
+        //     key: rootKeys.homeUrl,
+        //     path: rootKeys.homeUrl,
+        //     icon: <PieChartOutlined />,
+        //     role: '',
+        // },
         {
-            label: t('main.navigation.home.label'),
-            key: rootKeys.homeUrl,
-            path: rootKeys.homeUrl,
-            icon: <PieChartOutlined />,
-            role: '',
-        },
-        {
-            label: t('main.navigation.manage.label'),
-            key: rootKeys.manageUrl,
-            icon: <DesktopOutlined />,
+            label: t('main.navigation.manage.dish'),
+            key: rootKeys.dishManagementUrl,
+            path: rootKeys.dishManagementUrl,
+            icon: <AppstoreOutlined />,
             role: 'admin,creator',
-            children: [
-                {
-                    label: t('main.navigation.manage.dish'),
-                    key: rootKeys.dishManagementUrl,
-                    path: rootKeys.dishManagementUrl,
-                    role: 'admin,creator',
-                },
-                {
-                    label: t('main.navigation.manage.menu'),
-                    key: rootKeys.menuManagementUrl,
-                    path: rootKeys.menuManagementUrl,
-                    role: 'admin,creator',
-                },
-                {
-                    label: t('main.navigation.manage.table'),
-                    key: rootKeys.tableManagementUrl,
-                    path: rootKeys.tableManagementUrl,
-                    role: 'admin,creator',
-                },
-            ],
         },
         {
-            label: t('main.navigation.sales.label'),
-            key: rootKeys.salesUrl,
-            icon: <ShoppingCartOutlined />,
+            label: t('main.navigation.manage.menu'),
+            key: rootKeys.menuManagementUrl,
+            path: rootKeys.menuManagementUrl,
+            icon: <ProfileOutlined />,
+            role: 'admin,creator',
+        },
+        {
+            label: t('main.navigation.manage.table'),
+            key: rootKeys.tableManagementUrl,
+            path: rootKeys.tableManagementUrl,
+            icon: <QrcodeOutlined />,
+            role: 'admin,creator',
+        },
+        {
+            type: 'divider',
+        },
+        {
+            label: t('main.navigation.sales.analytics'),
+            key: rootKeys.analyticsUrl,
+            path: rootKeys.analyticsUrl,
+            icon: <FundProjectionScreenOutlined />,
+            role: 'admin',
+        },
+        {
+            label: t('main.navigation.sales.booking'),
+            key: rootKeys.bookingManagementUrl,
+            path: rootKeys.bookingManagementUrl,
+            icon: <ScanOutlined />,
             role: 'admin,staff',
-            children: [
-                {
-                    label: t('main.navigation.sales.analytics'),
-                    key: rootKeys.analyticsUrl,
-                    path: rootKeys.analyticsUrl,
-                    role: 'admin',
-                },
-                {
-                    label: t('main.navigation.sales.booking'),
-                    key: rootKeys.bookingManagementUrl,
-                    path: rootKeys.bookingManagementUrl,
-                    role: 'admin,staff',
-                },
-                {
-                    label: t('main.navigation.sales.order'),
-                    key: rootKeys.orderManagementUrl,
-                    path: rootKeys.orderManagementUrl,
-                    role: 'admin,staff',
-                },
-            ],
+        },
+        {
+            label: t('main.navigation.sales.order'),
+            key: rootKeys.orderManagementUrl,
+            path: rootKeys.orderManagementUrl,
+            icon: <SolutionOutlined />,
+            role: 'admin,staff',
+        },
+        {
+            type: 'divider',
         },
         {
             label: t('main.navigation.account'),
@@ -84,27 +83,24 @@ export const MenuList = (roleName) => {
             key: rootKeys.discountCodeManagementUrl,
             path: rootKeys.discountCodeManagementUrl,
             icon: <TagsOutlined />,
-            role: 'admin,staff',
+            role: 'admin',
         },
         {
-            label: t('main.navigation.settings.label'),
-            key: rootKeys.settingUrl,
-            icon: <SettingOutlined />,
+            label: t('main.navigation.settings.system'),
+            key: rootKeys.systemSettingUrl,
+            path: rootKeys.systemSettingUrl,
+            icon: <CloudServerOutlined />,
+            role: 'admin',
+        },
+        {
+            type: 'divider',
+        },
+        {
+            label: t('main.navigation.settings.account'),
+            key: rootKeys.accountSettingUrl,
+            path: rootKeys.accountSettingUrl,
+            icon: <UserOutlined />,
             role: '',
-            children: [
-                {
-                    label: t('main.navigation.settings.system'),
-                    key: rootKeys.systemSettingUrl,
-                    path: rootKeys.systemSettingUrl,
-                    role: 'admin',
-                },
-                {
-                    label: t('main.navigation.settings.account'),
-                    key: rootKeys.accountSettingUrl,
-                    path: rootKeys.accountSettingUrl,
-                    role: '',
-                },
-            ],
         },
     ];
 

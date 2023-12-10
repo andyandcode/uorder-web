@@ -50,7 +50,7 @@ export default function MainView({
                         theme='dark'
                         defaultSelectedKeys={[current]}
                         selectedKeys={[current]}
-                        mode='inline'
+                        mode='vertical'
                         items={MenuList(access && access.data.role)}
                         onOpenChange={onOpenChange}
                         openKeys={openSiderKeys}
