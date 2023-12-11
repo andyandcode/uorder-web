@@ -1,4 +1,4 @@
-import { Divider, Layout, Space, Typography } from 'antd';
+import { Layout, Space } from 'antd';
 import { ButtonLocated } from '../../../components/ButtonLocated';
 import CustomTable from '../../../components/CustomTable';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
@@ -6,7 +6,6 @@ import CreateModal from './subViews/createModal';
 import EditModal from './subViews/editModal';
 
 const { Content } = Layout;
-const { Title } = Typography;
 
 export default function MainView(props) {
     const {
@@ -27,11 +26,6 @@ export default function MainView(props) {
     return (
         <>
             <Content>
-                <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('main.navigation.account')}
-                </Title>
-                <Divider />
-
                 <Space
                     direction='horizontal'
                     align='end'

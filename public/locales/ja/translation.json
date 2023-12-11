@@ -18,6 +18,8 @@
             },
             "account": "アカウント管理",
             "discount_code": "割引",
+            "others": "その他",
+            "admin": "管理者",
             "settings": {
                 "label": "設定",
                 "system": "システム設定",
@@ -271,6 +273,7 @@
         },
         "common": {
             "footer": "UOrder - スキャンして予約する",
+            "admin_panel": "アミンパネル",
             "system_key": {
                 "dish": "皿",
                 "menu": "メニュー",

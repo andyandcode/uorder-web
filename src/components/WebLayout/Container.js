@@ -15,8 +15,6 @@ import propsProvider from './PropsProvider';
 
 const { confirm } = Modal;
 
-const rootSubmenuKeys = [rootKeys.homeUrl, rootKeys.manageUrl, rootKeys.salesUrl, rootKeys.settingUrl];
-
 export default function Conainer(props) {
     const { t, i18n, dispatch, history } = props;
     const navigate = useNavigate();
@@ -27,7 +25,6 @@ export default function Conainer(props) {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
-    const [openSiderKeys, setOpenSiderKeys] = useState([rootKeys.homeUrl]);
     const [api, contextHolder] = notification.useNotification();
 
     const access = cookies.get(Config.storageKey.tokenKey);
@@ -73,19 +70,10 @@ export default function Conainer(props) {
             key: '2',
         },
     ];
-    const onOpenChange = (keys) => {
-        const latestOpenKey = keys.find((key) => openSiderKeys.indexOf(key) === -1);
-        if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-            setOpenSiderKeys(keys);
+    const handleMenuClick = (e) => {
+        if (e.key === 'signout') {
         } else {
-            setOpenSiderKeys(latestOpenKey ? [latestOpenKey] : []);
-        }
-    };
-
-    const handleMenuClick = ({ key }) => {
-        if (key === 'signout') {
-        } else {
-            navigate(key);
+            navigate(e.key);
         }
     };
 
@@ -93,15 +81,10 @@ export default function Conainer(props) {
     const [current, setCurrent] = useState(
         location.pathname === '/' || location.pathname === '' ? '/' : location.pathname,
     );
-
     useEffect(() => {
         if (location) {
             if (current !== location.pathname) {
                 setCurrent(location.pathname);
-                // dispatch(showLoading());
-                // setTimeout(() => {
-                //     dispatch(hideLoading());
-                // }, 2500);
             }
         }
     }, [location, current]);
@@ -133,13 +116,11 @@ export default function Conainer(props) {
         ...props,
         collapsed,
         current,
-        openSiderKeys,
         colorBgContainer,
         languages,
         items,
         notificationCount,
         setCollapsed,
-        onOpenChange,
         handleMenuClick,
         MenuList,
         access,

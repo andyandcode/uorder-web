@@ -18,6 +18,8 @@
             },
             "account": "帐户管理",
             "discount_code": "折扣",
+            "others": "其他",
+            "admin": "管理员",
             "settings": {
                 "label": "设置",
                 "system": "系统设置",
@@ -271,6 +273,7 @@
         },
         "common": {
             "footer": "UOrder-扫描并预订",
+            "admin_panel": "阿明面板",
             "system_key": {
                 "dish": "盘子",
                 "menu": "菜单",

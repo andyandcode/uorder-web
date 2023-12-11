@@ -1,4 +1,4 @@
-import { Col, Divider, Layout, Row, Select, Space, Typography } from 'antd';
+import { Col, Layout, Row, Select, Space, Typography } from 'antd';
 import { ButtonLocated } from '../../../../components/ButtonLocated';
 import CustomTable from '../../../../components/CustomTable';
 import TableColumns from '../../../../components/CustomTable/columnConfigs';
@@ -7,7 +7,7 @@ import CreateModal from './subViews/createModal';
 import ViewModal from './subViews/viewModal';
 
 const { Content } = Layout;
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 export default function MainView(props) {
     const {
@@ -26,11 +26,6 @@ export default function MainView(props) {
     return (
         <>
             <Content>
-                <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('main.navigation.sales.order')}
-                </Title>
-                <Divider />
-
                 <Row
                     style={{
                         paddingBottom: 24,

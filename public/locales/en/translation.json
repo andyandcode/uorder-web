@@ -18,6 +18,8 @@
             },
             "account": "Account management",
             "discount_code": "Discount",
+            "others": "Others",
+            "admin": "Admin",
             "settings": {
                 "label": "Settings",
                 "system": "System settings",
@@ -268,6 +270,7 @@
         },
         "common": {
             "footer": "UOrder- Scan and make a reservation",
+            "admin_panel": "Amin Panel",
             "system_key": {
                 "dish": "dish",
                 "menu": "menu",

@@ -18,6 +18,8 @@
             },
             "account": "계정 관리",
             "discount_code": "할인",
+            "others": "기타",
+            "admin": "관리자",
             "settings": {
                 "label": "설정",
                 "system": "환경 설정",
@@ -271,6 +273,7 @@
         },
         "common": {
             "footer": "UOrder - 스캔하고 예약하기",
+            "admin_panel": "아민 패널",
             "system_key": {
                 "dish": "접시",
                 "menu": "메뉴",

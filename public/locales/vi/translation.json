@@ -18,6 +18,8 @@
             },
             "account": "Quản lý tài khoản",
             "discount_code": "Giảm giá",
+            "others": "Khác",
+            "admin": "Quản trị viên",
             "settings": {
                 "label": "Cài đặt",
                 "system": "Cài đặt hệ thống",
@@ -269,6 +271,7 @@
         },
         "common": {
             "footer": "UOrder- Quét mã và đặt bàn",
+            "admin_panel": "Bảng điều khiển",
             "system_key": {
                 "dish": "món ăn",
                 "menu": "thực đơn",
