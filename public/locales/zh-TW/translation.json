@@ -237,7 +237,8 @@
                 "new_re_password_not_match": "新密碼和確認密碼不符。",
                 "password_least": "密碼長度必須至少為 8 個字元。",
                 "password_not_match": "舊密碼不正確。",
-                "change_password_successful": "重置密碼成功。"
+                "change_password_successful": "重置密碼成功。",
+                "username_exists": "使用者名稱已存在。"
             },
             "table": {
                 "delete_action": {

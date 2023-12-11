@@ -237,7 +237,8 @@
                 "new_re_password_not_match": "新密码和确认密码不匹配。",
                 "password_least": "密码长度必须至少为 8 个字符。",
                 "password_not_match": "旧密码不正确。",
-                "change_password_successful": "重置密码成功。"
+                "change_password_successful": "重置密码成功。",
+                "username_exists": "用户名已存在。"
             },
             "table": {
                 "delete_action": {

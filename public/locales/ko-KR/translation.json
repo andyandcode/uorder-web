@@ -237,7 +237,8 @@
                 "new_re_password_not_match": "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.",
                 "password_least": "비밀번호 길이는 8자 이상이어야 합니다.",
                 "password_not_match": "이전 비밀번호가 올바르지 않습니다.",
-                "change_password_successful": "비밀번호를 재설정했습니다."
+                "change_password_successful": "비밀번호를 재설정했습니다.",
+                "username_exists": "사용자 이름이 이미 존재합니다."
             },
             "table": {
                 "delete_action": {

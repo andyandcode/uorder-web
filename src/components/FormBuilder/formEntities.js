@@ -125,7 +125,7 @@ const UsernameInAccountSettings = ({ data }) => {
             <Row style={{ marginBottom: 16 }}>
                 <Col>{t('main.entities.username')}</Col>
                 <Col flex={'auto'}>
-                    <Typography.Text>{data.getFieldsValue().username}</Typography.Text>
+                    <Typography.Text>***</Typography.Text>
                 </Col>
             </Row>
         </>

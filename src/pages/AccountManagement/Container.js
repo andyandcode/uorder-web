@@ -28,6 +28,7 @@ function Conainer(props) {
         dispatch(showLoading());
         try {
             await dispatch(getListAccountAdmin()).then((result) => {
+                const data = Utils.getValues(result, 'payload', []);
                 setTableData(Utils.getValues(result, 'payload', []));
             });
         } catch (error) {
@@ -100,10 +101,19 @@ function Conainer(props) {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {
-                        await dispatch(createAccountAdmin(values)).then(() => {
-                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
-                            setOpenCreateModel(false);
-                            fetchData();
+                        await dispatch(createAccountAdmin(values)).then((result) => {
+                            const status = Utils.getValues(result, 'payload.response.status', null);
+                            switch (status) {
+                                case 490:
+                                    messageApi.open(UseNotification.Message.UsernameExists(t));
+                                    break;
+
+                                default:
+                                    UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                                    setOpenCreateModel(false);
+                                    fetchData();
+                                    break;
+                            }
                         });
                     })
                     .then(() => createForm.resetFields());

@@ -105,6 +105,14 @@ const PasswordNotMatch = (t) => {
     };
 };
 
+const UsernameExists = (t) => {
+    return {
+        type: 'error',
+        content: t('main.notification.auth.username_exists'),
+        duration: 2,
+    };
+};
+
 const ChangePasswordSuccessful = (t) => {
     return {
         type: 'success',
@@ -125,6 +133,7 @@ const Message = {
     CannotConnectToServer,
     PasswordNotMatch,
     ChangePasswordSuccessful,
+    UsernameExists,
 };
 
 const Dish = 'main.common.system_key.dish';

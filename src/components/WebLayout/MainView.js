@@ -6,9 +6,6 @@ const { Header, Content, Footer, Sider } = Layout;
 
 export default function MainView({
     t,
-    i18n,
-    collapsed,
-    setCollapsed,
     current,
     onOpenChange,
     openSiderKeys,
@@ -20,9 +17,7 @@ export default function MainView({
     children,
     access,
     contextHolder,
-    breadcrumbItems,
 }) {
-    console.log(breadcrumbItems);
     return (
         <>
             {contextHolder}

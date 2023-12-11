@@ -237,7 +237,8 @@
                 "new_re_password_not_match": "新しいパスワードと確認用のパスワードが一致しません。",
                 "password_least": "パスワードの長さは 8 文字以上である必要があります。",
                 "password_not_match": "古いパスワードが間違っています。",
-                "change_password_successful": "パスワードが正常にリセットされました。"
+                "change_password_successful": "パスワードが正常にリセットされました。",
+                "username_exists": "ユーザー名はすでに存在します。"
             },
             "table": {
                 "delete_action": {

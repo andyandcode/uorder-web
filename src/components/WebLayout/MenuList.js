@@ -59,7 +59,7 @@ export const MenuList = (roleName) => {
             key: rootKeys.salesUrl,
             path: rootKeys.salesUrl,
             icon: <AppstoreOutlined />,
-            role: 'admin,creator',
+            role: 'admin,staff',
             type: 'group',
             children: [
                 {
