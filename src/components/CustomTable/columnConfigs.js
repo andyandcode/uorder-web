@@ -139,6 +139,7 @@ const AccountColumns = () => {
                 compare: (a, b) => a.username.localeCompare(b.username),
                 multiple: 2,
             },
+            ...TableFilter('username', t('main.entities.username')),
             ellipsis: {
                 showTitle: false,
             },

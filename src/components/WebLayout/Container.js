@@ -91,7 +91,9 @@ export default function Conainer(props) {
 
     useEffect(() => {
         const connection = new signalR.HubConnectionBuilder()
-            .withUrl('https://localhost:7297/actionHub')
+            .withUrl('https://localhost:7297/actionHub', {
+                accessTokenFactory: () => access.key,
+            })
             .configureLogging(signalR.LogLevel.Information)
             .build();
         connection
