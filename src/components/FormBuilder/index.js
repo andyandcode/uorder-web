@@ -450,8 +450,8 @@ const ViewOrderForm = ({
                     {t('main.entities.amount')}
                 </Col>
             </Row>
-            {viewData.orderDetails.map((e) => (
-                <Row gutter={[8, 0]} style={{ marginBottom: 20 }}>
+            {viewData.orderDetails.map((e, index) => (
+                <Row key={index} gutter={[8, 0]} style={{ marginBottom: 20 }}>
                     <Col flex='auto'>
                         <Row style={{ marginBottom: 4, width: '100%' }}>
                             <Col flex='auto' style={{ display: 'flex' }}>

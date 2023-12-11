@@ -256,9 +256,9 @@
                         "title": "Đổi thành tắt",
                         "content": "Bạn có chắc muốn tắt trạng thái hoạt động của {{target}}?"
                     },
-                    "quick_delete": {
-                        "title": "Xóa {{target}}",
-                        "content": "Bạn có chắc muốn xóa {{target}}?"
+                    "quick_remove": {
+                        "title": "Xóa {{target}} khỏi thực đơn này",
+                        "content": "Bạn có chắc chắc muốn xóa {{target}} này khỏi thực đơn này?"
                     }
                 }
             },
@@ -330,7 +330,7 @@
                 "submit": "Xác nhận",
                 "close": "Đóng",
                 "add_order_item": "Thêm món mới",
-                "remove_order_item": "Xóa",
+                "remove": "Xóa",
                 "view_order": "Xem",
                 "remember_login": "Nhớ đăng nhập",
                 "forgot_pwd": "Quên mật khẩu",

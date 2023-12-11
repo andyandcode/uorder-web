@@ -5,11 +5,14 @@ const { Column } = Table;
 
 export default function MainView(props) {
     const { t, columns, dataSource } = props;
-
+    const newArray = dataSource.dishes.map((dish) => ({
+        ...dish,
+        parentId: dataSource.id,
+    }));
     return (
         <>
             <Table
-                dataSource={dataSource}
+                dataSource={newArray}
                 locale={{
                     emptyText: t('main.components.table.empty_data'),
                     triggerDesc: t('main.components.table.trigger_desc'),

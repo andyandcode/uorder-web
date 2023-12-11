@@ -258,9 +258,9 @@
                         "title": "更改為關閉",
                         "content": "您確定要關閉此活動的狀態嗎 {{target}}？"
                     },
-                    "quick_delete": {
-                        "title": "刪除這個 {{target}}",
-                        "content": "您確定要刪除此內容嗎 {{target}}？"
+                    "quick_remove": {
+                        "title": "從中刪除此 {{target}}",
+                        "content": "您確定從此選單中刪除此 {{target}} 嗎？"
                     }
                 }
             },
@@ -332,7 +332,7 @@
                 "submit": "提交",
                 "close": "關閉",
                 "add_order_item": "新增項目",
-                "remove_order_item": "消除",
+                "remove": "消除",
                 "view_order": "查看訂單",
                 "remember_login": "記得登入",
                 "forgot_pwd": "忘記密碼",

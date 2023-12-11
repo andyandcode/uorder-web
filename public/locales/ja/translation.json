@@ -258,9 +258,9 @@
                         "title": "オフに変更します",
                         "content": "このアクティブステータスをオフにしますか? {{target}}?"
                     },
-                    "quick_delete": {
-                        "title": "これを削除します {{target}}",
-                        "content": "これを削除してもよろしいですか {{target}}?"
+                    "quick_remove": {
+                        "title": "この {{target}} をここから削除します",
+                        "content": "この {{target}} をこのメニューから削除してもよろしいですか?"
                     }
                 }
             },
@@ -332,7 +332,7 @@
                 "submit": "提出する",
                 "close": "近い",
                 "add_order_item": "アイテムの追加",
-                "remove_order_item": "取り除く",
+                "remove": "取り除く",
                 "view_order": "表示の順序",
                 "remember_login": "ログインを記憶する",
                 "forgot_pwd": "パスワードをお忘れですか",

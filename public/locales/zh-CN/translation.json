@@ -258,9 +258,9 @@
                         "title": "更改为关闭",
                         "content": "您确定要关闭此活动的状态吗 {{target}}？"
                     },
-                    "quick_delete": {
-                        "title": "删除这个 {{target}}",
-                        "content": "您确定要删除此内容吗 {{target}}？"
+                    "quick_remove": {
+                        "title": "从中删除此 {{target}}",
+                        "content": "您确定从此菜单中删除此 {{target}} 吗？"
                     }
                 }
             },
@@ -332,7 +332,7 @@
                 "submit": "提交",
                 "close": "关闭",
                 "add_order_item": "新增项目",
-                "remove_order_item": "消除",
+                "remove": "消除",
                 "view_order": "查看订单",
                 "remember_login": "记住登录",
                 "forgot_pwd": "忘记密码",

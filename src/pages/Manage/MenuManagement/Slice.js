@@ -20,3 +20,8 @@ export const deleteMenuAdmin = createAsyncThunk('menuAdmin/delete', async (param
     const res = await MenuAdmin.delete(params);
     return res;
 });
+
+export const removeDishAdmin = createAsyncThunk('menuAdmin/removeDish', async (params) => {
+    const res = await MenuAdmin.removeDish(params);
+    return res;
+});

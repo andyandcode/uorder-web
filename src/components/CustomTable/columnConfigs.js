@@ -361,6 +361,21 @@ const ExpandedRowRenderSelection = (
                     },
                 },
                 {
+                    key: 'id',
+                    dataIndex: 'id',
+                    title: t('main.entities.id'),
+                    align: 'right',
+                    render: (data) => data,
+                },
+                {
+                    key: 'parentId',
+                    dataIndex: 'parentId',
+                    title: t('main.entities.id'),
+                    align: 'right',
+                    render: (data) => data,
+                    hidden: true,
+                },
+                {
                     key: 'isActive',
                     dataIndex: 'isActive',
                     title: t('main.entities.active_status.label'),
@@ -371,11 +386,11 @@ const ExpandedRowRenderSelection = (
                     },
                     render: (data) => EnumRender.ActiveStatus(t, data),
                 },
-            ];
+            ].filter((item) => !item.hidden);
             return (
                 <NestedTable
                     columns={menuColumns}
-                    dataSource={data.dishes}
+                    dataSource={data}
                     pagination={false}
                     locale={{
                         emptyText: t('main.components.table.empty_data'),
@@ -452,7 +467,7 @@ const ExpandedRowRenderSelection = (
                         return <CurrencyFormat.Minimal value={data} />;
                     },
                 },
-            ];
+            ].filter((item) => !item.hidden);
             return (
                 <NestedTable
                     columns={orderColumns}
@@ -517,7 +532,7 @@ const ExpandedRowRenderSelection = (
                         return <CurrencyFormat.Minimal value={data} />;
                     },
                 },
-            ];
+            ].filter((item) => !item.hidden);
             return (
                 <NestedTable
                     columns={bookingColumns}

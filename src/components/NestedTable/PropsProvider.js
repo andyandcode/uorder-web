@@ -9,6 +9,7 @@ export default function propsProvider(props) {
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
         switchActionColumn,
+        parentData,
     } = props;
     return {
         t,
@@ -20,5 +21,6 @@ export default function propsProvider(props) {
         handleQuickActionButtonTurnOnClick,
         handleQuickDeleteConfirm,
         switchActionColumn,
+        parentData,
     };
 }

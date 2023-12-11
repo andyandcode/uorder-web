@@ -59,6 +59,12 @@ const MenuAdmin = {
         const url = `/menu/delete/${params}`;
         return axiosInstance.delete(url);
     },
+    removeDish: (params) => {
+        const url = 'menu/removeDish';
+        return axiosInstance.post(url, params, {
+            headers: { 'Content-Type': 'application/json-patch+json' },
+        });
+    },
 };
 
 const DiscountCodeAdmin = {

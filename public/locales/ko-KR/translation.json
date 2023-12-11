@@ -258,9 +258,9 @@
                         "title": "끄기로 변경",
                         "content": "이 활성 상태를 끄시겠습니까? {{target}}?"
                     },
-                    "quick_delete": {
-                        "title": "삭제 {{target}}",
-                        "content": "이 항목을 삭제하시겠습니까? {{target}}?"
+                    "quick_remove": {
+                        "title": "이 {{target}}을(를) 여기서 제거",
+                        "content": "이 메뉴에서 이 {{target}}을(를) 제거하시겠습니까?"
                     }
                 }
             },
@@ -332,7 +332,7 @@
                 "submit": "제출하다",
                 "close": "닫다",
                 "add_order_item": "아이템 추가",
-                "remove_order_item": "제거하다",
+                "remove": "제거하다",
                 "view_order": "주문보기",
                 "remember_login": "로그인 기억하기",
                 "forgot_pwd": "비밀번호를 잊으 셨나요",

@@ -255,9 +255,9 @@
                         "title": "Change to off",
                         "content": "Are you sure to turn off active status of this {{target}}?"
                     },
-                    "quick_delete": {
-                        "title": "Delete this {{target}}",
-                        "content": "Are you sure to delete this {{target}}?"
+                    "quick_remove": {
+                        "title": "Remove this {{target}} from this",
+                        "content": "Are you sure to remove this {{target}} from this menu?"
                     }
                 }
             },
@@ -329,7 +329,7 @@
                 "submit": "Submit",
                 "close": "Close",
                 "add_order_item": "Add item",
-                "remove_order_item": "Remove",
+                "remove": "Remove",
                 "view_order": "View Order",
                 "remember_login": "Remember login",
                 "forgot_pwd": "Forgot password",

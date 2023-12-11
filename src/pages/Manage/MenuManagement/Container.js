@@ -4,9 +4,9 @@ import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
-import { deleteDishAdmin, updateDishAdmin } from '../DishManagement/Slice';
+import { updateDishAdmin } from '../DishManagement/Slice';
 import propsProvider from './PropsProvider';
-import { createMenuAdmin, deleteMenuAdmin, getListMenuAdmin, updateMenuAdmin } from './Slice';
+import { createMenuAdmin, deleteMenuAdmin, getListMenuAdmin, removeDishAdmin, updateMenuAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -81,7 +81,7 @@ function Conainer(props) {
     };
 
     const handleQuickDeleteConfirm = async (data) => {
-        await dispatch(deleteDishAdmin(data.id)).then(() => fetchData());
+        await dispatch(removeDishAdmin({ dishId: data.id, menuId: data.parentId })).then(() => fetchData());
     };
 
     const handleQuickTurnOffConfirm = async (data) => {
