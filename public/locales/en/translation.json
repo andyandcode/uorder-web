@@ -210,6 +210,9 @@
                 "call_staff_title": "There's a customer calling!",
                 "call_staff_description": "There's a customer calling at table {{table}}! Please come to table {{table}} quickly."
             },
+            "undo_delete_alert": {
+                "delete_message": "{{target}} has been deleted. However, you can undo this action within {{timestamp}} seconds."
+            },
             "upload": {
                 "must_be_image": "You can only upload JPG/PNG file!",
                 "must_smaller_than": "Image must smaller than 2MB!"
@@ -240,15 +243,15 @@
             "table": {
                 "delete_action": {
                     "title": "Are you sure?",
-                    "content": "This action will delete all infomation of this {{target}}. \n You will not be able to revert this."
+                    "content": "This action will delete all infomation of this. You will not be able to revert this."
                 },
                 "turn_off_active_action": {
                     "title": "Change active status to off?",
-                    "content": "The activity status of this {{target}} will change to off. You will still be able to change the activity status of this {{target}} next time."
+                    "content": "The activity status of this will change to off. You will still be able to change the activity status of this next time."
                 },
                 "turn_on_active_action": {
                     "title": "Change active status to active?",
-                    "content": "The activity status of this {{target}} will change to active. You will still be able to change the activity status of this {{target}} next time."
+                    "content": "The activity status of this will change to active. You will still be able to change the activity status of this next time."
                 },
                 "pop_confirm": {
                     "quick_turn_off": {
@@ -342,7 +345,8 @@
                 "view": "View",
                 "use": "Use",
                 "pay": "Pay",
-                "track_booking": "Track booking"
+                "track_booking": "Track booking",
+                "undo": "Undo"
             },
             "cart_navbar": { "items": "items" }
         }

@@ -20,3 +20,8 @@ export const updateDiscountCodeAdmin = createAsyncThunk('discountCodeAdmin/updat
     const res = await DiscountCodeAdmin.updateDiscountCode(params);
     return res;
 });
+
+export const undoDeleteDiscountAdmin = createAsyncThunk('discountCodeAdmin/undoDelete', async (params) => {
+    const res = await DiscountCodeAdmin.undoDetele(params);
+    return res;
+});

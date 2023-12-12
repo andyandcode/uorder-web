@@ -213,6 +213,9 @@
                 "call_staff_title": "有顧客打電話！",
                 "call_staff_description": "第 {{table}} 桌有顧客來電！請快點到 {{table}} 桌。"
             },
+            "undo_delete_alert": {
+                "delete_message": "{{target}} 已被刪除。但是，您可以在 {{timestamp}} 秒內撤銷此操作。"
+            },
             "upload": {
                 "must_be_image": "您只能上傳JPG/PNG檔案！",
                 "must_smaller_than": "圖片必須小於2MB！"
@@ -243,15 +246,15 @@
             "table": {
                 "delete_action": {
                     "title": "你確定嗎？",
-                    "content": "此操作將刪除此資訊的所有訊息 {{target}}。\n "
+                    "content": "此操作將刪除此資訊的所有訊息。"
                 },
                 "turn_off_active_action": {
                     "title": "將活動狀態變更為關閉？",
-                    "content": "本次活動狀態 {{target}} 將更改為關閉。 {{target}} 下次。"
+                    "content": "本次活動狀態將更改為關閉。下次。"
                 },
                 "turn_on_active_action": {
                     "title": "將活動狀態改為活動？",
-                    "content": "本次活動狀態 {{target}} 將變為活動狀態。 {{target}} 下次。"
+                    "content": "本次活動狀態將變為活動狀態。下次。"
                 },
                 "pop_confirm": {
                     "quick_turn_off": {
@@ -345,7 +348,8 @@
                 "view": "看法",
                 "use": "使用",
                 "pay": "支付",
-                "track_booking": "追蹤預訂"
+                "track_booking": "追蹤預訂",
+                "undo": "撤銷"
             },
             "cart_navbar": {
                 "items": "專案"

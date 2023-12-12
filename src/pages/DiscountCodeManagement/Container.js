@@ -2,13 +2,14 @@ import { Form, Modal, message } from 'antd';
 import { useEffect, useState } from 'react';
 import TableColumns from '../../components/CustomTable/columnConfigs';
 import { hideLoading, showLoading } from '../../components/FullPageLoading/LoadingSlice';
-import { NotificationTarget, UseNotification, UserAction } from '../../components/UseNotification';
+import { NotificationTarget, UseNotification } from '../../components/UseNotification';
 import Utils from '../../utilities';
 import propsProvider from './PropsProvider';
 import {
     createDiscountCodeAdmin,
     deleteDiscountCodeAdmin,
     getListDiscountCodeAdmin,
+    undoDeleteDiscountAdmin,
     updateDiscountCodeAdmin,
 } from './Slice';
 import MainView from './template/MainView';
@@ -22,6 +23,7 @@ function Conainer(props) {
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openViewModel, setOpenViewModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
+    const [deleteAlert, setDeleteAlert] = useState({ data: null, timestamp: 0 });
     const [viewData, setViewData] = useState();
 
     const fetchData = async () => {
@@ -53,9 +55,24 @@ function Conainer(props) {
         setOpenViewModel(true);
     };
 
+    const handleUndoDeleteClick = async () => {
+        await dispatch(undoDeleteDiscountAdmin(deleteAlert.data.id))
+            .then(() => {
+                setDeleteAlert({});
+            })
+            .then(() => fetchData());
+    };
+
     const handleActionButtonDeleteClick = (data) => {
         async function onOk() {
-            await dispatch(deleteDiscountCodeAdmin(data.id)).then(() => fetchData());
+            await dispatch(deleteDiscountCodeAdmin(data.id))
+                .then((result) => {
+                    const timestamp = Utils.getValues(result, 'payload', []);
+                    setDeleteAlert({ data: data, timestamp: timestamp });
+                })
+                .then(() => {
+                    fetchData();
+                });
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Account, onOk));
     };
@@ -126,7 +143,7 @@ function Conainer(props) {
                                 values.applicableProductIds !== undefined ? values.applicableProductIds : null,
                         };
                         await dispatch(createDiscountCodeAdmin(modifiedValues)).then(() => {
-                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            UseNotification.Message.CreateFinish(t);
                             setOpenCreateModel(false);
                             fetchData();
                         });
@@ -134,7 +151,7 @@ function Conainer(props) {
                     .then(() => createForm.resetFields());
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.CreateFinishFail);
+                UseNotification.Message.CreateFinishFail(t);
             });
     };
 
@@ -167,6 +184,9 @@ function Conainer(props) {
         handleRefreshClick,
         viewData,
         handleViewCancelClick,
+        deleteAlert,
+        handleUndoDeleteClick,
+        setDeleteAlert,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

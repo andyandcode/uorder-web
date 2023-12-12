@@ -1,5 +1,6 @@
 import { Layout, Space } from 'antd';
 import { ButtonLocated } from '../../../components/ButtonLocated';
+import { CustomAlert } from '../../../components/CustomAlert';
 import CustomTable from '../../../components/CustomTable';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import CreateModal from './subviews/createModal';
@@ -26,10 +27,22 @@ export default function MainView(props) {
         viewData,
         openViewModel,
         handleViewCancelClick,
+        deleteAlert,
+        handleUndoDeleteClick,
+        setDeleteAlert,
     } = props;
 
     return (
         <>
+            {deleteAlert.timestamp > 0 && (
+                <CustomAlert.UndoDeleteAlert
+                    t={t}
+                    handleButton={handleUndoDeleteClick}
+                    target={deleteAlert.data.name}
+                    timestamp={deleteAlert.timestamp}
+                    timeoutEvent={setDeleteAlert}
+                />
+            )}
             <Content>
                 <Space
                     direction='horizontal'

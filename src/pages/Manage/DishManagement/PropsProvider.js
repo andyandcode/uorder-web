@@ -34,6 +34,9 @@ export default function propsProvider(props) {
         handleRefreshClick,
         switchActionColumn,
         defaultFile,
+        handleUndoDeleteClick,
+        deleteAlert,
+        setDeleteAlert,
     } = props;
     return {
         history,
@@ -70,5 +73,8 @@ export default function propsProvider(props) {
         handleRefreshClick,
         switchActionColumn,
         defaultFile,
+        handleUndoDeleteClick,
+        deleteAlert,
+        setDeleteAlert,
     };
 }

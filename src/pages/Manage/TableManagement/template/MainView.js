@@ -1,6 +1,7 @@
 import { Layout, Space } from 'antd';
 import React from 'react';
 import { ButtonLocated } from '../../../../components/ButtonLocated';
+import { CustomAlert } from '../../../../components/CustomAlert';
 import CustomTable from '../../../../components/CustomTable';
 import { ColumnBuilderKey } from '../../../../components/CustomTable/ColumnBuilder';
 import TableColumns from '../../../../components/CustomTable/columnConfigs';
@@ -24,10 +25,22 @@ export default function MainView(props) {
         handleShowQrCodeClick,
         handleCreateNewClick,
         handleRefreshClick,
+        deleteAlert,
+        handleUndoDeleteClick,
+        setDeleteAlert,
     } = props;
 
     return (
         <>
+            {deleteAlert.timestamp > 0 && (
+                <CustomAlert.UndoDeleteAlert
+                    t={t}
+                    handleButton={handleUndoDeleteClick}
+                    target={deleteAlert.data.name}
+                    timestamp={deleteAlert.timestamp}
+                    timeoutEvent={setDeleteAlert}
+                />
+            )}
             <Content>
                 <Space
                     direction='horizontal'

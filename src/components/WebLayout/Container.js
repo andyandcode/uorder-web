@@ -16,7 +16,7 @@ import propsProvider from './PropsProvider';
 const { confirm } = Modal;
 
 export default function Conainer(props) {
-    const { t, i18n, dispatch, history } = props;
+    const { t, history } = props;
     const navigate = useNavigate();
     const [notificationCount, setNotificationCount] = useState(5);
     const [collapsed, setCollapsed] = useState(false);
@@ -89,6 +89,14 @@ export default function Conainer(props) {
         }
     }, [location, current]);
 
+    const callStaffNOti = (data) => {
+        return api.warning({
+            message: t('main.notification.action.call_staff_title'),
+            description: t('main.notification.action.call_staff_description', { table: data.name }),
+            duration: null,
+        });
+    };
+
     useEffect(() => {
         const connection = new signalR.HubConnectionBuilder()
             .withUrl('https://localhost:7297/actionHub', {
@@ -102,11 +110,7 @@ export default function Conainer(props) {
             .catch((err) => console.error('SignalR Connection Error: ', err));
 
         connection.on('SendCallStaffNotification', (data) => {
-            api.warning({
-                message: t('main.notification.action.call_staff_title'),
-                description: t('main.notification.action.call_staff_description', { table: data.name }),
-                duration: null,
-            });
+            callStaffNOti(data);
         });
 
         return () => {

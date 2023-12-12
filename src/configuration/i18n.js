@@ -6,5 +6,6 @@ i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
     debug: false,
     fallbackLng: 'vi',
     lng: 'en',
+    returnEmptyString: false,
 });
 export default i18n;

@@ -213,6 +213,9 @@
                 "call_staff_title": "お客様から電話がありました!",
                 "call_staff_description": "テーブル {{table}} で電話をかけているお客様がいます! 急いでテーブル {{table}} に来てください。"
             },
+            "undo_delete_alert": {
+                "delete_message": "{{target}} は削除されました。ただし、この操作は {{timestamp}} 秒以内であれば元に戻すことができます。"
+            },
             "upload": {
                 "must_be_image": "アップロードできるのは JPG/PNG ファイルのみです。",
                 "must_smaller_than": "画像は 2MB 未満である必要があります。"
@@ -243,15 +246,15 @@
             "table": {
                 "delete_action": {
                     "title": "本気ですか？",
-                    "content": "このアクションにより、このすべての情報が削除されます {{target}}。\n "
+                    "content": "このアクションにより、このすべての情報が削除されます。 "
                 },
                 "turn_off_active_action": {
                     "title": "アクティブステータスをオフに変更しますか?",
-                    "content": "こちらの活動状況は {{target}} オフに変わります。 {{target}} 次回。"
+                    "content": "こちらの活動状況はオフに変わります。次回。"
                 },
                 "turn_on_active_action": {
                     "title": "アクティブステータスをアクティブに変更しますか?",
-                    "content": "こちらの活動状況は {{target}} アクティブに変わります。 {{target}} 次回。"
+                    "content": "こちらの活動状況はアクティブに変わります。次回。"
                 },
                 "pop_confirm": {
                     "quick_turn_off": {
@@ -345,7 +348,8 @@
                 "view": "ビュー",
                 "use": "使用",
                 "pay": "支払う",
-                "track_booking": "予約を追跡する"
+                "track_booking": "予約を追跡する",
+                "undo": "元に戻す"
             },
             "cart_navbar": {
                 "items": "アイテム"

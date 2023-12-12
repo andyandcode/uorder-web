@@ -2,7 +2,7 @@ import { Form, message } from 'antd';
 import { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
-import { UseNotification, UserAction } from '../../../components/UseNotification';
+import { UseNotification } from '../../../components/UseNotification';
 import Config from '../../../configuration';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
@@ -78,7 +78,7 @@ function Conainer(props) {
                 });
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
+                UseNotification.Message.UpdateFinishFail(t);
             });
     };
     const containerProps = {

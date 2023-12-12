@@ -25,7 +25,12 @@ export const deleteAccountAdmin = createAsyncThunk('accountAdmin/delete', async 
     return res;
 });
 
-export const updateAccountStatusAdmin = createAsyncThunk('orderAdmin/updateStatus', async (params) => {
+export const updateAccountStatusAdmin = createAsyncThunk('accountAdmin/updateStatus', async (params) => {
     const res = await AccountAdmin.updateStatus(params);
+    return res;
+});
+
+export const undoDeleteAccountAdmin = createAsyncThunk('accountAdmin/undoDelete', async (params) => {
+    const res = await AccountAdmin.undoDetele(params);
     return res;
 });
