@@ -29,13 +29,6 @@ function Conainer(props) {
         }, 500);
     }, [dispatch]);
 
-    const onFinishSelectTimeTopSellers = (fieldsValue) => {
-        const rangeValue = fieldsValue['range-picker'];
-        const values = {
-            'range-picker': [rangeValue[0].format('DD/MM/YYYY'), rangeValue[1].format('DD/MM/YYYY')],
-        };
-    };
-
     const containerProps = {
         ...props,
         history,
@@ -45,7 +38,6 @@ function Conainer(props) {
         revenueData,
         topSellersChartConfig,
         topSellersData,
-        onFinishSelectTimeTopSellers,
         countManagementData,
     };
     return <MainView {...propsProvider(containerProps)} />;

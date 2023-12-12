@@ -39,10 +39,6 @@ import { EnumRender } from '../EnumRender';
 
 const Id = ({ data }) => {
     const { t } = useTranslation();
-    const [tempId, setTempId] = useState();
-    useEffect(() => {
-        setTempId(data.getFieldsValue().id);
-    }, [data]);
     return (
         <>
             <Form.Item

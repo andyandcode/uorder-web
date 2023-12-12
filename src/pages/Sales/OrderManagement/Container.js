@@ -33,7 +33,6 @@ function Conainer(props) {
     const cookies = new Cookies();
 
     const [viewData, setViewData] = useState();
-    const [dishData, setDishData] = useState();
 
     const orderStatusSelect = EnumKey.OrderStatusKey(t);
     const paymentStatusSelect = EnumKey.PaymentStatusKey(t);
@@ -172,7 +171,6 @@ function Conainer(props) {
         handleNewOrderClick,
         handleActionButtonViewClick,
         viewData,
-        dishData,
         handleChangeOrderStatus,
         handlePrintClick,
         openBillQuickViewModal,

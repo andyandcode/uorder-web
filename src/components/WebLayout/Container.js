@@ -18,7 +18,6 @@ const { confirm } = Modal;
 export default function Conainer(props) {
     const { t, history } = props;
     const navigate = useNavigate();
-    const [notificationCount, setNotificationCount] = useState(5);
     const [collapsed, setCollapsed] = useState(false);
     const cookies = new Cookies();
     const languages = useLanguages();
@@ -125,7 +124,6 @@ export default function Conainer(props) {
         colorBgContainer,
         languages,
         items,
-        notificationCount,
         setCollapsed,
         handleMenuClick,
         MenuList,

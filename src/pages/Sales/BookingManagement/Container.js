@@ -23,7 +23,6 @@ function Conainer(props) {
     const columns = TableColumns.OrderColumns(t);
     const [openBillQuickViewModal, setOpenBillQuickViewModal] = useState(false);
     const [payBillForm] = Form.useForm();
-    const [orderNotification, setOrderNotification] = useState('');
     const [messageApi, messageContextHolder] = message.useMessage();
 
     useEffect(() => {

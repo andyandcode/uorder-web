@@ -6,7 +6,6 @@ import TopSellersChart from './subViews/topSellers';
 const { Content } = Layout;
 
 export default function MainView(props) {
-    const { t } = props;
     return (
         <>
             <Content>

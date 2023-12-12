@@ -30,7 +30,6 @@ function Conainer(props) {
         dispatch(showLoading());
         try {
             await dispatch(getListAccountAdmin()).then((result) => {
-                const data = Utils.getValues(result, 'payload', []);
                 setTableData(Utils.getValues(result, 'payload', []));
             });
         } catch (error) {

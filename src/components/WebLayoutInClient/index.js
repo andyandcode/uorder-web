@@ -4,7 +4,7 @@ import NotSupportDesktop from '../../pages/Redirect/NotSupportDesktop';
 export default function WebLayoutInClient(props) {
     const { children } = props;
 
-    if (isMobile) {
+    if (!isMobile) {
         return <NotSupportDesktop />;
     }
 

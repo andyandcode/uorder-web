@@ -1,5 +1,5 @@
-import { BellFilled, UserOutlined } from '@ant-design/icons';
-import { Badge, Button, Dropdown, Layout, Menu, Space, Typography } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Layout, Menu, Space, Typography } from 'antd';
 import { SelectLanguage } from '../UseLanguages';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -12,7 +12,6 @@ export default function MainView({
     handleMenuClick,
     colorBgContainer,
     items,
-    notificationCount,
     MenuList,
     children,
     access,
@@ -47,9 +46,6 @@ export default function MainView({
                     <Space size='middle'>
                         <Space>
                             <SelectLanguage />
-                            <Badge count={notificationCount} overflowCount={10}>
-                                <Button shape='circle' icon={<BellFilled />} />
-                            </Badge>
                             <Dropdown
                                 menu={{
                                     items,
