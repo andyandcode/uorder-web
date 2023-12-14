@@ -8,7 +8,6 @@ export default function propsProvider(props) {
         revenueData,
         topSellersChartConfig,
         topSellersData,
-        onFinishSelectTimeTopSellers,
         countManagementData,
     } = props;
     return {
@@ -20,7 +19,6 @@ export default function propsProvider(props) {
         revenueData,
         topSellersChartConfig,
         topSellersData,
-        onFinishSelectTimeTopSellers,
         countManagementData,
     };
 }

@@ -29,10 +29,6 @@ function Conainer(props) {
             .validateFields()
             .then(async () => {
                 await dispatch(login(data)).then((result) => {
-                    if (result.payload === undefined) {
-                        messageApi.open(UseNotification.Message.CannotConnectToServer(t));
-                    }
-
                     const status = Utils.getValues(result, 'payload.response.status', null);
 
                     if (status === 542) {
@@ -43,6 +39,10 @@ function Conainer(props) {
                     }
                     if (status === 562) {
                         messageApi.open(UseNotification.Message.AccountLockedMessage(t));
+                    }
+
+                    if (result.payload === undefined) {
+                        messageApi.open(UseNotification.Message.CannotConnectToServer(t));
                     }
 
                     if (result.payload.token) {
@@ -60,7 +60,20 @@ function Conainer(props) {
                                 );
                             })
                             .then(() => {
-                                history(rootKeys.homeUrl);
+                                const data = cookies.get(Config.storageKey.tokenKey).data.role;
+                                switch (data) {
+                                    case 'admin':
+                                        history(rootKeys.analyticsUrl);
+                                        break;
+                                    case 'creator':
+                                        history(rootKeys.dishManagementUrl);
+                                        break;
+                                    case 'staff':
+                                        history(rootKeys.bookingManagementUrl);
+                                        break;
+                                    default:
+                                        break;
+                                }
                             });
                     }
                     setLoginBtnLoading((prevLoadings) => {

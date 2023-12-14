@@ -18,6 +18,8 @@
             },
             "account": "Quản lý tài khoản",
             "discount_code": "Giảm giá",
+            "others": "Khác",
+            "admin": "Quản trị viên",
             "settings": {
                 "label": "Cài đặt",
                 "system": "Cài đặt hệ thống",
@@ -209,6 +211,9 @@
                 "call_staff_title": "Có khách đang gọi!",
                 "call_staff_description": "Có khách đang gọi tại bàn {{table}}! Vui lòng đến bàn {{table}} nhanh chóng."
             },
+            "undo_delete_alert": {
+                "delete_message": "{{target}} đã bị xóa. Tuy nhiên bạn có thể hoàn tác trong vòng {{timestamp}} giây."
+            },
             "upload": {
                 "must_be_image": "Bạn phải tải lên tệp với đuôi JPG/PNG!",
                 "must_smaller_than": "Dung lượng ảnh phải nhỏ hơn 2MB!"
@@ -233,29 +238,30 @@
                 "new_re_password_not_match": "Mật khẩu mới và mật khẩu nhập lại không giống nhau.",
                 "password_least": "Mật khẩu phải có ít nhất 8 ký tự.",
                 "password_not_match": "Mật khẩu cũ không đúng.",
-                "change_password_successful": "Đặt lại mật khẩu thành công."
+                "change_password_successful": "Đặt lại mật khẩu thành công.",
+                "username_exists": "Tên người dùng đã tồn tại."
             },
             "table": {
                 "delete_action": {
                     "title": "Bạn chắc chứ?",
-                    "content": "Hành động này sẽ xóa thông tin của {{target}}. \n Bạn sẽ không thể hoàn tác hành động này."
+                    "content": "Hành động này sẽ xóa thông tin. Bạn sẽ không thể hoàn tác hành động này."
                 },
                 "turn_off_active_action": {
                     "title": "Đổi trạng thái thành tắt?",
-                    "content": "Trạng thái hoạt động của {{target}} sẽ đổi thành tắt. Bạn sẽ vẫn có thể đổi lại trạng thái hoạt động của {{target}} vào lần tới."
+                    "content": "Trạng thái hoạt động sẽ đổi thành tắt. Bạn sẽ vẫn có thể đổi lại trạng thái hoạt động của vào lần tới."
                 },
                 "turn_on_active_action": {
                     "title": "Đổi trạng thái thành bật?",
-                    "content": "Trạng thái hoạt động của {{target}} sẽ được bật. Bạn sẽ vẫn có thể đổi lại trạng thái hoạt động của {{target}} vào lần tới."
+                    "content": "Trạng thái hoạt động sẽ được bật. Bạn sẽ vẫn có thể đổi lại trạng thái hoạt động vào lần tới."
                 },
                 "pop_confirm": {
                     "quick_turn_off": {
                         "title": "Đổi thành tắt",
                         "content": "Bạn có chắc muốn tắt trạng thái hoạt động của {{target}}?"
                     },
-                    "quick_delete": {
-                        "title": "Xóa {{target}}",
-                        "content": "Bạn có chắc muốn xóa {{target}}?"
+                    "quick_remove": {
+                        "title": "Xóa {{target}} khỏi thực đơn này",
+                        "content": "Bạn có chắc chắc muốn xóa {{target}} này khỏi thực đơn này?"
                     }
                 }
             },
@@ -269,6 +275,7 @@
         },
         "common": {
             "footer": "UOrder- Quét mã và đặt bàn",
+            "admin_panel": "Bảng điều khiển",
             "system_key": {
                 "dish": "món ăn",
                 "menu": "thực đơn",
@@ -326,7 +333,7 @@
                 "submit": "Xác nhận",
                 "close": "Đóng",
                 "add_order_item": "Thêm món mới",
-                "remove_order_item": "Xóa",
+                "remove": "Xóa",
                 "view_order": "Xem",
                 "remember_login": "Nhớ đăng nhập",
                 "forgot_pwd": "Quên mật khẩu",
@@ -339,7 +346,8 @@
                 "view": "Xem",
                 "use": "Sử dụng",
                 "pay": "Thanh toán",
-                "track_booking": "Kiểm tra đặt bàn"
+                "track_booking": "Kiểm tra đặt bàn",
+                "undo": "Hoàn tác"
             },
             "cart_navbar": { "items": "món" }
         }

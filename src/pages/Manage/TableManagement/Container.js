@@ -2,10 +2,10 @@ import { Form, message, Modal, QRCode } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
-import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
+import { NotificationTarget, UseNotification } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
-import { createTableAdmin, deleteTableAdmin, getListTableAdmin, updateTableAdmin } from './Slice';
+import { createTableAdmin, deleteTableAdmin, getListTableAdmin, undoDeleteTableAdmin, updateTableAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -17,6 +17,7 @@ function Conainer(props) {
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
+    const [deleteAlert, setDeleteAlert] = useState({ data: null, timestamp: 0 });
 
     const fetchData = async () => {
         dispatch(showLoading());
@@ -46,6 +47,14 @@ function Conainer(props) {
     const handleActionButtonEditClick = (data) => {
         editForm.setFieldsValue({ ...data });
         setOpenEditModel(true);
+    };
+
+    const handleUndoDeleteClick = async () => {
+        await dispatch(undoDeleteTableAdmin(deleteAlert.data.id))
+            .then(() => {
+                setDeleteAlert({});
+            })
+            .then(() => fetchData());
     };
 
     const downloadQRCode = (name) => {
@@ -87,7 +96,14 @@ function Conainer(props) {
 
     const handleActionButtonDeleteClick = (data) => {
         async function onOk() {
-            await dispatch(deleteTableAdmin(data.id)).then(() => fetchData());
+            await dispatch(deleteTableAdmin(data.id))
+                .then((result) => {
+                    const timestamp = Utils.getValues(result, 'payload', []);
+                    setDeleteAlert({ data: data, timestamp: timestamp });
+                })
+                .then(() => {
+                    fetchData();
+                });
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Table, onOk));
     };
@@ -128,7 +144,7 @@ function Conainer(props) {
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {
                         await dispatch(createTableAdmin(values)).then(() => {
-                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            UseNotification.Message.CreateFinish(t);
                             setOpenCreateModel(false);
                             fetchData();
                         });
@@ -136,7 +152,7 @@ function Conainer(props) {
                     .then(() => createForm.resetFields());
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.CreateFinishFail);
+                UseNotification.Message.CreateFinishFail(t);
             });
     };
 
@@ -151,10 +167,10 @@ function Conainer(props) {
                         const status = Utils.getValues(result, 'error.code', []);
 
                         if (status === 'ERR_BAD_REQUEST') {
-                            UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
+                            UseNotification.Message.UpdateFinishFail(t);
                             setOpenEditModel(false);
                         } else {
-                            UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
+                            UseNotification.Message.UpdateFinish(t);
                             setOpenEditModel(false);
                             fetchData();
                         }
@@ -162,7 +178,7 @@ function Conainer(props) {
                     .then(() => editForm.resetFields());
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
+                UseNotification.Message.UpdateFinishFail(t);
             });
     };
 
@@ -199,6 +215,9 @@ function Conainer(props) {
         handleShowQrCodeClick,
         handleCreateNewClick,
         handleRefreshClick,
+        deleteAlert,
+        handleUndoDeleteClick,
+        setDeleteAlert,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

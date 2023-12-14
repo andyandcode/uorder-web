@@ -1,9 +1,6 @@
-import { Input, Modal, Select } from 'antd';
+import { Modal } from 'antd';
 import React from 'react';
 import { FormBuilder } from '../../../../../components/FormBuilder';
-
-const { TextArea } = Input;
-const { Option } = Select;
 
 export default function EditModal({
     t,

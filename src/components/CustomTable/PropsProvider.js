@@ -16,6 +16,7 @@ export default function propsProvider(props) {
         handleShowQrCodeClick,
         switchActionColumn,
         handleActionButtonViewClick,
+        parentData,
     } = props;
     return {
         t,
@@ -34,5 +35,6 @@ export default function propsProvider(props) {
         handleShowQrCodeClick,
         switchActionColumn,
         handleActionButtonViewClick,
+        parentData,
     };
 }

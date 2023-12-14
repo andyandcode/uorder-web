@@ -20,3 +20,8 @@ export const deleteTableAdmin = createAsyncThunk('tableAdmin/delete', async (par
     const res = await TableAdmin.delete(params);
     return res;
 });
+
+export const undoDeleteTableAdmin = createAsyncThunk('tableAdmin/undoDelete', async (params) => {
+    const res = await TableAdmin.undoDetele(params);
+    return res;
+});

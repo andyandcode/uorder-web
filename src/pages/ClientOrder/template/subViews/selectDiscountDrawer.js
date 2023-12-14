@@ -79,9 +79,6 @@ export default function SelectDiscountDrawer({
                                                         minimum: discountData.minDiscountAmount.toLocaleString(),
                                                         maximum: discountData.maxDiscountAmount.toLocaleString(),
                                                     })}
-                                                    <CurrencyFormat.Minimal
-                                                        value={discountData.minOrderAmountRequired}
-                                                    />
                                                 </Typography.Text>
                                             )}
                                             <Typography.Text type='secondary'>

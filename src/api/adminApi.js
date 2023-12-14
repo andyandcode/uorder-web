@@ -21,6 +21,12 @@ const DishAdmin = {
         const url = `/dish/delete/${params}`;
         return axiosInstance.delete(url);
     },
+    undoDetele: (params) => {
+        const url = `/dish/undoDelete/${params}`;
+        return axiosInstance.post(url, params, {
+            headers: { 'Content-Type': 'application/json-patch+json' },
+        });
+    },
 };
 
 const TableAdmin = {
@@ -40,6 +46,12 @@ const TableAdmin = {
         const url = `/table/delete/${params}`;
         return axiosInstance.delete(url);
     },
+    undoDetele: (params) => {
+        const url = `/table/undoDelete/${params}`;
+        return axiosInstance.post(url, params, {
+            headers: { 'Content-Type': 'application/json-patch+json' },
+        });
+    },
 };
 
 const MenuAdmin = {
@@ -58,6 +70,18 @@ const MenuAdmin = {
     delete: (params) => {
         const url = `/menu/delete/${params}`;
         return axiosInstance.delete(url);
+    },
+    removeDish: (params) => {
+        const url = '/menu/removeDish';
+        return axiosInstance.post(url, params, {
+            headers: { 'Content-Type': 'application/json-patch+json' },
+        });
+    },
+    undoDetele: (params) => {
+        const url = `/menu/undoDelete/${params}`;
+        return axiosInstance.post(url, params, {
+            headers: { 'Content-Type': 'application/json-patch+json' },
+        });
     },
 };
 
@@ -85,6 +109,12 @@ const DiscountCodeAdmin = {
         const url = `/discount/patch/${params[0].id}`;
         return axiosInstance.patch(url, modifiedArray, {
             headers: { 'content-type': 'application/json-patch+json' },
+        });
+    },
+    undoDetele: (params) => {
+        const url = `/discount/undoDelete/${params}`;
+        return axiosInstance.post(url, params, {
+            headers: { 'Content-Type': 'application/json-patch+json' },
         });
     },
 };
@@ -216,6 +246,12 @@ const AccountAdmin = {
         const url = `/account/patch/${params[0].id}`;
         return axiosInstance.patch(url, modifiedArray, {
             headers: { 'content-type': 'application/json-patch+json' },
+        });
+    },
+    undoDetele: (params) => {
+        const url = `/account/undoDelete/${params}`;
+        return axiosInstance.post(url, params, {
+            headers: { 'Content-Type': 'application/json-patch+json' },
         });
     },
 };

@@ -2,13 +2,14 @@ import { Form, Modal, message } from 'antd';
 import { useEffect, useState } from 'react';
 import TableColumns from '../../components/CustomTable/columnConfigs';
 import { hideLoading, showLoading } from '../../components/FullPageLoading/LoadingSlice';
-import { NotificationTarget, UseNotification, UserAction } from '../../components/UseNotification';
+import { NotificationTarget, UseNotification } from '../../components/UseNotification';
 import Utils from '../../utilities';
 import propsProvider from './PropsProvider';
 import {
     createAccountAdmin,
     deleteAccountAdmin,
     getListAccountAdmin,
+    undoDeleteAccountAdmin,
     updateAccountAdmin,
     updateAccountStatusAdmin,
 } from './Slice';
@@ -23,6 +24,7 @@ function Conainer(props) {
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
+    const [deleteAlert, setDeleteAlert] = useState({ data: null, timestamp: 0 });
 
     const fetchData = async () => {
         dispatch(showLoading());
@@ -45,6 +47,14 @@ function Conainer(props) {
         setOpenEditModel(false);
     };
 
+    const handleUndoDeleteClick = async () => {
+        await dispatch(undoDeleteAccountAdmin(deleteAlert.data.id))
+            .then(() => {
+                setDeleteAlert({});
+            })
+            .then(() => fetchData());
+    };
+
     const handleCreateCancelClick = () => {
         setOpenCreateModel(false);
     };
@@ -56,7 +66,14 @@ function Conainer(props) {
 
     const handleActionButtonDeleteClick = (data) => {
         async function onOk() {
-            await dispatch(deleteAccountAdmin(data.id)).then(() => fetchData());
+            await dispatch(deleteAccountAdmin(data.id))
+                .then((result) => {
+                    const timestamp = Utils.getValues(result, 'payload', []);
+                    setDeleteAlert({ data: data, timestamp: timestamp });
+                })
+                .then(() => {
+                    fetchData();
+                });
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Account, onOk));
     };
@@ -100,16 +117,25 @@ function Conainer(props) {
                 messageApi
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {
-                        await dispatch(createAccountAdmin(values)).then(() => {
-                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
-                            setOpenCreateModel(false);
-                            fetchData();
+                        await dispatch(createAccountAdmin(values)).then((result) => {
+                            const status = Utils.getValues(result, 'payload.response.status', null);
+                            switch (status) {
+                                case 490:
+                                    messageApi.open(UseNotification.Message.UsernameExists(t));
+                                    break;
+
+                                default:
+                                    UseNotification.Message.CreateFinish(t);
+                                    setOpenCreateModel(false);
+                                    fetchData();
+                                    break;
+                            }
                         });
                     })
                     .then(() => createForm.resetFields());
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.CreateFinishFail);
+                UseNotification.Message.CreateFinishFail(t);
             });
     };
 
@@ -121,7 +147,7 @@ function Conainer(props) {
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {
                         await dispatch(updateAccountAdmin(values)).then(() => {
-                            UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
+                            UseNotification.Message.UpdateFinish(t);
                             setOpenEditModel(false);
                             fetchData();
                         });
@@ -129,7 +155,7 @@ function Conainer(props) {
                     .then(() => editForm.resetFields());
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
+                UseNotification.Message.UpdateFinishFail(t);
             });
     };
 
@@ -162,6 +188,9 @@ function Conainer(props) {
         handleCreateCancelClick,
         handleCreateNewClick,
         handleRefreshClick,
+        deleteAlert,
+        handleUndoDeleteClick,
+        setDeleteAlert,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

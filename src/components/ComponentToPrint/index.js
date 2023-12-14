@@ -34,9 +34,9 @@ const OrderBill = React.forwardRef(({ data, componentRef }) => {
                     </Col>
                 </Row>
                 <Divider style={{ margin: '4px 0px' }} />
-                {data.orderDetails.map((e) => (
+                {data.orderDetails.map((e, index) => (
                     <>
-                        <Row>
+                        <Row key={index}>
                             <Col flex='auto'>
                                 {e.qty} x {e.dishName}
                             </Col>

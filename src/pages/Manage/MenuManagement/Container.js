@@ -2,11 +2,18 @@ import { Form, message, Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
-import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
+import { NotificationTarget, UseNotification } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
-import { deleteDishAdmin, updateDishAdmin } from '../DishManagement/Slice';
+import { updateDishAdmin } from '../DishManagement/Slice';
 import propsProvider from './PropsProvider';
-import { createMenuAdmin, deleteMenuAdmin, getListMenuAdmin, updateMenuAdmin } from './Slice';
+import {
+    createMenuAdmin,
+    deleteMenuAdmin,
+    getListMenuAdmin,
+    removeMenuAdmin,
+    undoDeleteMenuAdmin,
+    updateMenuAdmin,
+} from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -18,6 +25,7 @@ function Conainer(props) {
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
     const [messageApi, messageContextHolder] = message.useMessage();
+    const [deleteAlert, setDeleteAlert] = useState({ data: null, timestamp: 0 });
 
     const fetchData = async () => {
         dispatch(showLoading());
@@ -51,7 +59,14 @@ function Conainer(props) {
 
     const handleActionButtonDeleteClick = (data) => {
         async function onOk() {
-            await dispatch(deleteMenuAdmin(data.id)).then(() => fetchData());
+            await dispatch(deleteMenuAdmin(data.id))
+                .then((result) => {
+                    const timestamp = Utils.getValues(result, 'payload', []);
+                    setDeleteAlert({ data: data, timestamp: timestamp });
+                })
+                .then(() => {
+                    fetchData();
+                });
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Menu, onOk));
     };
@@ -81,7 +96,15 @@ function Conainer(props) {
     };
 
     const handleQuickDeleteConfirm = async (data) => {
-        await dispatch(deleteDishAdmin(data.id)).then(() => fetchData());
+        await dispatch(removeMenuAdmin({ dishId: data.id, menuId: data.parentId })).then(() => fetchData());
+    };
+
+    const handleUndoDeleteClick = async () => {
+        await dispatch(undoDeleteMenuAdmin(deleteAlert.data.id))
+            .then(() => {
+                setDeleteAlert({});
+            })
+            .then(() => fetchData());
     };
 
     const handleQuickTurnOffConfirm = async (data) => {
@@ -108,7 +131,7 @@ function Conainer(props) {
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {
                         await dispatch(createMenuAdmin(values)).then(() => {
-                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            UseNotification.Message.CreateFinish(t);
                             setOpenCreateModel(false);
                             fetchData();
                         });
@@ -116,7 +139,7 @@ function Conainer(props) {
                     .then(() => createForm.resetFields());
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.CreateFinishFail);
+                UseNotification.Message.CreateFinishFail(t);
             });
     };
 
@@ -140,10 +163,10 @@ function Conainer(props) {
                         const status = Utils.getValues(result, 'error.code', []);
 
                         if (status === 'ERR_BAD_REQUEST') {
-                            UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
+                            UseNotification.Message.UpdateFinishFail(t);
                             setOpenEditModel(false);
                         } else {
-                            UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
+                            UseNotification.Message.UpdateFinish(t);
                             setOpenEditModel(false);
                             fetchData();
                         }
@@ -151,7 +174,7 @@ function Conainer(props) {
                     .then(() => editForm.resetFields());
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
+                UseNotification.Message.UpdateFinishFail(t);
             });
     };
 
@@ -187,6 +210,9 @@ function Conainer(props) {
         handleQuickActionButtonTurnOnClick,
         handleCreateNewClick,
         handleRefreshClick,
+        deleteAlert,
+        handleUndoDeleteClick,
+        setDeleteAlert,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }

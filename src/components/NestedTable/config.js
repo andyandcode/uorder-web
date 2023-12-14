@@ -61,19 +61,19 @@ export const NestedExpendedColumnSwitch = (props) => {
                                     {t('main.components.button.turn_on')}
                                 </Button>
                                 <Popconfirm
-                                    title={t('main.notification.table.pop_confirm.quick_delete.title', {
+                                    title={t('main.notification.table.pop_confirm.quick_remove.title', {
                                         target: t('main.common.system_key.dish'),
                                     })}
-                                    description={t('main.notification.table.pop_confirm.quick_delete.content', {
+                                    description={t('main.notification.table.pop_confirm.quick_remove.content', {
                                         target: t('main.common.system_key.dish'),
                                     })}
                                     onConfirm={() => handleQuickDeleteConfirm(record)}
-                                    okText={t('main.components.button.delete')}
+                                    okText={t('main.components.button.remove')}
                                     cancelText={t('main.components.button.cancel')}
                                     okType='danger'
                                 >
                                     <Button danger size='small' type='link'>
-                                        {t('main.components.button.delete')}
+                                        {t('main.components.button.remove')}
                                     </Button>
                                 </Popconfirm>
                             </Space>

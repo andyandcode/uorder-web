@@ -12,7 +12,6 @@ function Conainer(props) {
     const [tableData, setTableData] = useState([]);
     const [availableMenuData, setAvailableMenuData] = useState([]);
     const [cartItems, setCartItems] = useState([]);
-    const [dishes, setDishes] = useState([]);
     const [orderResult, setOrderResult] = useState([]);
     const [isShowNavbar, setIsShowNavbar] = useState(false);
     const params = useParams();
@@ -25,12 +24,6 @@ function Conainer(props) {
                 });
             }
             setMenuData(Utils.getValues(result, 'payload.menus', []));
-
-            setDishes(
-                Utils.getValues(result, 'payload.menus', []).reduce((acc, category) => {
-                    return acc.concat(category.dishes);
-                }, []),
-            );
 
             setAvailableMenuData(
                 Utils.getValues(result, 'payload.menus', []).map((item) => ({

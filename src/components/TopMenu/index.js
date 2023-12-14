@@ -1,14 +1,8 @@
-import { Select, Typography } from 'antd';
+import { Anchor, Typography } from 'antd';
 import { SelectLanguageMobile } from '../UseLanguages';
 
 export default function TopMenu({ t, data, menuData }) {
-    const options = data.map((e, index) => ({ label: e.name, value: e.id, href: e.id, key: index }));
-    const handleChange = (value) => {
-        const elementToScroll = document.getElementById(value);
-        if (elementToScroll) {
-            elementToScroll.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    };
+    const options = data.map((e) => ({ title: e.name, key: e.id, href: `#${e.id}` }));
     return (
         <>
             <div className='top_menu'>
@@ -18,12 +12,7 @@ export default function TopMenu({ t, data, menuData }) {
                     </Typography.Title>
                     <SelectLanguageMobile />
                 </div>
-                <Select
-                    options={options}
-                    style={{ width: '100%' }}
-                    onChange={handleChange}
-                    placeholder={t('main.pages.booking.select_menu')}
-                />
+                <Anchor direction='horizontal' items={options} style={{ width: '100vw', padding: '0 8px' }} />
             </div>
         </>
     );

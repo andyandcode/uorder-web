@@ -18,6 +18,8 @@
             },
             "account": "帳號管理",
             "discount_code": "折扣",
+            "others": "其他",
+            "admin": "管理員",
             "settings": {
                 "label": "設定",
                 "system": "系統設定",
@@ -211,6 +213,9 @@
                 "call_staff_title": "有顧客打電話！",
                 "call_staff_description": "第 {{table}} 桌有顧客來電！請快點到 {{table}} 桌。"
             },
+            "undo_delete_alert": {
+                "delete_message": "{{target}} 已被刪除。但是，您可以在 {{timestamp}} 秒內撤銷此操作。"
+            },
             "upload": {
                 "must_be_image": "您只能上傳JPG/PNG檔案！",
                 "must_smaller_than": "圖片必須小於2MB！"
@@ -235,29 +240,30 @@
                 "new_re_password_not_match": "新密碼和確認密碼不符。",
                 "password_least": "密碼長度必須至少為 8 個字元。",
                 "password_not_match": "舊密碼不正確。",
-                "change_password_successful": "重置密碼成功。"
+                "change_password_successful": "重置密碼成功。",
+                "username_exists": "使用者名稱已存在。"
             },
             "table": {
                 "delete_action": {
                     "title": "你確定嗎？",
-                    "content": "此操作將刪除此資訊的所有訊息 {{target}}。\n "
+                    "content": "此操作將刪除此資訊的所有訊息。"
                 },
                 "turn_off_active_action": {
                     "title": "將活動狀態變更為關閉？",
-                    "content": "本次活動狀態 {{target}} 將更改為關閉。 {{target}} 下次。"
+                    "content": "本次活動狀態將更改為關閉。下次。"
                 },
                 "turn_on_active_action": {
                     "title": "將活動狀態改為活動？",
-                    "content": "本次活動狀態 {{target}} 將變為活動狀態。 {{target}} 下次。"
+                    "content": "本次活動狀態將變為活動狀態。下次。"
                 },
                 "pop_confirm": {
                     "quick_turn_off": {
                         "title": "更改為關閉",
                         "content": "您確定要關閉此活動的狀態嗎 {{target}}？"
                     },
-                    "quick_delete": {
-                        "title": "刪除這個 {{target}}",
-                        "content": "您確定要刪除此內容嗎 {{target}}？"
+                    "quick_remove": {
+                        "title": "從中刪除此 {{target}}",
+                        "content": "您確定從此選單中刪除此 {{target}} 嗎？"
                     }
                 }
             },
@@ -271,6 +277,7 @@
         },
         "common": {
             "footer": "UOrder-掃描並預訂",
+            "admin_panel": "阿明面板",
             "system_key": {
                 "dish": "盤子",
                 "menu": "選單",
@@ -328,7 +335,7 @@
                 "submit": "提交",
                 "close": "關閉",
                 "add_order_item": "新增項目",
-                "remove_order_item": "消除",
+                "remove": "消除",
                 "view_order": "查看訂單",
                 "remember_login": "記得登入",
                 "forgot_pwd": "忘記密碼",
@@ -341,7 +348,8 @@
                 "view": "看法",
                 "use": "使用",
                 "pay": "支付",
-                "track_booking": "追蹤預訂"
+                "track_booking": "追蹤預訂",
+                "undo": "撤銷"
             },
             "cart_navbar": {
                 "items": "專案"

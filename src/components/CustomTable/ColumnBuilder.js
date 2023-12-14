@@ -138,26 +138,6 @@ const ActionColumn = ({
     }
 };
 
-const ShowQrCodeColumn = (props) => {
-    const { t, handleShowQrCodeClick } = props;
-    return (
-        <>
-            <Column
-                title={t('app.feature.table.tableManagement.qrCode.label')}
-                key='action'
-                align='center'
-                render={(record) => (
-                    <Button
-                        type='text'
-                        icon={<QrcodeOutlined style={{ fontSize: '16px', color: '#08c' }} />}
-                        onClick={() => handleShowQrCodeClick(record)}
-                    ></Button>
-                )}
-            />
-        </>
-    );
-};
-
 const ExtraColumnBuilder = (props, key) => {
     const { t, handleShowQrCodeClick } = props;
 

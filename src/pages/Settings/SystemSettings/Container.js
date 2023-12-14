@@ -1,7 +1,7 @@
 import { Form, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
-import { UseNotification, UserAction } from '../../../components/UseNotification';
+import { UseNotification } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
 import { getSystemSettingsAdmin, updateSystemSettingsAdmin } from './Slice';
@@ -39,12 +39,12 @@ function Conainer(props) {
                     .open(UseNotification.Message.InProgressMessage(t))
                     .then(async () => {
                         await dispatch(updateSystemSettingsAdmin(values));
-                        UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
+                        UseNotification.Message.UpdateFinish(t);
                     })
                     .then(() => fetchData());
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
+                UseNotification.Message.UpdateFinishFail(t);
             });
     };
 

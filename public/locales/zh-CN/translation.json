@@ -18,6 +18,8 @@
             },
             "account": "帐户管理",
             "discount_code": "折扣",
+            "others": "其他",
+            "admin": "管理员",
             "settings": {
                 "label": "设置",
                 "system": "系统设置",
@@ -211,6 +213,9 @@
                 "call_staff_title": "有顾客打来电话！",
                 "call_staff_description": "第 {{table}} 桌有顾客来电！请快点到 {{table}} 桌。"
             },
+            "undo_delete_alert": {
+                "delete_message": "{{target}} 已被删除。但是，您可以在 {{timestamp}} 秒内撤消此操作。"
+            },
             "upload": {
                 "must_be_image": "您只能上传JPG/PNG文件！",
                 "must_smaller_than": "图片必须小于2MB！"
@@ -235,29 +240,30 @@
                 "new_re_password_not_match": "新密码和确认密码不匹配。",
                 "password_least": "密码长度必须至少为 8 个字符。",
                 "password_not_match": "旧密码不正确。",
-                "change_password_successful": "重置密码成功。"
+                "change_password_successful": "重置密码成功。",
+                "username_exists": "用户名已存在。"
             },
             "table": {
                 "delete_action": {
                     "title": "你确定吗？",
-                    "content": "此操作将删除此信息的所有信息 {{target}}。\n "
+                    "content": "此操作将删除此信息的所有信息。\n "
                 },
                 "turn_off_active_action": {
                     "title": "将活动状态更改为关闭？",
-                    "content": "本次活动状态 {{target}} 将更改为关闭。 {{target}} 下次。"
+                    "content": "本次活动状态将更改为关闭下次。"
                 },
                 "turn_on_active_action": {
                     "title": "将活动状态更改为活动？",
-                    "content": "本次活动状态 {{target}} 将变为活动状态。 {{target}} 下次。"
+                    "content": "本次活动状态将变为活动状态。 {{target}} 下次。"
                 },
                 "pop_confirm": {
                     "quick_turn_off": {
                         "title": "更改为关闭",
                         "content": "您确定要关闭此活动的状态吗 {{target}}？"
                     },
-                    "quick_delete": {
-                        "title": "删除这个 {{target}}",
-                        "content": "您确定要删除此内容吗 {{target}}？"
+                    "quick_remove": {
+                        "title": "从中删除此 {{target}}",
+                        "content": "您确定从此菜单中删除此 {{target}} 吗？"
                     }
                 }
             },
@@ -271,6 +277,7 @@
         },
         "common": {
             "footer": "UOrder-扫描并预订",
+            "admin_panel": "阿明面板",
             "system_key": {
                 "dish": "盘子",
                 "menu": "菜单",
@@ -328,7 +335,7 @@
                 "submit": "提交",
                 "close": "关闭",
                 "add_order_item": "新增项目",
-                "remove_order_item": "消除",
+                "remove": "消除",
                 "view_order": "查看订单",
                 "remember_login": "记住登录",
                 "forgot_pwd": "忘记密码",
@@ -341,7 +348,8 @@
                 "view": "看法",
                 "use": "使用",
                 "pay": "支付",
-                "track_booking": "跟踪预订"
+                "track_booking": "跟踪预订",
+                "undo": "撤消"
             },
             "cart_navbar": {
                 "items": "项目"

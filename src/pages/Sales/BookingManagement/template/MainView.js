@@ -1,4 +1,4 @@
-import { Divider, Layout, Typography } from 'antd';
+import { Divider, Layout } from 'antd';
 import CustomTable from '../../../../components/CustomTable';
 import TableColumns from '../../../../components/CustomTable/columnConfigs';
 import BillQuickViewModal from './subView/billQuickViewModal';
@@ -7,7 +7,6 @@ import PayBillModal from './subView/payBillModal';
 import ViewModal from './subView/viewModal';
 
 const { Content } = Layout;
-const { Title } = Typography;
 
 export default function MainView({
     t,
@@ -38,9 +37,6 @@ export default function MainView({
     return (
         <>
             <Content>
-                <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('main.navigation.sales.booking')}
-                </Title>
                 <CurrentBooking
                     t={t}
                     cardLoading={cardLoading}

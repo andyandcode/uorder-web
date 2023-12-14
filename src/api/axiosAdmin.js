@@ -33,7 +33,7 @@ const CreateAxiosInstance = () => {
             return response;
         },
         (error) => {
-            if (error.code === 'ERR_NETWORK') {
+            if (error.code === 'ERR_NETWORK' || error.code === 'ECONNABORTED' || error.code === 'ERR_BAD_REQUEST') {
                 return;
             }
 
@@ -41,6 +41,7 @@ const CreateAxiosInstance = () => {
                 redirect(rootKeys.loginUrl);
                 return;
             }
+
             return error;
         },
     );

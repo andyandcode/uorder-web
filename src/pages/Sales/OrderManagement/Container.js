@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { EnumKey } from '../../../components/EnumRender';
 import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
-import { UseNotification, UserAction } from '../../../components/UseNotification';
+import { UseNotification } from '../../../components/UseNotification';
 import Config from '../../../configuration';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
@@ -33,7 +33,6 @@ function Conainer(props) {
     const cookies = new Cookies();
 
     const [viewData, setViewData] = useState();
-    const [dishData, setDishData] = useState();
 
     const orderStatusSelect = EnumKey.OrderStatusKey(t);
     const paymentStatusSelect = EnumKey.PaymentStatusKey(t);
@@ -107,7 +106,7 @@ function Conainer(props) {
                             staff: cookieData && cookieData.data.username,
                         };
                         await dispatch(createOrderAdmin(modifiedItem)).then((result) => {
-                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            UseNotification.Message.CreateFinish(t);
                             setOpenCreateModel(false);
                             fetchData();
                         });
@@ -115,7 +114,7 @@ function Conainer(props) {
                     .then(() => createForm.resetFields());
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.CreateFinishFail);
+                UseNotification.Message.CreateFinishFail(t);
             });
     };
 
@@ -134,7 +133,7 @@ function Conainer(props) {
                 },
             ]),
         )
-            .then(UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish), setOpenViewModel(false))
+            .then(UseNotification.Message.UpdateFinish(t), setOpenViewModel(false))
             .then(() => fetchData());
     };
     const componentRef = useRef();
@@ -172,7 +171,6 @@ function Conainer(props) {
         handleNewOrderClick,
         handleActionButtonViewClick,
         viewData,
-        dishData,
         handleChangeOrderStatus,
         handlePrintClick,
         openBillQuickViewModal,

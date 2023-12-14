@@ -40,6 +40,9 @@ export default function propsProvider(props) {
         viewData,
         openViewModel,
         handleViewCancelClick,
+        handleUndoDeleteClick,
+        deleteAlert,
+        setDeleteAlert,
     } = props;
     return {
         history,
@@ -82,5 +85,8 @@ export default function propsProvider(props) {
         viewData,
         openViewModel,
         handleViewCancelClick,
+        handleUndoDeleteClick,
+        deleteAlert,
+        setDeleteAlert,
     };
 }

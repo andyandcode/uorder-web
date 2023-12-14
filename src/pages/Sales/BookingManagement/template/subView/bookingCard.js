@@ -15,8 +15,9 @@ export default function BookingCard({
     return (
         <>
             <Flex wrap='wrap' gap='small'>
-                {currentBookingData.map((e) => (
+                {currentBookingData.map((e, index) => (
                     <Card
+                        key={index}
                         style={{
                             width: 300,
                             marginTop: 16,

@@ -19,6 +19,7 @@ export default function propsProvider(props) {
         history,
         access,
         contextHolder,
+        breadcrumbItems,
     } = props;
     return {
         t,
@@ -40,5 +41,6 @@ export default function propsProvider(props) {
         history,
         access,
         contextHolder,
+        breadcrumbItems,
     };
 }

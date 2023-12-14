@@ -1,13 +1,13 @@
-import { Divider, Layout, Space, Typography } from 'antd';
+import { Layout, Space } from 'antd';
 import React from 'react';
 import { ButtonLocated } from '../../../../components/ButtonLocated';
+import { CustomAlert } from '../../../../components/CustomAlert';
 import CustomTable from '../../../../components/CustomTable';
 import TableColumns from '../../../../components/CustomTable/columnConfigs';
 import CreateModal from './subViews/createModal';
 import EditModal from './subViews/editModal';
 
 const { Content } = Layout;
-const { Title } = Typography;
 
 export default function MainView(props) {
     const {
@@ -23,16 +23,22 @@ export default function MainView(props) {
         handleQuickDeleteConfirm,
         handleCreateNewClick,
         handleRefreshClick,
+        deleteAlert,
+        handleUndoDeleteClick,
+        setDeleteAlert,
     } = props;
-
     return (
         <>
+            {deleteAlert.timestamp > 0 && (
+                <CustomAlert.UndoDeleteAlert
+                    t={t}
+                    handleButton={handleUndoDeleteClick}
+                    target={deleteAlert.data.name}
+                    timestamp={deleteAlert.timestamp}
+                    timeoutEvent={setDeleteAlert}
+                />
+            )}
             <Content>
-                <Title style={{ marginBottom: 32 }} level={3}>
-                    {t('main.navigation.manage.menu')}
-                </Title>
-                <Divider />
-
                 <Space
                     direction='horizontal'
                     align='end'

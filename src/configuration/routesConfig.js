@@ -26,16 +26,17 @@ const menuManagementUrl = `${manageUrl}/menu-management`;
 const tableManagementUrl = `${manageUrl}/table-management`;
 
 const salesUrl = `${adminUrl}/sales`;
+const analyticsUrl = `${salesUrl}/analytics`;
 const bookingManagementUrl = `${salesUrl}/booking-management`;
 const orderManagementUrl = `${salesUrl}/order-management`;
-const analyticsUrl = `${salesUrl}/analytics`;
 
-const accountManagementUrl = `${adminUrl}/account-management`;
-const discountCodeManagementUrl = `${adminUrl}/discount-code-management`;
+const adminRoleUrl = `${adminUrl}/admin`;
+const accountManagementUrl = `${adminRoleUrl}/account-management`;
+const discountCodeManagementUrl = `${adminRoleUrl}/discount-code-management`;
+const systemSettingUrl = `${adminRoleUrl}/system-settings`;
 
-const settingUrl = `${adminUrl}/settings`;
-const accountSettingUrl = `${settingUrl}/account-settings`;
-const systemSettingUrl = `${settingUrl}/system-settings`;
+const othersUrl = `${adminUrl}/others`;
+const accountSettingUrl = `${othersUrl}/account-settings`;
 
 const loginUrl = `${adminUrl}/login`;
 
@@ -88,7 +89,7 @@ export const rootKeys = {
     orderManagementUrl,
     analyticsUrl,
     accountManagementUrl,
-    settingUrl,
+    adminRoleUrl,
     accountSettingUrl,
     systemSettingUrl,
     loginUrl,
@@ -99,4 +100,5 @@ export const rootKeys = {
     clientOrderSuccessfulUrl,
     discountCodeManagementUrl,
     clientOrderTrackerRootUrl,
+    othersUrl,
 };

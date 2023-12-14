@@ -1,14 +1,9 @@
-import { Modal as AntdModal, message } from 'antd';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { notificationSelector } from '../../app/selector';
+import { message } from 'antd';
 
 const DeleteModal = (t, target, onOk) => {
     return {
         title: t('main.notification.table.delete_action.title'),
-        content: t('main.notification.table.delete_action.content', {
-            target: t(target),
-        }),
+        content: t('main.notification.table.delete_action.content'),
         okText: t('main.components.button.delete'),
         cancelText: t('main.components.button.cancel'),
         okType: 'danger',
@@ -19,9 +14,7 @@ const DeleteModal = (t, target, onOk) => {
 const TurnOffModal = (t, target, onOk) => {
     return {
         title: t('main.notification.table.turn_off_active_action.title'),
-        content: t('main.notification.table.turn_off_active_action.content', {
-            target: t(target),
-        }),
+        content: t('main.notification.table.turn_off_active_action.content'),
         okText: t('main.components.button.turn_off'),
         cancelText: t('main.components.button.cancel'),
         okType: 'danger',
@@ -32,9 +25,7 @@ const TurnOffModal = (t, target, onOk) => {
 const TurnOnModal = (t, target, onOk) => {
     return {
         title: t('main.notification.table.turn_on_active_action.title'),
-        content: t('main.notification.table.turn_on_active_action.content', {
-            target: t(target),
-        }),
+        content: t('main.notification.table.turn_on_active_action.content'),
         okText: t('main.components.button.turn_on'),
         cancelText: t('main.components.button.cancel'),
         onOk: onOk,
@@ -49,12 +40,19 @@ const InProgressMessage = (t) => {
     };
 };
 
-const FinishMessage = (t, action) => {
-    return message.success(t(action), 2);
+const CreateFinish = (t) => {
+    return message.success(t('main.notification.form.create_finish'), 2);
+};
+const UpdateFinish = (t) => {
+    return message.success(t('main.notification.form.edit_finish'), 2);
 };
 
-const FinishFailMessage = (t, action) => {
-    return message.error(t(action), 2);
+const CreateFinishFail = (t) => {
+    return message.error(t('main.notification.form.create_finish_fail'), 2);
+};
+
+const UpdateFinishFail = (t) => {
+    return message.error(t('main.notification.form.edit_finish_fail'), 2);
 };
 
 const NotFoundAccountMessage = (t) => {
@@ -105,6 +103,14 @@ const PasswordNotMatch = (t) => {
     };
 };
 
+const UsernameExists = (t) => {
+    return {
+        type: 'error',
+        content: t('main.notification.auth.username_exists'),
+        duration: 2,
+    };
+};
+
 const ChangePasswordSuccessful = (t) => {
     return {
         type: 'success',
@@ -116,8 +122,6 @@ const ChangePasswordSuccessful = (t) => {
 const Modal = { DeleteModal, TurnOffModal, TurnOnModal };
 const Message = {
     InProgressMessage,
-    FinishMessage,
-    FinishFailMessage,
     NotFoundAccountMessage,
     AccountLockedMessage,
     WrongPasswordMessage,
@@ -125,6 +129,11 @@ const Message = {
     CannotConnectToServer,
     PasswordNotMatch,
     ChangePasswordSuccessful,
+    UsernameExists,
+    CreateFinish,
+    UpdateFinish,
+    CreateFinishFail,
+    UpdateFinishFail,
 };
 
 const Dish = 'main.common.system_key.dish';
@@ -132,38 +141,6 @@ const Menu = 'main.common.system_key.menu';
 const Table = 'main.common.system_key.table';
 const Account = 'main.common.system_key.account';
 
-const CreateFinish = 'main.notification.form.create_finish';
-const UpdateFinish = 'main.notification.form.edit_finish';
-const CreateFinishFail = 'main.notification.form.create_finish_fail';
-const UpdateFinishFail = 'main.notification.form.edit_finish_fail';
-
 export const NotificationTarget = { Dish, Menu, Table, Account };
 
-export const UserAction = { CreateFinish, UpdateFinish, CreateFinishFail, UpdateFinishFail };
-
 export const UseNotification = { Modal, Message };
-
-const NetworkError = (code, radom) => {
-    const selector = useSelector(notificationSelector).content;
-    const { t } = useTranslation();
-
-    switch (selector) {
-        case 123:
-            AntdModal.confirm({
-                title: 'This is a notification message',
-                content: (
-                    <div>
-                        <p>some messages...some messages...</p>
-                        <p>some messages...some messages...</p>
-                    </div>
-                ),
-                onOk() {},
-            });
-            break;
-
-        default:
-            break;
-    }
-};
-
-export const UseNotificationForAxios = { NetworkError };

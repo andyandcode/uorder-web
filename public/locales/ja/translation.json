@@ -18,6 +18,8 @@
             },
             "account": "アカウント管理",
             "discount_code": "割引",
+            "others": "その他",
+            "admin": "管理者",
             "settings": {
                 "label": "設定",
                 "system": "システム設定",
@@ -211,6 +213,9 @@
                 "call_staff_title": "お客様から電話がありました!",
                 "call_staff_description": "テーブル {{table}} で電話をかけているお客様がいます! 急いでテーブル {{table}} に来てください。"
             },
+            "undo_delete_alert": {
+                "delete_message": "{{target}} は削除されました。ただし、この操作は {{timestamp}} 秒以内であれば元に戻すことができます。"
+            },
             "upload": {
                 "must_be_image": "アップロードできるのは JPG/PNG ファイルのみです。",
                 "must_smaller_than": "画像は 2MB 未満である必要があります。"
@@ -235,29 +240,30 @@
                 "new_re_password_not_match": "新しいパスワードと確認用のパスワードが一致しません。",
                 "password_least": "パスワードの長さは 8 文字以上である必要があります。",
                 "password_not_match": "古いパスワードが間違っています。",
-                "change_password_successful": "パスワードが正常にリセットされました。"
+                "change_password_successful": "パスワードが正常にリセットされました。",
+                "username_exists": "ユーザー名はすでに存在します。"
             },
             "table": {
                 "delete_action": {
                     "title": "本気ですか？",
-                    "content": "このアクションにより、このすべての情報が削除されます {{target}}。\n "
+                    "content": "このアクションにより、このすべての情報が削除されます。 "
                 },
                 "turn_off_active_action": {
                     "title": "アクティブステータスをオフに変更しますか?",
-                    "content": "こちらの活動状況は {{target}} オフに変わります。 {{target}} 次回。"
+                    "content": "こちらの活動状況はオフに変わります。次回。"
                 },
                 "turn_on_active_action": {
                     "title": "アクティブステータスをアクティブに変更しますか?",
-                    "content": "こちらの活動状況は {{target}} アクティブに変わります。 {{target}} 次回。"
+                    "content": "こちらの活動状況はアクティブに変わります。次回。"
                 },
                 "pop_confirm": {
                     "quick_turn_off": {
                         "title": "オフに変更します",
                         "content": "このアクティブステータスをオフにしますか? {{target}}?"
                     },
-                    "quick_delete": {
-                        "title": "これを削除します {{target}}",
-                        "content": "これを削除してもよろしいですか {{target}}?"
+                    "quick_remove": {
+                        "title": "この {{target}} をここから削除します",
+                        "content": "この {{target}} をこのメニューから削除してもよろしいですか?"
                     }
                 }
             },
@@ -271,6 +277,7 @@
         },
         "common": {
             "footer": "UOrder - スキャンして予約する",
+            "admin_panel": "アミンパネル",
             "system_key": {
                 "dish": "皿",
                 "menu": "メニュー",
@@ -328,7 +335,7 @@
                 "submit": "提出する",
                 "close": "近い",
                 "add_order_item": "アイテムの追加",
-                "remove_order_item": "取り除く",
+                "remove": "取り除く",
                 "view_order": "表示の順序",
                 "remember_login": "ログインを記憶する",
                 "forgot_pwd": "パスワードをお忘れですか",
@@ -341,7 +348,8 @@
                 "view": "ビュー",
                 "use": "使用",
                 "pay": "支払う",
-                "track_booking": "予約を追跡する"
+                "track_booking": "予約を追跡する",
+                "undo": "元に戻す"
             },
             "cart_navbar": {
                 "items": "アイテム"

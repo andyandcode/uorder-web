@@ -113,6 +113,17 @@ const PayButton = ({ data, handleButton }) => {
     );
 };
 
+const UndoButton = ({ data, handleButton }) => {
+    const { t } = useTranslation();
+    return (
+        <>
+            <Button type='text' size='small' ghost onClick={handleButton}>
+                {t('main.components.button.undo')}
+            </Button>
+        </>
+    );
+};
+
 const CallStaffButton = ({ data, handleButton, callStaffLoading, callStaffDisabled }) => {
     const { t } = useTranslation();
     return (
@@ -272,4 +283,5 @@ export const ButtonLocated = {
     AddToCartButton,
     PayButton,
     CallStaffButton,
+    UndoButton,
 };

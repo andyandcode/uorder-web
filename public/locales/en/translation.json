@@ -18,6 +18,8 @@
             },
             "account": "Account management",
             "discount_code": "Discount",
+            "others": "Others",
+            "admin": "Admin",
             "settings": {
                 "label": "Settings",
                 "system": "System settings",
@@ -208,6 +210,9 @@
                 "call_staff_title": "There's a customer calling!",
                 "call_staff_description": "There's a customer calling at table {{table}}! Please come to table {{table}} quickly."
             },
+            "undo_delete_alert": {
+                "delete_message": "{{target}} has been deleted. However, you can undo this action within {{timestamp}} seconds."
+            },
             "upload": {
                 "must_be_image": "You can only upload JPG/PNG file!",
                 "must_smaller_than": "Image must smaller than 2MB!"
@@ -232,29 +237,30 @@
                 "new_re_password_not_match": "The new password and confirmation password do not match.",
                 "password_least": "Password length must be at least 8 characters.",
                 "password_not_match": "The old password is incorrect.",
-                "change_password_successful": "Reset password successfully."
+                "change_password_successful": "Reset password successfully.",
+                "username_exists": "Username already exists."
             },
             "table": {
                 "delete_action": {
                     "title": "Are you sure?",
-                    "content": "This action will delete all infomation of this {{target}}. \n You will not be able to revert this."
+                    "content": "This action will delete all infomation of this. You will not be able to revert this."
                 },
                 "turn_off_active_action": {
                     "title": "Change active status to off?",
-                    "content": "The activity status of this {{target}} will change to off. You will still be able to change the activity status of this {{target}} next time."
+                    "content": "The activity status of this will change to off. You will still be able to change the activity status of this next time."
                 },
                 "turn_on_active_action": {
                     "title": "Change active status to active?",
-                    "content": "The activity status of this {{target}} will change to active. You will still be able to change the activity status of this {{target}} next time."
+                    "content": "The activity status of this will change to active. You will still be able to change the activity status of this next time."
                 },
                 "pop_confirm": {
                     "quick_turn_off": {
                         "title": "Change to off",
                         "content": "Are you sure to turn off active status of this {{target}}?"
                     },
-                    "quick_delete": {
-                        "title": "Delete this {{target}}",
-                        "content": "Are you sure to delete this {{target}}?"
+                    "quick_remove": {
+                        "title": "Remove this {{target}} from this",
+                        "content": "Are you sure to remove this {{target}} from this menu?"
                     }
                 }
             },
@@ -268,6 +274,7 @@
         },
         "common": {
             "footer": "UOrder- Scan and make a reservation",
+            "admin_panel": "Amin Panel",
             "system_key": {
                 "dish": "dish",
                 "menu": "menu",
@@ -325,7 +332,7 @@
                 "submit": "Submit",
                 "close": "Close",
                 "add_order_item": "Add item",
-                "remove_order_item": "Remove",
+                "remove": "Remove",
                 "view_order": "View Order",
                 "remember_login": "Remember login",
                 "forgot_pwd": "Forgot password",
@@ -338,7 +345,8 @@
                 "view": "View",
                 "use": "Use",
                 "pay": "Pay",
-                "track_booking": "Track booking"
+                "track_booking": "Track booking",
+                "undo": "Undo"
             },
             "cart_navbar": { "items": "items" }
         }

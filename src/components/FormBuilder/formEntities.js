@@ -39,10 +39,6 @@ import { EnumRender } from '../EnumRender';
 
 const Id = ({ data }) => {
     const { t } = useTranslation();
-    const [tempId, setTempId] = useState();
-    useEffect(() => {
-        setTempId(data.getFieldsValue().id);
-    }, [data]);
     return (
         <>
             <Form.Item
@@ -125,7 +121,7 @@ const UsernameInAccountSettings = ({ data }) => {
             <Row style={{ marginBottom: 16 }}>
                 <Col>{t('main.entities.username')}</Col>
                 <Col flex={'auto'}>
-                    <Typography.Text>{data.getFieldsValue().username}</Typography.Text>
+                    <Typography.Text>***</Typography.Text>
                 </Col>
             </Row>
         </>
@@ -553,7 +549,7 @@ const OrderDishItem = ({ dishData }) => {
                     <>
                         {fields.map(({ key, name, ...restField }) => (
                             <>
-                                <Row gutter={[8, 0]} style={{ marginBottom: 20 }}>
+                                <Row key={key} gutter={[8, 0]} style={{ marginBottom: 20 }}>
                                     <Col flex='auto'>
                                         <Row gutter={[8, 0]} style={{ marginBottom: 0 }}>
                                             <Col flex='auto' style={{ display: 'flex' }}>
@@ -667,7 +663,7 @@ const OrderDishItem = ({ dishData }) => {
                                             onClick={() => remove(name)}
                                             style={{ height: '100%' }}
                                         >
-                                            {t('main.components.button.remove_order_item')}
+                                            {t('main.components.button.remove')}
                                         </Button>
                                     </Col>
                                 </Row>

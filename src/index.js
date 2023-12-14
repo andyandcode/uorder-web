@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import store from './app/store';
 import Loading from './components/FullPageLoading';
-import { UseNotificationForAxios } from './components/UseNotification';
 import WebLayout from './components/WebLayout/index';
 import WebLayoutInClient from './components/WebLayoutInClient';
 import './configuration/i18n';
@@ -16,7 +15,6 @@ root.render(
     <Provider store={store}>
         <Router>
             <Loading />
-            <UseNotificationForAxios.NetworkError />
             <Routes>
                 {routeList.map((route) => (
                     <Route

@@ -2,10 +2,10 @@ import { Form, message, Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
-import { NotificationTarget, UseNotification, UserAction } from '../../../components/UseNotification';
+import { NotificationTarget, UseNotification } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
-import { createDishAdmin, deleteDishAdmin, getListDishAdmin, updateDishAdmin } from './Slice';
+import { createDishAdmin, deleteDishAdmin, getListDishAdmin, undoDeleteDishAdmin, updateDishAdmin } from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -17,6 +17,7 @@ function Conainer(props) {
     const [editForm] = Form.useForm();
     const [openCreateModel, setOpenCreateModel] = useState(false);
     const [openEditModel, setOpenEditModel] = useState(false);
+    const [deleteAlert, setDeleteAlert] = useState({ data: null, timestamp: 0 });
     const [messageApi, messageContextHolder] = message.useMessage();
     const [defaultFile, setDefaultFile] = useState([]);
 
@@ -57,9 +58,24 @@ function Conainer(props) {
 
     const handleActionButtonDeleteClick = (data) => {
         async function onOk() {
-            await dispatch(deleteDishAdmin(data.id)).then(() => fetchData());
+            await dispatch(deleteDishAdmin(data.id))
+                .then((result) => {
+                    const timestamp = Utils.getValues(result, 'payload', []);
+                    setDeleteAlert({ data: data, timestamp: timestamp });
+                })
+                .then(() => {
+                    fetchData();
+                });
         }
         Modal.confirm(UseNotification.Modal.DeleteModal(t, NotificationTarget.Dish, onOk));
+    };
+
+    const handleUndoDeleteClick = async () => {
+        await dispatch(undoDeleteDishAdmin(deleteAlert.data.id))
+            .then(() => {
+                setDeleteAlert({});
+            })
+            .then(() => fetchData());
     };
 
     const handleActionButtonTurnOffClick = (data) => {
@@ -98,7 +114,7 @@ function Conainer(props) {
                             cover: values.cover !== undefined ? values.cover.file.originFileObj : null,
                         };
                         await dispatch(createDishAdmin(modifiedItem)).then((result) => {
-                            UseNotification.Message.FinishMessage(t, UserAction.CreateFinish);
+                            UseNotification.Message.CreateFinish(t);
                             setOpenCreateModel(false);
                             fetchData();
                         });
@@ -106,7 +122,7 @@ function Conainer(props) {
                     .then(() => createForm.resetFields());
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.CreateFinishFail);
+                UseNotification.Message.CreateFinishFail(t);
             });
     };
 
@@ -130,7 +146,7 @@ function Conainer(props) {
                             cover: values.cover !== undefined ? values.cover.file.originFileObj : null,
                         };
                         await dispatch(updateDishAdmin(modifiedItem)).then((result) => {
-                            UseNotification.Message.FinishMessage(t, UserAction.UpdateFinish);
+                            UseNotification.Message.UpdateFinish(t);
                             setOpenEditModel(false);
                             fetchData();
                         });
@@ -138,7 +154,7 @@ function Conainer(props) {
                     .then(() => editForm.resetFields());
             })
             .catch(() => {
-                UseNotification.Message.FinishFailMessage(t, UserAction.UpdateFinishFail);
+                UseNotification.Message.UpdateFinishFail(t);
             });
     };
 
@@ -169,6 +185,9 @@ function Conainer(props) {
         expandedRowRenderSelection,
         handleCreateNewClick,
         handleRefreshClick,
+        deleteAlert,
+        handleUndoDeleteClick,
+        setDeleteAlert,
     };
     return <MainView {...propsProvider(containerProps)} />;
 }
