@@ -30,3 +30,8 @@ export const undoDeleteMenuAdmin = createAsyncThunk('menuAdmin/undoDelete', asyn
     const res = await MenuAdmin.undoDetele(params);
     return res;
 });
+
+export const updateMenuStatusAdmin = createAsyncThunk('menuAdmin/updateStatus', async (params) => {
+    const res = await MenuAdmin.updateMenuStatus(params);
+    return res;
+});

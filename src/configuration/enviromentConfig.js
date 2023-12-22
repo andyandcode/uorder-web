@@ -1,9 +1,9 @@
 const enviromentConfig = {
     development: {
-        endPoint: 'http://192.168.0.101:90/',
+        endPoint: 'http://192.168.0.102:90/',
     },
     production: {
-        endPoint: 'http://192.168.0.101:90/',
+        endPoint: 'http://192.168.0.102:90/',
     },
 };
 

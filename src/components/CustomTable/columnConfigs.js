@@ -367,6 +367,7 @@ const ExpandedRowRenderSelection = (
                     title: t('main.entities.id'),
                     align: 'right',
                     render: (data) => data,
+                    hidden: true,
                 },
                 {
                     key: 'parentId',

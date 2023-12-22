@@ -27,6 +27,19 @@ const DishAdmin = {
             headers: { 'Content-Type': 'application/json-patch+json' },
         });
     },
+    updateDishStatus: (params) => {
+        const modifiedArray = [];
+
+        for (const item of params) {
+            const { path, op, value } = item;
+            const modifiedItem = { path, op, value };
+            modifiedArray.push(modifiedItem);
+        }
+        const url = `/dish/patch/${params[0].id}`;
+        return axiosInstance.patch(url, modifiedArray, {
+            headers: { 'content-type': 'application/json-patch+json' },
+        });
+    },
 };
 
 const TableAdmin = {
@@ -50,6 +63,19 @@ const TableAdmin = {
         const url = `/table/undoDelete/${params}`;
         return axiosInstance.post(url, params, {
             headers: { 'Content-Type': 'application/json-patch+json' },
+        });
+    },
+    updateTableStatus: (params) => {
+        const modifiedArray = [];
+
+        for (const item of params) {
+            const { path, op, value } = item;
+            const modifiedItem = { path, op, value };
+            modifiedArray.push(modifiedItem);
+        }
+        const url = `/table/patch/${params[0].id}`;
+        return axiosInstance.patch(url, modifiedArray, {
+            headers: { 'content-type': 'application/json-patch+json' },
         });
     },
 };
@@ -81,6 +107,19 @@ const MenuAdmin = {
         const url = `/menu/undoDelete/${params}`;
         return axiosInstance.post(url, params, {
             headers: { 'Content-Type': 'application/json-patch+json' },
+        });
+    },
+    updateMenuStatus: (params) => {
+        const modifiedArray = [];
+
+        for (const item of params) {
+            const { path, op, value } = item;
+            const modifiedItem = { path, op, value };
+            modifiedArray.push(modifiedItem);
+        }
+        const url = `/menu/patch/${params[0].id}`;
+        return axiosInstance.patch(url, modifiedArray, {
+            headers: { 'content-type': 'application/json-patch+json' },
         });
     },
 };

@@ -5,7 +5,14 @@ import { hideLoading, showLoading } from '../../../components/FullPageLoading/Lo
 import { NotificationTarget, UseNotification } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
-import { createTableAdmin, deleteTableAdmin, getListTableAdmin, undoDeleteTableAdmin, updateTableAdmin } from './Slice';
+import {
+    createTableAdmin,
+    deleteTableAdmin,
+    getListTableAdmin,
+    undoDeleteTableAdmin,
+    updateTableAdmin,
+    updateTableStatusAdmin,
+} from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -110,22 +117,32 @@ function Conainer(props) {
 
     const handleActionButtonTurnOffClick = (data) => {
         async function onOk() {
-            const modifiedItem = {
-                ...data,
-                isActive: false,
-            };
-            await dispatch(updateTableAdmin(modifiedItem)).then(() => fetchData());
+            await dispatch(
+                updateTableStatusAdmin([
+                    {
+                        path: '/IsActive',
+                        op: 'replace',
+                        value: false,
+                        id: data.id,
+                    },
+                ]),
+            ).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Table, onOk));
     };
 
     const handleActionButtonTurnOnClick = (data) => {
         async function onOk() {
-            const modifiedItem = {
-                ...data,
-                isActive: true,
-            };
-            await dispatch(updateTableAdmin(modifiedItem)).then(() => fetchData());
+            await dispatch(
+                updateTableStatusAdmin([
+                    {
+                        path: '/IsActive',
+                        op: 'replace',
+                        value: true,
+                        id: data.id,
+                    },
+                ]),
+            ).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Table, onOk));
     };
