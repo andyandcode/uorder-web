@@ -33,7 +33,7 @@ const CreateAxiosInstance = () => {
             return response;
         },
         (error) => {
-            if (error.code === 'ERR_NETWORK' || error.code === 'ECONNABORTED' || error.code === 'ERR_BAD_REQUEST') {
+            if (error.code === 'ERR_NETWORK' || error.code === 'ECONNABORTED') {
                 return;
             }
 

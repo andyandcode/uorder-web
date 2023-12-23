@@ -4,7 +4,7 @@ import TableColumns from '../../../components/CustomTable/columnConfigs';
 import { hideLoading, showLoading } from '../../../components/FullPageLoading/LoadingSlice';
 import { NotificationTarget, UseNotification } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
-import { updateDishAdmin } from '../DishManagement/Slice';
+import { updateDishStatusAdmin } from '../DishManagement/Slice';
 import propsProvider from './PropsProvider';
 import {
     createMenuAdmin,
@@ -13,6 +13,7 @@ import {
     removeMenuAdmin,
     undoDeleteMenuAdmin,
     updateMenuAdmin,
+    updateMenuStatusAdmin,
 } from './Slice';
 import MainView from './template/MainView';
 
@@ -73,24 +74,32 @@ function Conainer(props) {
 
     const handleActionButtonTurnOffClick = (data) => {
         async function onOk() {
-            const modifiedItem = {
-                ...data,
-                isActive: false,
-                dishes: data.dishes.map((item) => item.id),
-            };
-            await dispatch(updateMenuAdmin(modifiedItem)).then(() => fetchData());
+            await dispatch(
+                updateMenuStatusAdmin([
+                    {
+                        path: '/IsActive',
+                        op: 'replace',
+                        value: false,
+                        id: data.id,
+                    },
+                ]),
+            ).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Menu, onOk));
     };
 
     const handleActionButtonTurnOnClick = (data) => {
         async function onOk() {
-            const modifiedItem = {
-                ...data,
-                isActive: true,
-                dishes: data.dishes.map((item) => item.id),
-            };
-            await dispatch(updateMenuAdmin(modifiedItem)).then(() => fetchData());
+            await dispatch(
+                updateMenuStatusAdmin([
+                    {
+                        path: '/IsActive',
+                        op: 'replace',
+                        value: true,
+                        id: data.id,
+                    },
+                ]),
+            ).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Menu, onOk));
     };
@@ -108,19 +117,29 @@ function Conainer(props) {
     };
 
     const handleQuickTurnOffConfirm = async (data) => {
-        const modifiedItem = {
-            ...data,
-            isActive: false,
-        };
-        await dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
+        await dispatch(
+            updateDishStatusAdmin([
+                {
+                    path: '/IsActive',
+                    op: 'replace',
+                    value: false,
+                    id: data.id,
+                },
+            ]),
+        ).then(() => fetchData());
     };
 
     const handleQuickActionButtonTurnOnClick = async (data) => {
-        const modifiedItem = {
-            ...data,
-            isActive: true,
-        };
-        await dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
+        await dispatch(
+            updateDishStatusAdmin([
+                {
+                    path: '/IsActive',
+                    op: 'replace',
+                    value: true,
+                    id: data.id,
+                },
+            ]),
+        ).then(() => fetchData());
     };
 
     const handleCreateSubmitClick = (values) => {

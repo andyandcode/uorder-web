@@ -5,7 +5,14 @@ import { hideLoading, showLoading } from '../../../components/FullPageLoading/Lo
 import { NotificationTarget, UseNotification } from '../../../components/UseNotification';
 import Utils from '../../../utilities';
 import propsProvider from './PropsProvider';
-import { createDishAdmin, deleteDishAdmin, getListDishAdmin, undoDeleteDishAdmin, updateDishAdmin } from './Slice';
+import {
+    createDishAdmin,
+    deleteDishAdmin,
+    getListDishAdmin,
+    undoDeleteDishAdmin,
+    updateDishAdmin,
+    updateDishStatusAdmin,
+} from './Slice';
 import MainView from './template/MainView';
 
 function Conainer(props) {
@@ -80,22 +87,32 @@ function Conainer(props) {
 
     const handleActionButtonTurnOffClick = (data) => {
         async function onOk() {
-            const modifiedItem = {
-                ...data,
-                isActive: false,
-            };
-            await dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
+            await dispatch(
+                updateDishStatusAdmin([
+                    {
+                        path: '/IsActive',
+                        op: 'replace',
+                        value: false,
+                        id: data.id,
+                    },
+                ]),
+            ).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOffModal(t, NotificationTarget.Dish, onOk));
     };
 
     const handleActionButtonTurnOnClick = (data) => {
         async function onOk() {
-            const modifiedItem = {
-                ...data,
-                isActive: true,
-            };
-            await dispatch(updateDishAdmin(modifiedItem)).then(() => fetchData());
+            await dispatch(
+                updateDishStatusAdmin([
+                    {
+                        path: '/IsActive',
+                        op: 'replace',
+                        value: true,
+                        id: data.id,
+                    },
+                ]),
+            ).then(() => fetchData());
         }
         Modal.confirm(UseNotification.Modal.TurnOnModal(t, NotificationTarget.Dish, onOk));
     };

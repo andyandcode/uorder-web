@@ -25,3 +25,8 @@ export const undoDeleteTableAdmin = createAsyncThunk('tableAdmin/undoDelete', as
     const res = await TableAdmin.undoDetele(params);
     return res;
 });
+
+export const updateTableStatusAdmin = createAsyncThunk('tableAdmin/updateStatus', async (params) => {
+    const res = await TableAdmin.updateTableStatus(params);
+    return res;
+});

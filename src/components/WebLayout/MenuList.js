@@ -93,7 +93,7 @@ export const MenuList = (roleName) => {
             key: rootKeys.adminRoleUrl,
             path: rootKeys.adminRoleUrl,
             icon: <AppstoreOutlined />,
-            role: 'admin',
+            role: 'admin,creator',
             type: 'group',
             children: [
                 {
@@ -111,7 +111,7 @@ export const MenuList = (roleName) => {
                     key: rootKeys.discountCodeManagementUrl,
                     path: rootKeys.discountCodeManagementUrl,
                     icon: <TagsOutlined />,
-                    role: 'admin',
+                    role: 'admin,creator',
                 },
                 {
                     label: t('main.navigation.settings.system'),

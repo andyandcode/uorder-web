@@ -29,3 +29,8 @@ export const undoDeleteDishAdmin = createAsyncThunk('dishAdmin/undoDelete', asyn
     const res = await DishAdmin.undoDetele(params);
     return res;
 });
+
+export const updateDishStatusAdmin = createAsyncThunk('dishAdmin/updateStatus', async (params) => {
+    const res = await DishAdmin.updateDishStatus(params);
+    return res;
+});
